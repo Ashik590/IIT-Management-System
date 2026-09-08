@@ -259,13 +259,13 @@ erDiagram
         integer active
     }
     STUDENT_PROFILES {
-        integer user_id PK_FK
+        integer user_id PK, FK
         text roll_number UK
         text academic_session
         text blood_group
     }
     TEACHER_PROFILES {
-        integer user_id PK_FK
+        integer user_id PK, FK
         text employee_id UK
         text designation
     }
@@ -282,12 +282,12 @@ erDiagram
         text finished_at
     }
     COURSE_TEACHERS {
-        integer course_id PK_FK
-        integer teacher_id PK_FK
+        integer course_id PK, FK
+        integer teacher_id PK, FK
     }
     ENROLLMENTS {
-        integer course_id PK_FK
-        integer student_id PK_FK
+        integer course_id PK, FK
+        integer student_id PK, FK
         text status
         real final_exam_mark
         real ce_mark
@@ -301,8 +301,8 @@ erDiagram
         integer created_by FK
     }
     ATTENDANCE_RECORDS {
-        integer session_id PK_FK
-        integer student_id PK_FK
+        integer session_id PK, FK
+        integer student_id PK, FK
         text status
     }
     ASSESSMENT_COMPONENTS {
@@ -313,8 +313,8 @@ erDiagram
         real maximum_mark
     }
     ASSESSMENT_MARKS {
-        integer component_id PK_FK
-        integer student_id PK_FK
+        integer component_id PK, FK
+        integer student_id PK, FK
         real obtained_mark
     }
     RESOURCES {
