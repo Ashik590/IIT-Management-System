@@ -1,0 +1,48 @@
+.root {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-background-color: #f6f8fb;
+}
+
+.app-title {
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #153b66;
+}
+
+.section-title {
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #234f7d;
+}
+
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-padding: 16px;
+    -fx-border-color: #d8e0ea;
+    -fx-border-radius: 8px;
+}
+
+.button {
+    -fx-background-color: #215a96;
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+    -fx-padding: 7px 13px;
+}
+
+.button.secondary {
+    -fx-background-color: #60758c;
+}
+
+.button.danger {
+    -fx-background-color: #a63a3a;
+}
+
+.status-message {
+    -fx-text-fill: #8a2f2f;
+}
+
+.table-view, .list-view, .text-area, .text-field, .combo-box, .date-picker {
+    -fx-background-color: white;
+}

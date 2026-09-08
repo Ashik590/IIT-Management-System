@@ -1,0 +1,10 @@
+target/
+.idea/
+*.iml
+.vscode/
+data/*.db
+data/*.db-*
+data/resources/*
+!data/resources/.gitkeep
+*.log
+
