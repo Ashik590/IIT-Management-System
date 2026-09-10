@@ -103,8 +103,9 @@ public final class CourseService {
     public void saveFinalExamMark(long courseId, long studentId, double mark) {
         Course course = get(courseId);
         new CourseLifecycle(course.status()).ensureCanManageAcademics();
-        if (mark < 0 || mark > 60) {
-            throw new ValidationException("Final-exam mark must be between 0 and 60.");
+        int maximumMark = course.courseType().finalExamMarks();
+        if (mark < 0 || mark > maximumMark) {
+            throw new ValidationException("Final-exam mark must be between 0 and " + maximumMark + ".");
         }
         courseRepository.saveFinalExamMark(courseId, studentId, mark);
     }

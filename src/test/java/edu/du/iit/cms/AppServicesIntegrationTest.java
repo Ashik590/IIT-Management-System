@@ -57,6 +57,33 @@ class AppServicesIntegrationTest {
     }
 
     @Test
+    void appliesCourseTypeSpecificCeAndFinalExamMarks() {
+        AppServices services = new AppServices(temporaryDirectory, true);
+        User teacher = services.auth().login("teacher1", "teacher123");
+        Course lab = services.courses().allCourses().stream()
+                .filter(course -> course.courseCode().equals("SE-2216"))
+                .findFirst().orElseThrow();
+
+        services.courses().activateCourse(lab.id());
+        long componentId = services.evaluation().addComponent(
+                teacher.id(), lab.id(), "Lab performance", 100, 100);
+        services.evaluation().finalizeStructure(teacher.id(), lab.id());
+
+        for (CourseStudent student : services.courses().students(lab.id())) {
+            services.evaluation().saveMark(teacher.id(), lab.id(), componentId, student.studentId(), 100);
+            services.courses().saveFinalExamMark(lab.id(), student.studentId(), 30);
+            assertEquals(70.0, services.evaluation().calculateCe(lab.id(), student.studentId()), 0.0001);
+        }
+        CourseStudent firstStudent = services.courses().students(lab.id()).getFirst();
+        assertThrows(ValidationException.class,
+                () -> services.courses().saveFinalExamMark(lab.id(), firstStudent.studentId(), 30.01));
+
+        services.completion().finish(lab.id());
+        assertTrue(services.courses().students(lab.id()).stream()
+                .allMatch(student -> student.ceMark() == 70.0 && student.totalMark() == 100.0));
+    }
+
+    @Test
     void completesCourseAtomicallyAndStoresOutcomes() {
         AppServices services = new AppServices(temporaryDirectory, true);
         Course course = services.courses().allCourses().stream()

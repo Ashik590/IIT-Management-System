@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS enrollments (
     student_id INTEGER NOT NULL,
     status TEXT NOT NULL DEFAULT 'ENROLLED' CHECK (status IN ('ENROLLED', 'COMPLETED', 'INCOMPLETE')),
     final_exam_mark REAL CHECK (final_exam_mark BETWEEN 0 AND 60),
-    ce_mark REAL CHECK (ce_mark BETWEEN 0 AND 40),
+    ce_mark REAL CHECK (ce_mark BETWEEN 0 AND 70),
     total_mark REAL CHECK (total_mark BETWEEN 0 AND 100),
     enrolled_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (course_id, student_id),
@@ -117,4 +117,3 @@ CREATE INDEX IF NOT EXISTS idx_enrollments_student ON enrollments(student_id);
 CREATE INDEX IF NOT EXISTS idx_attendance_sessions_course ON attendance_sessions(course_id);
 CREATE INDEX IF NOT EXISTS idx_components_course ON assessment_components(course_id);
 CREATE INDEX IF NOT EXISTS idx_resources_course ON resources(course_id);
-

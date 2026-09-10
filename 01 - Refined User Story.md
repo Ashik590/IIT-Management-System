@@ -96,8 +96,9 @@ Once Active, the course becomes available to its assigned Teachers and enrolled 
 
 As an Administrator, I want to enter each enrolled Student's final-exam mark so that the system can calculate the final course result.
 
-- The final examination is worth 60 marks.
-- A final-exam mark must be between 0 and 60.
+- For Theory courses, the final examination is worth 60 marks.
+- For Lab courses, the final examination is worth 30 marks.
+- A final-exam mark must be between 0 and the maximum for the course type.
 - Marks can be entered or corrected while the course is Active.
 - Every enrolled Student must have a final-exam mark before the course can be finished.
 
@@ -117,7 +118,8 @@ Before finishing, the system verifies that:
 For each Student, the system calculates:
 
 ```text
-Total mark = CE mark out of 40 + final-exam mark out of 60
+Theory total = CE mark out of 40 + final-exam mark out of 60
+Lab total = CE mark out of 70 + final-exam mark out of 30
 ```
 
 The enrollment outcome is:
@@ -184,7 +186,7 @@ If no attendance session exists, the system displays that attendance has not yet
 
 As a Teacher, I want to define a flexible CE structure so that different courses can use appropriate assessment components.
 
-The total CE is worth 40 marks. The Teacher can add assessment components such as quizzes, assignments, presentations, midterms, or attendance.
+The total CE is worth 40 marks for Theory courses and 70 marks for Lab courses. The Teacher can add assessment components such as quizzes, assignments, presentations, midterms, or attendance.
 
 Each component contains:
 
@@ -225,10 +227,10 @@ The contribution of a component is calculated as:
 Component contribution =
     (obtained mark / maximum mark)
     * (weight percentage / 100)
-    * 40
+    * CE maximum for the course type
 ```
 
-The Student's CE mark is the sum of all component contributions and cannot exceed 40.
+The Student's CE mark is the sum of all component contributions and cannot exceed 40 for Theory or 70 for Lab.
 
 #### 4.5 Manage course resources
 
@@ -290,8 +292,8 @@ For an Active course, the Student can view:
 
 For a Finished course, the Student can additionally view:
 
-- Final CE mark out of 40.
-- Final-exam mark out of 60.
+- Final CE mark out of 40 for Theory or 70 for Lab.
+- Final-exam mark out of 60 for Theory or 30 for Lab.
 - Total mark out of 100.
 - Completed or Incomplete outcome.
 
@@ -344,7 +346,7 @@ The system must handle at least these cases clearly:
 - Attempting an operation on an unauthorized or Finished course.
 - CE weights that do not total 100%.
 - Assessment marks outside the allowed range.
-- Final-exam marks outside 0–60.
+- Final-exam marks outside the course-type limit (0–60 for Theory or 0–30 for Lab).
 - Missing marks during course completion.
 - Empty attendance history.
 - Missing or inaccessible resource files.
@@ -380,4 +382,3 @@ The system is successful when:
 - Course completion updates all related records consistently.
 - Finished academic records remain available but cannot be modified.
 - Important business rules are covered by automated tests.
-

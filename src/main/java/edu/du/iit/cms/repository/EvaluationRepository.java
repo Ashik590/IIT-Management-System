@@ -169,8 +169,10 @@ public final class EvaluationRepository {
 
     public double calculateCe(long courseId, long studentId) {
         String sql = """
-                SELECT COALESCE(SUM((m.obtained_mark / c.maximum_mark) * (c.weight_percentage / 100.0) * 40.0),0)
+                SELECT COALESCE(SUM((m.obtained_mark / c.maximum_mark) * (c.weight_percentage / 100.0)
+                    * CASE course.course_type WHEN 'LAB' THEN 70.0 ELSE 40.0 END),0)
                 FROM assessment_components c
+                JOIN courses course ON course.id=c.course_id
                 LEFT JOIN assessment_marks m ON m.component_id=c.id AND m.student_id=?
                 WHERE c.course_id=?
                 """;

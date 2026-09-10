@@ -51,7 +51,7 @@ For the formal submission document, see [TECHNICAL_DOCUMENTATION.md](TECHNICAL_D
 
 The system serves three roles:
 
-- **Administrator:** creates and maintains accounts, configures courses, allocates Teachers and Students, activates courses, enters 60-mark final-exam results, finishes courses, and views result sheets.
+- **Administrator:** creates and maintains accounts, configures courses, allocates Teachers and Students, activates courses, enters course-type-specific final-exam results, finishes courses, and views result sheets.
 - **Teacher:** works only with assigned courses, records attendance, configures and finalizes CE, enters assessment marks, uploads resources, and views Student summaries.
 - **Student:** views only their own courses, attendance, CE, final results, and course resources.
 
@@ -413,19 +413,19 @@ For a component:
 component contribution
     = (obtained mark / maximum mark)
       × (weight percentage / 100)
-      × 40
+      × CE maximum for the course type
 ```
 
 For a Student:
 
 ```text
-CE mark out of 40 = sum of all component contributions
+CE mark = sum of all component contributions (out of 40 for Theory or 70 for Lab)
 ```
 
 Example: a Student obtains 15/20 in a component worth 25% of CE.
 
 ```text
-(15 / 20) × (25 / 100) × 40 = 7.5 CE marks
+(15 / 20) × (25 / 100) × 40 = 7.5 CE marks for a Theory course
 ```
 
 ### Workflow 3: Attendance
@@ -443,10 +443,11 @@ When no session exists, the percentage is represented as absent/unknown rather t
 
 ### Workflow 4: Course completion
 
-The Administrator first saves every final-exam mark out of 60, then requests completion. The application validates all prerequisites before calculating outcomes.
+The Administrator first saves every final-exam mark (out of 60 for Theory or 30 for Lab), then requests completion. The application validates all prerequisites before calculating outcomes.
 
 ```text
-total mark = CE mark out of 40 + final-exam mark out of 60
+Theory total = CE mark out of 40 + final-exam mark out of 60
+Lab total = CE mark out of 70 + final-exam mark out of 30
 
 total >= 40  -> COMPLETED
 total < 40   -> INCOMPLETE
@@ -764,7 +765,7 @@ Avoiding unnecessary patterns keeps the claimed design defensible: every pattern
 - Passwords must contain at least six characters.
 - Course credits must be greater than `0` and at most `6`.
 - Duplicate identifiers and relationships are rejected by database constraints.
-- Final-exam marks are limited to `0..60`.
+- Final-exam marks are limited to `0..60` for Theory and `0..30` for Lab.
 - CE weights are limited to `(0, 100]`, and total weight cannot exceed 100%.
 - Assessment marks are limited to `0..maximumMark`.
 - Role ownership and enrollment are checked before course data is returned or changed.

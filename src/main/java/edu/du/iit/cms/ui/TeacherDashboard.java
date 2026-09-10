@@ -255,7 +255,8 @@ public final class TeacherDashboard extends BorderPane {
             StudentAcademicSummary row = services.reporting().studentSummary(course.id(), student.studentId());
             overview.append(row.rollNumber()).append(" | ").append(row.studentName())
                     .append(" | Attendance: ").append(format(row.attendancePercentage()))
-                    .append(" | CE: ").append(format(row.ceMark())).append("\n");
+                    .append(" | CE: ").append(format(row.ceMark())).append(" / ")
+                    .append(course.courseType().ceMarks()).append("\n");
 
             CheckBox present = new CheckBox(student.toString());
             present.setSelected(true);
