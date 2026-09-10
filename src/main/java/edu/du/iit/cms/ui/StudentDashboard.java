@@ -2,6 +2,7 @@ package edu.du.iit.cms.ui;
 
 import edu.du.iit.cms.AppServices;
 import edu.du.iit.cms.domain.AssessmentComponent;
+import edu.du.iit.cms.domain.AssessmentComponentType;
 import edu.du.iit.cms.domain.AttendanceSummary;
 import edu.du.iit.cms.domain.Course;
 import edu.du.iit.cms.domain.ResourceItem;
@@ -89,9 +90,11 @@ public final class StudentDashboard extends BorderPane {
                 .append("Enrollment status: ").append(summary.enrollmentStatus()).append('\n')
                 .append("CE structure: ").append(course.ceStatus()).append('\n')
                 .append("Attendance: ").append(format(summary.attendancePercentage())).append('%').append('\n')
-                .append("Current CE: ").append(format(summary.ceMark())).append(" / 40");
+                .append("Current CE: ").append(format(summary.ceMark())).append(" / ")
+                .append(course.courseType().ceMarks());
         if (summary.finalExamMark() != null) {
-            text.append("\nFinal examination: ").append(format(summary.finalExamMark())).append(" / 60");
+            text.append("\nFinal examination: ").append(format(summary.finalExamMark())).append(" / ")
+                    .append(course.courseType().finalExamMarks());
         }
         if (summary.totalMark() != null) {
             text.append("\nTotal: ").append(format(summary.totalMark())).append(" / 100");
@@ -107,12 +110,19 @@ public final class StudentDashboard extends BorderPane {
         }
 
         for (AssessmentComponent component : services.evaluation().components(course.id())) {
-            Double mark = services.evaluation().mark(component.id(), student.id());
-            evaluation.getItems().add(component.title() + " | obtained " + format(mark)
-                    + " / " + format(component.maximumMark()) + " | weight "
-                    + format(component.weightPercentage()) + "%");
+            if (component.type() == AssessmentComponentType.ATTENDANCE) {
+                evaluation.getItems().add(component.title() + " | "
+                        + format(summary.attendancePercentage()) + "% attendance | weight "
+                        + format(component.weightPercentage()) + "%");
+            } else {
+                Double mark = services.evaluation().mark(component.id(), student.id());
+                evaluation.getItems().add(component.title() + " | obtained " + format(mark)
+                        + " / " + format(component.maximumMark()) + " | weight "
+                        + format(component.weightPercentage()) + "%");
+            }
         }
-        evaluation.getItems().add("CE total: " + format(summary.ceMark()) + " / 40"
+        evaluation.getItems().add("CE total: " + format(summary.ceMark()) + " / "
+                + course.courseType().ceMarks()
                 + (course.ceStatus().name().equals("FINALIZED") ? "" : " (provisional)"));
 
         resources.getItems().setAll(services.resources().resources(course.id(), student.id()));

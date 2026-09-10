@@ -1,6 +1,7 @@
 package edu.du.iit.cms;
 
 import edu.du.iit.cms.domain.Course;
+import edu.du.iit.cms.domain.AttendanceStatus;
 import edu.du.iit.cms.domain.CeStatus;
 import edu.du.iit.cms.domain.CourseStatus;
 import edu.du.iit.cms.domain.CourseStudent;
@@ -13,6 +14,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -38,7 +41,7 @@ class AppServicesIntegrationTest {
                 .filter(item -> item.rollNumber().equals("BSSE-1401"))
                 .findFirst().orElseThrow();
 
-        assertEquals(33.4, services.evaluation().calculateCe(course.id(), student.studentId()), 0.0001);
+        assertEquals(34.3, services.evaluation().calculateCe(course.id(), student.studentId()), 0.0001);
         assertEquals(100.0, services.attendance().count(course.id(), student.studentId()).percentage(), 0.0001);
     }
 
@@ -54,6 +57,41 @@ class AppServicesIntegrationTest {
                 .noneMatch(course -> course.status() == CourseStatus.DRAFT));
         assertTrue(services.courses().coursesForStudent(student.id()).stream()
                 .noneMatch(course -> course.status() == CourseStatus.DRAFT));
+    }
+
+    @Test
+    void appliesCourseTypeSpecificCeAndFinalExamMarks() {
+        AppServices services = new AppServices(temporaryDirectory, true);
+        User teacher = services.auth().login("teacher1", "teacher123");
+        Course lab = services.courses().allCourses().stream()
+                .filter(course -> course.courseCode().equals("SE-2216"))
+                .findFirst().orElseThrow();
+
+        services.courses().activateCourse(lab.id());
+        var attendance = services.courses().students(lab.id()).stream().collect(Collectors.toMap(
+                CourseStudent::studentId, student -> AttendanceStatus.PRESENT));
+        services.attendance().createSession(teacher.id(), lab.id(), LocalDate.now(), "Lab 1", attendance);
+        var attendanceComponent = services.evaluation().components(lab.id()).stream()
+                .filter(component -> component.title().equals("Attendance"))
+                .findFirst().orElseThrow();
+        assertEquals(15.0, attendanceComponent.weightPercentage(), 0.0001);
+        services.evaluation().updateWeight(teacher.id(), lab.id(), attendanceComponent.id(), 10);
+        long componentId = services.evaluation().addComponent(
+                teacher.id(), lab.id(), "Lab performance", 90, 100);
+        services.evaluation().finalizeStructure(teacher.id(), lab.id());
+
+        for (CourseStudent student : services.courses().students(lab.id())) {
+            services.evaluation().saveMark(teacher.id(), lab.id(), componentId, student.studentId(), 100);
+            services.courses().saveFinalExamMark(lab.id(), student.studentId(), 30);
+            assertEquals(70.0, services.evaluation().calculateCe(lab.id(), student.studentId()), 0.0001);
+        }
+        CourseStudent firstStudent = services.courses().students(lab.id()).getFirst();
+        assertThrows(ValidationException.class,
+                () -> services.courses().saveFinalExamMark(lab.id(), firstStudent.studentId(), 30.01));
+
+        services.completion().finish(lab.id());
+        assertTrue(services.courses().students(lab.id()).stream()
+                .allMatch(student -> student.ceMark() == 70.0 && student.totalMark() == 100.0));
     }
 
     @Test
@@ -96,7 +134,9 @@ class AppServicesIntegrationTest {
         Course active = services.courses().allCourses().stream()
                 .filter(item -> item.courseCode().equals("SE-2215"))
                 .findFirst().orElseThrow();
-        long componentId = services.evaluation().components(active.id()).getFirst().id();
+        long componentId = services.evaluation().components(active.id()).stream()
+                .filter(component -> !component.title().equals("Attendance"))
+                .findFirst().orElseThrow().id();
         services.evaluation().deleteComponent(teacher.id(), active.id(), componentId);
         assertFalse(services.evaluation().components(active.id()).stream()
                 .anyMatch(component -> component.id() == componentId));

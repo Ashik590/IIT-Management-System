@@ -275,7 +275,7 @@ public final class AdminDashboard extends BorderPane {
         ComboBox<CourseStudent> studentChoice = new ComboBox<>();
         studentChoice.setMaxWidth(Double.MAX_VALUE);
         Label currentCe = new Label("CE: —");
-        TextField finalMark = field("0 to 60");
+        TextField finalMark = field("Select a course");
         TextArea report = new TextArea();
         report.setEditable(false);
         report.setPrefRowCount(16);
@@ -285,8 +285,10 @@ public final class AdminDashboard extends BorderPane {
             studentChoice.getItems().clear();
             report.clear();
             if (course == null) {
+                finalMark.setPromptText("Select a course");
                 return;
             }
+            finalMark.setPromptText("0 to " + course.courseType().finalExamMarks());
             List<CourseStudent> roster = services.courses().students(course.id());
             studentChoice.getItems().setAll(roster);
             StringBuilder text = new StringBuilder();
@@ -308,7 +310,8 @@ public final class AdminDashboard extends BorderPane {
                 finalMark.clear();
             } else {
                 double ce = services.evaluation().calculateCe(courseChoice.getValue().id(), value.studentId());
-                currentCe.setText("CE: " + format(ce) + " / 40");
+                currentCe.setText("CE: " + format(ce) + " / "
+                        + courseChoice.getValue().courseType().ceMarks());
                 finalMark.setText(value.finalExamMark() == null ? "" : format(value.finalExamMark()));
             }
         });

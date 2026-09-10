@@ -51,7 +51,7 @@ For the formal submission document, see [TECHNICAL_DOCUMENTATION.md](TECHNICAL_D
 
 The system serves three roles:
 
-- **Administrator:** creates and maintains accounts, configures courses, allocates Teachers and Students, activates courses, enters 60-mark final-exam results, finishes courses, and views result sheets.
+- **Administrator:** creates and maintains accounts, configures courses, allocates Teachers and Students, activates courses, enters course-type-specific final-exam results, finishes courses, and views result sheets.
 - **Teacher:** works only with assigned courses, records attendance, configures and finalizes CE, enters assessment marks, uploads resources, and views Student summaries.
 - **Student:** views only their own courses, attendance, CE, final results, and course resources.
 
@@ -400,12 +400,13 @@ Teacher allocation and enrollment may be corrected while Draft. They become lock
 ### Workflow 2: CE setup and mark entry
 
 1. An assigned Teacher selects an Active course.
-2. The Teacher adds components with a title, weight, and maximum mark.
-3. A component may be removed or its weight updated. Either change returns CE to Draft.
-4. The total weight must be exactly 100% before finalization.
-5. Marks may be entered only after finalization.
-6. Marks are upserted, allowing correction without duplicate rows.
-7. A structural change preserves unaffected marks but blocks further mark entry until CE is finalized again.
+2. Every course already has an Attendance component weighted at 15% by default. Its result is derived automatically from each Student's attendance percentage, and the Teacher may edit its weight.
+3. The Teacher adds other components with a title, weight, and maximum mark.
+4. A manual component may be removed, and any component's weight may be updated. Either change returns CE to Draft.
+5. The total weight must be exactly 100% before finalization.
+6. Marks for manual components may be entered only after finalization; Attendance requires no manual mark.
+7. Manual marks are upserted, allowing correction without duplicate rows.
+8. A structural change preserves unaffected marks but blocks further mark entry until CE is finalized again.
 
 For a component:
 
@@ -413,19 +414,19 @@ For a component:
 component contribution
     = (obtained mark / maximum mark)
       × (weight percentage / 100)
-      × 40
+      × CE maximum for the course type
 ```
 
 For a Student:
 
 ```text
-CE mark out of 40 = sum of all component contributions
+CE mark = sum of all component contributions (out of 40 for Theory or 70 for Lab)
 ```
 
 Example: a Student obtains 15/20 in a component worth 25% of CE.
 
 ```text
-(15 / 20) × (25 / 100) × 40 = 7.5 CE marks
+(15 / 20) × (25 / 100) × 40 = 7.5 CE marks for a Theory course
 ```
 
 ### Workflow 3: Attendance
@@ -443,10 +444,11 @@ When no session exists, the percentage is represented as absent/unknown rather t
 
 ### Workflow 4: Course completion
 
-The Administrator first saves every final-exam mark out of 60, then requests completion. The application validates all prerequisites before calculating outcomes.
+The Administrator first saves every final-exam mark (out of 60 for Theory or 30 for Lab), then requests completion. The application validates all prerequisites before calculating outcomes.
 
 ```text
-total mark = CE mark out of 40 + final-exam mark out of 60
+Theory total = CE mark out of 40 + final-exam mark out of 60
+Lab total = CE mark out of 70 + final-exam mark out of 30
 
 total >= 40  -> COMPLETED
 total < 40   -> INCOMPLETE
@@ -764,7 +766,7 @@ Avoiding unnecessary patterns keeps the claimed design defensible: every pattern
 - Passwords must contain at least six characters.
 - Course credits must be greater than `0` and at most `6`.
 - Duplicate identifiers and relationships are rejected by database constraints.
-- Final-exam marks are limited to `0..60`.
+- Final-exam marks are limited to `0..60` for Theory and `0..30` for Lab.
 - CE weights are limited to `(0, 100]`, and total weight cannot exceed 100%.
 - Assessment marks are limited to `0..maximumMark`.
 - Role ownership and enrollment are checked before course data is returned or changed.

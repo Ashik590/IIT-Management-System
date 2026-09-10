@@ -2,6 +2,7 @@ package edu.du.iit.cms.repository;
 
 import edu.du.iit.cms.db.Database;
 import edu.du.iit.cms.domain.AssessmentComponent;
+import edu.du.iit.cms.domain.AssessmentComponentType;
 import edu.du.iit.cms.domain.CeStatus;
 
 import java.sql.Connection;
@@ -100,13 +101,14 @@ public final class EvaluationRepository {
         List<AssessmentComponent> components = new ArrayList<>();
         try (Connection connection = database.openConnection();
              PreparedStatement statement = connection.prepareStatement(
-                     "SELECT id,course_id,title,weight_percentage,maximum_mark FROM assessment_components WHERE course_id=? ORDER BY id")) {
+                     "SELECT id,course_id,title,weight_percentage,maximum_mark,component_type FROM assessment_components WHERE course_id=? ORDER BY id")) {
             statement.setLong(1, courseId);
             try (ResultSet result = statement.executeQuery()) {
                 while (result.next()) {
                     components.add(new AssessmentComponent(result.getLong("id"), result.getLong("course_id"),
                             result.getString("title"), result.getDouble("weight_percentage"),
-                            result.getDouble("maximum_mark")));
+                            result.getDouble("maximum_mark"),
+                            AssessmentComponentType.valueOf(result.getString("component_type"))));
                 }
             }
             return components;
@@ -169,15 +171,25 @@ public final class EvaluationRepository {
 
     public double calculateCe(long courseId, long studentId) {
         String sql = """
-                SELECT COALESCE(SUM((m.obtained_mark / c.maximum_mark) * (c.weight_percentage / 100.0) * 40.0),0)
+                SELECT COALESCE(SUM((CASE c.component_type
+                    WHEN 'ATTENDANCE' THEN COALESCE((
+                        SELECT AVG(CASE WHEN ar.status='PRESENT' THEN 1.0 ELSE 0.0 END)
+                        FROM attendance_records ar
+                        JOIN attendance_sessions ats ON ats.id=ar.session_id
+                        WHERE ats.course_id=c.course_id AND ar.student_id=?
+                    ),0)
+                    ELSE m.obtained_mark / c.maximum_mark END) * (c.weight_percentage / 100.0)
+                    * CASE course.course_type WHEN 'LAB' THEN 70.0 ELSE 40.0 END),0)
                 FROM assessment_components c
+                JOIN courses course ON course.id=c.course_id
                 LEFT JOIN assessment_marks m ON m.component_id=c.id AND m.student_id=?
                 WHERE c.course_id=?
                 """;
         try (Connection connection = database.openConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, studentId);
-            statement.setLong(2, courseId);
+            statement.setLong(2, studentId);
+            statement.setLong(3, courseId);
             try (ResultSet result = statement.executeQuery()) {
                 result.next();
                 return result.getDouble(1);
@@ -193,7 +205,7 @@ public final class EvaluationRepository {
                 FROM enrollments e
                 JOIN assessment_components c ON c.course_id=e.course_id
                 LEFT JOIN assessment_marks m ON m.component_id=c.id AND m.student_id=e.student_id
-                WHERE e.course_id=? AND m.component_id IS NULL
+                WHERE e.course_id=? AND c.component_type='MANUAL' AND m.component_id IS NULL
                 """;
         try (Connection connection = database.openConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {

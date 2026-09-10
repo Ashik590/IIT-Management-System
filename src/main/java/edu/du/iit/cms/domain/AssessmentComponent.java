@@ -5,15 +5,16 @@ public record AssessmentComponent(
         long courseId,
         String title,
         double weightPercentage,
-        double maximumMark
+        double maximumMark,
+        AssessmentComponentType type
 ) {
     @Override
     public String toString() {
-        return title + " | weight " + format(weightPercentage) + "% | max " + format(maximumMark);
+        String source = type == AssessmentComponentType.ATTENDANCE ? " | calculated automatically" : " | max " + format(maximumMark);
+        return title + " | weight " + format(weightPercentage) + "%" + source;
     }
 
     private static String format(double value) {
         return value == Math.rint(value) ? String.format("%.0f", value) : String.format("%.2f", value);
     }
 }
-

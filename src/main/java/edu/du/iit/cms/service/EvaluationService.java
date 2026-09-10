@@ -1,6 +1,7 @@
 package edu.du.iit.cms.service;
 
 import edu.du.iit.cms.domain.AssessmentComponent;
+import edu.du.iit.cms.domain.AssessmentComponentType;
 import edu.du.iit.cms.domain.CeStatus;
 import edu.du.iit.cms.domain.Course;
 import edu.du.iit.cms.pattern.state.CourseLifecycle;
@@ -23,6 +24,9 @@ public final class EvaluationService {
     public long addComponent(long teacherId, long courseId, String title, double weight, double maximumMark) {
         Course course = requireManagedCourse(teacherId, courseId);
         requireText(title, "Assessment title");
+        if (title.trim().equalsIgnoreCase("Attendance")) {
+            throw new ValidationException("Attendance is already included as an automatic CE component.");
+        }
         validateWeight(weight);
         if (maximumMark <= 0) {
             throw new ValidationException("Maximum mark must be greater than 0.");
@@ -48,7 +52,10 @@ public final class EvaluationService {
 
     public void deleteComponent(long teacherId, long courseId, long componentId) {
         requireManagedCourse(teacherId, courseId);
-        component(courseId, componentId);
+        AssessmentComponent component = component(courseId, componentId);
+        if (component.type() == AssessmentComponentType.ATTENDANCE) {
+            throw new ValidationException("The Attendance component cannot be deleted; its weight can be changed.");
+        }
         evaluationRepository.deleteComponent(courseId, componentId);
     }
 
@@ -74,6 +81,9 @@ public final class EvaluationService {
             throw new ValidationException("Student is not enrolled in this course.");
         }
         AssessmentComponent component = component(courseId, componentId);
+        if (component.type() == AssessmentComponentType.ATTENDANCE) {
+            throw new ValidationException("Attendance marks are calculated automatically from attendance records.");
+        }
         if (mark < 0 || mark > component.maximumMark()) {
             throw new ValidationException("Obtained mark must be between 0 and " + component.maximumMark() + ".");
         }

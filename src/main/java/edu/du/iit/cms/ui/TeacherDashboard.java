@@ -2,6 +2,7 @@ package edu.du.iit.cms.ui;
 
 import edu.du.iit.cms.AppServices;
 import edu.du.iit.cms.domain.AssessmentComponent;
+import edu.du.iit.cms.domain.AssessmentComponentType;
 import edu.du.iit.cms.domain.AttendanceStatus;
 import edu.du.iit.cms.domain.Course;
 import edu.du.iit.cms.domain.CourseStudent;
@@ -169,7 +170,6 @@ public final class TeacherDashboard extends BorderPane {
             refreshCourses(course.id());
         }));
 
-        components.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, value) -> loadMark());
         markStudent.valueProperty().addListener((observable, oldValue, value) -> loadMark());
 
         Button saveMark = new Button("Save Student mark");
@@ -182,6 +182,15 @@ public final class TeacherDashboard extends BorderPane {
                     UiSupport.number(markField.getText(), "Obtained mark"));
             refreshSelectedCourse();
         }));
+
+        components.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, value) -> {
+            boolean attendanceComponent = value != null && value.type() == AssessmentComponentType.ATTENDANCE;
+            deleteComponent.setDisable(attendanceComponent);
+            markStudent.setDisable(attendanceComponent);
+            markField.setDisable(attendanceComponent);
+            saveMark.setDisable(attendanceComponent);
+            loadMark();
+        });
 
         GridPane createForm = grid();
         addRow(createForm, 0, "Title", componentTitle);
@@ -255,7 +264,8 @@ public final class TeacherDashboard extends BorderPane {
             StudentAcademicSummary row = services.reporting().studentSummary(course.id(), student.studentId());
             overview.append(row.rollNumber()).append(" | ").append(row.studentName())
                     .append(" | Attendance: ").append(format(row.attendancePercentage()))
-                    .append(" | CE: ").append(format(row.ceMark())).append("\n");
+                    .append(" | CE: ").append(format(row.ceMark())).append(" / ")
+                    .append(course.courseType().ceMarks()).append("\n");
 
             CheckBox present = new CheckBox(student.toString());
             present.setSelected(true);
@@ -281,6 +291,12 @@ public final class TeacherDashboard extends BorderPane {
             markField.clear();
             return;
         }
+        if (component.type() == AssessmentComponentType.ATTENDANCE) {
+            markField.clear();
+            markField.setPromptText("Calculated automatically");
+            return;
+        }
+        markField.setPromptText("Obtained mark");
         Double mark = services.evaluation().mark(component.id(), student.studentId());
         markField.setText(mark == null ? "" : format(mark));
     }
