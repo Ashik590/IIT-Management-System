@@ -2,7 +2,7 @@
 
 A minimalist JavaFX desktop application for managing the academic lifecycle of IIT courses—from Draft configuration through attendance and Continuous Evaluation (CE) to final results and a read-only Finished state.
 
-This repository is the implementation of the **Mini SPL 2 Design Patterns Lab project**. The project deliberately concentrates on one coherent workflow rather than unrelated departmental features. Teacher ratings, anonymous reporting, alumni records, messaging, and student uploads are outside the current scope.
+This repository contains a reference implementation of the IIT Course Management System. It deliberately concentrates on one coherent workflow rather than unrelated departmental features. Teacher ratings, anonymous reporting, alumni records, messaging, and student uploads are outside the current scope.
 
 ## Contents
 
@@ -22,9 +22,9 @@ This repository is the implementation of the **Mini SPL 2 Design Patterns Lab pr
 - [Patterns intentionally not used](#patterns-intentionally-not-used)
 - [Validation, security, and consistency](#validation-security-and-consistency)
 - [Testing](#testing)
-- [Tutor-guideline traceability](#tutor-guideline-traceability)
-- [Team Git workflow](#team-git-workflow)
-- [Demonstration script](#demonstration-script)
+- [Requirements traceability](#requirements-traceability)
+- [Contribution workflow](#contribution-workflow)
+- [Demonstration workflow](#demonstration-workflow)
 - [Current limitations and future work](#current-limitations-and-future-work)
 
 ## Project objective
@@ -41,7 +41,7 @@ The central design problem is that valid operations change throughout a course's
 2. **Strategy** supplies the Teacher-allocation rule for Theory and Lab courses.
 3. **Chain of Responsibility** validates every prerequisite before course completion.
 
-The complete refined requirements are in [01 - Refined User Story.md](01%20-%20Refined%20User%20Story.md).
+The refined functional requirements are documented in [01 - Refined User Story.md](01%20-%20Refined%20User%20Story.md).
 
 ## Implemented scope
 
@@ -103,11 +103,14 @@ Useful upstream references:
 
 ## Quick start
 
-Open PowerShell in the repository root:
+Clone the repository, or open a local checkout in a terminal:
 
 ```powershell
-cd "C:\Users\Lenovo Loq\OneDrive\Desktop\Design Pattern\Mini SPL2"
+git clone <repository-url>
+cd IIT-Management-System
 ```
+
+If the repository is already cloned, replace the commands above with `cd path\to\IIT-Management-System`.
 
 Run all tests:
 
@@ -196,7 +199,7 @@ flowchart LR
 ### Source layout
 
 ```text
-Mini SPL2/
+IIT-Management-System/
 ├── pom.xml
 ├── README.md
 ├── 01 - Refined User Story.md
@@ -439,7 +442,7 @@ The Gang of Four patterns are commonly grouped into three categories. A category
 | **Structural** | How should objects/classes be composed? | Adapter, Bridge, Composite, Decorator, Facade, Flyweight, Proxy | No GoF structural pattern was necessary. A conventional layered architecture is sufficient. |
 | **Behavioral** | How should responsibilities, algorithms, and collaboration vary? | State, Strategy, Chain of Responsibility, Observer, Command, Template Method | **State, Strategy, and Chain of Responsibility are used.** The project's real complexity is behavioral business policy. |
 
-The repository and service layers are useful architectural patterns, but they are not presented as GoF patterns. This distinction matters in the viva: the three claimed GoF patterns are all behavioral because that is where genuine variation and change exist in this domain.
+The repository and service layers are useful architectural patterns, but they are not presented as GoF patterns. The three claimed GoF patterns are all behavioral because that is where genuine variation and change exist in this domain.
 
 ### Pattern-selection matrix
 
@@ -716,11 +719,11 @@ flowchart TD
 - **Chain of Responsibility** decides whether all preconditions pass.
 - The service then calculates results and requests one atomic repository transaction.
 
-This is the strongest pattern-focused demonstration path for the project viva.
+This provides a concise pattern-focused demonstration path for reviewers and maintainers.
 
 ## Patterns intentionally not used
 
-The project guideline explicitly discourages forced patterns. The following were considered and intentionally omitted:
+This implementation deliberately avoids forced patterns. The following were considered and intentionally omitted:
 
 - **Singleton:** a globally accessible database or service locator would hide dependencies, complicate isolated tests, and create shared mutable state. `AppServices` owns ordinary instances instead.
 - **Factory Method / Abstract Factory:** object creation has no complex family, platform variation, or subclass-controlled construction. Direct construction in one composition root is clearer.
@@ -796,11 +799,11 @@ Tests run: 9, Failures: 0, Errors: 0, Skipped: 0
 BUILD SUCCESS
 ```
 
-## Tutor-guideline traceability
+## Requirements traceability
 
-| Guideline | Evidence in this repository |
+| Requirement | Evidence in this repository |
 |---|---|
-| Two-person, maintainable project scope | One bounded course-lifecycle domain; team workflow below |
+| Bounded, maintainable scope | One focused course-lifecycle domain with explicit non-goals |
 | JavaFX desktop application | Login plus role dashboards under `ui` |
 | Maven configuration | `pom.xml` with JavaFX, SQLite JDBC, and JUnit dependencies |
 | SQLite persistence | Schema, repositories, constraints, startup initialization, and persistent `data` DB |
@@ -820,9 +823,9 @@ BUILD SUCCESS
 
 Hard deletion of users is intentionally replaced by **soft deletion** (`active = 0`). This is the correct domain behavior because a Teacher or Student may already own attendance, marks, or result history. Draft courses can be physically deleted because they contain no active academic history. CE components can be deleted while Active; related component marks cascade and CE returns to Draft, preventing an inconsistent finalized structure.
 
-## Team Git workflow
+## Contribution workflow
 
-Both team members should create meaningful commits. Do not submit the entire application as one person's single commit.
+Contributors should create meaningful, reviewable commits. Keep each feature or fix on a separate branch and merge it through review.
 
 Recommended branches:
 
@@ -836,9 +839,9 @@ main
 └── docs/architecture-and-patterns
 ```
 
-Suggested division:
+Possible work areas:
 
-| Member A | Member B | Shared review |
+| Area A | Area B | Shared review |
 |---|---|---|
 | Database/schema, authentication, Admin workflow, State | Teacher/Student screens, CE/resources, Strategy | Completion chain, integration tests, documentation, demo rehearsal |
 
@@ -854,11 +857,11 @@ git commit -m "feat: concise description"
 git push -u origin feature/short-name
 ```
 
-Open a pull request, let the other member review it, make any corrections, and merge only after `mvn test` passes. Preserve the real history; do not fabricate commits or rewrite authorship to simulate contributions.
+Open a pull request, request review from another contributor, make any corrections, and merge only after `mvn test` passes. Preserve the real history and authorship.
 
-## Demonstration script
+## Demonstration workflow
 
-A concise final demonstration can follow this sequence:
+A concise review or demonstration can follow this sequence:
 
 1. Log in as `admin` and show account search plus soft deactivation.
 2. Open the Draft Lab course and explain why Strategy requires two Teachers.
@@ -887,7 +890,7 @@ The implementation is intentionally minimalist. The following are reasonable ext
 - Replace demo credentials with first-login password change and stronger operational password policy.
 - Package the application with `jpackage` for machines without Maven.
 
-Explicit non-goals remain Teacher ratings, anonymous reporting, alumni management, messaging, student uploads, fees/payroll, class scheduling, and examination delivery. They should be added only if the core project is complete, tested, and still within the two-person scope.
+Explicit non-goals remain Teacher ratings, anonymous reporting, alumni management, messaging, student uploads, fees/payroll, class scheduling, and examination delivery. They should be added only if the core project is complete, tested, and still within the intended scope.
 
 ---
 
