@@ -138,7 +138,17 @@ After successful completion:
 
 The entire completion operation must either succeed completely or leave the course unchanged if any validation or database operation fails.
 
-#### 3.6 View reports
+#### 3.6 Reset a course for a new batch
+
+As an Administrator, I want to reset a Finished course so that its configuration can be reused for another batch.
+
+- The course returns to Draft.
+- The academic session is cleared and must be entered before reactivation.
+- Previous enrollments, results, assessment marks, and attendance are removed.
+- Course details, Teacher assignments, CE components and weights, and resources remain unchanged.
+- Only a Finished course can be reset.
+
+#### 3.7 View reports
 
 As an Administrator, I want to view academic summaries so that I can monitor course outcomes.
 

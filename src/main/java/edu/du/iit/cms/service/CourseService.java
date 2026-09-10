@@ -42,6 +42,17 @@ public final class CourseService {
         courseRepository.deleteDraft(courseId);
     }
 
+    public void resetFinishedCourse(long courseId) {
+        requireFinished(courseId, "reset");
+        courseRepository.resetFinished(courseId);
+    }
+
+    private void requireFinished(long courseId, String operation) {
+        if (get(courseId).status() != CourseStatus.FINISHED) {
+            throw new ValidationException("Only a Finished course can be " + operation + ".");
+        }
+    }
+
     private void validateCourseFields(String code, String title, CourseType type, double credit,
                                       String academicSession, String semester) {
         require(code, "Course code");
@@ -90,6 +101,7 @@ public final class CourseService {
 
     public void activateCourse(long courseId) {
         Course course = get(courseId);
+        require(course.academicSession(), "Academic session");
         CourseLifecycle lifecycle = new CourseLifecycle(course.status());
         int teachers = courseRepository.countTeachers(courseId);
         allocationPolicies.forType(course.courseType()).validateReady(teachers);

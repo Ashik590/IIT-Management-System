@@ -40,14 +40,14 @@ public final class DatabaseSeeder {
 
                 insertTeacherProfile(connection, teacherOne, "T-101", "Associate Professor");
                 insertTeacherProfile(connection, teacherTwo, "T-102", "Lecturer");
-                insertStudentProfile(connection, studentOne, "BSSE-1401", "2023-24", "A+");
-                insertStudentProfile(connection, studentTwo, "BSSE-1402", "2023-24", "B+");
-                insertStudentProfile(connection, studentThree, "BSSE-1403", "2023-24", "O+");
+                insertStudentProfile(connection, studentOne, "BSSE-1401", "2024-25", "A+");
+                insertStudentProfile(connection, studentTwo, "BSSE-1402", "2024-25", "B+");
+                insertStudentProfile(connection, studentThree, "BSSE-1403", "2024-25", "O+");
 
                 long course = insertCourse(connection, "SE-2215", "Design Patterns", "THEORY",
-                        3.0, "2025-26", "5th", "ACTIVE", "FINALIZED");
+                        3.0, "2026-27", "5th", "ACTIVE", "FINALIZED");
                 long lab = insertCourse(connection, "SE-2216", "Design Patterns Lab", "LAB",
-                        1.5, "2025-26", "5th", "DRAFT", "DRAFT");
+                        1.5, "2026-27", "5th", "DRAFT", "DRAFT");
 
                 assignTeacher(connection, course, teacherOne);
                 assignTeacher(connection, lab, teacherOne);

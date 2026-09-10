@@ -138,7 +138,7 @@ public final class AdminDashboard extends BorderPane {
         ComboBox<CourseType> type = new ComboBox<>(FXCollections.observableArrayList(CourseType.values()));
         type.setValue(CourseType.THEORY);
         TextField credit = field("3.0");
-        TextField session = field("2025-26");
+        TextField session = field("2026-27");
         TextField semester = field("5th");
         GridPane form = grid();
         addRow(form, 0, "Course code", code);
@@ -213,6 +213,24 @@ public final class AdminDashboard extends BorderPane {
             }
         });
 
+        Button resetFinished = new Button("Reset selected Finished course");
+        resetFinished.getStyleClass().add("secondary");
+        resetFinished.setOnAction(event -> {
+            Course selected = courseList.getSelectionModel().getSelectedItem();
+            if (selected == null) {
+                UiSupport.showError("Select a course.");
+            } else if (UiSupport.confirm("Reset Finished course " + selected.courseCode()
+                    + " for a new batch? Previous enrollments, results, marks, and attendance will be removed."
+                    + " The course details, Teachers, CE components, and resources will remain.")) {
+                UiSupport.runAction("Course reset to Draft. Enter its new academic session and enroll Students.", () -> {
+                    services.courses().resetFinishedCourse(selected.id());
+                    refreshSharedData();
+                    courses.stream().filter(course -> course.id() == selected.id()).findFirst()
+                            .ifPresent(courseList.getSelectionModel()::select);
+                });
+            }
+        });
+
         Button assign = new Button("Assign Teacher");
         assign.setOnAction(event -> UiSupport.runAction("Teacher assigned.", () -> {
             Course selected = require(courseList.getSelectionModel().getSelectedItem(), "Select a course.");
@@ -263,7 +281,9 @@ public final class AdminDashboard extends BorderPane {
                 new Label("Assigned Teachers"), assignedTeachers,
                 new HBox(8, teacherChoice, assign), removeTeacher,
                 new Label("Enrolled Students"), roster,
-                new HBox(8, studentChoice, enroll), removeStudent, activate);
+                new HBox(8, studentChoice, enroll), removeStudent, activate,
+                UiSupport.sectionTitle("Finished course maintenance"),
+                resetFinished);
         HBox.setHgrow(teacherChoice, Priority.ALWAYS);
         HBox.setHgrow(studentChoice, Priority.ALWAYS);
         return scroll(content);

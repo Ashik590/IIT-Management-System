@@ -106,6 +106,48 @@ public final class CourseRepository {
         }
     }
 
+    public void resetFinished(long courseId) {
+        try (Connection connection = database.openConnection()) {
+            connection.setAutoCommit(false);
+            try {
+                try (PreparedStatement statement = connection.prepareStatement("""
+                        DELETE FROM assessment_marks
+                        WHERE component_id IN (SELECT id FROM assessment_components WHERE course_id=?)
+                        """)) {
+                    statement.setLong(1, courseId);
+                    statement.executeUpdate();
+                }
+                try (PreparedStatement statement = connection.prepareStatement(
+                        "DELETE FROM attendance_sessions WHERE course_id=?")) {
+                    statement.setLong(1, courseId);
+                    statement.executeUpdate();
+                }
+                try (PreparedStatement statement = connection.prepareStatement(
+                        "DELETE FROM enrollments WHERE course_id=?")) {
+                    statement.setLong(1, courseId);
+                    statement.executeUpdate();
+                }
+                try (PreparedStatement statement = connection.prepareStatement("""
+                        UPDATE courses SET status='DRAFT',academic_session='',finished_at=NULL
+                        WHERE id=? AND status='FINISHED'
+                        """)) {
+                    statement.setLong(1, courseId);
+                    if (statement.executeUpdate() != 1) {
+                        throw new SQLException("Only a Finished course can be reset.");
+                    }
+                }
+                connection.commit();
+            } catch (SQLException exception) {
+                connection.rollback();
+                throw exception;
+            } finally {
+                connection.setAutoCommit(true);
+            }
+        } catch (SQLException exception) {
+            throw failure("reset Finished course", exception);
+        }
+    }
+
     public List<Course> findAll() {
         return queryCourses("SELECT " + COURSE_COLUMNS + " FROM courses c ORDER BY c.course_code", null);
     }

@@ -30,9 +30,8 @@ class CompletionValidationChainTest {
     private CompletionContext context(int requiredTeachers, int actualTeachers, int students,
                                       double weight, int missingAssessment, int missingFinal) {
         Course course = new Course(1, "SE-2215", "Design Patterns", CourseType.THEORY, 3,
-                "2025-26", "5th", CourseStatus.ACTIVE, CeStatus.FINALIZED, null);
+                "2026-27", "5th", CourseStatus.ACTIVE, CeStatus.FINALIZED, null);
         return new CompletionContext(course, requiredTeachers, actualTeachers, students,
                 weight, missingAssessment, missingFinal);
     }
 }
-
