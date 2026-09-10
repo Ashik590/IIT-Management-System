@@ -38,6 +38,7 @@ For the formal submission document, see [TECHNICAL_DOCUMENTATION.md](TECHNICAL_D
 - [Pattern 1: State](#pattern-1-state)
 - [Pattern 2: Strategy](#pattern-2-strategy)
 - [Pattern 3: Chain of Responsibility](#pattern-3-chain-of-responsibility)
+- [Pattern 4: Adapter](#pattern-4-adapter)
 - [How the patterns cooperate](#how-the-patterns-cooperate)
 - [Patterns intentionally not used](#patterns-intentionally-not-used)
 - [Validation, security, and consistency](#validation-security-and-consistency)
@@ -55,11 +56,12 @@ The system serves three roles:
 - **Teacher:** works only with assigned courses, records attendance, configures and finalizes CE, enters assessment marks, uploads resources, and views Student summaries.
 - **Student:** views only their own courses, attendance, CE, final results, and course resources.
 
-The central design problem is that valid operations change throughout a course's lifetime and several rules must be satisfied together. The implementation therefore uses three meaningful behavioral design patterns:
+The implementation uses four meaningful design patterns for lifecycle behavior, policy variation, validation, and platform integration:
 
 1. **State** controls what can happen in Draft, Active, and Finished courses.
 2. **Strategy** supplies the Teacher-allocation rule for Theory and Lab courses.
 3. **Chain of Responsibility** validates every prerequisite before course completion.
+4. **Adapter** isolates Java's platform-specific Desktop API behind the application's resource-opening interface.
 
 The refined functional requirements are documented in [01 - Refined User Story.md](01%20-%20Refined%20User%20Story.md).
 
@@ -469,10 +471,10 @@ The Gang of Four patterns are commonly grouped into three categories. A category
 | Category | Main question | Typical examples | Use in this project |
 |---|---|---|---|
 | **Creational** | How should objects be created? | Factory Method, Abstract Factory, Builder, Prototype, Singleton | No GoF creational pattern was necessary. Object creation is simple and centralized in `AppServices`. |
-| **Structural** | How should objects/classes be composed? | Adapter, Bridge, Composite, Decorator, Facade, Flyweight, Proxy | No GoF structural pattern was necessary. A conventional layered architecture is sufficient. |
+| **Structural** | How should objects/classes be composed? | Adapter, Bridge, Composite, Decorator, Facade, Flyweight, Proxy | **Adapter** translates the application resource-opening interface to `java.awt.Desktop`. |
 | **Behavioral** | How should responsibilities, algorithms, and collaboration vary? | State, Strategy, Chain of Responsibility, Observer, Command, Template Method | **State, Strategy, and Chain of Responsibility are used.** The project's real complexity is behavioral business policy. |
 
-The repository and service layers are useful architectural patterns, but they are not presented as GoF patterns. The three claimed GoF patterns are all behavioral because that is where genuine variation and change exist in this domain.
+The repository and service layers are useful architectural patterns, but they are not presented as GoF patterns. The project claims three behavioral patterns and one structural pattern.
 
 ### Pattern-selection matrix
 
@@ -481,6 +483,7 @@ The repository and service layers are useful architectural patterns, but they ar
 | Valid operations depend on lifecycle | Behavior by course status | State | Removes scattered status conditionals and protects Finished records |
 | Required Teacher count depends on type | Allocation algorithm by course type | Strategy | Isolates policy and supports future course types |
 | Completion has several ordered prerequisites | Validation rules and their order | Chain of Responsibility | Independent, composable, testable validators |
+| JavaFX must open files through a platform API | Application interface versus `java.awt.Desktop` | Adapter | Removes AWT/platform details from the dashboard and enables substitution |
 
 ## Pattern 1: State
 
@@ -723,6 +726,41 @@ A list of predicates would be compact but would hide rule-specific types and oft
 
 The chain creates more classes and currently reports the first failure rather than all failures. Fail-fast feedback keeps the implementation small and prevents calculations on invalid data. Future rules such as `MinimumAttendanceValidator`, `DepartmentApprovalValidator`, or `PrerequisiteValidator` can be inserted without changing the existing handlers.
 
+## Pattern 4: Adapter
+
+**Category:** Structural
+
+**Target:** `ResourceOpener`
+
+**Adapter:** `DesktopResourceOpener`
+
+**Adaptee:** `java.awt.Desktop`
+
+### Problem and implementation
+
+The Student dashboard needs to open a managed resource, but directly using the platform-specific AWT `Desktop` API couples JavaFX presentation code to file-system checks, desktop capability checks, exception translation, and `Path`-to-`File` conversion. `ResourceOpener` defines the application-facing operation, while `DesktopResourceOpener` validates the path and translates that request to `Desktop.open`.
+
+```mermaid
+classDiagram
+    class ResourceOpener {
+        <<interface>>
+        +open(Path)
+    }
+    class DesktopResourceOpener {
+        +open(Path)
+    }
+    class Desktop {
+        +open(File)
+    }
+    class StudentDashboard
+
+    ResourceOpener <|.. DesktopResourceOpener
+    DesktopResourceOpener --> Desktop : adapts
+    StudentDashboard --> ResourceOpener : uses
+```
+
+The alternative was to keep `Desktop.getDesktop().open(...)` inside `StudentDashboard`. That was rejected because the dashboard should not own platform integration and because an interface allows a different or test implementation without changing the UI.
+
 ## How the patterns cooperate
 
 The patterns are not isolated demonstrations. They cooperate in the same completion workflow:
@@ -747,6 +785,7 @@ flowchart TD
 - **State** answers whether completion is permitted at this lifecycle stage.
 - **Strategy** supplies a course-type-dependent value used by validation.
 - **Chain of Responsibility** decides whether all preconditions pass.
+- **Adapter** independently connects Student resource access to the operating-system desktop without exposing that API to the dashboard.
 - The service then calculates results and requests one atomic repository transaction.
 
 This provides a concise pattern-focused demonstration path for reviewers and maintainers.

@@ -491,7 +491,7 @@ The Gang of Four patterns are grouped by the kind of design pressure they addres
 | Category | Concern | Examples | Project decision |
 |---|---|---|---|
 | Creational | Object construction | Factory, Builder, Prototype, Singleton | No GoF creational pattern is needed; construction is simple and explicit in `AppServices`. |
-| Structural | Class/object composition | Adapter, Decorator, Composite, Proxy | No GoF structural pattern is needed; layering already separates responsibilities. |
+| Structural | Class/object composition | Adapter, Decorator, Composite, Proxy | Adapter isolates platform-specific resource opening from JavaFX UI code. |
 | Behavioral | Collaboration and varying behavior | State, Strategy, Chain of Responsibility | State, Strategy, and Chain of Responsibility are used. |
 
 Patterns are not added merely to increase the pattern count. Each selected pattern corresponds to a real variation in the requirements.
@@ -628,7 +628,22 @@ Each handler has one responsibility:
 
 **Alternative:** a single validation method or a list of anonymous predicates would reduce files but weaken rule-specific errors, extension, and test isolation.
 
-### 10.5 Pattern cooperation
+### 10.5 Adapter pattern
+
+**Problem:** opening an uploaded resource directly from `StudentDashboard` would couple JavaFX presentation code to the platform-specific `java.awt.Desktop` API.
+
+**Implementation:**
+
+- Target interface: `ResourceOpener`
+- Adapter: `DesktopResourceOpener`
+- Adaptee: `java.awt.Desktop`
+- Client: `StudentDashboard`
+
+The adapter validates the resource path, checks desktop capabilities, translates `Path` to the API's required `File`, delegates opening, and converts platform failures into application validation errors. A different opener can be injected without modifying the dashboard.
+
+**Alternative:** calling `Desktop.getDesktop().open(...)` directly in the dashboard is shorter but mixes platform integration and presentation responsibilities and is difficult to substitute in tests.
+
+### 10.6 Pattern cooperation
 
 The completion use case demonstrates how the patterns work together:
 
@@ -638,7 +653,7 @@ The completion use case demonstrates how the patterns work together:
 4. The service calculates results.
 5. The repository commits enrollment outcomes and Finished status atomically.
 
-### 10.6 Patterns intentionally not claimed
+### 10.7 Patterns intentionally not claimed
 
 - **Singleton:** would hide dependencies and make isolated tests harder.
 - **Factory Method/Abstract Factory:** there is no complex object family or construction variation.

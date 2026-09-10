@@ -3,6 +3,8 @@ package edu.du.iit.cms;
 import edu.du.iit.cms.db.Database;
 import edu.du.iit.cms.db.DatabaseSeeder;
 import edu.du.iit.cms.pattern.chain.CompletionValidationChain;
+import edu.du.iit.cms.pattern.adapter.DesktopResourceOpener;
+import edu.du.iit.cms.pattern.adapter.ResourceOpener;
 import edu.du.iit.cms.pattern.strategy.TeacherAllocationPolicies;
 import edu.du.iit.cms.repository.AttendanceRepository;
 import edu.du.iit.cms.repository.CourseRepository;
@@ -31,6 +33,7 @@ public final class AppServices {
     private final ResourceService resourceService;
     private final ReportingService reportingService;
     private final CourseCompletionService completionService;
+    private final ResourceOpener resourceOpener;
 
     public AppServices(Path dataDirectory, boolean seedData) {
         database = new Database(dataDirectory);
@@ -57,6 +60,7 @@ public final class AppServices {
         reportingService = new ReportingService(courses, attendance, evaluations);
         completionService = new CourseCompletionService(courses, evaluations, policies,
                 new CompletionValidationChain());
+        resourceOpener = new DesktopResourceOpener();
     }
 
     public Database database() { return database; }
@@ -68,4 +72,5 @@ public final class AppServices {
     public ResourceService resources() { return resourceService; }
     public ReportingService reporting() { return reportingService; }
     public CourseCompletionService completion() { return completionService; }
+    public ResourceOpener resourceOpener() { return resourceOpener; }
 }

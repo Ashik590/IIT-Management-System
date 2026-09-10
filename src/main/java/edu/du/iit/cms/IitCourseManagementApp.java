@@ -40,7 +40,7 @@ public final class IitCourseManagementApp extends Application {
         } else if (user.role() == Role.TEACHER) {
             dashboard = new TeacherDashboard(services, user, this::showLogin);
         } else {
-            dashboard = new StudentDashboard(services, user, this::showLogin);
+            dashboard = new StudentDashboard(services, services.resourceOpener(), user, this::showLogin);
         }
         show(dashboard, 1200, 780);
     }
