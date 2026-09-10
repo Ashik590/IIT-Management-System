@@ -7,8 +7,25 @@
 **Persistence:** SQLite through JDBC  
 **Build system:** Maven  
 **Java version:** 21  
-**Team members:** Md. Azizul Hakim (Roll: 1634), Sadman Sakib (Roll: 1654)<br>
 **Documentation status:** Submission-ready technical reference
+
+<table>
+  <tr>
+    <th colspan="2">Project Team</th>
+  </tr>
+  <tr>
+    <th>Team member</th>
+    <th>Roll</th>
+  </tr>
+  <tr>
+    <td>Md. Azizul Hakim</td>
+    <td>1634</td>
+  </tr>
+  <tr>
+    <td>Sadman Sakib</td>
+    <td>1654</td>
+  </tr>
+</table>
 
 This document describes the implemented system, its scope, architecture, database model, business workflows, design-pattern decisions, validation rules, testing strategy, and operating instructions. The public [README.md](README.md) provides a shorter repository-oriented overview; this document is the detailed technical submission document.
 

@@ -6,6 +6,24 @@ This repository contains a reference implementation of the IIT Course Management
 
 For the formal submission document, see [TECHNICAL_DOCUMENTATION.md](TECHNICAL_DOCUMENTATION.md).
 
+<table>
+  <tr>
+    <th colspan="2">Project Team</th>
+  </tr>
+  <tr>
+    <th>Team member</th>
+    <th>Roll</th>
+  </tr>
+  <tr>
+    <td>Md. Azizul Hakim</td>
+    <td>1634</td>
+  </tr>
+  <tr>
+    <td>Sadman Sakib</td>
+    <td>1654</td>
+  </tr>
+</table>
+
 ## Contents
 
 - [Project objective](#project-objective)
