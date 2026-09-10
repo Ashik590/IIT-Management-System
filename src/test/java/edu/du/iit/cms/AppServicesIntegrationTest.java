@@ -43,6 +43,20 @@ class AppServicesIntegrationTest {
     }
 
     @Test
+    void hidesDraftCoursesFromTeachersAndStudentsButKeepsThemVisibleToAdministrators() {
+        AppServices services = new AppServices(temporaryDirectory, true);
+        User teacher = services.auth().login("teacher1", "teacher123");
+        User student = services.auth().login("student1", "student123");
+
+        assertTrue(services.courses().allCourses().stream()
+                .anyMatch(course -> course.status() == CourseStatus.DRAFT));
+        assertTrue(services.courses().coursesForTeacher(teacher.id()).stream()
+                .noneMatch(course -> course.status() == CourseStatus.DRAFT));
+        assertTrue(services.courses().coursesForStudent(student.id()).stream()
+                .noneMatch(course -> course.status() == CourseStatus.DRAFT));
+    }
+
+    @Test
     void completesCourseAtomicallyAndStoresOutcomes() {
         AppServices services = new AppServices(temporaryDirectory, true);
         Course course = services.courses().allCourses().stream()

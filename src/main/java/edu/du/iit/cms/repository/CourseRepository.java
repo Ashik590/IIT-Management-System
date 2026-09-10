@@ -94,13 +94,15 @@ public final class CourseRepository {
 
     public List<Course> findByTeacher(long teacherId) {
         String sql = "SELECT " + COURSE_COLUMNS + " FROM courses c "
-                + "JOIN course_teachers ct ON ct.course_id=c.id WHERE ct.teacher_id=? ORDER BY c.status,c.course_code";
+                + "JOIN course_teachers ct ON ct.course_id=c.id "
+                + "WHERE ct.teacher_id=? AND c.status<>'DRAFT' ORDER BY c.status,c.course_code";
         return queryCourses(sql, teacherId);
     }
 
     public List<Course> findByStudent(long studentId) {
         String sql = "SELECT " + COURSE_COLUMNS + " FROM courses c "
-                + "JOIN enrollments e ON e.course_id=c.id WHERE e.student_id=? ORDER BY c.status,c.course_code";
+                + "JOIN enrollments e ON e.course_id=c.id "
+                + "WHERE e.student_id=? AND c.status<>'DRAFT' ORDER BY c.status,c.course_code";
         return queryCourses(sql, studentId);
     }
 
