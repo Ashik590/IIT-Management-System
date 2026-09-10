@@ -144,6 +144,8 @@ Start the JavaFX application:
 mvn javafx:run
 ```
 
+> **JavaFX runtime error:** Do not launch the main class with `java -cp ...` or `java -jar ...`; those commands do not automatically provide the JavaFX module path. Use `mvn javafx:run`, which resolves the JavaFX platform dependencies through the configured Maven plugin. In an IDE, run the Maven goal `javafx:run` instead of a plain Java application configuration.
+
 Build without launching the UI:
 
 ```powershell

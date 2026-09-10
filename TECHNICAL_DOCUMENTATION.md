@@ -762,6 +762,16 @@ mvn clean test
 mvn javafx:run
 ```
 
+### JavaFX runtime troubleshooting
+
+If the message `JavaFX runtime components are missing, and are required to run this application` appears, the application was launched directly without JavaFX's runtime modules. Do not use `java -cp target/classes ...` or `java -jar ...` for this project. Use the Maven goal below:
+
+```powershell
+mvn javafx:run
+```
+
+The configured `javafx-maven-plugin` supplies the JavaFX module path and platform-specific artifacts. In an IDE, create a Maven run configuration for `javafx:run` rather than a plain Java application run configuration.
+
 The application initializes the database at `data/iit-course-management.db` and managed files at `data/resources`. A custom data directory can be supplied without changing source code:
 
 ```powershell
