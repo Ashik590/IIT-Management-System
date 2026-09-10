@@ -6,6 +6,7 @@ import edu.du.iit.cms.domain.AssessmentComponentType;
 import edu.du.iit.cms.domain.AttendanceSummary;
 import edu.du.iit.cms.domain.Course;
 import edu.du.iit.cms.domain.ResourceItem;
+import edu.du.iit.cms.domain.Role;
 import edu.du.iit.cms.domain.StudentAcademicSummary;
 import edu.du.iit.cms.domain.User;
 import edu.du.iit.cms.pattern.adapter.ResourceOpener;
@@ -56,7 +57,9 @@ public final class StudentDashboard extends BorderPane {
                 tab("Overview", overview),
                 tab("Attendance", attendance),
                 tab("Continuous Evaluation", evaluation),
-                tab("Resources", new VBox(10, resources, openResource))
+                tab("Resources", new VBox(10, resources, openResource)),
+                tab("Students", new PeopleDirectoryView(services, Role.STUDENT, false, null)),
+                tab("Teachers", new PeopleDirectoryView(services, Role.TEACHER, false, null))
         );
         setCenter(tabs);
         BorderPane.setMargin(tabs, new Insets(16, 16, 16, 8));

@@ -53,6 +53,19 @@ The Administrator can:
 
 Usernames, Student roll numbers, and Teacher employee IDs must be unique.
 
+#### 3.1.1 Browse Student and Teacher directories
+
+As any authenticated user, I want separate Student and Teacher directories so that I can find institutional profile information without mixing the two account types.
+
+- Each dashboard provides a Students screen and a Teachers screen.
+- Each screen initially displays detailed profile cards for every account of that role.
+- Search runs when the user submits a query and displays only matching cards from the selected role.
+- Student search supports name, username, roll number, session, and blood group.
+- Teacher search supports name, username, employee ID, and designation.
+- Teachers and Students can only view directory information.
+- Administrators can additionally create accounts and activate or deactivate any Student or Teacher from the corresponding screen.
+- Administrator accounts never appear in either directory.
+
 #### 3.2 Create and configure courses
 
 As an Administrator, I want to create and configure courses so that Teachers and Students can participate in the correct academic activities.
@@ -375,7 +388,6 @@ The following features are not part of the initial project:
 - Alumni management.
 - General departmental-information management.
 - Student-uploaded resources.
-- Student-to-Student or Teacher-to-Teacher directory features.
 - Notifications, email, or messaging.
 - Mid-course Teacher reassignment.
 - Online classes or examination delivery.

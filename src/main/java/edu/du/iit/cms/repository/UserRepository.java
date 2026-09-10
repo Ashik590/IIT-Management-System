@@ -89,7 +89,10 @@ public final class UserRepository {
         }
     }
 
-    public List<UserSearchResult> search(String query) {
+    public List<UserSearchResult> search(String query, Role role) {
+        if (role != Role.STUDENT && role != Role.TEACHER) {
+            throw new IllegalArgumentException("Only Student and Teacher directories are searchable.");
+        }
         String sql = """
                 SELECT u.id,u.username,u.full_name,u.email,u.role,u.active,
                        COALESCE(s.roll_number,t.employee_id,'ADMIN') AS identifier,
@@ -100,7 +103,7 @@ public final class UserRepository {
                 FROM users u
                 LEFT JOIN student_profiles s ON s.user_id=u.id
                 LEFT JOIN teacher_profiles t ON t.user_id=u.id
-                WHERE u.role IN ('STUDENT', 'TEACHER')
+                WHERE u.role=?
                   AND (u.full_name LIKE ? COLLATE NOCASE
                    OR u.username LIKE ? COLLATE NOCASE
                    OR s.roll_number LIKE ? COLLATE NOCASE
@@ -112,7 +115,8 @@ public final class UserRepository {
         List<UserSearchResult> users = new ArrayList<>();
         try (Connection connection = database.openConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
-            for (int index = 1; index <= 5; index++) {
+            statement.setString(1, role.name());
+            for (int index = 2; index <= 6; index++) {
                 statement.setString(index, term);
             }
             try (ResultSet result = statement.executeQuery()) {

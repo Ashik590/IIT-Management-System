@@ -64,11 +64,12 @@ class AppServicesIntegrationTest {
     void userManagementSearchNeverReturnsAdministratorAccounts() {
         AppServices services = new AppServices(temporaryDirectory, true);
 
-        assertTrue(services.users().search("").stream()
+        assertTrue(services.users().searchStudents("").stream()
                 .noneMatch(result -> result.role() == Role.ADMIN));
-        assertTrue(services.users().search("admin").isEmpty());
-        assertFalse(services.users().search("student1").isEmpty());
-        assertFalse(services.users().search("T-101").isEmpty());
+        assertTrue(services.users().searchStudents("admin").isEmpty());
+        assertFalse(services.users().searchStudents("student1").isEmpty());
+        assertTrue(services.users().searchStudents("T-101").isEmpty());
+        assertFalse(services.users().searchTeachers("T-101").isEmpty());
     }
 
     @Test
@@ -167,7 +168,7 @@ class AppServicesIntegrationTest {
                 .anyMatch(component -> component.id() == componentId));
         assertEquals(CeStatus.DRAFT, services.courses().get(active.id()).ceStatus());
 
-        long studentId = services.users().search("student1").getFirst().id();
+        long studentId = services.users().searchStudents("student1").getFirst().id();
         services.users().setActive(studentId, false);
         assertThrows(ValidationException.class, () -> services.auth().login("student1", "student123"));
     }

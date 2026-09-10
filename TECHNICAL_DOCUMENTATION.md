@@ -110,13 +110,13 @@ The following are intentionally excluded so the core workflow remains manageable
 The Administrator manages system setup and course completion:
 
 - create Student and Teacher accounts;
-- search accounts using supported profile fields;
+- browse and search the separate Student and Teacher directories;
 - activate or deactivate accounts;
 - create, edit, and delete Draft courses;
 - assign or remove Teachers while a course is Draft;
 - enroll or remove Students while a course is Draft;
 - activate a course after allocation requirements pass;
-- enter final-exam marks from 0 to 60;
+- enter final-exam marks within the course-type limit;
 - request course completion; and
 - view course rosters and result sheets.
 
@@ -124,6 +124,7 @@ The Administrator manages system setup and course completion:
 
 A Teacher can access only assigned courses:
 
+- browse and search the read-only Student and Teacher directories;
 - view assigned Active and Finished courses;
 - create attendance sessions for an Active course;
 - add, update, and delete CE components;
@@ -136,6 +137,7 @@ A Teacher can access only assigned courses:
 
 A Student can access only enrolled courses:
 
+- browse and search the read-only Student and Teacher directories;
 - view current and Finished courses;
 - view attendance history and percentage;
 - view components, entered marks, and provisional/current CE;

@@ -52,9 +52,9 @@ For the formal submission document, see [TECHNICAL_DOCUMENTATION.md](TECHNICAL_D
 
 The system serves three roles:
 
-- **Administrator:** creates and maintains accounts, configures courses, allocates Teachers and Students, activates courses, enters course-type-specific final-exam results, finishes courses, and views result sheets.
-- **Teacher:** works only with assigned courses, records attendance, configures and finalizes CE, enters assessment marks, uploads resources, and views Student summaries.
-- **Student:** views only their own courses, attendance, CE, final results, and course resources.
+- **Administrator:** creates and maintains accounts, browses the Student and Teacher directories with account-status controls, configures courses, allocates Teachers and Students, activates courses, enters course-type-specific final-exam results, finishes courses, and views result sheets.
+- **Teacher:** browses the Student and Teacher directories, works only with assigned courses, records attendance, configures and finalizes CE, enters assessment marks, uploads resources, and views Student summaries.
+- **Student:** browses the Student and Teacher directories and views only their own courses, attendance, CE, final results, and course resources.
 
 The implementation uses four meaningful design patterns for lifecycle behavior, policy variation, validation, and platform integration:
 
@@ -73,7 +73,7 @@ The refined functional requirements are documented in [01 - Refined User Story.m
 |---|:---:|:---:|:---:|
 | Role-based login | Yes | Yes | Yes |
 | Create Student/Teacher accounts | Yes | No | No |
-| Search users | Yes | No | No |
+| Browse and search Student/Teacher directories | Yes | Yes | Yes |
 | Activate/deactivate accounts | Yes | No | No |
 | Create, view, edit, and delete Draft courses | Yes | No | No |
 | Reset Finished courses for a new batch | Yes | No | No |
@@ -91,11 +91,13 @@ The refined functional requirements are documented in [01 - Refined User Story.m
 ### Major UI screens
 
 1. **Login screen** with account-state validation and role routing.
-2. **Administrator dashboard** with Users, Courses and Allocation, and Final Results tabs.
-3. **Teacher dashboard** with Overview, Attendance, Continuous Evaluation, and Resources tabs.
-4. **Student dashboard** with Overview, Attendance, Continuous Evaluation, and Resources tabs.
+2. **Administrator dashboard** with Students, Teachers, Courses and Allocation, and Final Results tabs. Its directory tabs also contain account creation and activation controls.
+3. **Teacher dashboard** with Overview, Attendance, Continuous Evaluation, Resources, Students, and Teachers tabs.
+4. **Student dashboard** with Overview, Attendance, Continuous Evaluation, Resources, Students, and Teachers tabs.
+5. **Students directory** with detailed profile cards and role-specific search, available from every dashboard.
+6. **Teachers directory** with detailed profile cards and role-specific search, available from every dashboard.
 
-These are four major screens with focused tabs rather than a large collection of disconnected windows.
+The shared directory screens are read-only for Teachers and Students. Only an Administrator sees controls for creating, activating, or deactivating accounts.
 
 ## Technology and prerequisites
 

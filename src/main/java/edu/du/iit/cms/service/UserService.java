@@ -39,8 +39,12 @@ public final class UserService {
                 email.trim(), employeeId.trim(), designation.trim());
     }
 
-    public List<UserSearchResult> search(String query) {
-        return userRepository.search(query);
+    public List<UserSearchResult> searchStudents(String query) {
+        return userRepository.search(query, edu.du.iit.cms.domain.Role.STUDENT);
+    }
+
+    public List<UserSearchResult> searchTeachers(String query) {
+        return userRepository.search(query, edu.du.iit.cms.domain.Role.TEACHER);
     }
 
     public List<Student> activeStudents() {
@@ -73,4 +77,3 @@ public final class UserService {
         }
     }
 }
-

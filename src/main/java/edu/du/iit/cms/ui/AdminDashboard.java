@@ -9,7 +9,6 @@ import edu.du.iit.cms.domain.Student;
 import edu.du.iit.cms.domain.StudentAcademicSummary;
 import edu.du.iit.cms.domain.Teacher;
 import edu.du.iit.cms.domain.User;
-import edu.du.iit.cms.domain.UserSearchResult;
 import edu.du.iit.cms.service.ValidationException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -44,7 +43,10 @@ public final class AdminDashboard extends BorderPane {
 
         TabPane tabs = new TabPane();
         tabs.getTabs().addAll(
-                tab("Users", createUsersPane()),
+                tab("Students", new PeopleDirectoryView(
+                        services, Role.STUDENT, true, createStudentAccountCard())),
+                tab("Teachers", new PeopleDirectoryView(
+                        services, Role.TEACHER, true, createTeacherAccountCard())),
                 tab("Courses and Allocation", createCoursesPane()),
                 tab("Final Results", createResultsPane())
         );
@@ -52,84 +54,69 @@ public final class AdminDashboard extends BorderPane {
         refreshSharedData();
     }
 
-    private ScrollPane createUsersPane() {
-        ComboBox<Role> role = new ComboBox<>(FXCollections.observableArrayList(Role.STUDENT, Role.TEACHER));
-        role.setValue(Role.STUDENT);
+    private VBox createStudentAccountCard() {
         TextField username = field("Unique username");
         TextField password = field("Initial password, minimum 6 characters");
         TextField fullName = field("Full name");
         TextField email = field("Email");
-        TextField identifier = field("Roll number");
-        TextField detailOne = field("Academic session");
-        TextField detailTwo = field("Blood group");
-
-        role.valueProperty().addListener((observable, oldValue, value) -> {
-            if (value == Role.STUDENT) {
-                identifier.setPromptText("Roll number");
-                detailOne.setPromptText("Academic session");
-                detailTwo.setPromptText("Blood group");
-                detailTwo.setDisable(false);
-            } else {
-                identifier.setPromptText("Employee ID");
-                detailOne.setPromptText("Designation");
-                detailTwo.clear();
-                detailTwo.setPromptText("Not used for Teachers");
-                detailTwo.setDisable(true);
-            }
-        });
+        TextField rollNumber = field("Roll number");
+        TextField academicSession = field("Academic session");
+        TextField bloodGroup = field("Blood group");
 
         GridPane form = grid();
-        addRow(form, 0, "Role", role);
-        addRow(form, 1, "Username", username);
-        addRow(form, 2, "Password", password);
-        addRow(form, 3, "Full name", fullName);
-        addRow(form, 4, "Email", email);
-        addRow(form, 5, "Identifier", identifier);
-        addRow(form, 6, "Profile detail", detailOne);
-        addRow(form, 7, "Blood group", detailTwo);
+        addRow(form, 0, "Username", username);
+        addRow(form, 1, "Password", password);
+        addRow(form, 2, "Full name", fullName);
+        addRow(form, 3, "Email", email);
+        addRow(form, 4, "Roll number", rollNumber);
+        addRow(form, 5, "Academic session", academicSession);
+        addRow(form, 6, "Blood group", bloodGroup);
 
-        Button create = new Button("Create account");
-        create.setOnAction(event -> UiSupport.runAction("Account created.", () -> {
-            if (role.getValue() == Role.STUDENT) {
-                services.users().createStudent(username.getText(), password.getText(), fullName.getText(),
-                        email.getText(), identifier.getText(), detailOne.getText(), detailTwo.getText());
-            } else {
-                services.users().createTeacher(username.getText(), password.getText(), fullName.getText(),
-                        email.getText(), identifier.getText(), detailOne.getText());
-            }
+        Button create = new Button("Create Student account");
+        create.setOnAction(event -> UiSupport.runAction("Student account created.", () -> {
+            services.users().createStudent(username.getText(), password.getText(), fullName.getText(),
+                    email.getText(), rollNumber.getText(), academicSession.getText(), bloodGroup.getText());
             username.clear();
             password.clear();
             fullName.clear();
             email.clear();
-            identifier.clear();
-            detailOne.clear();
-            detailTwo.clear();
+            rollNumber.clear();
+            academicSession.clear();
+            bloodGroup.clear();
             refreshSharedData();
         }));
+        return card("Create Student", form, create);
+    }
 
-        TextField search = field("Name, username, roll, blood group, or employee ID");
-        ObservableList<UserSearchResult> results = FXCollections.observableArrayList();
-        ListView<UserSearchResult> resultList = new ListView<>(results);
-        resultList.setPrefHeight(260);
-        Button searchButton = new Button("Search");
-        Runnable performSearch = () -> results.setAll(services.users().search(search.getText()));
-        searchButton.setOnAction(event -> performSearch.run());
-        search.setOnAction(event -> performSearch.run());
+    private VBox createTeacherAccountCard() {
+        TextField username = field("Unique username");
+        TextField password = field("Initial password, minimum 6 characters");
+        TextField fullName = field("Full name");
+        TextField email = field("Email");
+        TextField employeeId = field("Employee ID");
+        TextField designation = field("Designation");
 
-        Button toggle = new Button("Activate / deactivate selected");
-        toggle.getStyleClass().add("secondary");
-        toggle.setOnAction(event -> UiSupport.runAction("Account status updated.", () -> {
-            UserSearchResult selected = require(resultList.getSelectionModel().getSelectedItem(), "Select a user.");
-            services.users().setActive(selected.id(), !selected.active());
-            performSearch.run();
+        GridPane form = grid();
+        addRow(form, 0, "Username", username);
+        addRow(form, 1, "Password", password);
+        addRow(form, 2, "Full name", fullName);
+        addRow(form, 3, "Email", email);
+        addRow(form, 4, "Employee ID", employeeId);
+        addRow(form, 5, "Designation", designation);
+
+        Button create = new Button("Create Teacher account");
+        create.setOnAction(event -> UiSupport.runAction("Teacher account created.", () -> {
+            services.users().createTeacher(username.getText(), password.getText(), fullName.getText(),
+                    email.getText(), employeeId.getText(), designation.getText());
+            username.clear();
+            password.clear();
+            fullName.clear();
+            email.clear();
+            employeeId.clear();
+            designation.clear();
             refreshSharedData();
         }));
-
-        VBox content = card("Create Student or Teacher", form, create,
-                UiSupport.sectionTitle("Search and account status"), new HBox(8, search, searchButton),
-                resultList, toggle);
-        HBox.setHgrow(search, Priority.ALWAYS);
-        return scroll(content);
+        return card("Create Teacher", form, create);
     }
 
     private ScrollPane createCoursesPane() {
