@@ -7,6 +7,7 @@ import edu.du.iit.cms.domain.AttendanceStatus;
 import edu.du.iit.cms.domain.Course;
 import edu.du.iit.cms.domain.CourseStudent;
 import edu.du.iit.cms.domain.ResourceItem;
+import edu.du.iit.cms.domain.Role;
 import edu.du.iit.cms.domain.StudentAcademicSummary;
 import edu.du.iit.cms.domain.User;
 import edu.du.iit.cms.service.ValidationException;
@@ -72,7 +73,9 @@ public final class TeacherDashboard extends BorderPane {
                 tab("Overview", overviewPane()),
                 tab("Attendance", attendancePane()),
                 tab("Continuous Evaluation", evaluationPane()),
-                tab("Resources", resourcePane())
+                tab("Resources", resourcePane()),
+                tab("Students", new PeopleDirectoryView(services, Role.STUDENT, false, null)),
+                tab("Teachers", new PeopleDirectoryView(services, Role.TEACHER, false, null))
         );
         setCenter(tabs);
         BorderPane.setMargin(tabs, new Insets(16, 16, 16, 8));

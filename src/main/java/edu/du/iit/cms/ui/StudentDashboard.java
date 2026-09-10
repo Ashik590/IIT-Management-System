@@ -6,8 +6,10 @@ import edu.du.iit.cms.domain.AssessmentComponentType;
 import edu.du.iit.cms.domain.AttendanceSummary;
 import edu.du.iit.cms.domain.Course;
 import edu.du.iit.cms.domain.ResourceItem;
+import edu.du.iit.cms.domain.Role;
 import edu.du.iit.cms.domain.StudentAcademicSummary;
 import edu.du.iit.cms.domain.User;
+import edu.du.iit.cms.pattern.adapter.ResourceOpener;
 import edu.du.iit.cms.service.ValidationException;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -19,12 +21,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
-import java.awt.Desktop;
-import java.io.IOException;
-import java.nio.file.Files;
-
 public final class StudentDashboard extends BorderPane {
     private final AppServices services;
+    private final ResourceOpener resourceOpener;
     private final User student;
     private final ListView<Course> courses = new ListView<>();
     private final TextArea overview = new TextArea();
@@ -32,8 +31,9 @@ public final class StudentDashboard extends BorderPane {
     private final ListView<String> evaluation = new ListView<>();
     private final ListView<ResourceItem> resources = new ListView<>();
 
-    public StudentDashboard(AppServices services, User student, Runnable logout) {
+    public StudentDashboard(AppServices services, ResourceOpener resourceOpener, User student, Runnable logout) {
         this.services = services;
+        this.resourceOpener = resourceOpener;
         this.student = student;
         setTop(UiSupport.header("Student Dashboard", student.fullName(), logout));
 
@@ -57,7 +57,9 @@ public final class StudentDashboard extends BorderPane {
                 tab("Overview", overview),
                 tab("Attendance", attendance),
                 tab("Continuous Evaluation", evaluation),
-                tab("Resources", new VBox(10, resources, openResource))
+                tab("Resources", new VBox(10, resources, openResource)),
+                tab("Students", new PeopleDirectoryView(services, Role.STUDENT, false, null)),
+                tab("Teachers", new PeopleDirectoryView(services, Role.TEACHER, false, null))
         );
         setCenter(tabs);
         BorderPane.setMargin(tabs, new Insets(16, 16, 16, 8));
@@ -133,17 +135,7 @@ public final class StudentDashboard extends BorderPane {
         if (selected == null) {
             throw new ValidationException("Select a resource.");
         }
-        if (!Files.isRegularFile(selected.storedPath())) {
-            throw new ValidationException("The stored file is missing or inaccessible.");
-        }
-        if (!Desktop.isDesktopSupported()) {
-            throw new ValidationException("Opening files is not supported on this computer.");
-        }
-        try {
-            Desktop.getDesktop().open(selected.storedPath().toFile());
-        } catch (IOException exception) {
-            throw new ValidationException("Could not open the resource: " + exception.getMessage(), exception);
-        }
+        resourceOpener.open(selected.storedPath());
     }
 
     private Tab tab(String title, javafx.scene.Node content) {

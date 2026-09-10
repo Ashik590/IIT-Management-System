@@ -21,7 +21,7 @@ public final class LoginView extends VBox {
         card.getStyleClass().add("card");
         card.setMaxWidth(420);
 
-        Label title = UiSupport.title("IIT Course Management System");
+        Label title = UiSupport.title("IIT Management System");
         Label subtitle = new Label("Sign in with an Administrator, Teacher, or Student account.");
         TextField username = new TextField();
         username.setPromptText("Username");
@@ -53,4 +53,3 @@ public final class LoginView extends VBox {
         getChildren().add(card);
     }
 }
-

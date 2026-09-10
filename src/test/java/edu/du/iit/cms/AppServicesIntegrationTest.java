@@ -61,6 +61,63 @@ class AppServicesIntegrationTest {
     }
 
     @Test
+    void userManagementSearchNeverReturnsAdministratorAccounts() {
+        AppServices services = new AppServices(temporaryDirectory, true);
+
+        assertEquals(3, services.users().searchStudents("").size());
+        assertEquals(2, services.users().searchTeachers("").size());
+        assertTrue(services.users().searchStudents("").stream()
+                .noneMatch(result -> result.role() == Role.ADMIN));
+        assertTrue(services.users().searchStudents("admin").isEmpty());
+        assertFalse(services.users().searchStudents("student1").isEmpty());
+        assertFalse(services.users().searchStudents("BSSE-1401").isEmpty());
+        assertFalse(services.users().searchStudents("2024-25").isEmpty());
+        assertTrue(services.users().searchStudents("T-101").isEmpty());
+        assertFalse(services.users().searchTeachers("T-101").isEmpty());
+        assertFalse(services.users().searchTeachers("Associate Professor").isEmpty());
+        assertTrue(services.users().searchTeachers("BSSE-1401").isEmpty());
+    }
+
+    @Test
+    void attendanceComponentIsAutomaticProtectedAndCannotAcceptManualMarks() {
+        AppServices services = new AppServices(temporaryDirectory, true);
+        User teacher = services.auth().login("teacher1", "teacher123");
+        Course course = services.courses().allCourses().stream()
+                .filter(item -> item.courseCode().equals("SE-2215"))
+                .findFirst().orElseThrow();
+        CourseStudent student = services.courses().students(course.id()).getFirst();
+        var attendance = services.evaluation().components(course.id()).stream()
+                .filter(component -> component.title().equals("Attendance"))
+                .findFirst().orElseThrow();
+
+        assertEquals(15.0, attendance.weightPercentage(), 0.0001);
+        assertThrows(ValidationException.class,
+                () -> services.evaluation().deleteComponent(teacher.id(), course.id(), attendance.id()));
+        assertThrows(ValidationException.class,
+                () -> services.evaluation().saveMark(
+                        teacher.id(), course.id(), attendance.id(), student.studentId(), 100));
+    }
+
+    @Test
+    void accountActivationAppliesToBothDirectoryRolesAndPreservesProfiles() {
+        AppServices services = new AppServices(temporaryDirectory, true);
+        long studentId = services.users().searchStudents("student1").getFirst().id();
+        long teacherId = services.users().searchTeachers("teacher2").getFirst().id();
+
+        services.users().setActive(studentId, false);
+        services.users().setActive(teacherId, false);
+        assertThrows(ValidationException.class, () -> services.auth().login("student1", "student123"));
+        assertThrows(ValidationException.class, () -> services.auth().login("teacher2", "teacher123"));
+        assertFalse(services.users().searchStudents("student1").getFirst().active());
+        assertFalse(services.users().searchTeachers("teacher2").getFirst().active());
+
+        services.users().setActive(studentId, true);
+        services.users().setActive(teacherId, true);
+        assertEquals(Role.STUDENT, services.auth().login("student1", "student123").role());
+        assertEquals(Role.TEACHER, services.auth().login("teacher2", "teacher123").role());
+    }
+
+    @Test
     void appliesCourseTypeSpecificCeAndFinalExamMarks() {
         AppServices services = new AppServices(temporaryDirectory, true);
         User teacher = services.auth().login("teacher1", "teacher123");
@@ -156,7 +213,7 @@ class AppServicesIntegrationTest {
                 .anyMatch(component -> component.id() == componentId));
         assertEquals(CeStatus.DRAFT, services.courses().get(active.id()).ceStatus());
 
-        long studentId = services.users().search("student1").getFirst().id();
+        long studentId = services.users().searchStudents("student1").getFirst().id();
         services.users().setActive(studentId, false);
         assertThrows(ValidationException.class, () -> services.auth().login("student1", "student123"));
     }
