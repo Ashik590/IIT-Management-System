@@ -25,6 +25,7 @@ public final class IitCourseManagementApp extends Application {
         stage.setMinWidth(1000);
         stage.setMinHeight(680);
         showLogin();
+        stage.setMaximized(true);
         stage.show();
     }
 
