@@ -2,6 +2,7 @@ package edu.du.iit.cms.ui;
 
 import edu.du.iit.cms.AppServices;
 import edu.du.iit.cms.domain.AssessmentComponent;
+import edu.du.iit.cms.domain.AssessmentComponentType;
 import edu.du.iit.cms.domain.AttendanceSummary;
 import edu.du.iit.cms.domain.Course;
 import edu.du.iit.cms.domain.ResourceItem;
@@ -109,10 +110,16 @@ public final class StudentDashboard extends BorderPane {
         }
 
         for (AssessmentComponent component : services.evaluation().components(course.id())) {
-            Double mark = services.evaluation().mark(component.id(), student.id());
-            evaluation.getItems().add(component.title() + " | obtained " + format(mark)
-                    + " / " + format(component.maximumMark()) + " | weight "
-                    + format(component.weightPercentage()) + "%");
+            if (component.type() == AssessmentComponentType.ATTENDANCE) {
+                evaluation.getItems().add(component.title() + " | "
+                        + format(summary.attendancePercentage()) + "% attendance | weight "
+                        + format(component.weightPercentage()) + "%");
+            } else {
+                Double mark = services.evaluation().mark(component.id(), student.id());
+                evaluation.getItems().add(component.title() + " | obtained " + format(mark)
+                        + " / " + format(component.maximumMark()) + " | weight "
+                        + format(component.weightPercentage()) + "%");
+            }
         }
         evaluation.getItems().add("CE total: " + format(summary.ceMark()) + " / "
                 + course.courseType().ceMarks()

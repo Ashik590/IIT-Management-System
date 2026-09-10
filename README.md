@@ -400,12 +400,13 @@ Teacher allocation and enrollment may be corrected while Draft. They become lock
 ### Workflow 2: CE setup and mark entry
 
 1. An assigned Teacher selects an Active course.
-2. The Teacher adds components with a title, weight, and maximum mark.
-3. A component may be removed or its weight updated. Either change returns CE to Draft.
-4. The total weight must be exactly 100% before finalization.
-5. Marks may be entered only after finalization.
-6. Marks are upserted, allowing correction without duplicate rows.
-7. A structural change preserves unaffected marks but blocks further mark entry until CE is finalized again.
+2. Every course already has an Attendance component weighted at 15% by default. Its result is derived automatically from each Student's attendance percentage, and the Teacher may edit its weight.
+3. The Teacher adds other components with a title, weight, and maximum mark.
+4. A manual component may be removed, and any component's weight may be updated. Either change returns CE to Draft.
+5. The total weight must be exactly 100% before finalization.
+6. Marks for manual components may be entered only after finalization; Attendance requires no manual mark.
+7. Manual marks are upserted, allowing correction without duplicate rows.
+8. A structural change preserves unaffected marks but blocks further mark entry until CE is finalized again.
 
 For a component:
 

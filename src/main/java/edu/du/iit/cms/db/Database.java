@@ -27,6 +27,7 @@ public final class Database {
             try (Connection connection = openConnection()) {
                 executeSchema(connection);
                 migrateEnrollmentMarkLimits(connection);
+                migrateAttendanceComponents(connection);
             }
         } catch (IOException | SQLException exception) {
             throw new IllegalStateException("Could not initialize the database", exception);
@@ -115,6 +116,49 @@ public final class Database {
             try (Statement statement = connection.createStatement()) {
                 statement.execute("PRAGMA foreign_keys = ON");
             }
+        }
+    }
+
+    private void migrateAttendanceComponents(Connection connection) throws SQLException {
+        boolean hasComponentType = false;
+        try (Statement statement = connection.createStatement();
+             ResultSet result = statement.executeQuery("PRAGMA table_info(assessment_components)")) {
+            while (result.next()) {
+                if ("component_type".equals(result.getString("name"))) {
+                    hasComponentType = true;
+                    break;
+                }
+            }
+        }
+        try (Statement statement = connection.createStatement()) {
+            if (!hasComponentType) {
+                statement.execute("ALTER TABLE assessment_components ADD COLUMN component_type TEXT NOT NULL DEFAULT 'MANUAL'");
+            }
+            statement.execute("""
+                    UPDATE courses SET ce_status='DRAFT'
+                    WHERE status='ACTIVE' AND NOT EXISTS (
+                        SELECT 1 FROM assessment_components c
+                        WHERE c.course_id=courses.id AND c.component_type='ATTENDANCE'
+                    )
+                    """);
+            statement.execute("""
+                    UPDATE assessment_components SET weight_percentage=weight_percentage * 0.85
+                    WHERE course_id IN (
+                        SELECT id FROM courses
+                        WHERE status<>'FINISHED' AND NOT EXISTS (
+                            SELECT 1 FROM assessment_components c
+                            WHERE c.course_id=courses.id AND c.component_type='ATTENDANCE'
+                        )
+                    )
+                    """);
+            statement.execute("""
+                    INSERT INTO assessment_components(course_id,title,weight_percentage,maximum_mark,component_type)
+                    SELECT id,'Attendance',15,100,'ATTENDANCE' FROM courses
+                    WHERE status<>'FINISHED' AND NOT EXISTS (
+                        SELECT 1 FROM assessment_components c
+                        WHERE c.course_id=courses.id AND c.component_type='ATTENDANCE'
+                    )
+                    """);
         }
     }
 }

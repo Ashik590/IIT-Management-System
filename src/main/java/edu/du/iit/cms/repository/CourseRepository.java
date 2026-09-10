@@ -33,18 +33,36 @@ public final class CourseRepository {
     public long create(String code, String title, CourseType type, double credit,
                        String academicSession, String semester) {
         String sql = "INSERT INTO courses(course_code,title,course_type,credit,academic_session,semester) VALUES(?,?,?,?,?,?)";
-        try (Connection connection = database.openConnection();
-             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            statement.setString(1, code);
-            statement.setString(2, title);
-            statement.setString(3, type.name());
-            statement.setDouble(4, credit);
-            statement.setString(5, academicSession);
-            statement.setString(6, semester);
-            statement.executeUpdate();
-            try (ResultSet keys = statement.getGeneratedKeys()) {
-                keys.next();
-                return keys.getLong(1);
+        try (Connection connection = database.openConnection()) {
+            connection.setAutoCommit(false);
+            try {
+                long courseId;
+                try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                    statement.setString(1, code);
+                    statement.setString(2, title);
+                    statement.setString(3, type.name());
+                    statement.setDouble(4, credit);
+                    statement.setString(5, academicSession);
+                    statement.setString(6, semester);
+                    statement.executeUpdate();
+                    try (ResultSet keys = statement.getGeneratedKeys()) {
+                        keys.next();
+                        courseId = keys.getLong(1);
+                    }
+                }
+                try (PreparedStatement statement = connection.prepareStatement(
+                        "INSERT INTO assessment_components(course_id,title,weight_percentage,maximum_mark,component_type) "
+                                + "VALUES(?,'Attendance',15,100,'ATTENDANCE')")) {
+                    statement.setLong(1, courseId);
+                    statement.executeUpdate();
+                }
+                connection.commit();
+                return courseId;
+            } catch (SQLException exception) {
+                connection.rollback();
+                throw exception;
+            } finally {
+                connection.setAutoCommit(true);
             }
         } catch (SQLException exception) {
             throw failure("create course", exception);

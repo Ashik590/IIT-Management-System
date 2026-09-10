@@ -188,6 +188,8 @@ As a Teacher, I want to define a flexible CE structure so that different courses
 
 The total CE is worth 40 marks for Theory courses and 70 marks for Lab courses. The Teacher can add assessment components such as quizzes, assignments, presentations, midterms, or attendance.
 
+Every course includes an Attendance assessment component with a default weight of 15% of CE. Its obtained value is calculated automatically from the Student's attendance percentage, so Teachers do not enter a separate Attendance mark. A Teacher may change the Attendance component's weight, but cannot delete it.
+
 Each component contains:
 
 - Assessment title
@@ -229,6 +231,8 @@ Component contribution =
     * (weight percentage / 100)
     * CE maximum for the course type
 ```
+
+For the Attendance component, the attendance percentage replaces `obtained mark / maximum mark` in this calculation.
 
 The Student's CE mark is the sum of all component contributions and cannot exceed 40 for Theory or 70 for Lab.
 

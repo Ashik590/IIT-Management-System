@@ -85,6 +85,7 @@ CREATE TABLE IF NOT EXISTS assessment_components (
     title TEXT NOT NULL,
     weight_percentage REAL NOT NULL CHECK (weight_percentage > 0 AND weight_percentage <= 100),
     maximum_mark REAL NOT NULL CHECK (maximum_mark > 0),
+    component_type TEXT NOT NULL DEFAULT 'MANUAL' CHECK (component_type IN ('MANUAL', 'ATTENDANCE')),
     UNIQUE (course_id, title COLLATE NOCASE),
     FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
 );

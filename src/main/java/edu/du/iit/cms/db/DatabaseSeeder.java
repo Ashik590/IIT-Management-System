@@ -58,9 +58,11 @@ public final class DatabaseSeeder {
                 enroll(connection, lab, studentOne);
                 enroll(connection, lab, studentTwo);
 
-                long quiz = insertComponent(connection, course, "Quizzes", 30, 20);
-                long assignment = insertComponent(connection, course, "Assignments", 20, 20);
-                long midterm = insertComponent(connection, course, "Midterm", 50, 30);
+                insertComponent(connection, course, "Attendance", 15, 100, "ATTENDANCE");
+                insertComponent(connection, lab, "Attendance", 15, 100, "ATTENDANCE");
+                long quiz = insertComponent(connection, course, "Quizzes", 25, 20, "MANUAL");
+                long assignment = insertComponent(connection, course, "Assignments", 15, 20, "MANUAL");
+                long midterm = insertComponent(connection, course, "Midterm", 45, 30, "MANUAL");
                 insertMark(connection, quiz, studentOne, 17);
                 insertMark(connection, assignment, studentOne, 18);
                 insertMark(connection, midterm, studentOne, 24);
@@ -170,14 +172,15 @@ public final class DatabaseSeeder {
     }
 
     private long insertComponent(Connection connection, long course, String title, double weight,
-                                 double maximum) throws SQLException {
+                                 double maximum, String componentType) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement(
-                "INSERT INTO assessment_components(course_id,title,weight_percentage,maximum_mark) VALUES(?,?,?,?)",
+                "INSERT INTO assessment_components(course_id,title,weight_percentage,maximum_mark,component_type) VALUES(?,?,?,?,?)",
                 Statement.RETURN_GENERATED_KEYS)) {
             statement.setLong(1, course);
             statement.setString(2, title);
             statement.setDouble(3, weight);
             statement.setDouble(4, maximum);
+            statement.setString(5, componentType);
             statement.executeUpdate();
             try (ResultSet keys = statement.getGeneratedKeys()) {
                 keys.next();
