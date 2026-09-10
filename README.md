@@ -74,6 +74,7 @@ The refined functional requirements are documented in [01 - Refined User Story.m
 | Search users | Yes | No | No |
 | Activate/deactivate accounts | Yes | No | No |
 | Create, view, edit, and delete Draft courses | Yes | No | No |
+| Reset Finished courses for a new batch | Yes | No | No |
 | Assign/unassign Teachers in Draft | Yes | No | No |
 | Enroll/remove Students in Draft | Yes | No | No |
 | Activate a ready course | Yes | No | No |
@@ -361,11 +362,16 @@ erDiagram
 - `CHECK` constraints restrict roles, lifecycle states, attendance states, final-exam marks, stored CE marks, totals, weights, and maximum marks.
 - Deactivating a user is preferred to deleting them because attendance, marks, and results are historical records.
 - Draft courses can be deleted. Their Draft allocations are children and cascade safely.
+- A Finished course can be reset for a new batch by an Administrator after confirmation.
 - Deleting an assessment component also deletes its marks through the foreign key and returns the CE structure to Draft.
 - `PRAGMA foreign_keys = ON` is enabled for every connection; `busy_timeout` reduces avoidable SQLite lock failures.
 - SQL parameters are bound through `PreparedStatement`; user input is never concatenated into queries.
 
 ## Business workflows and rules
+
+### Reset for a new batch
+
+Resetting a Finished course removes the previous batch's enrollments, results, assessment marks, and attendance in one transaction. It clears the academic session and returns the course to Draft while retaining course details, Teacher assignments, CE components and weights, and resources. A new session and at least one enrolled Student are required before reactivation.
 
 ### Workflow 1: Course configuration and activation
 

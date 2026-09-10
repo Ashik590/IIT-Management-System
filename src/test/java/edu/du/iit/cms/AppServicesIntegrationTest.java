@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -92,6 +93,18 @@ class AppServicesIntegrationTest {
         services.completion().finish(lab.id());
         assertTrue(services.courses().students(lab.id()).stream()
                 .allMatch(student -> student.ceMark() == 70.0 && student.totalMark() == 100.0));
+
+        int componentCount = services.evaluation().components(lab.id()).size();
+        services.courses().resetFinishedCourse(lab.id());
+        Course reset = services.courses().get(lab.id());
+        assertEquals(CourseStatus.DRAFT, reset.status());
+        assertTrue(reset.academicSession().isEmpty());
+        assertTrue(services.courses().students(lab.id()).isEmpty());
+        assertEquals(2, services.courses().teachers(lab.id()).size());
+        assertEquals(componentCount, services.evaluation().components(lab.id()).size());
+        assertNull(services.evaluation().mark(componentId, firstStudent.studentId()));
+        assertEquals(0, services.attendance().count(lab.id(), firstStudent.studentId()).total());
+        assertThrows(ValidationException.class, () -> services.courses().activateCourse(lab.id()));
     }
 
     @Test
@@ -114,6 +127,7 @@ class AppServicesIntegrationTest {
         assertEquals(EnrollmentStatus.INCOMPLETE, stored.stream()
                 .filter(student -> student.rollNumber().equals("BSSE-1402"))
                 .findFirst().orElseThrow().enrollmentStatus());
+
     }
 
     @Test
@@ -121,7 +135,7 @@ class AppServicesIntegrationTest {
         AppServices services = new AppServices(temporaryDirectory, true);
 
         long courseId = services.courses().createCourse("SE-2299", "Temporary", CourseType.THEORY,
-                3.0, "2025-26", "5th");
+                3.0, "2026-27", "5th");
         services.courses().updateCourse(courseId, "SE-2299", "Updated course", CourseType.LAB,
                 1.5, "2026-27", "6th");
         Course updated = services.courses().get(courseId);
