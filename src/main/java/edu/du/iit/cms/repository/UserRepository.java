@@ -100,11 +100,12 @@ public final class UserRepository {
                 FROM users u
                 LEFT JOIN student_profiles s ON s.user_id=u.id
                 LEFT JOIN teacher_profiles t ON t.user_id=u.id
-                WHERE u.full_name LIKE ? COLLATE NOCASE
+                WHERE u.role IN ('STUDENT', 'TEACHER')
+                  AND (u.full_name LIKE ? COLLATE NOCASE
                    OR u.username LIKE ? COLLATE NOCASE
                    OR s.roll_number LIKE ? COLLATE NOCASE
                    OR s.blood_group LIKE ? COLLATE NOCASE
-                   OR t.employee_id LIKE ? COLLATE NOCASE
+                   OR t.employee_id LIKE ? COLLATE NOCASE)
                 ORDER BY u.role,u.full_name
                 """;
         String term = "%" + (query == null ? "" : query.trim()) + "%";

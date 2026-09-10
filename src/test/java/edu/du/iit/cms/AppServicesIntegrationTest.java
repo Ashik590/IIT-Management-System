@@ -61,6 +61,17 @@ class AppServicesIntegrationTest {
     }
 
     @Test
+    void userManagementSearchNeverReturnsAdministratorAccounts() {
+        AppServices services = new AppServices(temporaryDirectory, true);
+
+        assertTrue(services.users().search("").stream()
+                .noneMatch(result -> result.role() == Role.ADMIN));
+        assertTrue(services.users().search("admin").isEmpty());
+        assertFalse(services.users().search("student1").isEmpty());
+        assertFalse(services.users().search("T-101").isEmpty());
+    }
+
+    @Test
     void appliesCourseTypeSpecificCeAndFinalExamMarks() {
         AppServices services = new AppServices(temporaryDirectory, true);
         User teacher = services.auth().login("teacher1", "teacher123");
