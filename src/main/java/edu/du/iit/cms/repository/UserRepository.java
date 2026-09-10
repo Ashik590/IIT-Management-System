@@ -107,8 +107,10 @@ public final class UserRepository {
                   AND (u.full_name LIKE ? COLLATE NOCASE
                    OR u.username LIKE ? COLLATE NOCASE
                    OR s.roll_number LIKE ? COLLATE NOCASE
+                   OR s.academic_session LIKE ? COLLATE NOCASE
                    OR s.blood_group LIKE ? COLLATE NOCASE
-                   OR t.employee_id LIKE ? COLLATE NOCASE)
+                   OR t.employee_id LIKE ? COLLATE NOCASE
+                   OR t.designation LIKE ? COLLATE NOCASE)
                 ORDER BY u.role,u.full_name
                 """;
         String term = "%" + (query == null ? "" : query.trim()) + "%";
@@ -116,7 +118,7 @@ public final class UserRepository {
         try (Connection connection = database.openConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, role.name());
-            for (int index = 2; index <= 6; index++) {
+            for (int index = 2; index <= 8; index++) {
                 statement.setString(index, term);
             }
             try (ResultSet result = statement.executeQuery()) {

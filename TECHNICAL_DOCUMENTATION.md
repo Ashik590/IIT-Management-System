@@ -1,366 +1,123 @@
-# IIT Course Management System
+# Technical Documentation
 
-## Technical Documentation
+## Project Information
 
-**Repository:** [github.com/Ashik590/IIT-Management-System](https://github.com/Ashik590/IIT-Management-System)  
-**Application type:** JavaFX desktop application  
-**Persistence:** SQLite through JDBC  
-**Build system:** Maven  
-**Java version:** 21  
-**Documentation status:** Submission-ready technical reference
-
-<table>
-  <tr>
-    <th colspan="2">Project Team</th>
-  </tr>
-  <tr>
-    <th>Team member</th>
-    <th>Roll</th>
-  </tr>
-  <tr>
-    <td>Md. Azizul Hakim</td>
-    <td>1634</td>
-  </tr>
-  <tr>
-    <td>Sadman Sakib</td>
-    <td>1654</td>
-  </tr>
-</table>
-
-This document describes the implemented system, its scope, architecture, database model, business workflows, design-pattern decisions, validation rules, testing strategy, and operating instructions. The public [README.md](README.md) provides a shorter repository-oriented overview; this document is the detailed technical submission document.
-
-## 1. Executive summary
-
-The IIT Course Management System manages a course from initial configuration to final academic completion. It provides separate role-based experiences for Administrators, Teachers, and Students.
-
-The application supports:
-
-- account creation, authentication, activation, deactivation, and user search;
-- course creation, Draft editing, Teacher allocation, Student enrollment, and activation;
-- attendance session creation and attendance percentage calculation;
-- configurable Continuous Evaluation (CE) components and weighted CE calculation;
-- assessment mark entry and correction;
-- managed course-resource upload and authorized access;
-- final-exam marks out of 60;
-- atomic course completion with Completed/Incomplete outcomes; and
-- read-only access to historical Finished courses.
-
-The design intentionally focuses on a single coherent academic workflow. It does not include ratings, anonymous reports, alumni management, messaging, fees, payroll, room scheduling, online examination delivery, or student resource uploads.
-
-## 2. Problem statement
-
-Academic course management contains rules that simple forms do not solve safely:
-
-1. A Draft course can be configured, while an Active course can record academic work.
-2. A Finished course must preserve history and reject all academic mutation.
-3. Theory and Lab courses require different numbers of Teachers.
-4. A CE structure must total exactly 100% before marks can be entered.
-5. A course cannot finish while any required mark is missing.
-6. Final results require CE marks out of 40 and final-exam marks out of 60.
-7. Several database changes must succeed together or be rolled back together.
-
-These changing behaviors are the reason the implementation uses State, Strategy, and Chain of Responsibility rather than placing all rules in controllers or SQL forms.
-
-## 3. Objectives and scope
-
-### 3.1 Objectives
-
-- Provide a usable JavaFX desktop workflow for three roles.
-- Store academic data persistently in SQLite.
-- Enforce important rules in the service/domain layer and again where appropriate with database constraints.
-- Keep the JavaFX layer separate from persistence and business policy.
-- Demonstrate design patterns because they solve real variations in the domain.
-- Make the implementation testable without starting the JavaFX window.
-
-### 3.2 In-scope entities
-
-The implemented schema contains 11 tables:
-
-| Entity/table | Purpose |
+| Item | Details |
 |---|---|
-| `users` | Login identity, role, contact data, and active state |
-| `student_profiles` | Student roll number, session, and blood group |
-| `teacher_profiles` | Teacher employee ID and designation |
-| `courses` | Course metadata, lifecycle status, and CE status |
-| `course_teachers` | Many-to-many Teacher allocation relationship |
-| `enrollments` | Student-course relationship, final marks, and outcome |
-| `attendance_sessions` | Class date, title, course, and creating Teacher |
-| `attendance_records` | Present/Absent value per session and Student |
-| `assessment_components` | CE component title, weight, and maximum mark |
-| `assessment_marks` | Obtained mark per component and Student |
-| `resources` | Uploaded-file metadata and managed storage path |
+| Project | IIT Management System (IITMS) |
+| Academic project | MiniSPL2 |
+| Course | Design Pattern (SE 2215) |
+| Team | MD. Azizul Hakim (1634)  -  Sadman Sakib (1654) |
+| Repository | [Ashik590/IIT-Management-System](https://github.com/Ashik590/IIT-Management-System) |
 
-### 3.3 Explicit non-goals
+## 1. Brief Description
 
-The following are intentionally excluded so the core workflow remains manageable:
+The project is a full-screen JavaFX desktop system for the academic lifecycle of IIT courses. It supports role-based account access, Student and Teacher directories, Draft course setup, Teacher allocation, Student enrollment, attendance, weighted Continuous Evaluation (CE), learning resources, final results, course completion, and reuse of a Finished course for a new batch. SQLite provides persistent storage and Maven manages building, dependencies, execution, and tests.
 
-- Teacher ratings and feedback;
-- anonymous Student reports;
-- alumni records;
-- notifications, messaging, and email;
-- student-uploaded resources;
-- fees, payroll, and room scheduling;
-- online classes and examination delivery; and
-- mid-course Teacher reassignment.
+The system is workflow-oriented rather than a collection of CRUD forms. Course activation, academic delivery, completion, and reset contain state-dependent rules and coordinated database operations.
 
-## 4. Actors and permissions
+## 2. Technology and Architecture
 
-### Administrator
-
-The Administrator manages system setup and course completion:
-
-- create Student and Teacher accounts;
-- browse and search the separate Student and Teacher directories;
-- activate or deactivate accounts;
-- create, edit, and delete Draft courses;
-- assign or remove Teachers while a course is Draft;
-- enroll or remove Students while a course is Draft;
-- activate a course after allocation requirements pass;
-- enter final-exam marks within the course-type limit;
-- request course completion; and
-- view course rosters and result sheets.
-
-### Teacher
-
-A Teacher can access only assigned courses:
-
-- browse and search the read-only Student and Teacher directories;
-- view assigned Active and Finished courses;
-- create attendance sessions for an Active course;
-- add, update, and delete CE components;
-- finalize a CE structure whose weights equal 100%;
-- enter or update assessment marks within each component's maximum;
-- upload supported resources up to 20 MB; and
-- view Student academic summaries.
-
-### Student
-
-A Student can access only enrolled courses:
-
-- browse and search the read-only Student and Teacher directories;
-- view current and Finished courses;
-- view attendance history and percentage;
-- view components, entered marks, and provisional/current CE;
-- view final CE, final-exam mark, total, and outcome after completion; and
-- view and open authorized course resources.
-
-## 5. Functional requirements
-
-### Authentication and authorization
-
-- Login requires a valid username and password.
-- Inactive users cannot log in.
-- The dashboard is selected from the authenticated user's role.
-- Services verify assignment or enrollment before returning protected course data.
-- A Finished course is read-only through lifecycle checks.
-
-### Course management
-
-Each course stores a unique code, title, type, credit, session, semester, lifecycle status, and CE status.
-
-Course lifecycle:
-
-```text
-Draft -> Active -> Finished
-```
-
-Activation requires:
-
-- exactly one assigned Teacher for Theory;
-- exactly two assigned Teachers for Lab; and
-- at least one enrolled Student.
-
-Draft course metadata and Draft allocations can be corrected. After activation, the allocation is locked.
-
-### Attendance
-
-When a Teacher creates a session, all enrolled Students must be included exactly once. The UI initially marks every Student Present; the Teacher changes absent Students before submission.
-
-```text
-attendance percentage = present sessions / total submitted sessions × 100
-```
-
-No attendance sessions are represented as unavailable/unknown rather than a misleading percentage.
-
-### Continuous Evaluation
-
-The CE total is 40 marks. Each component contains:
-
-- title;
-- weight percentage; and
-- maximum mark.
-
-The component weights must total exactly 100% before the structure can be finalized. Changing a component weight or deleting a component returns the CE structure to Draft while preserving unrelated marks.
-
-For each component:
-
-```text
-contribution = (obtained mark / maximum mark)
-                × (weight percentage / 100)
-                × 40
-```
-
-The Student's CE mark is the sum of all contributions.
-
-### Final examination and completion
-
-The final examination is worth 60 marks. The final result is calculated as:
-
-```text
-total mark = CE mark out of 40 + final-exam mark out of 60
-
-total mark >= 40 -> COMPLETED
-total mark < 40  -> INCOMPLETE
-```
-
-Before completion, the system verifies course state, Teacher count, enrollment, CE finalization, CE total weight, every assessment mark, and every final-exam mark.
-
-## 6. Non-functional requirements
-
-| Requirement | Implementation |
+| Technology | Use |
 |---|---|
-| Persistence | SQLite database under the configured data directory |
-| Maintainability | Layered packages and explicit service/repository boundaries |
-| Testability | Manual dependency wiring and temporary SQLite directories in tests |
-| Data integrity | Foreign keys, unique constraints, checks, indexes, and transactions |
-| Security baseline | Salted PBKDF2 password hashes; parameterized SQL |
-| Usability | Role-specific dashboards, validation messages, and seeded demo data |
-| Portability | Maven-managed JavaFX/JDBC dependencies and configurable data path |
+| Java 21 | Application language |
+| JavaFX 21 | Desktop presentation layer |
+| Maven | Build and dependency management |
+| SQLite + Xerial JDBC | Persistent relational storage |
+| JUnit 5 | Unit and integration testing |
+| SHA-256 with salt | Password hashing |
 
-## 7. Technology and project structure
+```text
+JavaFX UI -> Services/business rules -> Repositories/JDBC -> SQLite
+                         |
+                  Design patterns
+```
 
-### 7.1 Technology stack
+- **UI:** role-specific screens and input handling.
+- **Services:** authorization, validation, transactions, calculations, and workflows.
+- **Repositories:** SQL and domain-object mapping.
+- **Domain:** business records and enums.
+- **Patterns:** lifecycle, allocation, validation, and platform integration abstractions.
 
-| Technology | Version | Use |
-|---|---:|---|
-| Java | 21 | Application code |
-| JavaFX Controls | 21 | Desktop interface |
-| Maven | 3.9+ recommended | Build and dependency management |
-| Xerial SQLite JDBC | 3.53.4.0 | JDBC driver |
-| SQLite | Embedded | Persistent relational storage |
-| JUnit Jupiter | 5.12.2 | Automated tests |
-
-### 7.2 Source tree
+## 3. Source Structure
 
 ```text
 IIT-Management-System/
 ├── pom.xml
 ├── README.md
+├── PROJECT_SPECIFICATION.md
 ├── TECHNICAL_DOCUMENTATION.md
-├── 01 - Refined User Story.md
-├── data/
-│   └── resources/.gitkeep
-└── src/
-    ├── main/
-    │   ├── java/edu/du/iit/cms/
-    │   │   ├── db/             # Schema setup and seed data
-    │   │   ├── domain/         # Records and enums
-    │   │   ├── pattern/        # State, Strategy, Chain of Responsibility
-    │   │   ├── repository/     # Parameterized SQL and row mapping
-    │   │   ├── security/       # Password hashing
-    │   │   ├── service/        # Use cases and business rules
-    │   │   └── ui/             # JavaFX views and dashboards
-    │   └── resources/
-    │       ├── db/schema.sql
-    │       └── style.css
-    └── test/java/edu/du/iit/cms/
+├── src/
+│   ├── main/
+│   │   ├── java/edu/du/iit/cms/
+│   │   │   ├── db/           # connection, migration, seeding
+│   │   │   ├── domain/       # records and enums
+│   │   │   ├── pattern/      # adapter, chain, state, strategy
+│   │   │   ├── repository/   # JDBC persistence
+│   │   │   ├── security/     # password hashing
+│   │   │   ├── service/      # use cases and business rules
+│   │   │   └── ui/           # JavaFX views
+│   │   └── resources/        # schema.sql and CSS
+│   └── test/java/             # unit and integration tests
+└── data/                      # generated database and resources
 ```
 
-### 7.3 Layer responsibilities
+`AppServices` assembles repository and service dependencies. `IitCourseManagementApp` initializes the database, seeds initial records, and opens the login view.
 
-```mermaid
-flowchart LR
-    UI[JavaFX UI]
-    SERVICE[Application services]
-    PATTERN[Pattern policies]
-    DOMAIN[Domain records/enums]
-    REPOSITORY[Repositories]
-    DATABASE[(SQLite)]
-    FILES[(Managed resource files)]
+## 4. Database Design
 
-    UI --> SERVICE
-    SERVICE --> PATTERN
-    SERVICE --> DOMAIN
-    SERVICE --> REPOSITORY
-    REPOSITORY --> DATABASE
-    SERVICE --> FILES
-```
-
-| Layer/package | Responsibility |
-|---|---|
-| `ui` | Display screens, collect input, invoke services, and show feedback |
-| `service` | Coordinate use cases, authorization, validation, calculations, and transactions |
-| `pattern` | Encapsulate lifecycle behavior, allocation policies, and completion validation |
-| `domain` | Immutable records and constrained enumerations |
-| `repository` | SQL statements, transactions, and database-to-domain mapping |
-| `db` | Connection setup, schema execution, and seed data |
-| `security` | Password hashing and constant-time comparison |
-
-`AppServices` is the composition root. It constructs the database, repositories, pattern objects, and services with explicit dependencies. It is not used as a global Singleton.
-
-## 8. Database design
-
-The schema is defined in `src/main/resources/db/schema.sql` and initialized idempotently on application startup. It uses eleven relational tables, foreign keys, uniqueness constraints, domain checks, indexes, and controlled cascade behavior.
-
-### 8.1 Entity relationships
+The schema has ten related tables with foreign keys, checks, unique keys, composite keys, and lookup indexes. SQLite foreign-key enforcement is enabled for every connection.
 
 ```mermaid
 erDiagram
     USERS ||--o| STUDENT_PROFILES : has
     USERS ||--o| TEACHER_PROFILES : has
     USERS ||--o{ COURSE_TEACHERS : assigned
-    COURSES ||--o{ COURSE_TEACHERS : receives
-    USERS ||--o{ ENROLLMENTS : owns
-    COURSES ||--o{ ENROLLMENTS : contains
+    COURSES ||--o{ COURSE_TEACHERS : has
+    USERS ||--o{ ENROLLMENTS : enrolls
+    COURSES ||--o{ ENROLLMENTS : has
     COURSES ||--o{ ATTENDANCE_SESSIONS : schedules
     USERS ||--o{ ATTENDANCE_SESSIONS : creates
     ATTENDANCE_SESSIONS ||--o{ ATTENDANCE_RECORDS : contains
     USERS ||--o{ ATTENDANCE_RECORDS : receives
     COURSES ||--o{ ASSESSMENT_COMPONENTS : defines
-    ASSESSMENT_COMPONENTS ||--o{ ASSESSMENT_MARKS : receives
-    USERS ||--o{ ASSESSMENT_MARKS : earns
-    COURSES ||--o{ RESOURCES : contains
+    ASSESSMENT_COMPONENTS ||--o{ ASSESSMENT_MARKS : contains
+    USERS ||--o{ ASSESSMENT_MARKS : receives
+    COURSES ||--o{ RESOURCES : owns
     USERS ||--o{ RESOURCES : uploads
 
     USERS {
         integer id PK
         text username UK
         text password_hash
-        text full_name
-        text email
         text role
         integer active
     }
     STUDENT_PROFILES {
-        integer user_id PK, FK
+        integer user_id PK,FK
         text roll_number UK
         text academic_session
         text blood_group
     }
     TEACHER_PROFILES {
-        integer user_id PK, FK
+        integer user_id PK,FK
         text employee_id UK
         text designation
     }
     COURSES {
         integer id PK
         text course_code UK
-        text title
         text course_type
-        real credit
-        text academic_session
-        text semester
         text status
         text ce_status
-        text finished_at
     }
     COURSE_TEACHERS {
-        integer course_id PK, FK
-        integer teacher_id PK, FK
+        integer course_id PK,FK
+        integer teacher_id PK,FK
     }
     ENROLLMENTS {
-        integer course_id PK, FK
-        integer student_id PK, FK
+        integer course_id PK,FK
+        integer student_id PK,FK
         text status
         real final_exam_mark
         real ce_mark
@@ -370,243 +127,188 @@ erDiagram
         integer id PK
         integer course_id FK
         text class_date
-        text title
         integer created_by FK
     }
     ATTENDANCE_RECORDS {
-        integer session_id PK, FK
-        integer student_id PK, FK
+        integer session_id PK,FK
+        integer student_id PK,FK
         text status
     }
     ASSESSMENT_COMPONENTS {
         integer id PK
         integer course_id FK
-        text title
         real weight_percentage
         real maximum_mark
+        text component_type
     }
     ASSESSMENT_MARKS {
-        integer component_id PK, FK
-        integer student_id PK, FK
+        integer component_id PK,FK
+        integer student_id PK,FK
         real obtained_mark
     }
     RESOURCES {
         integer id PK
         integer course_id FK
-        text original_filename
-        text stored_filename UK
         text stored_path
-        text content_type
-        integer file_size
         integer uploader_id FK
     }
 ```
 
-### 8.2 Integrity controls
+- Composite primary keys prevent duplicate allocations, enrollments, attendance rows, and assessment marks.
+- `CHECK` constraints restrict roles, states, attendance values, weights, and numeric ranges.
+- Cascades remove dependent course-owned data; restricted user references protect academic history.
+- Service transactions make account creation, attendance submission, completion, and reset atomic.
+- `DatabaseSeeder` loads representative data only when the users table is empty.
 
-- `users.username`, profile identifiers, `courses.course_code`, and `resources.stored_filename` are unique.
-- Composite primary keys prevent duplicate Teacher assignments, enrollments, attendance rows, and component marks.
-- Foreign keys are enabled on every SQLite connection with `PRAGMA foreign_keys = ON`.
-- Child records cascade where the parent is their only meaningful owner, such as Draft course allocations and assessment marks.
-- Historical users are deactivated instead of physically deleted so old academic records retain their owner.
-- Database `CHECK` constraints restrict role values, lifecycle states, attendance states, score ranges, and active flags.
-- All user-provided SQL values use `PreparedStatement` parameters.
+## 5. Principal Workflows
 
-### 8.3 Transaction boundaries
+```mermaid
+stateDiagram-v2
+    [*] --> Draft
+    Draft --> Active: Teachers and Students assigned
+    Active --> Finished: CE and all marks complete
+    Finished --> Draft: reset for a new batch
+```
 
-| Operation | Atomicity guarantee |
-|---|---|
-| Student/Teacher creation | Base user and role profile are created together |
-| Attendance submission | Session and all Student records are stored together |
-| CE component mutation | Component change and CE reset to Draft are stored together |
-| Course completion | Enrollment results and Finished state commit together |
-| Database seeding | Demonstration records are inserted as one dataset |
+- **Draft:** Administrator edits the course and allocations. Other roles cannot see it.
+- **Active:** assigned Teachers perform academic work and enrolled Students view records.
+- **Finished:** academic records are read-only and final results are available.
+- **Reset:** session and Student-specific records are cleared while reusable configuration remains.
 
-## 9. Application workflows
+Completion proceeds as follows:
 
-### 9.1 Course setup and activation
+1. Administrator enters course-type-specific final marks.
+2. Validators check Teacher count, enrollment, CE structure, and mark completeness.
+3. CE and total marks are calculated for every Student.
+4. Enrollment outcomes and Finished status are committed in one transaction.
+
+Theory uses CE 40 + final 60; Lab uses CE 70 + final 30. Attendance is a protected CE component, defaults to 15%, and derives its mark from attendance percentage.
+
+### Course setup and activation sequence
 
 ```mermaid
 sequenceDiagram
-    actor Admin as Administrator
-    participant View as AdminDashboard
-    participant Service as CourseService
-    participant Policy as TeacherAllocationPolicy
-    participant State as CourseLifecycle
-    participant Repo as CourseRepository
-
-    Admin->>View: Create Draft course
-    View->>Service: createCourse(...)
-    Service->>Repo: INSERT course
-    Admin->>View: Allocate Teachers and Students
-    View->>Service: activateCourse(courseId)
-    Service->>Policy: validateReady(actualTeacherCount)
-    Service->>State: activate()
-    State-->>Service: ACTIVE
-    Service->>Repo: Persist ACTIVE status
+    actor Admin
+    participant UI
+    participant CourseService
+    participant Policy as Allocation Strategy
+    participant DB as Repository/SQLite
+    Admin->>UI: Create course and select roster
+    UI->>CourseService: Create, assign Teachers, enroll Students
+    CourseService->>DB: Store Draft configuration
+    Admin->>UI: Activate course
+    UI->>CourseService: activateCourse(courseId)
+    CourseService->>Policy: validateReady(teacherCount)
+    CourseService->>DB: Verify Students and set Active
 ```
 
-The Administrator can edit a Draft course and correct allocations. Activation is rejected when the required Teacher count or roster condition is not satisfied.
-
-### 9.2 CE setup and mark entry
-
-1. An assigned Teacher selects an Active course.
-2. The Teacher creates CE components.
-3. The Teacher adjusts weights until the total is exactly 100%.
-4. The Teacher finalizes the CE structure.
-5. The Teacher enters marks within each component's maximum.
-6. A mark is upserted, so correction does not create duplicate rows.
-7. A component change returns CE to Draft and blocks further mark entry until finalization again.
-
-### 9.3 Attendance submission
-
-1. The Teacher selects an assigned Active course.
-2. The service verifies the date is not in the future.
-3. The service verifies that the attendance map contains every enrolled Student exactly once.
-4. The repository inserts one attendance session and all attendance records in a transaction.
-5. Reporting queries calculate totals and percentages from persisted records.
-
-### 9.4 Completion and result generation
+### Attendance and CE sequence
 
 ```mermaid
-flowchart TD
-    REQUEST[Administrator requests completion]
-    ACTIVE[State check: course is Active]
-    TEACHER[Teacher-count validator]
-    ENROLL[Enrollment validator]
-    CE[CE finalized and total weight 100%]
-    MARKS[Assessment and final marks complete]
-    CALCULATE[Calculate CE, total, and outcome]
-    COMMIT[One SQLite transaction]
-    FINISHED[Persist Finished course and outcomes]
-    REQUEST --> ACTIVE --> TEACHER --> ENROLL --> CE --> MARKS --> CALCULATE --> COMMIT --> FINISHED
+sequenceDiagram
+    actor Teacher
+    participant UI
+    participant AttendanceService
+    participant EvaluationService
+    participant DB as Repository/SQLite
+    Teacher->>UI: Submit attendance statuses
+    UI->>AttendanceService: createSession(...)
+    AttendanceService->>DB: Store session and all records atomically
+    Teacher->>UI: Configure CE and enter marks
+    UI->>EvaluationService: finalizeStructure() / saveMark()
+    EvaluationService->>DB: Validate and persist CE data
+    EvaluationService->>DB: Calculate Attendance component from percentage
 ```
 
-The operation fails fast at the first invalid prerequisite. If persistence fails after calculation, the transaction rolls back.
+### Completion sequence
 
-## 10. Design-pattern implementation
+```mermaid
+sequenceDiagram
+    actor Admin
+    participant UI
+    participant CompletionService
+    participant Chain as Validation Chain
+    participant DB as Repository/SQLite
+    Admin->>UI: Enter final marks and finish
+    UI->>CompletionService: finish(courseId)
+    CompletionService->>Chain: validate(context)
+    Chain-->>CompletionService: All prerequisites satisfied
+    CompletionService->>DB: Calculate and save every result
+    CompletionService->>DB: Set course Finished
+    DB-->>UI: Result sheet available
+```
 
-### 10.1 Pattern categories
+### New-batch reset sequence
 
-The Gang of Four patterns are grouped by the kind of design pressure they address:
+```mermaid
+sequenceDiagram
+    actor Admin
+    participant UI
+    participant CourseService
+    participant State as Course Lifecycle
+    participant DB as Repository/SQLite
+    Admin->>UI: Reset Finished course
+    UI->>CourseService: resetFinishedCourse(courseId)
+    CourseService->>State: Confirm Finished state
+    CourseService->>DB: Clear Student history and session
+    CourseService->>DB: Preserve Teachers, CE components, resources
+    CourseService->>DB: Set course Draft
+```
 
-| Category | Concern | Examples | Project decision |
-|---|---|---|---|
-| Creational | Object construction | Factory, Builder, Prototype, Singleton | No GoF creational pattern is needed; construction is simple and explicit in `AppServices`. |
-| Structural | Class/object composition | Adapter, Decorator, Composite, Proxy | Adapter isolates platform-specific resource opening from JavaFX UI code. |
-| Behavioral | Collaboration and varying behavior | State, Strategy, Chain of Responsibility | State, Strategy, and Chain of Responsibility are used. |
+## 6. Design Patterns
 
-Patterns are not added merely to increase the pattern count. Each selected pattern corresponds to a real variation in the requirements.
+### State - course lifecycle
 
-### 10.2 State pattern
+**Problem:** allowed operations differ between Draft, Active, and Finished courses.
 
-**Problem:** the allowed operations differ between Draft, Active, and Finished courses.
+**Implementation:** `CourseState` is implemented by `DraftCourseState`, `ActiveCourseState`, and `FinishedCourseState`; `CourseLifecycle` selects the current behavior.
 
-**Implementation:**
-
-- Context: `CourseLifecycle`
-- State interface: `CourseState`
-- Concrete states: `DraftCourseState`, `ActiveCourseState`, `FinishedCourseState`
-- Clients: `CourseService`, academic services, and `CourseCompletionService`
+**Reason and benefit:** behavior genuinely varies by state. Permissions remain centralized, and future states can be added without spreading status conditionals through services.
 
 ```mermaid
 classDiagram
-    class CourseLifecycle {
-        -CourseState state
-        +status() CourseStatus
-        +ensureCanConfigure()
-        +ensureCanManageAcademics()
-        +activate()
-        +finish()
-    }
-    class CourseState {
-        <<interface>>
-        +status() CourseStatus
-        +ensureCanConfigure()
-        +ensureCanManageAcademics()
-        +activate(CourseLifecycle)
-        +finish(CourseLifecycle)
-    }
+    class CourseState
     class DraftCourseState
     class ActiveCourseState
     class FinishedCourseState
-
-    CourseLifecycle o--> CourseState
+    class CourseLifecycle
     CourseState <|.. DraftCourseState
     CourseState <|.. ActiveCourseState
     CourseState <|.. FinishedCourseState
+    CourseLifecycle --> CourseState
 ```
 
-Behavior:
+### Strategy - Teacher allocation
 
-| State | Configure | Academic mutation | Activate | Finish |
-|---|:---:|:---:|:---:|:---:|
-| Draft | Yes | No | Yes | No |
-| Active | No | Yes | No | Yes |
-| Finished | No | No | No | No |
+**Problem:** Theory requires one Teacher and Lab requires two; the rule is reused during allocation, activation, and completion.
 
-**Why selected:** otherwise every service operation would repeat status `if`/`switch` logic. The State pattern centralizes lifecycle behavior and makes a future `ARCHIVED` or `REVIEW` state local to its own class.
+**Implementation:** `TeacherAllocationPolicy` has `TheoryTeacherAllocationPolicy` and `LabTeacherAllocationPolicy` implementations, selected by `TeacherAllocationPolicies`.
 
-**Alternative:** an enum with repeated switches would use fewer classes but would duplicate policy across services and make new states harder to audit.
-
-### 10.3 Strategy pattern
-
-**Problem:** the required Teacher count differs by course type and is used during allocation, activation, and completion.
-
-**Implementation:**
-
-- Strategy interface: `TeacherAllocationPolicy`
-- Concrete strategies: `TheoryTeacherAllocationPolicy`, `LabTeacherAllocationPolicy`
-- Selector: `TeacherAllocationPolicies`
-- Clients: `CourseService`, `CourseCompletionService`
+**Reason and benefit:** the varying rule is an interchangeable algorithm. A new course type can add a policy without rewriting workflows. Distributed `if/else` rules were rejected.
 
 ```mermaid
 classDiagram
-    class TeacherAllocationPolicy {
-        <<interface>>
-        +courseType() CourseType
-        +requiredTeachers() int
-        +ensureCanAdd(currentCount)
-        +validateReady(actualCount)
-    }
+    class TeacherAllocationPolicy
     class TheoryTeacherAllocationPolicy
     class LabTeacherAllocationPolicy
     class TeacherAllocationPolicies
     TeacherAllocationPolicy <|.. TheoryTeacherAllocationPolicy
     TeacherAllocationPolicy <|.. LabTeacherAllocationPolicy
-    TeacherAllocationPolicies o--> TheoryTeacherAllocationPolicy
-    TeacherAllocationPolicies o--> LabTeacherAllocationPolicy
+    TeacherAllocationPolicies --> TeacherAllocationPolicy
 ```
 
-**Why selected:** it gives each allocation algorithm one home and provides a stable extension point for Project, Thesis, or team-taught courses.
+### Chain of Responsibility - completion validation
 
-**Alternative:** a direct conditional such as `type == THEORY ? 1 : 2` is shorter but would be duplicated when the rule is needed in more workflows.
+**Problem:** completion has several ordered prerequisites and should report the first actionable failure.
 
-### 10.4 Chain of Responsibility pattern
+**Implementation:** `CompletionValidator` handlers check Teacher count, enrollment, CE structure, and marks through `CompletionValidationChain`.
 
-**Problem:** course completion requires several independent checks in a meaningful order.
-
-**Implementation chain:**
-
-```text
-TeacherCountValidator
-    -> EnrollmentValidator
-        -> CeStructureValidator
-            -> MarksCompleteValidator
-                -> result calculation and transaction
-```
+**Reason and benefit:** checks can be added, reordered, and tested independently. A large validation method was rejected. The chain acts as an all-must-pass validation pipeline.
 
 ```mermaid
 classDiagram
-    class CompletionValidator {
-        <<interface>>
-        +setNext(CompletionValidator) CompletionValidator
-        +validate(CompletionContext)
-    }
-    class AbstractCompletionValidator {
-        -CompletionValidator next
-        #check(CompletionContext)
-    }
+    class CompletionValidator
+    class AbstractCompletionValidator
     class TeacherCountValidator
     class EnrollmentValidator
     class CeStructureValidator
@@ -616,249 +318,88 @@ classDiagram
     AbstractCompletionValidator <|-- EnrollmentValidator
     AbstractCompletionValidator <|-- CeStructureValidator
     AbstractCompletionValidator <|-- MarksCompleteValidator
-    AbstractCompletionValidator --> CompletionValidator : next
+    CompletionValidator --> CompletionValidator : next
 ```
 
-Each handler has one responsibility:
+### Adapter - desktop resource opening
 
-- `TeacherCountValidator` checks the Strategy-provided required count.
-- `EnrollmentValidator` rejects an empty roster.
-- `CeStructureValidator` checks finalized CE and 100% weight.
-- `MarksCompleteValidator` checks all assessment and final-exam marks.
+**Problem:** `java.awt.Desktop` is platform-specific and should not be coupled to JavaFX screens.
 
-**Why selected:** validators can be tested independently, the order is explicit, and future checks can be inserted without expanding one large completion method.
+**Implementation:** `ResourceOpener` is the application interface; `DesktopResourceOpener` adapts the desktop API. `StudentDashboard` uses only the interface.
 
-**Alternative:** a single validation method or a list of anonymous predicates would reduce files but weaken rule-specific errors, extension, and test isolation.
+**Reason and benefit:** operating-system integration is isolated, replaceable, and testable without opening real applications. Direct calls from the UI were rejected.
 
-### 10.5 Adapter pattern
-
-**Problem:** opening an uploaded resource directly from `StudentDashboard` would couple JavaFX presentation code to the platform-specific `java.awt.Desktop` API.
-
-**Implementation:**
-
-- Target interface: `ResourceOpener`
-- Adapter: `DesktopResourceOpener`
-- Adaptee: `java.awt.Desktop`
-- Client: `StudentDashboard`
-
-The adapter validates the resource path, checks desktop capabilities, translates `Path` to the API's required `File`, delegates opening, and converts platform failures into application validation errors. A different opener can be injected without modifying the dashboard.
-
-**Alternative:** calling `Desktop.getDesktop().open(...)` directly in the dashboard is shorter but mixes platform integration and presentation responsibilities and is difficult to substitute in tests.
-
-### 10.6 Pattern cooperation
-
-The completion use case demonstrates how the patterns work together:
-
-1. State verifies that the course is Active.
-2. Strategy provides the correct Teacher-count requirement.
-3. The Chain of Responsibility validates all completion prerequisites.
-4. The service calculates results.
-5. The repository commits enrollment outcomes and Finished status atomically.
-
-### 10.7 Patterns intentionally not claimed
-
-- **Singleton:** would hide dependencies and make isolated tests harder.
-- **Factory Method/Abstract Factory:** there is no complex object family or construction variation.
-- **Observer:** there are no asynchronous domain subscribers; explicit JavaFX refreshes are sufficient.
-- **Facade:** `AppServices` wires objects; it does not claim to be a separate GoF Facade.
-- **Command:** undo, queueing, macros, and durable commands are not requirements.
-
-## 11. Service and persistence design
-
-### 11.1 Services
-
-| Service | Main responsibility |
-|---|---|
-| `AuthService` | Authenticate active users and return a safe `User` record |
-| `UserService` | Validate and create role-specific accounts, search, and change active state |
-| `CourseService` | Course CRUD, allocation, enrollment, activation, and final-exam marks |
-| `AttendanceService` | Authorization, date/roster validation, and attendance submission |
-| `EvaluationService` | CE components, finalization, mark validation, and CE calculation access |
-| `ResourceService` | File validation, managed copying, metadata persistence, and authorization |
-| `ReportingService` | Attendance, CE, enrollment, and result-sheet summaries |
-| `CourseCompletionService` | Completion context, final calculation, and completion transaction |
-
-### 11.2 Repositories
-
-Repositories do not contain JavaFX code. They open short-lived SQLite connections, bind SQL parameters, map rows to immutable domain records, and own multi-statement transaction boundaries. Services remain responsible for business authorization and domain validation.
-
-### 11.3 Resource storage
-
-Uploaded files are copied into the configured `data/resources` directory using a UUID-based stored filename. SQLite stores original filename, stored path, MIME type, size, course, and uploader. The service rejects unsupported extensions, files larger than 20 MB, missing files, and paths outside the managed directory.
-
-## 12. Security and validation
-
-### Password security
-
-Passwords are stored using `PBKDF2WithHmacSHA256` with:
-
-- a random 16-byte salt;
-- 120,000 iterations;
-- a 256-bit derived key; and
-- constant-time comparison during verification.
-
-The stored format is `iterations:salt:derivedHash`, with salt and hash encoded using Base64.
-
-### Validation matrix
-
-| Input/rule | Enforcement |
-|---|---|
-| Blank required text | Service validation |
-| Username spaces | Service validation |
-| Email format | Service regular expression |
-| Password minimum length | Password hashing service |
-| Duplicate identifiers | SQLite unique constraints |
-| Theory/Lab Teacher count | Strategy and service validation |
-| Duplicate allocations | Composite primary keys and service checks |
-| Credit range | Service and database check |
-| Final mark range | Service and database check |
-| CE weight range/total | Evaluation service and completion chain |
-| Assessment mark range | Evaluation service and database check |
-| Unauthorized course access | Service ownership/enrollment checks |
-| Finished-course mutation | State pattern |
-| Future attendance date | Attendance service |
-| Missing completion marks | Chain validator |
-| File size/type/path | Resource service |
-
-## 13. Error handling and consistency
-
-Expected domain errors are reported through `ValidationException` and displayed by the JavaFX UI. Persistence failures are wrapped with an operation-specific message while retaining the original exception as the cause.
-
-Important multi-step operations use transactions:
-
-- role-account creation;
-- attendance submission;
-- CE component mutation;
-- database seeding; and
-- course completion.
-
-Course completion validates before opening its write transaction, calculates every result, then updates all enrollments and the course status together. A failure rolls back the entire completion operation.
-
-## 14. Testing
-
-Run the complete suite:
-
-```powershell
-mvn clean test
+```mermaid
+classDiagram
+    class ResourceOpener
+    class DesktopResourceOpener
+    class StudentDashboard
+    ResourceOpener <|.. DesktopResourceOpener
+    StudentDashboard --> ResourceOpener
 ```
-
-### Test coverage
-
-| Test class | Coverage |
-|---|---|
-| `CourseLifecycleTest` | Draft/Active/Finished transitions and mutation rejection |
-| `TeacherAllocationPolicyTest` | Theory/Lab counts and over-allocation rules |
-| `CompletionValidationChainTest` | Validator order and failure behavior |
-| `AppServicesIntegrationTest` | SQLite schema, seeding, authentication, CE, attendance, completion outcomes, safe CRUD, and CE reset |
-
-The integration tests use JUnit temporary directories, so they do not modify a developer's normal `data` directory.
-
-### Verification result
 
 ```text
-Tests run: 9, Failures: 0, Errors: 0, Skipped: 0
-BUILD SUCCESS
+State authorizes lifecycle operation
+  -> Strategy supplies Teacher rule
+  -> Chain validates completion
+  -> Service commits changes
+
+Adapter independently isolates operating-system file opening.
 ```
 
-The JavaFX entry point has also been started successfully with `mvn javafx:run` during smoke verification.
+Singleton, Observer, Command, and Abstract Factory are not claimed because current requirements do not justify them.
 
-## 15. Installation and operation
+## 7. Validation, Security, and Reliability
 
-### Prerequisites
+- Passwords are salted and hashed; plain-text passwords are not persisted.
+- Role, ownership, and lifecycle checks occur in services, not only in UI controls.
+- Prepared statements handle user-provided database values.
+- File uploads enforce type and 20 MB size limits and use generated names.
+- Transactions roll back failed multi-step changes.
+- Validation errors are displayed through consistent JavaFX alerts.
 
-- JDK 21 or compatible Java 21 distribution;
-- Maven 3.9 or newer recommended; and
-- an operating system with JavaFX desktop support.
+The current salted SHA-256 password scheme is acceptable for this academic prototype but should be replaced by Argon2id, bcrypt, or PBKDF2 in production.
 
-### Build and run
+## 8. Testing
 
-```powershell
-git clone <repository-url>
-cd IIT-Management-System
+```bash
 mvn clean test
-mvn javafx:run
 ```
 
-### JavaFX runtime troubleshooting
+| Test area | Coverage |
+|---|---|
+| Integration | authentication, filtered search, courses, attendance, CE, completion, reset, persistence |
+| State | lifecycle permissions and transitions |
+| Strategy | Theory/Lab Teacher rules |
+| Chain | ordered validation and failures |
+| Adapter | resource-opening validation and abstraction |
 
-If the message `JavaFX runtime components are missing, and are required to run this application` appears, the application was launched directly without JavaFX's runtime modules. Do not use `java -cp target/classes ...` or `java -jar ...` for this project. Use the Maven goal below:
+The suite emphasizes business behavior rather than JavaFX rendering. Temporary databases isolate integration tests, while pattern tests exercise each abstraction directly. Directory role separation, account activation, attendance-component protection, course-type marks, atomic completion, reset cleanup, and preservation rules are explicitly covered.
 
-```powershell
-mvn javafx:run
-```
+Latest verification: **15 tests, 0 failures, 0 errors**.
 
-The configured `javafx-maven-plugin` supplies the JavaFX module path and platform-specific artifacts. In an IDE, create a Maven run configuration for `javafx:run` rather than a plain Java application run configuration.
+## 9. Assignment Requirement Mapping
 
-The application initializes the database at `data/iit-course-management.db` and managed files at `data/resources`. A custom data directory can be supplied without changing source code:
+| Assignment expectation | Evidence |
+|---|---|
+| JavaFX desktop application | Login and role-based full-screen dashboards |
+| Maven | Dependencies and plugins in `pom.xml` |
+| SQLite and seeders | 10-table schema, repositories, `DatabaseSeeder` |
+| At least 4 entities | Users, courses, enrollments, attendance, assessments, resources |
+| CRUD for important entities | Accounts, Draft courses, and CE components |
+| Multi-step workflows | Activation, attendance, completion, and reset |
+| Search/analysis/reporting | Two directories, attendance/CE calculations, result sheet |
+| Approximately 4-8 screens | Login, three dashboards, Students directory, Teachers directory |
+| Meaningful patterns | State, Strategy, Chain of Responsibility, Adapter |
+| UML and ER diagrams | Pattern class diagram, lifecycle diagram, and ER diagram above |
+| Tests and validation | JUnit unit/integration suite and layered validation |
+| Git collaboration | Feature branches, merges/pull requests, and contributor history |
 
-```powershell
-mvn javafx:run -Dcms.data.dir="path\to\application-data"
-```
+## 10. Limitations and Extension Points
 
-### Seed accounts
-
-When the database is empty, the seed process creates these demonstration accounts:
-
-| Role | Username | Password |
-|---|---|---|
-| Administrator | `admin` | `admin123` |
-| Teacher | `teacher1` | `teacher123` |
-| Teacher | `teacher2` | `teacher123` |
-| Student | `student1` | `student123` |
-| Student | `student2` | `student123` |
-| Student | `student3` | `student123` |
-
-These credentials are for local demonstration only and must not be used for a production deployment.
-
-## 16. Demonstration checklist
-
-1. Log in as Administrator and search users.
-2. Deactivate an account and demonstrate that it cannot log in.
-3. Open the Draft Lab course and show that two Teachers are required.
-4. Remove one Teacher and attempt activation to show Strategy validation.
-5. Restore the Teacher and activate the course.
-6. Log in as an assigned Teacher and submit attendance.
-7. Add CE components, alter a weight, and show the return to Draft.
-8. Restore a 100% CE total, finalize it, and enter a mark.
-9. Upload a supported resource.
-10. Log in as a Student and view only enrolled-course data.
-11. Enter final-exam marks as Administrator and demonstrate the completion validation chain.
-12. Finish the course and show read-only historical results protected by State.
-
-## 17. Known limitations and extension points
-
-The current implementation is intentionally focused. Reasonable future extensions include:
-
-- editing all Student/Teacher profile fields after creation;
-- selecting and correcting previously submitted attendance sessions;
-- deleting uploaded resources through the UI with coordinated file/metadata removal;
-- exporting result sheets to CSV or PDF;
-- adding a minimum-attendance validator to the completion chain;
-- adding a Result Review or Archived lifecycle state;
-- adding Project or Thesis Teacher-allocation strategies; and
-- packaging with `jpackage` for machines without Maven.
-
-Any extension should preserve the existing authorization, lifecycle, transaction, and test boundaries.
-
-## 18. Submission checklist
-
-- [ ] Repository URL is accessible.
-- [ ] `README.md` provides the public project overview.
-- [ ] This technical documentation is included beside the source code.
-- [ ] `pom.xml` contains all build dependencies.
-- [ ] `schema.sql` and `DatabaseSeeder` are present.
-- [ ] JavaFX application starts with `mvn javafx:run`.
-- [ ] `mvn clean test` passes.
-- [ ] Design patterns are visible under `src/main/java/edu/du/iit/cms/pattern`.
-- [ ] ER, workflow, and class diagrams render in GitHub Markdown.
-- [ ] Generated database files and uploaded resources are excluded from Git.
-
-## 19. Design summary
-
-The application uses patterns as tools for managing change:
-
-- **State** protects lifecycle-dependent operations.
-- **Strategy** isolates course-type allocation rules.
-- **Chain of Responsibility** makes completion validation composable.
-
-The remaining architecture—services, repositories, records, transactions, and explicit dependency wiring—supports those patterns without claiming unnecessary GoF patterns. The result is a focused JavaFX/SQLite system that is persistent, testable, and explainable from requirements through implementation.
+- Local SQLite and files target one desktop installation, not concurrent network users.
+- Password reset, audit history, notifications, and backup interfaces are not implemented.
+- Allocation strategies can support new course types.
+- Completion handlers can support additional academic rules.
+- Course states can support approval or archive stages.
+- Another resource-opening adapter can support a different platform or storage service.

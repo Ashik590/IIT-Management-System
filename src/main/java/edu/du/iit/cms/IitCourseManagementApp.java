@@ -21,7 +21,7 @@ public final class IitCourseManagementApp extends Application {
     public void start(Stage stage) {
         this.stage = stage;
         services = new AppServices(Path.of(System.getProperty("cms.data.dir", "data")), true);
-        stage.setTitle("IIT Course Management System");
+        stage.setTitle("IIT Management System");
         stage.setMinWidth(1000);
         stage.setMinHeight(680);
         showLogin();
