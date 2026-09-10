@@ -4,6 +4,8 @@ A minimalist JavaFX desktop application for managing the academic lifecycle of I
 
 This repository contains a reference implementation of the IIT Course Management System. It deliberately concentrates on one coherent workflow rather than unrelated departmental features. Teacher ratings, anonymous reporting, alumni records, messaging, and student uploads are outside the current scope.
 
+For the formal submission document, see [TECHNICAL_DOCUMENTATION.md](TECHNICAL_DOCUMENTATION.md).
+
 ## Contents
 
 - [Project objective](#project-objective)
