@@ -1,0 +1,109 @@
+                                                            Overall CRC Collaboration Diagram
+                                                                                       Ramna Yoga Society Management System
+
+
+UserAccount                                              Member                                          YogaInstructor                                         YogaContent                                  VajraAssistant
+                            Authentication and                                                                                    Content creation, updates                   Instructor-approved
+                             member access                                                                                             and approval                             safety guidance
+
+                                                      Authentication and                                                                                     Questions, answers and        Approved-content search
+                                                                                                       Approved-content viewing
+                                                       instructor access                                                                                      content suggestions            and answer support
+
+
+                                                                                  Membership-application
+                                                                                      verification
+
+
+                                                                          Authentication and                                       Payment recording and
+                                                                          committee access                                             confirmation
+
+
+
+                                                                  Registered-member viewing
+
+                                                                                                            Financial-report
+                                                                                                                                            Financial records and
+                                                                                                              submission
+                                                                                                                                                report sharing
+                                                                                                              and review
+
+                                                                                                                                              Executive
+                                 Supervision, records and                                              Common committee access                                             Common committee access
+  President                       committee coordination
+                                                                            Secretary                      and operations
+                                                                                                                                              Committee                        and operations
+                                                                                                                                                                                                                Treasurer
+                                                                                                                                               Member
+
+                                                                  Common committee access
+                                                                      and operations
+
+
+                                                                                                                               Common committee access
+                                                                    Published-media viewing                                        and operations
+
+                         Activity, participation                                                           Payments, donations and
+                                                    Schedule viewing and                                       financial history                                           Common committee access
+                                   and                                            Event registration
+                                                     session participation                                                                                                     and operations
+                          attendance access
+
+                                           Common committee access
+  Activity monitoring and                                                                  Activity management and                                 Committee-related                       Transaction recording and
+                                               and operations
+    attendance review                                                                       attendance recording                                    financial access                           financial reporting
+
+
+
+
+                                                               Instructor assignment and                                                                     Online-payment request
+  Publicity                           Scheduling and            assigned-session access                       Cultural                                                                                      FieldEquipment
+                                                                                                                                                                and confirmation
+  Secretary                       attendance summaries                                                       Secretary                                                                                         Secretary
+
+
+
+                                                                                                                                       Financial records and
+                                                                                                                                            summaries
+                                                                                                        Financial-report review
+
+
+
+Session and activity                                                                                                     Committee notices and
+                                                   Event publicity and media
+     publicity                                                                                                            activity-media access
+
+
+                                       Post creation,               Equipment assignment and
+                                                                                                       Cultural-event management         Event-finance submission
+                                        publication                      activity support
+                                       and archiving
+
+                                                                                   Related financial
+                                                                                     information
+
+
+                           Shared schedule,                                                                                                                      Financial             External-payment
+                                                                                                                                   Event-related financial
+    Activity                   participant            YogaSession                                               Event                   information
+                                                                                                                                                                                          processing       PaymentGateway
+                       and attendance behaviour                                                                                                                 Management              and verification
+
+
+
+
+                                                        Activity-linked
+                                                                                                       Event publicity and media
+                                                         information
+
+
+
+
+                                                                                                            MediaPost
+
+
+
+
+                                                                                           18 classes | 47 collaborations | A4 portrait
+

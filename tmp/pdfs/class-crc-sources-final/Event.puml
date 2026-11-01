@@ -1,0 +1,83 @@
+@startuml
+title Ref: Table 22\nName: Event
+
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam linetype polyline
+skinparam nodesep 140
+skinparam ranksep 150
+skinparam padding 20
+skinparam dpi 150
+
+skinparam rectangle {
+    BackgroundColor #DCEEFF
+    BorderColor #3973AC
+    FontColor #16324F
+    FontStyle bold
+    FontSize 14
+    RoundCorner 14
+}
+
+skinparam ArrowColor #526D82
+skinparam ArrowFontColor #263746
+skinparam ArrowFontSize 12
+
+' Top row
+rectangle "Activity" as Activity
+rectangle "CulturalSecretary" as CulturalSecretary
+rectangle "Notification" as Notification
+
+' Centre
+rectangle "Event" as Event #72B6E8
+
+' Bottom row
+rectangle "Member" as Member
+rectangle "ExecutiveCommitteeMember" as ExecutiveCommitteeMember
+rectangle "MediaPost" as MediaPost
+rectangle "PublicitySecretary" as PublicitySecretary
+rectangle "FinancialManagement" as FinancialManagement
+rectangle "Treasurer" as Treasurer
+
+' Layout constraints
+Activity -[hidden]right- CulturalSecretary
+CulturalSecretary -[hidden]right- Notification
+Notification -[hidden]right- ExecutiveCommitteeMember
+
+Member -[hidden]right- ExecutiveCommitteeMember
+ExecutiveCommitteeMember -[hidden]right- MediaPost
+MediaPost -[hidden]right- PublicitySecretary
+PublicitySecretary -[hidden]right- FinancialManagement
+FinancialManagement -[hidden]right- Treasurer
+
+Activity -[hidden]down- Event
+CulturalSecretary -[hidden]down- Event
+Notification -[hidden]down- Event
+
+Event -[hidden]down- Member
+Event -[hidden]down- ExecutiveCommitteeMember
+Event -[hidden]down- MediaPost
+Event -[hidden]down- PublicitySecretary
+Event -[hidden]down- FinancialManagement
+Event -[hidden]down- Treasurer
+
+' CRC collaborations
+Activity -down- Event : Provides shared scheduling, participant\nand attendance context
+
+CulturalSecretary -down- Event : Creates and manages cultural events
+
+Notification -down- Event : Announces new events to all members and\nconfirms completed registrations
+
+Event -down- Member : Registers members and maintains their\nparticipation information
+
+Event -down- ExecutiveCommitteeMember : Supports event attendance\nmanagement
+
+Event -down- MediaPost : Provides event publicity information
+
+Event -down- PublicitySecretary : Coordinates event publicity
+
+Event -down- FinancialManagement : Provides event-finance information
+
+Event -down- Treasurer : Supports event-finance recording and review
+
+caption Fig crc.13: Event
+@enduml

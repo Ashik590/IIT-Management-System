@@ -1,0 +1,152 @@
+CHAPTER: BEHAVIORAL MODELING OF IPOS
+
+7.1 State Transition Diagram
+A state transition diagram represents the active states of a class and the events (triggers) that move it from
+one state to another. Based on the process description and the CRC model of the Intern and Placement
+Office System (IPOS), all events, their initiators, and their collaborators were identified for the eleven classes
+of the system: Student, IPO Head, IPOC Member 1, IPOC Member 2, IPOC Member 3, Company, Intern
+Position, Application, Allocation, Letter, and Regular Program Officer.
+
+Identifying Events
+                                                 Table 1: Event Identification
+    No                            Events                                      Initiator        Collaborator
+
+     1   Send interest of taking interns                            Company               IPO Head
+
+     2   Enter company information                                  IPOC Member 1         Company
+
+     3   Enter intern position information                          IPOC Member 1         Intern Position
+
+     4   Position information entered                               Intern Position       -
+
+     5   Send notice for choice form                                IPOC Member 2         Student
+
+     6   Notice received                                            Student               -
+
+     7   View company and position list                             Student               Intern Position
+
+     8   Fill company choice form (priority)                        Student               Application
+
+     9   Fill skill set form (competency rank)                      Student               Application
+
+    10   Upload CV                                                  Student               Application
+
+    11   Submit application                                         Student               Application
+
+    12   Application information stored                             Application           -
+
+    13   Enter student CGPA                                         IPOC Member 3         Student
+
+    14   Request application data                                   Allocation            Application
+
+    15   Request position availability                              Allocation            Intern Position
+
+    16   CGPA and skill set matched                                 Allocation            -
+
+    17   Eligibility checked                                        Allocation            Application
+
+    18   Vacancy checked                                            Allocation            Intern Position
+
+    19   Position allocated                                         Allocation            Intern Position
+
+    20   Allocation confirmed                                       Allocation            -
+
+    21   Override placement                                         IPO Head              Allocation
+
+    22   Approve allocation                                         IPO Head              Allocation
+
+    23   Generate formal letter                                     IPO Head              Letter
+
+    24   Formal letter sent                                         Letter                Company
+
+    25   Formal letter received                                     Company               -
+  No                              Events                               Initiator            Collaborator
+
+                                                                                       Regular Program
+  26   Letter copy sent                                      Letter
+                                                                                       Officer
+
+  27   Letter copy received                                  Regular Program Officer   -
+
+  28   Office record maintained                              Regular Program Officer   -
+
+  29   Offer letter issued                                   Company                   Student
+
+  30   Offer letter copy given                               Company                   IPO Head
+
+  31   Offer letter copy stored                              IPO Head                  Letter
+
+  32   Allocation result viewed                              Student                   Allocation
+
+
+Company
+
+
+
+
+                                   Figure 1: State Transition Diagram – Company
+
+IPOC Member 1
+
+
+
+
+                              Figure 2: State Transition Diagram – IPOC Member 1
+Intern Position
+
+
+
+
+                  Figure 3: State Transition Diagram – Intern Position
+
+IPOC Member 2
+
+
+
+
+                  Figure 4: State Transition Diagram – IPOC Member 2
+Student
+
+
+
+
+               Figure 5: State Transition Diagram – Student
+
+Application
+
+
+
+
+              Figure 6: State Transition Diagram – Application
+IPOC Member 3
+
+
+
+
+                Figure 7: State Transition Diagram – IPOC Member 3
+Allocation
+
+
+
+
+             Figure 8: State Transition Diagram – Allocation
+IPO Head
+
+
+
+
+           Figure 9: State Transition Diagram – IPO Head
+
+Letter
+
+
+
+
+            Figure 10: State Transition Diagram – Letter
+Regular Program Officer
+
+
+
+
+                  Figure 11: State Transition Diagram – Regular Program Officer
+

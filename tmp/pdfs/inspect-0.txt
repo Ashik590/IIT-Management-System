@@ -1,0 +1,4663 @@
+                                                                 1
+
+
+
+Post House Event Management System
+
+                            Course:
+ Software Requirements Specification and Analysis (SE406)
+
+
+
+
+                       SUBMITTED TO:
+                  Dr. Kazi Muheymin-Us-Sakib,
+                            Professor,
+     Institute of Information Technology, University of Dhaka
+                       SUBMITTED BY:
+                       Abhijit Paul (1201)
+                      Sazzad Hossain (1207)
+                   Rifah Tashfiha Faria (1213)
+                      Sampad Sikder (1219)
+                      Nazmus Sakib (1225)
+                      Fahim Mahmud (1231)
+                         BSSE 12th batch
+     Institute of Information Technology, University of Dhaka.
+                      Date:10-10-2022 A.D.
+                                                      2
+
+
+
+                                  Table of Contents
+Table of Contents                                     2
+
+0. Introduction                                       8
+    Purpose                                           8
+    Intended Audience                                 8
+    Conclusion                                        9
+
+Inception                                             10
+   1.1 Identifying the Stakeholders                   10
+   Stakeholders:                                      10
+   1.2 Stakeholder Viewpoints                         11
+       Event Manager Viewpoint                        11
+       Hosts Viewpoint                                12
+       Guests Viewpoint                               13
+       Partners and Collaborators Viewpoint           13
+   1.3 Working towards Collaboration                  15
+   1.4 Manual System/Existing System                  16
+   1.5 Proposed System                                19
+
+2. Quality Function Deployment(QFD)                   27
+    2.1 Normal Requirements                           27
+    2.2 Expected Requirements                         28
+    2.3 Exciting Requirements                         29
+
+3. Usage Scenario                                     30
+    3.1 Initial Account Creation                      30
+    3.2 Host Interaction                              30
+        Advertisement                                 30
+        Account Creation and Update                   30
+        Event Selection                               31
+        Service Selection                             31
+        Package Recommendation                        32
+        Package Selection                             32
+        Price & Discount Generation                   34
+        Place Order                                   34
+        Host Dashboard                                34
+        Smart Contract                                35
+        Communication                                 35
+    3.3 Event Manager Interaction                     35
+        Event Manager Dashboard                       35
+        Order Management System                       36
+                                          3
+
+
+        Human Resource Panel              36
+        Ongoing Event Panel               36
+        Notification tab                  37
+        Communication                     37
+        Admin Role                        37
+        Accounting System                 37
+        Business Intelligence Dashboard   37
+    3.4 Supervisor Interaction            38
+        Ongoing Event Panel               38
+        Package Control Panel             38
+        Communication                     39
+    3.5 Guest User Interaction            39
+
+4. Use Case Diagram                       40
+    Level 0:                              40
+    Level 1:                              41
+    Level 1.1:                            43
+    Level 1.2:                            44
+    Level 1.3:                            45
+    Level 1.3.1:                          46
+    Level 1.4:                            47
+    Level 1.5:                            48
+    Level 1.6:                            49
+    Level 1.7:                            50
+    Level 1.8:                            51
+
+5. Activity Diagram                       52
+    Level 1.1:                            52
+    Level 1.1.1:                          53
+    Level 1.1.2:                          54
+    Level 1.1.3:                          55
+    Level 1.1.4:                          56
+    Level 1.2:                            58
+    Level 1.2.1:                          59
+    Level 1.2.2:                          59
+        Activity List:                    61
+    Level 1.3.1:                          63
+    Level 1.3.1.1:                        64
+    Level 1.3.1.2:                        65
+        Activity List:                    66
+    Level 1.3.2:                          67
+    Level 1.4:                            68
+                          4
+
+
+      Description:        68
+   Level 1.4.1:           69
+      Activity List:      69
+   Level 1.4.2:           70
+      Activity List:      70
+   Level 1.4.3:           71
+      Activity Listing:   71
+   Level 1.4.4:           71
+      Activity Listing:   72
+   Level 1.5:             73
+      Description:        73
+   Level 1.5.1:           74
+      Activity Listing:   75
+   Level 1.5.2:           76
+      Activity Listing:   77
+   Level 1.5.3:           78
+      Activity Listing:   78
+   Level 1.5.4:           79
+      Activity Listing:   79
+   Level 1.6:             80
+      Description:        80
+   Level 1.6.1:           81
+      Activity Listing:   81
+   Level 1.6.2:           82
+      Activity Listing:   83
+   Level 1.7:             84
+   Level 1.7.1:           85
+      Description:        85
+   Level 1.7.2:           86
+      Activity Listing:   86
+   Level 1.8:             87
+      Description:        87
+   Level 1.8.1:           88
+      Activity Listing:   89
+   Level 1.8.2:           90
+      Activity Listing:   91
+   Level 1.9:             92
+
+5. Swimlane Diagram       94
+
+Level 1.1:                94
+   Level 1.1.1:           95
+                                            5
+
+
+   Level 1.1.2:                             96
+   Level 1.1.3:                             97
+   Level 1.1.4:                             98
+   Level 1.2:                               99
+   Level 1.2.1:                            100
+   Level 1.2.2:                            101
+   Level 1.3:                              101
+   Level 1.3.1:                            102
+   Level 1.3.1.1:                          104
+   Level 1.3.1.2:                          105
+   Level 1.3.2:                            105
+   Level 1.4:                              107
+   Level 1.4.1:                            108
+   Level 1.4.2:                            108
+   Level 1.4.3:                            109
+   Level 1.4.4:                            110
+   Level 1.5:                              111
+   Level 1.5.1:                            112
+   Level 1.5.2:                            113
+   Level 1.5.3:                            114
+   Level 1.5.4:                            115
+   Level 1.6:                              116
+   Level 1.6.1:                            117
+   Level 1.6.2:                            118
+   Level 1.7:                              119
+   Level 1.7.1:                            120
+   Level 1.7.2:                            121
+   Level 1.8:                              122
+   Level 1.8.1:                            123
+   Level 1.8.2:                            124
+   Level 1.9:                              125
+
+5. Class Based Modeling                    127
+    5.1 List of nouns:                     127
+    5.2 List of nouns in Solution space:   132
+    5.3 List of Verbs:                     136
+    5.4 General Characteristics            138
+    5.5 Potential Class List               143
+    5.6 Selection Criteria                 144
+    5.7 Selected classes:                  146
+    5.8 List of objects:                   147
+                                                   6
+
+
+   5.9 Analysis                                   150
+   5.10 Selected Classes:                         150
+   5.11 Class Cards                               154
+
+Table 1: CRC card for Guest User                  155
+
+Table 2: CRC card for Order Management            156
+
+Table 3: CRC card for Payment                     157
+
+Table 4: CRC card for Package Control             158
+
+Table 5: CRC card for Decorator Package           159
+
+Table 6: CRC card for Blockchain                  160
+
+Table 7: CRC card for Event Manager               161
+
+Table 8: CRC card for ChatBot Recommendation      162
+
+Table 9: CRC card for Human Resource Management   163
+
+Table 10: CRC card for Communication              164
+
+Table 11: CRC card for Accounting System          165
+
+Table 12: CRC card for Supervisor                 165
+
+Table 13: CRC card for Business Intelligence      167
+
+Table 14: CRC card for Service Profile            168
+
+Table 15: CRC card for Account                    169
+
+Table 16: CRC card for Host                       170
+
+Table 17: CRC card for SMS System                 171
+
+Table 18: CRC card for Event                      172
+
+6. Class Responsibility Collaboration Diagram     173
+
+7. Behavioral Modeling                            190
+    7.1 Event Identification                      190
+    7.2 State Transition Diagram                  194
+
+8. Sequence Diagram                               208
+
+9. Data Flow Diagram (DFD)                        218
+    Level 0:                                      218
+    Level 1:                                      218
+    Level 1.1:                                    219
+    Level 1.2:                                    221
+                    7
+
+
+   Level 1.3:      221
+   Level 1.3.1:    223
+   Level 1.4:      223
+   Level 1.4.1:    224
+   Level 1.4.2:    225
+   Level 1.5:      226
+   Level 1.6:      228
+   Level 1.7:      228
+   Level 1.7.1:    229
+   Level 1.8:      231
+
+10. Definitions:   232
+                                                                                                   8
+
+
+
+                                        0. Introduction
+Over the years, there has been a steady trend of arranging events with the help of event
+managers, especially in cities. There are hosts and event organizers who have deep pockets but
+don’t have the time to arrange an event manually. So, they need event managers, and throughout
+social media we can find their ever increasing presence.
+Although there are many event management companies, most of them operate manually. Event
+managers who operate manually often face the problem of the lack of trust. They don't find ways
+to advertise their works in a proper and engaging way. There are hosts who look for quick and
+user friendly solutions to organize events.
+Currently, no automated system exists for event management systems. There are webapps who
+operate like a vendor place for different services. These websites cannot ensure trust as after
+order organizers need to manually deal with service providers.
+“Post House Event Management System” aims to automate the event management process for
+the event management company named “Post House”. It is to be noted that the process of the
+event management system can never be fully automated and will always be a sub automated
+system.
+
+
+Purpose
+This document briefly describes the Software Requirement Analysis of our web application
+“Post House Event Management System”. It contains the functional, non-functional and the
+supporting requirements and establishes a requirement’s baseline for the development of the
+system. The requirements contained in the SRS are independent, uniquely numbered and
+organized by topics. The SRS serves as an official means of communicating user requirements to
+the developer and provides a common reference point for both the developer team and the
+stakeholder community. The SRS will evolve over time as users and developers work together to
+validate, clarify and expand its contents.
+
+
+Intended Audience
+Our intended audiences are:
+    1. Hosts (The person organizing the event)
+    2. Event Manager (Who will negotiate with host and manage services)
+    3. Service partners (Those who provide the services)
+This SRS will be used to verify whether the developer team has created a product that is
+acceptable to the desired users. The developers will use this SRS to plan milestones and a
+delivery date, and ensure that they are on track during development of the system. The
+designers will use this SRS as a basis for creating the system’s design. The designers will
+continually refer back to this SRS to ensure that the system they are designing will fulfill the
+                                                                                                    9
+
+
+customer’s needs. The developers will use this SRS as a basis for developing the system’s
+functionality. The developers will link the requirements defined in this SRS to the software they
+create to ensure that they have created a software that will fulfill all of the customer’s
+documented requirements. The testers will use this SRS to derive test plans and test cases for
+each documented requirement.
+
+
+Conclusion
+This analysis of the audience helped us to focus on the users who will be using our analysis. This
+overall document will help each and every person related to this project to have a better idea
+about the project.
+                                                                           10
+
+
+
+
+                                      1. Inception
+
+1.1 Identifying the Stakeholders
+
+Stakeholders:
+Direct stakeholders:
+   1. Employee
+          ● Event Manager
+          ● Supervisors
+                 ❖ Catering service
+                 ❖ Photography
+                 ❖ Community Center
+                 ❖ Rent-a-car
+                 ❖ Decorators
+                 ❖ Grooming
+   2. Host
+Indirect stakeholders:
+   1. Guests
+   2. Partners
+          ❖ Catering
+          ❖ Photography
+          ❖ Promotion
+          ❖ Rent-a-car
+          ❖ Decorators
+          ❖ Grooming
+          ❖ Community center
+   3. Collaborators
+          ❖ Services that customers wish to provide by their own accord.
+                                                                                             11
+
+
+
+
+                           Fig IF.1: Event management hierarchy
+
+
+
+
+1.2 Stakeholder Viewpoints
+
+   a. Event Manager Viewpoint
+Our main stakeholder is an event manager and the owner of an event management company
+named Post House. He identified the current problems that he faces while running his operations.
+
+
+The problems that he encounters during event management are:
+   1. Service requirement specification.
+   2. Host budget negotiation.
+   3. Problem with due payment.
+   4. Theft or robbery related losses.
+   5. Addressing frequent queries manually.
+                                                                                                    12
+
+
+The requirements that were mentioned by the event manager are:
+   1. Interface from where the event services or packages can be selected to get an accurate
+       estimate of host requirements. The following options need to be shown:
+           ○ Time of event.
+           ○ Number of guests.
+           ○ Services and associated price tag.
+   2. Displaying offers associated with packages of services.
+   3. Automated payment system and distribution of payment among partners and
+       collaborators.
+   4. Due payment notification system.
+   5. Integrating 3D modeling systems like Solidworks or Adobe.
+   6. Tracking guests and service items.
+   7. List of collaborators and partners in an interface.
+   8. Approximation of cost, based on number of guests and service demands.
+   9. Work progress tracking for hosts.
+   10. Option to view work records of service providers.
+   11. Commitment from hosts about their promised timing.
+
+
+
+   b. Hosts Viewpoint
+A few hosts who arranged events in recent times were interviewed. The system has to be
+designed for city based hosts as it is impractical for village events. The main concern for lower
+middle class and lower class hosts from village backgrounds are food and social interaction. As
+the events are arranged locally by the hosts and their relatives themselves, any mismanagement
+which occurs is handled collectively. The services are chosen from local vendors and relatives.
+So the system has to be mainly targeted towards city based hosts and corporate organizations.
+They identified the following requirements:
+   ● Aid in venue selection based on previous reviews and location.
+   ● Catering service selection
+   ● Vehicle selection (e.g. Horse driven Carriage, Car, AC or Non-AC)
+   ● Budget approximation
+                                                                                               13
+
+
+   ● Photography and filmmaking
+   ● Gift tracking
+   ● QR based invitation for guest tracking
+
+
+
+   c. Guests Viewpoint
+The requirements from guests are:
+   ❖ Time scheduling for rituals and regular updates from the app.
+   ❖ Food menu showcasing
+   ❖ Comfortable resting zone
+   ❖ Child Play zone
+   ❖ Leaving comment on decoration and overall event
+   ❖ Weather suggestion system
+
+
+
+   d. Partners and Collaborators Viewpoint
+
+
+   1. Caterer Viewpoint
+   ● Food menu specification.
+   ● Feature to know the location of the event.
+   ● Option to accept/reject any event depending on the negotiated payment determined by the
+       event manager.
+   ● Payment should be ensured.
+   ● Caterers will only provide cooking equipment, rest of the equipment has to be provided
+       by the event manager.
+
+
+   2. Decorator Viewpoint
+       Decorator’s work can never be fully automated as it requires adaptability to changing
+       conditions. The reasons are:
+   ● Decorators will choose their own workers based on personal preferences.
+   ● Face-to-face meeting is preferred during selection of packages and customization.
+                                                                                              14
+
+
+   ● Discounts are given based on personal connections.
+
+
+      The decorator identified the following points he wishes to receive:
+   ● Design changes based on the type of event. So first, the host will select the type of
+      event(e.g. Marriage ceremony, corporate event, birthday etc).
+   ● Then he can view the work-samples for the event. It's a form of advertisement.
+   ● Then the user will see packages available for decoration. A package consists of basic
+      features and extra features.
+          ○ Basic Features: Photo booth, Entry gate, Main stage, photo frame, welcome
+              booth.
+          ○ Extra Features: Stairway decoration, special design requirements, Flower in all
+              table
+   ● Design catalogs will be shown for each decoration(e.g. Photo Booth, entry game etc).
+      The host will choose from them.
+   ● Some customization on the designs from catalogs is always appreciated. They will be
+      documented or accommodated manually through experience of work.
+   ● Exact design will not be shown due to copyright issues.
+   ● A dashboard from where the host can track work progress.
+   ● Salary management of workers.
+   ● Advance payment.
+   ● Payment negotiation..
+
+
+3. Photography Viewpoint
+   ● Feature for generating different folders based on event types.
+   ● Showcasing work samples on the app.
+   ● Payment negotiation.
+4. Grooming Viewpoint
+   ● Specified type and theme of the makeover wanted.
+   ● Home service/Salon service should be specified earlier.
+   ● Event manager should negotiate payment after discussing.
+   ● Showcasing work samples.
+                                                                                               15
+
+
+5. Community center Viewpoint
+   ● Showcasing their venue.
+   ● Specify number of chairs, tables and sound system.
+   ● Payment negotiation.
+6. Rent-a-car Viewpoint
+   ● Showcasing car collection with ease.
+   ● Preventing any damage to cars.
+   ● Number of cars to order
+   ● Specify beforehand if oil and toll costs will be paid.
+
+
+1.3 Working towards Collaboration
+Conflicts:
+   1. Decorator wants manual modeling but the event manager wants 3D modeling.
+   2. Host wants guest and qr based gift tracking.
+   3. Commitment from hosts about promised timing.
+   4. Photographer’s requirement for generating different folders based on event types.
+   5. Leaving comments on decoration and overall event.
+Negotiations:
+   1. Guest and qr based gift tracking is infeasible from Bangladeshi perspective. (Guests and
+       developers)
+   2. As corporate events prefer 3D modeling and wedding events prefer manual, the 3D
+       modeling option is to be kept for corporate events. (Event manager and decorator)
+   3. Commitment from hosts about promised timing is infeasible. (Event manager and Host)
+   4. Leaving comments on decoration and overall event. (Security Expert team and Guests
+       and event manager)
+   5. Photographer’s requirement of making folder automatically for each event is infeasible
+       because that way, we have to negotiate with all camera IoT companies which is
+       infeasible.
+                                                                                                16
+
+
+1.4 Manual System/Existing System
+Initial Negotiation:
+   1. Host approaches the event manager.
+   2. Host narrates his requirements. Usually mentions type of event, number of guests and
+       budget.
+   3. Event manager describes what services he can provide and suggests additional services.
+       The services he provides are:
+           ● Catering
+           ● Photography
+           ● Promotion
+           ● Vehicle provider
+           ● Decorators
+   4. Elaborating existing offers on packages. The packages are usually defined by:
+           ● Number of guests.
+           ● Discount when partner services are taken.
+           ● Any additional discounts.
+   5. The host picks all or some partners the event manager recommends.
+   6. Then requirement analysis and negotiation occurs.
+           a. Decorator:
+                   i.   The event manager shows a design catalog to the host.
+                  ii.   Host selects a design from the catalog.
+                 iii.   The host is recommended to suggest some customization.
+                 iv.    The design requirements are not freezing. Due to adequate experienced
+                        manpower, the decorator team can change the design on the go based on
+                        changing requirements.
+                  v.    Negotiation and discounts happen based on the place of the event,
+                        schedule, design difficulty and personal connection.
+           b. Photography:
+                   i.   Event manager mentions photography services. Usually 100 printed
+                        photographs, album, videography and trailer for each event is suggested.
+                                                                                              17
+
+
+          c. Catering:
+                 i.   Event manager or host tells the menu to the caterer.
+                ii.   Negotiation occurs based on place, date and personal connection.
+          d. Grooming:
+                 i.   Host selects a fashion for each event. And the host also mentions the
+                      number of people.
+                ii.   Negotiation occurs based on place, date and personal connection.
+          e. Community Center:
+                 i.   Host Picks a community center based on location.
+                ii.   Host, often along with the event manager, mentions the number of chairs,
+                      tables needed, time allocation, lighting and sound system.
+               iii.   Negotiation occurs based on place, date and personal connection.
+          f. Promoter:
+                 i.   Host picks a promoter, often from the choice of Event manager.
+                ii.   Design of banners, placards and cards according to the host's choice.
+
+
+   7. The event manager communicates with the partners to determine availability through
+      phone calls.
+   8. The event manager then forwards the specification of host to the respective partners.
+   9. Negotiation of price and advanced payment.
+   10. Finalizing.
+
+
+Pre-event System:
+   1. Supervisor contacts with partners at least 1(one) week prior to the event.
+   2. Supervisor contacts with collaborators, celebrities.
+   3. Event manager coordinates the works of supervisors.
+   4. Usually in corporate events, drafting decoration using Solid Works or Adobe-software
+      suite 3D designs is completed.
+   5. Arrangement and decoration at least 3(three) hours before the event.
+                                                                                        18
+
+
+During event system:
+Event manager and supervisors-
+   1. Oversee caterers’ food management.
+   2. Oversee the event for any unseen occurrences.
+   3. Oversee the partners and collaborators.
+   4. Employee management.
+
+
+After event:
+   1. Full payment by hosts.
+   2. Payment distribution among partners and collaborators.
+   3. Getting host review for provided services in social media for future promotion.
+   4. Profit-loss calculation. (Collateral damage, theft)
+   5. End
+
+
+
+
+                             Fig IF.2: Manual System Workflow
+                                                                                              19
+
+
+1.5 Proposed System
+1.5.1 Package
+Each package will have a different format. The default option of “Communicate with event
+manager” will send a message to the event manager after which he will contact the host and meet
+to specify requirements which the event manager will add into the system on-the-go.
+Community Center:
+   1. Insert location of the event. The system will generate a list of partner community centers
+       adjacent to the location based on previous reviews.
+   2. Community Center Package Information
+           a. Show Name of Community Center
+           b. Show Location
+           c. Show Ratings & Reviews
+           d. Show Community Center Images
+           e. Insert number of guests
+           f. Show Prices
+           g. Show Discounts
+   3. Option of: Communicate with Event manager
+           a. System will Reply “The Event Manager will contact you shortly.”
+   4. Customer will Handle it
+           a. Insert Community Center Location.
+Catering service:
+   1. Select catering service provider.
+   2. Food Menu Selection:
+           a. Show Prices (with Transportation fee to Community Center)
+           b. Show Discount
+   3. Option of: Communicate with Event manager
+           a. System will Reply “The Event Manager will contact you shortly.”
+   4. Customer will Handle it
+Photography:
+   1. Name of photographer company.
+   2. Photography Package Information
+                                                                                             20
+
+
+          a. Show Service List provided by the photography company
+                 i.   Video Editing
+                ii.   100 Printed Images
+               iii.   A trailer video of previous events.
+          b. Show price(with Transportation fee to the community center)
+          c. Show Discount
+   3. Option of: Communicate with Event manager
+          a. System will Reply “The Event Manager will contact you shortly.”
+   4. Customer will Handle it
+Promotion:
+   1. Communicate with Event manager
+          a. System will Reply “The Event Manager will contact you shortly.”
+   2. Customer will Handle it
+Decorators:
+   1. Name of decorator company and location.
+   2. Decorator Package Information.
+          a. Show a list of decorations and the sample work.
+          b. Add Features To your package from the feature list.
+                 i.   Basic Features: Photo booth, Entry gate, Main stage, photo frame,
+                      welcome booth.
+                ii.   Extra Features: Stairway decoration, special design requirements, Flower
+                      in all table
+          c. Show price(while considering Location)
+          d. Discounts
+   3. Option of: Communicate with the Event manager (It's always recommended by the
+      decorators to customize the designs.)
+                 i.   System will Reply “The Event Manager will contact you shortly.”
+   4. Customer will Handle it Himself.
+Rent-a-car
+   1. Default list
+          a. Rent-a-car name
+                                                                                                21
+
+
+           b. Car list
+                 i.      Luxurious cars
+                ii.      Semi-luxurious cars
+               iii.      Premium cars
+                iv.      Horse driven Carriage
+           c. Show price
+           d. Show discount
+   2. Option of: Communicate with Event manager
+           a. System will Reply “The Event Manager will contact you shortly.”
+   3. Customer will Handle it
+
+
+Grooming:
+   1. Selection of home service or Salon service.
+   2. Grooming package information
+           a. Type of makeover..
+           b. Theme of makeover.
+           c. Sample works.
+   3. Communicate with Event manager
+           a. System will Reply “The Event Manager will contact you shortly.”
+   4. Customer will Handle it
+1.5.2 Host Interaction
+We need to note that this system is sub-automated. Software solution will only aid the manual
+system.
+   1. A website interface where the event manager can show his works.
+   2. The website will answer usual questions automatically.
+   3. The host will select the category of the event.
+           ◆ Marriage Ceremony
+           ◆ Akika
+           ◆ Birthday
+           ◆ Dinner Party
+           ◆ Corporate Events
+                                                                                                22
+
+
+4. Hosts can browse existing packages and view their details and related discounts and work
+   samples.
+5. If the host is interested in the services of the event manager, He will open an account to
+   place a deal.
+       ◆ Host will provide phone number and password for authentication.
+
+
+6. Interested hosts can either:
+       ◆ Contact the event manager if they want manual customization.
+               ● The event manager will contact the host briefly and then, they will meet.
+               ● The event manager will show the work of his partners for each part of the
+                   event. The host will choose whichever partners he deems worthy.
+               ● The host may demand customization on the packages, which the event
+                   manager will negotiate and document in the system.
+               ● An approximate price will be proposed by the event manager and will be
+                   negotiated.
+       ◆ Select a predefined package and discounts associated with it from the page.
+                   Corporate event:
+                      ➢ Community Center: Default list or CH*
+                      ➢ Catering service: Menu Selection or CH*
+                      ➢ Photography: Default Package List or CH*
+                      ➢ Promotion: Communicating with the event manager or CH*
+                      ➢ Decorators: Default Package List or Package Customization(3D
+                          Design) or CH*
+                   Wedding event:
+                      ➢ Community Center: Default list or CH*
+                      ➢ Catering service: Menu Selection or CH*
+                      ➢ Photography: Default Package List or CH*
+                      ➢ Promotion: Communicating with the event manager or CH*
+                      ➢ Decorators: Default Package List or CH*
+                      ➢ Grooming: Default Package List or CH*
+                      ➢ Rent-a-car: Default list or CH*
+                                                                                         23
+
+
+                  Birthday event:
+                     ➢ Community Center: Default list or CH*
+                     ➢ Catering service: Menu Selection or CH*
+                     ➢ Photography: Default Package List or CH*
+                     ➢ Decorators: Default Package List or CH*
+
+
+                  Akika event:
+                     ➢ Community Center: Default list or CH*
+                     ➢ Catering service: Menu Selection or CH*
+                     ➢ Photography: Default Package List or CH*
+                     ➢ Decorators: Default Package List or CH
+                  Dinner Party:
+                     ○ Community Center: Default list or CH*
+                     ○ Catering service: Menu Selection or CH*
+                     ○ Photography: Default Package List or CH*
+                     ○ Decorators: Default Package List or CH
+                     ○ Advance payment will be made through the system gateway
+   Ref: CH* = Customer will Handle it Himself
+7. Host can now interact with the event management system. The host dashboard will have
+       ◆ Progress tracking
+       ◆ Update information
+       ◆ Payment
+       ◆ Communicating with event manager
+       ◆ Requirement Specification
+8. The host will now navigate the progress of the event and communicate with the event
+   manager and his supervisors through the interface.
+9. Due payment notification will appear in the dashboard.
+10. Reviews and Ratings and Evaluation of the whole series of work.
+                                                                                                24
+
+
+1.5.3 Event manager interaction
+       1. Communication with host
+
+          a. Package customization dashboard: During requirement analysis and to
+               accommodate the Changing Requirements, this dashboard will be available
+               to the event manager. The event manager can
+                   i.      Update existing packages,
+                  ii.      Manually customize existing packages,
+                 iii.       Select a new package, or
+                 iv.       Add special requirements in a blank document.
+          b.   The created or updated requirements list will be automatically shared with the
+               supervisors.
+
+
+
+          b. Payment
+                        ● Hosts can pay their dues anytime which the event manager can track using
+                           their dashboard.
+                        ● Distribution of payment among partners and collaborators.
+
+
+  2. Dashboard
+       a. Progress tracking of supervisors
+       b. Communication with Supervisors
+          ● Interface to better communicate with the supervisors about the event progress.
+3. Admin Privileges
+   a. Anything in the system can be changed by the event manager, including previous
+       requirements specification data. (So a version-controlling mechanism has to be
+       implemented for trustworthiness.)
+
+
+1.5.4 Supervisor interaction
+       1. Package Creation for the service that he supervises on.
+               i. Talk to partners and get relevant information necessary for the package.
+       2. Update task progress.
+                                                                                              25
+
+
+       3. View requirements as a task list.
+       4. List of partners information for ease of finding them.
+       5. Communication with partners.
+1.5.5 Guest User Interaction
+They are the guests of the event
+   ● They can enter the event_code* to see the
+   ● Food Menu list
+   ● Event Schedules
+   ● And other information the host wishes to share.
+Ref: event_code is a special unique code generated for the event so that unwanted users can not
+see event information.
+
+
+
+
+                         Fig IF.3: Proposed System Workflow(Pre Event)
+                                                   26
+
+
+
+
+Fig IF.4: Proposed System Workflow(During Event)
+                                                                                             27
+
+
+
+              2. Quality Function Deployment(QFD)
+
+QFD or Quality Function Deployment is a focused methodology for carefully listening to the
+voice of the customer and then effectively responding to those needs and expectations. First
+developed in Japan in the late 1960s as a form of cause-and-effect analysis, QFD was brought to
+the United States in the early 1980s. Yoji Akao, the original developer, described QFD as a
+"method to transform qualitative user demands into quantitative parameters, to deploy the
+functions forming quality, and to deploy methods for achieving the design quality into
+subsystems and component parts, and ultimately to specific elements of the manufacturing
+process." The author combined his work in quality assurance and quality control points with
+function deployment used in value engineering.
+
+
+By talking to the event manager of “Post House” and hosts, we identified different stakeholders
+and talked with them. The stakeholders that we identified were event managers, hosts and
+supervisors. The requirements they identified is as follows:
+
+
+
+
+2.1 Normal Requirements
+These are the general requirements that are stated by the customer during meetings as his goals
+and objectives of the software. Normal requirements completeness leads to customer satisfaction.
+For example, requested types of specific system functions. Here are normal requirements:
+
+
+Event Manager Requirements
+   1. Login system for the event manager, supervisors and hosts.
+   2. The system displays a list of different partners and associated packages.
+   3. Event manager communicates with the host and supervisors during the event.
+   4. Event manager can handle changes in customer order.
+   5. Event manager will receive payment through the system.
+   6. Automatic distribution of payment among supervisors, partners and collaborators.
+   7. Event manager will have admin privileges.
+                                                                                                28
+
+
+   8. The event manager can track progress of different works.
+   9. Guests can see the food menu, event schedule and other information
+
+
+Supervisor Requirements
+   1. Supervisors can create partner profiles.
+   2. Supervisors can create different packages by discussing with relevant partners.
+   3. Orders will be automatically forwarded to the supervisor.
+   4. Supervisors can update work progress during the event.
+   5. Supervisors can view contact information of partners.
+
+
+Host Requirements
+   1. Host can select the category of event.
+   2. Hosts can navigate different profiles and select different services.
+   3. Select packages of different services.(Catering services, photography, decorators,
+         rent-a-car services, grooming services, community center service)
+   4. If the host doesn’t like a package, he can update or edit the package or handle it himself.
+   5. Host will create an account before placing an order.
+   6. Have a login system for new and existing accounts.
+   7. Pay advance and dues through the system.
+   8. Track progress through the system.
+   9.    Get payment related notifications through the system.
+   10. Give reviews and ratings after the event.
+
+
+
+
+2.2 Expected Requirements
+These requirements are so obvious that the customer need not explicitly state them. Their
+absence can create significant dissatisfaction. The expected requirements of our system are given
+below:
+   1. The system has to secure user information.
+   2. The system must prevent any fraud related to event management.
+                                                                                        29
+
+
+   3. The system has to be platform independent. (Supported on both PC and mobile
+       platforms)
+   4. 24 hour service availability must be ensured.
+   5. The system has to be navigable and easy to understand.
+   6. Advertisement of partners and their packages through the system.
+   7. Transaction information will be properly handled.
+   8. A performance summary report will be generated after the event.
+   9. 3D Modeling of the decoration.
+   10. Total price is calculated based on the selected packages.
+   11. Discount is calculated using Machine Learning.
+   12. Accounting system to generate income reports.
+   13. Human Resource Management System to manage employees.
+   14. Users can change their login information.
+
+
+2.3 Exciting Requirements
+These requirements are beyond the user’s expectations. The exciting requirements are:
+   1. Machine Learning to aid in package selection of hosts.
+   2. Usual queries of the host will be handled automatically using Machine Learning.
+   3. Changing orders will be managed using smart contracts.
+   4. Business Intelligence shows business and market conditions[REF].
+                                                                                                  30
+
+
+
+                                  3. Usage Scenario
+The automated event management system gives the services regarding community center,
+catering service, photography, promotion, decoration, rent-a-car and grooming.
+
+
+3.1 Initial Account Creation
+The event manager account is created at the initial phase of the event management system. After
+login, the event manager first adds supervisor accounts to the system. Each supervisor will have
+an associated username and password set by the event manager. The supervisors can change their
+username and password later on.
+
+
+3.2 Host Interaction
+
+   ● Advertisement
+The host visits the website and looks through the event manager's services to see what profiles,
+packages and discounts are available. The host can also see work samples to evaluate the quality
+of services. During the process, usual host queries can be answered automatically by Machine
+Learning.
+
+
+   ● Account Creation and Update
+If the host likes the services provided by the event manager and wants to place an order, a new
+account has to be created if there are no pre-existing ones. Host can open an account using their
+phone number. Host needs to enter a username and password for the account. The password will
+have to be at least 8 characters long. The phone number will be verified using OTP. OTP will be
+sent to the phone via sms system after it gets the contact info. Host can later change username
+and password if he wishes to. Permissions will be managed using access control after receiving
+login confirmation.
+                                                                                                     31
+
+
+   ● Event Selection
+After logging in, the host needs to select the category of the event from the event list. Host can
+browse through available events and view event information. The events are:
+   1. Marriage ceremony
+   2. Akika
+   3. Birthday
+   4. Dinner Party
+   5. Corporate events.
+
+
+
+   ● Service Selection
+After selecting the category of the event, the host will navigate through the services offered by
+the event manager. The services include:
+   1. Community Center Service
+   2. Catering Service
+   3. Photography Service
+   4. Decoration Service
+   5. Rent-a-car Service
+   6. Grooming Service
+For each service, there are several partners. The host can browse through the profile of each
+partner, see their work sample, packages & discounts and choose the profile to his liking. The
+profiles include:
+   1. Community Center Profile: Name, Address, Ratings and reviews, package list,
+       associated discount list and images of the community center.
+   2. Caterers’ Profile: Name, location, offered food menu, package list, associated discount
+       list and reviews & ratings.
+   3. Photographer Company Profile: Name, location, package list, associated discount list,
+       photography and videography samples of previous organized events, and reviews &
+       ratings.
+   4. Decorator Profile: Name, location, decoration sample, package list and associated
+       discount list.
+                                                                                                 32
+
+
+   5. Rent-a-car Service Profile: Name, location, offered cars, package list, associated
+       discount list, reviews & ratings.
+   6. Grooming Service Profile: Name, location, makeup designs, package list, associated
+       discount list, home service availability and reviews & ratings.
+
+
+
+   ● Package Recommendation
+The package list will be sorted by Machine Learning. To recommend packages, Machine
+Learning uses:
+   1. Existing user information.
+   2. Reviews & Ratings of partner services.
+For each package, the host can choose to negotiate the order with the event manager. If he
+does not like a package, he can handle the order himself.
+
+
+   ● Package Selection
+At first, the host is prompted to enter the number of guests for the event. This information will be
+used to generate price & discounts for each package. Each package consists of basic features
+and extra features.
+Basic Features are partner services that all partners must provide. Extra features are other
+features provided on top of basic features. Extra features usually vary for each partner. Prices &
+discounts are generated after feature selection.
+Each feature includes feature samples and associated information. By selecting a package, the
+host is informed of the price and associated offers.
+
+
+1. Community Center Package:
+In the case of community center service, the packages usually include the following basic
+features[Ref: 0]:
+   ● Lighting System
+   ● Sound System
+   ● Number of tables & chairs
+Extra features can be stairway lighting, gift reception etc.
+                                                                                              33
+
+
+2. Catering Packages
+During the selection of catering service, the packages include:
+   ● Basic Features: Food items that are usually provided in each event (e.g. Biryani, Murgi -
+       Polao)
+   ● Extra Features: Exotic foods (e.g- Chuijhal, Hyderabadi biryani) and extra items.
+The host selects food items to form his own menu for the event.
+
+
+3. Photography Packages
+
+During the selection of photography service, the packages include the following basic features.
+   ● 100 printed images at the end of the event
+   ● Trailer videos of the event.
+   ● Videography
+Extra feature can be cinematography.
+
+4. Decorator Packages
+Each decorator package contains the following basic features:
+   ● Photo booth
+   ● Entry gate
+   ● Main stage
+   ● Photo frame and
+   ● Welcome booth
+The host can also add extra features like:
+   ●    Stairway decoration
+   ●    Aesthetic design requirement, and
+   ●    flowers in all tables.
+For corporate events, hosts may choose the 3D modeling feature.
+
+
+5. Rent-a-Car Packages
+Each rent-a-car package’s basic features include three types of cars:
+   ● Luxurious car
+   ● Semi-luxurious car and
+   ● Premium car.
+Premium cars can be extended in the extra features section. E.g. Horse Carriage.
+                                                                                                 34
+
+
+
+
+6. Grooming Service Package
+Under Grooming service, basic features include:
+    ● Salon service
+    ● Make-up type(s)
+And extra features include:
+    ● Home service package
+    ● Make-up type(s)
+The information of makeover type, theme of makeover and feature sample is included in each
+feature.
+
+
+For each service, if the host does not like the given packages, he can choose to negotiate with the
+event manager. Event manager will get notification for negotiation and after negotiation, the
+event manager will document the feature list for each service. After that, the user will be
+prompted to confirm the order using an advanced payment.
+
+
+    ● Price & Discount Generation
+After selection of features of a package is completed, prices and discounts will be generated.
+Prices are generated based on price for each feature defined by the supervisor and discounts
+generated by AI using previous user data(for existing users), number of guests, selected partner
+locations and discount list. The best discounts will be provided for each specific case. Package
+data are used to generate price.
+
+    ● Place Order
+After the selection of packages, the host can place the order. While placing the order, the host has
+to give advance payment(10% of total price). Payment has to be done online using SSLcommerz
+gateway. A new smart contract will be posted on the blockchain as soon as the order is placed.
+Host gets payment confirmation notification.
+
+
+    ● Host Dashboard
+The host will get access to a dashboard after advance payment. The host dashboard provides
+features to:
+                                                                                              35
+
+
+   1. Track progress
+   2. Get due payment notification
+   3. Pay due payment using online payment
+   4. Communicate with the event manager
+   5. View Placed Order
+   6. Request changes in the placed order
+   7. Make & View Review-Ratings
+For options where the host has chosen the option of negotiating customized order with the Event
+Manager, the event manager will get notifications and will contact the host soon.
+
+
+   ● Smart Contract
+Any changes in order will be managed using smart contracts. The contracts will be digitally
+signed by the host and event manager and the information will be stored on blockchain after
+consensus. This will prevent the event manager from making any shady changes in the system.
+
+
+   ● Communication
+The host can communicate with the event manager using the communication module. In all the
+sections, the system will answer usual queries automatically with the help of Machine Learning.
+
+
+
+
+3.3 Event Manager Interaction
+
+   ● Event Manager Dashboard
+The event manager will login to the system and will get access to the dashboard.
+From the dashboard, the event manager can access:
+   1. Order Management System.
+   2. Human Resource Panel.
+   3. Ongoing event panel.
+   4. Notification tab
+   5. Accounting System
+   6. Business Intelligence Dashboard
+                                                                                                36
+
+
+   7. Communication
+
+
+
+   ● Order Management System
+If the host requests any change in order, the event manager can see the requested change and will
+accept/reject the proposed changes through this panel. Approved changes will automatically be
+forwarded to supervisors and the change will be recorded in smart contract.
+
+   ● Human Resource Panel
+The event manager can see a list of supervisors from the human resource panel. He can also view
+their progress for each event and their metadata (contact info ,name, address, skills). Using
+human resource panel, Event managers can:
+   1. See availability of employee
+   2. Track salary and compensation
+   3. Add, edit or delete existing employee data
+   4. Generate Performance Reports based on deadline and task completion ratio. It uses event
+       progress data in the process.
+   5. Allocate time and tasks
+   6. Add Performance ratings manually
+
+
+
+   ● Ongoing Event Panel
+An ongoing event panel will open after the host has confirmed an order. The event manager can
+track work progress from the ongoing event panel. Using the panel, the event manager can view
+and edit the placed order. If the event manager adds or changes anything in the order panel, then
+this changed information will go to the supervisor of the relevant service.
+Event managers will also get the facility of tracking payment dues from the ongoing event panel
+under dashboard. System will automatically distribute payments among supervisors, partners and
+collaborators.
+                                                                                                  37
+
+
+   ● Notification tab
+The notification tab includes new event order, changing order requests, order fulfillment and
+payment related notifications.
+
+
+   ● Communication
+Event managers can communicate with supervisors and hosts using the communication module.
+The supervisors can also communicate with the event manager using this module. The host can
+communicate with the event manager only.
+
+
+   ● Admin Role
+
+Event manager will also act as an admin of the system and can access supervisor accounts. Event
+manager can also manage the system database.
+
+
+   ● Accounting System
+
+After the completion of each event, the event manager will get the summary of all transactions
+and see revenues through the accounting system. An income statement will be generated and
+stored after each event. Statements include:
+   ❖ Balance Sheets
+   ❖ Income Statements
+   ❖ Cash Flow Statements
+   ❖ Statements of Shareholders' Equity.
+Regular Book-keeping activities include:
+   ❖ Journaling
+   ❖ Accounting Ledger Keeping
+
+
+
+   ● Business Intelligence Dashboard
+
+Business intelligence will use these data to show market strategies. Business intelligence will
+   1. Collect Database
+   2. Merge Database
+   3. Generate Graphs
+         a. Profit vs Time Graph
+         b. Sales vs Time Graph
+                                                                                                  38
+
+
+         c. Expenses vs Time Graph
+         d. Location graph
+         e. Service Based Profit
+         f. Service Based Expense
+   4. Calculate Profits
+   5. Calculate Sales
+   6. Generate Ranks
+         a. Service Profile Rank
+         b. Package Rank
+         c. Discount Rank
+         d. Feature Rank
+
+
+3.4 Supervisor Interaction
+The supervisor will have a similar login system to the event manager. Their dashboard will have:
+   1. Ongoing event panel.
+   2. A notification tab
+   3. Package control panel.
+   4. Communication
+
+
+
+   ● Ongoing Event Panel
+The ongoing event panel will have a list of orders. Any change in orders approved by the Event
+Manager will be automatically forwarded to this list of orders. The supervisor needs to update
+progress through this panel. Supervisor can also set his information.
+
+
+   ●    Notification Tab
+The notification tab will notify about changing orders and received payments.
+
+
+   ● Package Control Panel
+Supervisors can add partner profiles by talking with partners. They can delete the profile when
+the partner chooses to terminate their service.
+From the package control panel, supervisors will create and change packages of different
+services after discussions with their relevant partners.
+                                                                                                   39
+
+
+   ● Communication
+Supervisors can communicate with the event manager through this module. Communication with
+partners is done manually. System only stores partner information.
+
+
+3.5 Guest User Interaction
+An event code will be generated for each event. Through that code they can view the food
+menu,event schedule and other information provided by the host of the event. The provided
+information will be stored in the system. The host can later edit his provided information if he
+feels necessary.
+                                                                         40
+
+
+
+                           4. Use Case Diagram
+
+
+Level 0:
+Name : Post House Event Management System
+Primary Actor: Event Manager, Supervisor, Host, System
+Secondary Actor: SMS System, SSLCommerz, AI, Guest
+
+
+
+
+                           Level 0: Post House Event Management System
+                                                                                              41
+
+
+Level 1:
+Name: Post House Event Management System(Detailed)
+Primary Actor: Event Manager, Supervisor, Host, System
+Secondary Actor: SMS System, SSLCommerz, AI, Guest
+
+
+
+
+                     Level 1: Post House Event Management System(Detailed)
+
+
+Description:
+   1. Package Control System: Supervisors can create service profiles and their associated
+       packages by discussing with relevant partners. They can update or delete the profiles or
+       packages later on. Host can navigate and choose profiles and select associated packages
+       from this system.
+   2. Payment System: Host can make payment using SSLCommerz. The payment is
+       automatically distributed among event managers and supervisors. Hosts can track their
+       due payments using the payment system.
+   3. Order Management System: Host can place orders and later choose to negotiate with
+       the event manager. The order is managed with smart contracts.
+                                                                                         42
+
+
+4. Account Management System: Event managers, supervisors and hosts can login to the
+   system using username and password. Event manager accounts are created at the
+   inception of the system and Event manager adds supervisor accounts. Hosts open an
+   account by confirming contact information. Permissions of accounts are managed using
+   access control. Username and password can be updated later on. Event managers can
+   delete accounts.
+5. Dashboard: Host, event manager and supervisors will get access to the dashboard each
+   showing different information. Host dashboard will open after placing an order.
+6. Recommendation system: Recommends packages and generates discounts based on
+   selected packages.
+7. Chat System: Communication between three primary actors, host, event manager and
+   supervisor is managed using the chat system. Machine Learning can give automated
+   query replies to hosts.
+8. Accounting System: Accounting system includes accounting and business intelligence.
+   Accounting keeps record of transactions and generates reports. Business intelligence
+   generates graphs and ranks to show market strategies
+9. Human Resource System: The event manager can see a list of supervisors from the
+   human resource panel. He can also view their progress for each event and their metadata
+   (contact info ,name, address, skills). Salary compensation tracking, task allocation and
+   performance reports are shown using this system.
+                                                                                                  43
+
+
+Level 1.1:
+Name: Package Control System
+Primary Actor: Supervisor, Host
+Secondary Actor: System, AI
+
+
+
+
+                              Level 1.1: Package Control System
+
+Description:
+   1. Package Choice System: Host browses packages after choosing a partner profile. If he
+       likes a package from that partner profile, he can choose to order the package. Each
+       package has basic features and extra features. By selecting a package, the host is
+       informed of price and associated offers. [Reference: 3.2]
+   2. Package Creation & Update: Supervisors can create and change services of different
+       partners by discussing with their relevant partners. [Reference: 3.4]
+   3. Profile Creation & Update: Supervisors can add partner profiles by talking with
+       relevant partners. They can delete the profile if the partner chooses to terminate their
+       service. [Reference: 3.4]
+                                                                                                44
+
+
+   4. Profile Choice: Host browses the website and sees different service profiles associated
+      with the event manager. Hosts can see work samples, packages & discounts and choose
+      the profile to his liking. [Reference: 3.2]
+
+
+
+
+Level 1.2:
+Name: Payment System
+Primary Actor: SSLCommerz, Host, SMS System
+Secondary Actor: System, Event manager, Supervisor
+
+
+
+
+                                 Level 1.2: Payment System
+
+
+
+
+Description:
+   1. Transaction: Host can pay online using SSLCommerz gateway. While placing an order,
+       the host has to make an advance payment. Due payments can be made from host
+       dashboard later on [Reference: 3.2]
+   2. Payment Tracking & Distribution System: For each order, due payments will be
+       tracked. Payments are distributed between event manager and supervisor after each
+       transaction. [Reference: 3.3]
+                                                                                              45
+
+
+Level 1.3:
+Name: Order Management System
+Primary Actor: Event manager, Host
+Secondary Actor: Supervisor
+
+
+
+
+                            Level 1.3: Order Management System
+Description:
+   1. Negotiate Orders: Host can choose to negotiate orders with the event manager if they
+       want to. Event manager will be notified and will begin negotiations.[Reference: 3.2, 3.3]
+   2. Progress Tracking System: Host and event managers can track progress of the event
+       using progress tracking system. Progress will be updated by supervisors during the event.
+       [Reference: 3.2, 3.3, 3.4]
+                                                                                             46
+
+
+Level 1.3.1:
+Name: Negotiate Orders
+Primary Actor: Event manager, Host
+
+
+
+
+                             Level 1.3.1: Negotiate Orders
+Description:
+   1. Smart Contract: Any changes in the order will be managed using smart contracts. The
+       contracts will be digitally signed by the event manager and host. [Reference: 3.2]
+   2. Customized Orders: Host can change any previously placed order for customization.
+       For this option the event manager will get notification and will contact the host soon.
+       [Reference: 3.2]
+                                                                                           47
+
+
+Level 1.4:
+Name: Account Management System
+Primary Actor: Event manager, System
+Secondary Actor: Supervisor, Host
+
+
+
+
+                         Level 1.4: Account Management System
+
+Description:
+   1. Login: Event manager, supervisors and hosts can login using username and password.
+   2. Registration: Event manager account is created at the initial phase of the system. Event
+       manager adds supervisor accounts. Host can create an account by verifying the phone
+       number. [Reference: 3.1, 3.2]
+   3. Access Control: Access control manages permissions of different accounts. For example,
+       the event manager will act as an admin and can access supervisor accounts. [Reference:
+       3.3]
+   4. Account update and deletion: Users can change username and password. The event
+       manager can delete accounts. [Reference: 3.2]
+                                                                                             48
+
+
+Level 1.5:
+Name: Dashboard
+Primary Actor: Event manager, System, Supervisor
+Secondary Actor: Guest, Host
+
+
+
+
+                                    Level 1.5: Dashboard
+
+Description:
+   1. Host Dashboard: Host dashboard opens after placing an order. Host can see event
+       information, make payment, view progress, view selected orders, view service partner
+       information, give review and rating and see notifications from the host dashboard. Host
+       can request change in ongoing order from the dashboard. [Reference: 3.2]
+   2. Event Manager Dashboard: Event manager can see ongoing events, access human
+       resources, see accounting panel and business intelligence panel. From the ongoing event
+       panel, the event manager can track progress, track payment status and see order related
+       notifications. [Reference: 3.3]
+   3. Supervisor Dashboard: Supervisors can see ongoing events and update progress using
+       the dashboard. Any changing order will automatically be forwarded to the supervisor.
+       Supervisors can create or update packages using the package control panel. [Reference:
+       3.4]
+                                                                                          49
+
+
+   4. Guest Dashboard: Any person visiting the website can navigate service profiles. Guests
+      can ask queries which can be answered by Machine Learning. Using event code, the host
+      can look at event related information set by the host. [Reference: 3.1, 3.5]
+
+
+
+
+Level 1.6:
+Name: Recommendation System
+Primary Actor: Event manager, AI
+Secondary Actor: Host
+
+
+
+
+                            Level 1.6: Recommendation System
+Description:
+   1. Package Recommendation System: The package list is sorted and recommended using
+       Machine Learning. Machine Learning uses existing user information and reviews and
+       ratings to recommend packages. [Reference: 3.2]
+   2. Discount Generation System: discounts generated by AI using previous user data(for
+       existing users), number of guests, selected partner locations and discount list.
+                                                                                             50
+
+
+Level 1.7:
+Name: Chat System
+Primary Actor: Event manager, AI
+Secondary Actor: Host
+
+
+
+
+                                   Level 1.7: Chat System
+
+Description:
+   1. Automated Query System: The system can answer usual queries with the help of
+       Machine Learning. [Reference: 3.2]
+   2. Communication: Communication is used for communication between host, event
+       manager and supervisor. Host can directly communicate with the event manager. Event
+       manager can communicate with both the host and supervisor. Supervisors can directly
+       communicate with the event manager.[Reference: 3.2, 3.3, 3.4]
+                                                                                            51
+
+
+Level 1.8:
+Name: Accounting System
+Primary Actor: Event manager, System
+
+
+
+
+                                Level 1.8: Accounting System
+Description:
+   1. Accounting Management: Accounting management system generates summary reports
+       of transactions and income statements. It does regular bookkeeping. [Reference: 3.3]
+   2. Business Intelligence: Business intelligence is used to show market strategies. It will
+       collect information from various databases and use this information to generate graphs,
+       calculate profiles and sales and generate ranks. [Reference: 3.3]
+                                                                                               52
+
+
+
+                               5. Activity Diagram
+
+Level 1.1:
+Name: Package Control System
+Reference: Use Case Diagram Level 1.1
+
+
+
+
+                          Level 1.1: Package Control System
+
+Description:
+Add the host profile-package choice to smart contract as order list. The detailed overview of each
+of the activities can be found in their respective modules.
+
+   1.   Select Service
+   2.   Profile Management
+   3.   Package Management
+   4.   Smart Contract
+                                                                                               53
+
+
+Level 1.1.1:
+Name: Package Choice System
+Reference: Use Case Diagram Level 1.1.1
+
+
+
+
+                               Level 1.1.1: Package Choice System
+  Activity List:
+
+   1.   First, the system gets a profile name to later find a list of packages for that profile.
+   2.   System shows package list of the chosen profile
+   3.   Host can select package’s partner services & discounts
+   4.   System stores Selected Packages: Store selected packages & profile to System Database
+   5.   Find & delete Selected Package or profile
+   6.   Notification: If the customer wishes to customize an order, the event manager will be
+        notified.
+                                                                                               54
+
+
+Level 1.1.2:
+Name: Package Creation and Update
+Reference: Use Case Diagram Level 1.1.2
+
+
+
+
+                           Level 1.1.2 : Package Creation and Update
+
+
+
+
+Activity List:
+
+Each package includes the following attributes. (Service list, Price, Discount, Number of guests)
+
+   1. Supervisor selects the service he wants to create a package or delete from.
+   2. Basic Feature: Supervisor adds or edits existing basic features.
+                                                                                            55
+
+
+   3.   Extra Feature: Supervisor adds or edits extra basic features.
+   4.   Price: Supervisor sets price for the features.
+   5.   Discount: Supervisor sets discount for the package.
+   6.   Finalize: Supervisor finalizes the package creation or update.
+   7.   Design Catalog: For decorator package, supervisor adds or updates design catalog.
+
+
+Level 1.1.3:
+Name: Profile Creation and Update
+Reference: Use Case Diagram Level 1.1.3
+
+
+
+
+                           Level 1.1.3: Profile Creation and Update
+
+Activity List:
+Each profile includes the following attributes. (Name, Location, Address, Work Sample)
+1.Supervisors select the service of the profile to edit or update.
+2.Supervisor inserts profile information if he wants to create a new profile.
+3.The Supervisor selects the profile he wants to edit and edits information.
+                                                          56
+
+
+Level 1.1.4:
+Name: Profile Choice
+Reference: Use Case Diagram Level 1.1.4
+
+
+
+
+                            Level 1.1.4: Profile Choice
+                                                                                              57
+
+
+Activity List:
+
+   1. Host inserts a number of guests. This data will be used for price calculation, package
+      recommendation, discount generation.
+   2. AI won't be used to recommend profile lists because the partners will feel the system to
+      be unfair to them and for an event manager, the partners are of vital importance.
+   3. Profile list will be fetched and shown to the host.
+   4. Host can select a partner profile and see their information. The following information will
+      be shown in each profile:
+          a. Partner name
+          b. Partner Location
+          c. Ratings & Reviews
+          d. Packages
+          e. Work sample
+   5. System will then initiate package choice system[Ref 1.1.1] activity as package selection
+      is done right after profile selection.
+   6. Host will select the profile to his liking. His selection of profiles will be stored.
+                                                                                           58
+
+
+Level 1.2:
+
+Name: Payment System
+Reference: Use Case Diagram Level 1.2
+
+
+
+
+                              Level 1.2: Payment System
+
+Description:
+   1. Transaction submodule cooperates with SSLCommerz to make payment.
+   2. Payment tracking and distribution module distributes the payment among supervisors
+       using the Transaction submodule. It also sends SMS notifications to supervisors.
+                                                                59
+
+
+Level 1.2.1:
+Name: Transaction
+Reference: Use Case Diagram Level 1.2.1
+
+
+
+
+                                  Level 1.2.1: Transaction
+
+
+
+Activity List:
+   1. System accepts transaction requests.
+   2. System completes transaction using SSLCommerz
+   3. System places transaction record in accounting system
+   4. System sends confirmation or unsuccessful transactions.
+
+
+Level 1.2.2:
+Name: Payment Distribution
+                                                                      60
+
+
+Reference: Use Case Diagram Level 1.2.2
+
+
+
+
+                                  Level 1.2.2: Payment Distribution
+                                                                                             61
+
+
+Activity List:
+
+   1. System first fetches list of supervisors
+   2. System then fetches income percentage for each supervisor
+   3. Using income percentage and total payment amount, payment for each supervisor is
+      calculated.
+   4. Payment to the supervisor is completed using the transaction module. The distributed
+      payment transaction information is saved in the Accounting System.
+   5. Notification to the event manager and supervisor is sent through the SMS System.
+                                                                                           62
+
+
+Level 1.3:
+
+Name: Order Management System
+Reference: Use Case Diagram Level 1.3
+
+
+
+
+                         Level 1.3: Order Management System
+
+
+
+
+Description:
+   1. Negotiate Order: When placing an order or during an event, the host can request change
+       in many occurences. Changing order submodules handles them. The notification for
+       change request, negotiation, documentation of changes and smart contract are in this
+       submodule.
+   2. Progress Tracking System: Supervisor updates their progress in this module. Event
+       manager and host can view the progress of the event.
+                                                                                      63
+
+
+
+
+Level 1.3.1:
+Name: Negotiate Orders
+Reference: Use Case Diagram Level 1.3.1
+
+
+
+
+                           Level 1.3.1: Negotiate Orders
+
+Activity List:
+   1. Host can request change in order
+   2. Event manager documents the customized order after manual negotiation. Manual
+       negotiation is of course not part of the system.
+   3. Changed order is placed on the blockchain.
+                                                                                             64
+
+
+Level 1.3.1.1:
+Name: Smart Contract
+Reference: Use Case Diagram Level 1.3.1.1
+
+
+
+
+                               Level 1.3.1.1: Smart Contract
+
+
+Activity List:
+
+   1. System gets a Contract to post in the blockchain. A contract can be a new order or a
+      negotiated changed-order.
+   2. System posts/edit request on smart contract.
+   3. System adds smart contract to chain
+                                                               65
+
+
+Level 1.3.1.2:
+Name: Customized Order
+Reference: Use Case Diagram Level 1.3.1.2
+
+
+
+
+                             Level 1.3.1.2: Customized Order
+                                                                                              66
+
+
+Activity List:
+
+   1. Event manager gets change-order notification.
+   2. If the event manager accepts the request for change-order, the event manager manual
+      negotiates with the host. Manual negotiation is not part of the system, of course.
+   3. After negotiation, the event manager documents the changes under appropriate service.
+   4. The host and event manager signs the documented changes and after that, the changed
+      order is placed in the blockchain.
+                                                                           67
+
+
+Level 1.3.2:
+Name: Progress Tracking
+Reference: Use Case Diagram Level 1.3.2
+
+
+
+
+                              Level 1.3.2: Progress Tracking
+
+Activity List:
+
+   1.   Supervisor can view the Order to update progress.
+   2.   Event manager , host can only view Progress
+   3.   Supervisor can select “order complete” to update event progress.
+   4.   Progress reports are saved
+                                                                                            68
+
+
+Level 1.4:
+Name: Account Management System
+
+
+
+
+                       Level 1.4: Account Management System
+
+
+Description:
+This module handles all account activities. Users(event manager, host, supervisor) access the
+system through their account, except guest users who can access the system without any account.
+    1. Registration: New account creation is done in this submodule.
+    2. Login: Users login using this submodule.
+    3. Access Control: User access is checked using this submodule.
+    4. Account update & deletion: Note that only event managers can delete supervisor
+       accounts. Host can not delete his account, nor can the event manager.
+                                                                  69
+
+
+Level 1.4.1:
+Name: Login
+Reference: Use Case Diagram Level 1.4.1
+
+
+
+
+                                    Level 1.4.1: Login
+
+
+ Activity List:
+ 1. User (event manager, supervisor, host)selects account type
+  2. User enters their credentials: user id and password
+  3. System authenticates user credential: user id and password
+                                                                                        70
+
+
+
+
+Level 1.4.2:
+Name: Register
+Reference: Use Case Diagram Level 1.4.2
+
+
+
+
+                                    Level 1.4.2: Register
+
+Activity List:
+
+   1. Host first enter credentials to register an account: Phone, password, Address
+   2. For account verification, OTP is generated
+   3. OTP is sent via SMS System
+   4. Host inserts the OTP after getting it
+   5. To create event manager account, supervisor enters information about supervisor
+      employee(e.g. Salary, name, address, skills, qualifications etc)
+   6. After creation of the account, information are saved in database.
+                                                                                               71
+
+
+Level 1.4.3:
+Name: Access Control
+Reference: Use Case Diagram Level 1.4.3
+
+
+
+
+                                   Level 1.4.3: Access Control
+
+Activity Listing:
+This module gets the user type and checks for the access it has and forwards the user to the
+appropriate dashboard.
+   1. Host can access to host dashboard
+   2. Event manager can access to Event Manager dashboard
+   3. Supervisor can access to Supervisor dashboard
+
+
+Level 1.4.4:
+Name: Account Update and Deletion
+                                                                                           72
+
+
+Reference: Use Case Diagram Level 1.4.4
+
+
+
+
+                          Level 1.4.4: Account Update and Deletion
+
+
+
+
+Activity Listing:
+   1.   Host or Supervisor inserts username and password to login
+   2.   After login, hosts/supervisors are prompted if they want to Change Username.
+   3.   After login, hosts/supervisors are prompted if they want to Change Password
+   4.   Event managers can delete supervisor and host accounts. So event manager first finds
+        the account and deletes it from the system.
+                                                                                           73
+
+
+Level 1.5:
+Name: Dashboard
+Reference: Use Case Diagram Level 1.5
+
+
+
+
+                                  Level 1.5: Dashboard
+
+Description:
+   1. Event Manager Dashboard: It is a submodule in our system[Ref 1.5.2]. The event
+      manager accesses our System from this submodule.
+   2. Host Dashboard: It is a submodule in our system[Ref 1.5.1]. The host accesses our
+      System from this submodule.
+   3. Guest Dashboard: It is a submodule in our system[Ref 1.5.4].The guest accesses our
+      System from this submodule.
+   4. Supervisor Dashboard: It is a submodule in our system[Ref 1.5.3]. The Supervisor
+      accesses our System from this submodule.
+                                                            74
+
+
+Level 1.5.1:
+Name: Host Dashboard
+Reference: Use Case Diagram Level 1.5.1
+
+
+
+
+                              Level 1.5.1: Host Dashboard
+                                                                                              75
+
+
+Activity Listing:
+
+   1.  View Progress: Host can view event progress.
+   2.  Event Info: Host can view information about his event.
+   3.  Make Payment: Host can make due payments.
+   4.  Notify Event Manager: After a change order request, a notification is sent to event
+       manager.
+   5. Event List: The host can view the event list for him.
+   6. View Payment Status: The host can view his payment status and due payments.
+   7. View Selected Orders: He can see his confirmed orders for the event.
+   8. View Partners associated with order: If the host wants to make review-rating or for other
+       reasons, he can view partners.
+   9. Make review-rating: The host can make review on partners on their profile.
+   10. Notification: The host can view notifications like Order placement notification.
+   1. Notify Event Manager: If change in order is requested, a notification is sent to the event
+      manager.
+                                                                76
+
+
+Level 1.5.2:
+Name: Event Manager Dashboard
+Reference: Use Case Diagram Level 1.5.2
+
+
+
+
+                         Level 1.5.2: Event Manager Dashboard
+                                                                                         77
+
+
+Activity Listing:
+
+   1. Ongoing Event Panel: View event list and information on ongoing events.
+   2. Human Resource Panel: Event managers can access human resources from here.
+       Human Resource is a submodule in our system. [Ref]
+   3. Accounting Panel: Event manager can view accounting information. From here, the
+       event manager can perform the activity of Viewing accounting information and viewing
+       payment notification.
+   4. View accounting statement: Event managers can view statements made available by the
+       accounting system. [Ref]
+   5. Notify Host: Host is notified after event manager confirms negotiated changes for
+       confirmation.
+   6. View Payment Notification: Event manager can view payment notification.
+   7. List of events: List of events going are shown.
+   8. View host info: Event manager can view host information.
+   9. View payment status: Payment status, dues can be viewed.
+   10. Show Event: Event manager can view events going before accepting order change
+       requests.
+   11. Show Notification: Notifications like new order placement, negotiation request can be
+       viewed here.
+                                                                                                     78
+
+
+Level 1.5.3:
+Name: Supervisor Dashboard
+Reference: Use Case Diagram Level
+
+
+
+
+                              Level 1.5.3: Supervisor Dashboard
+
+Activity Listing:
+
+   1. Ongoing event panel: List of events and related information are shown here.
+   2. See Notification: Notifications forwarded towards supervisor are shown.
+   3. See changed Order: If orders have been changed, supervisor can view them here.
+   4. Update Progress: Supervisor can update event progress here.
+   5. Get Notification: Notifications for supervisor are fetched. It is active all the time in the
+      background.
+   6. Package Control Panel: Package and service creation delete and update are handled
+      here. It uses package control system [Ref ]
+   7. Access HR: This activity leads to Human Resource System [Ref].Supervisor can view
+      HR information like performance record and set his availability status.
+                                                                                           79
+
+
+
+
+Level 1.5.4:
+Name: Guest Dashboard
+Reference: Use Case Diagram Level 1.5.4
+
+
+
+
+                               Level 1.5.4: Guest Dashboard
+
+Activity Listing:
+   1. Guest user enters the website and views the services, packages & discounts provided by
+      the event management company.
+   2. Guest users can enter event code to view informations(e.g. Food menu, schedule, event
+      location etc) about the event set by host.
+                                                                                       80
+
+
+
+
+Level 1.6:
+Name: Recommendation System
+Reference: Use Case Diagram Level 1.6
+
+
+
+
+                          Level 1.6: Recommendation System
+
+Description:
+
+   1. Package Recommendation: It is a submodule [Ref 1.6]. It recommends packages to
+      users when the user selects packages to make an order.
+   2. Discount Recommendation: Discounts are generated based on user data.
+                                                                                            81
+
+
+Level 1.6.1:
+Name: Package Recommendation
+Reference: Use Case Diagram Level 1.6.1
+
+
+
+
+                           Level 1.6.1: Package Recommendation
+
+
+Activity Listing:
+   1. Get dataset: Collect package list, selected package lists and review-ratings data for
+      package recommendation.
+   2. Process Data: Dataset must be processed before inserting in the machine learning
+      algorithm.
+   3. Machine Learning Algorithm: On the processed dataset, a machine learning algorithm is
+      run to generate package recommendations.
+   4. Get probability for each package: Get probability for each package from the output of the
+      machine learning algorithm.
+   5. Recommend Package List: Sort the packages based on their probability and thus, find
+      the recommended package list.
+                                                                82
+
+
+Level 1.6.2:
+Name: Discount Recommendation
+Reference: Use Case Diagram Level 1.6.2
+
+
+
+
+                         Level 1.6.2: Discount Recommendation
+                                                                                            83
+
+
+Activity Listing:
+
+   1. Fetch pre-defined discount order: Supervisor has defined discounts when creation each
+      package. Those discount lists are fetched.
+   2. Fetch User data: User data is collected. This data can help select the best discount for
+      the user.
+   3. Machine learning algorithm: After the collection of data, machine learning algorithm is
+      run.
+   4. Choose the best discount: From machine learning output, best discount is picked.
+   5. Get feedback: discounts are presented to user. Based on selection or not selection of
+      the discount, feedback is generated.
+   6. Store Feedback: Feedbacks are stored to help the machine learning algorithm learn
+      more about user and discounts.
+                                                                                          84
+
+
+Level 1.7:
+Name: Chat System
+Reference: Use Case Diagram Level 1.7
+
+
+
+
+                            Level 1.7: Chat System
+Description:
+Chat system covers both person-to-person chat and person-to-AI chat.
+   1. Communication: This submodule covers person to person communication. Note that
+       host can only communicate with the event manager. Event manager can communicate
+       with both event manager and host. Supervisor can only communicate with the event
+       manger
+   2. Automated Query Reply; This submodule uses communicate submodule to
+       communicate with Host to answer usual queries. The feedback from each
+       communication is stored.
+                                                                                              85
+
+
+Level 1.7.1:
+Name: Automated Query Reply
+Reference: Use Case Diagram Level 1.7.1
+
+
+
+
+                                Level 1.7.1: Automated Query Reply
+
+
+Description:
+   1. In all the sections, the system will answer usual queries automatically with a predefined
+      question-answer set. If the query is unknown, then AI will reply the queries.
+   2. Unanswered questions will be answered by the event manager manually or using a
+      communication module (Level 1.7.2).
+                                                                                             86
+
+
+Level 1.7.2:
+Name: Communication
+Reference: Use Case Diagram Level 1.7.2
+
+
+
+
+                                Level 1.7.2: Communication
+
+
+
+
+Activity Listing:
+   1. Event manager can communicate with both the host and supervisor.
+   2. Supervisor can only communicate with the event manager.
+   3. Host can only communicate with the event manager.
+   4. Select receiver: The entity(e.g. Event manager, supervisor, host) trying to initiate the
+      conversation selects a recipient(e.g. Event manager, supervisor, host,AI). Note that, he
+      can only choose from the recipient he is allowed to communicate with.
+   5. Send Message: Messages are sent to the recipient.
+   6. Get Message: Sent message is received. It is forwarded to the appropriate recipient by
+      the system.
+   7. Send Message to AI: Host can send message to AI. Note that, AI uses automatic query
+      reply to communicate with the host.
+                                                                                             87
+
+
+Level 1.8:
+Name: Accounting System
+Reference: Use Case Diagram Level 1.8
+
+
+
+
+                          Level 1.8: Accounting System
+
+
+Description:
+
+   1. Accounting Management: It is a submodule [Ref level 1.8.1]. This module handles
+      regular record-keeping and book-keeping activities.
+   2. Business Intelligence: It is a submodule[Ref level 1.8.2]. This module generates reports
+      on profit-loss and overall business performance.
+                                                              88
+
+
+Level 1.8.1:
+Name: Accounting System
+Reference: Use Case Diagram Level 1.8.1
+
+
+
+
+                             Level 1.8.1: Accounting System
+                                                                                                 89
+
+
+Activity Listing:
+
+   1. Receive Transaction Data: All transactions in the system fall under it. Note that,
+      transaction information includes type of transaction and amount.
+   2. Record keeping: Following standard accounting procedure, each transaction is recorded.
+   3. Journaling: Journaling is done along with record keeping following the standard
+      accounting procedure.
+   4. Ledge Keeping: Journal entries are updated in ledger on the go.
+   5. Balance Sheet: Balance sheet means a financial statement that reports a company's assets,
+      liabilities, and shareholder equity at a specific point in time. A balance sheet is generated.
+   6. Income statement:An income statement assesses the profit or loss of a business over a
+      period of time. Income statement is generated
+   7. Cash flow statement: The cash flow statement shows the cash inflows and outflows for
+      a company during a period of time
+   8. Statement of shareholder’s equity: The statement of stockholders' equity is the difference
+      between total assets and total lia
+   9. bilities measured after a period of time.
+                                                                 90
+
+
+Level 1.8.2:
+
+Name: Bl
+Reference: Use Case Diagram Level 1.8.2
+
+
+
+
+                            Level 1.8.2: Business intelligence
+                                                                                                   91
+
+
+Activity Listing:
+
+   1.   Collect Database: A key activity is to collect the database from all the system modules.
+   2.   Merge Database: Merge the collected databases.
+   3.   Profit vs Time Graph: Profit graphs are generated based on the database information.
+   4.   Calculate profit: Profits are calculated
+   5.   Calculate Rank: Rank of each service, package, discount, feature is calculated.
+   6.   Generate Rank: The calculated ranks are used to generate a graphical ranking.
+   7.   Service Profile Rank: This rank is shown to the event manager dashboard.
+                                                             92
+
+
+Level 1.9:
+Name: Human Resource System
+Reference:Use Case Diagram Level 1.9
+
+
+
+
+                          Level 1.9: Human Resource System
+Activity Listing:
+                                                                                       93
+
+
+
+1. Event manager enter HR system and sees list of supervisors
+2. Availability Status: Event manager can see the availability status of each supervisor
+3. View Supervisor Information: Event managers can view detailed information about
+   supervisors from the HR system. Note that these informations were set during Event
+   manager account creation or set later from HR system
+4. View Compensation: All compensations and salary information are shown here. Note
+   that the compensation information is updated each time payment distribution occurs.
+5. View Education: Education qualifications and skills of supervisors are shown here.
+6. Insert Performance Matrices: Event managers can manually enter performance matrices
+   for predefined values.
+7. Generate Performance Report: Performance metrics are calculated based on predefined
+   evaluation matrices for supervisor performance.
+8. Select task: the event manager allocates a task to the supervisor.
+9. Notify Supervisor: Notify supervisor about task allocation.
+                                                               94
+
+
+
+                           5. Swimlane Diagram
+
+
+
+Level 1.1:
+Name: Package Control System
+Reference: Use Case Diagram and Activity diagram Level 1.1
+
+
+
+
+                           Level 1.1: Package Control System
+                                                                   95
+
+
+Level 1.1.1:
+Name: Package Choice System
+Reference: Use Case Diagram and Activity diagram Level 1.1.1
+
+
+
+
+                              Level 1.1.1: Package Choice System
+                                                                   96
+
+
+Level 1.1.2:
+Name: Package Creation and update
+Reference: Use Case Diagram and Activity diagram Level 1.1.2
+
+
+
+
+                       Level 1.1.2: Package Creation and upgrade
+                                                                         97
+
+
+Level 1.1.3:
+Name: Profile Creation and update
+Reference: Use Case Diagram and Activity diagram Level 1.1.3
+
+
+
+
+                             Level 1.1.3: Profile Creation and upgrade
+                                                                 98
+
+
+Level 1.1.4:
+Name: Profile Choice
+Reference: Use Case Diagram and Activity diagram Level 1.1.4
+
+
+
+
+                                   Level 1.1.4: Profile Choice
+                                                             99
+
+
+Level 1.2:
+Name: Payment System
+Reference: Use Case Diagram and Activity diagram Level 1.2
+
+
+
+
+                          Level 1.2: Payment System
+                                                               100
+
+
+Level 1.2.1:
+Name: Transaction
+Reference: Use Case Diagram and Activity diagram Level 1.2.1
+
+
+
+
+                              Level 1.2.1: Transaction
+                                                                   101
+
+
+Level 1.2.2:
+Name: Payment Distribution
+Reference: Use Case Diagram and Activity diagram Level 1.2.2
+
+
+
+
+                               Level 1.2.2: Payment Distribution
+
+
+Level 1.3:
+Name: Order Management System
+                                                               102
+
+
+Reference: Use Case Diagram and Activity diagram Level 1.3
+
+
+
+
+                      Level 1.3: Order Management System
+
+
+
+
+Level 1.3.1:
+Name: Negotiate Order
+Reference: Use Case Diagram and Activity diagram Level 1.3.1
+                               103
+
+
+
+
+Level 1.3.1: Negotiate Order
+                                                                 104
+
+
+Level 1.3.1.1:
+Name: Smart Contract
+Reference: Use Case Diagram and Activity diagram Level 1.3.1.1
+
+
+
+
+                             Level 1.3.1.1: Smart Contract
+                                                                   105
+
+
+Level 1.3.1.2:
+Name: Customized Order
+Reference: Use Case Diagram and Activity diagram Level 1.3.1.2
+
+
+
+
+                                 Level 1.3.1.2: Customized Order
+                                                               106
+
+
+Level 1.3.2:
+Name: Progress Tracking
+Reference: Use Case Diagram and Activity diagram Level 1.3.2
+
+
+
+
+                            Level 1.3.2: Progress Tracking
+                                                             107
+
+
+Level 1.4:
+Name: Account Management System
+Reference: Use Case Diagram and Activity diagram Level 1.4
+
+
+
+
+                     Level 1.4: Account Management System
+                                                               108
+
+
+Level 1.4.1:
+Name: Login
+Reference: Use Case Diagram and Activity diagram Level 1.4.1
+
+
+
+
+                                 Level 1.4.1: Login
+                                                               109
+
+
+Level 1.4.2:
+Name: Register
+Reference: Use Case Diagram and Activity diagram Level 1.4.2
+
+
+
+
+                                    Level 1.4.2:Register
+                                                               110
+
+
+Level 1.4.3:
+Name: Access Control
+Reference: Use Case Diagram and Activity diagram Level 1.4.3
+
+
+
+
+                               Level 1.4.3: Access Control
+                                                                        111
+
+
+Level 1.4.4:
+Name: Account Update and Deletion
+Reference: Use Case Diagram and Activity diagram Level 1.4.4
+
+
+
+
+                             Level 1.4.4: Account Update and Deletion
+                                                                112
+
+
+Level 1.5:
+Name: Account Management System
+Reference: Use Case Diagram and Activity diagram Level 1.5
+
+
+
+
+                         Level 1.5: Account Management System
+                                                               113
+
+
+Level 1.5.1:
+Name: Host Dashboard
+Reference: Use Case Diagram and Activity diagram Level 1.5.1
+
+
+
+
+                               Level 1.5.1: Host Dashboard
+                                                                114
+
+
+Level 1.5.2:
+Name: Event Manager Dashboard
+Reference: Use Case Diagram and Activity diagram Level 1.5.2
+
+
+
+
+                         Level 1.5.2: Event Manager Dashboard
+                                                                 115
+
+
+Level 1.5.3:
+Name: Supervisor Dashboard
+Reference: Use Case Diagram and Activity diagram Level 1.5.3
+
+
+
+
+                             Level 1.5.3: Supervisor Dashboard
+                                                               116
+
+
+Level 1.5.4:
+Name: Guest Dashboard
+Reference: Use Case Diagram and Activity diagram Level 1.5.4
+
+
+
+
+                              Level 1.5.4: Guest Dashboard
+                                                             117
+
+
+Level 1.6:
+
+Name: Recommendation System
+Reference: Use Case Diagram and Activity diagram Level 1.6
+
+
+
+
+                          Level 1.6: Recommendation System
+                                                                     118
+
+
+Level 1.6.1:
+Name: Package Recommendation
+Reference: Use Case Diagram and Activity diagram Level 1.6.1
+
+
+
+
+                               Level 1.6.1: Package Recommendation
+                                                                   119
+
+
+Level 1.6.2:
+Name: Discount Recommendation
+Reference: Use Case Diagram and Activity diagram Level 1.6.2
+
+
+
+
+                            Level 1.6.2: Discount Recommendation
+
+
+
+
+Level 1.7:
+Name: Chat System
+                                                             120
+
+
+Reference: Use Case Diagram and Activity diagram Level 1.7
+
+
+
+
+                                  Level 1.7: Chat System
+                                                                  121
+
+
+Level 1.7.1:
+Name: Automated Query Reply
+Reference: Use Case Diagram and Activity diagram Level 1.7.1
+
+
+
+
+                             Level 1.7.1: Automated Query Reply
+                                                               122
+
+
+Level 1.7.2:
+Name: Communication
+Reference: Use Case Diagram and Activity diagram Level 1.7.2
+
+
+
+
+                                Level 1.7.2: Communication
+                                                             123
+
+
+
+
+Level 1.8:
+Name: Accounting System
+Reference: Use Case Diagram and Activity diagram Level 1.8
+
+
+
+
+                              Level 1.8: Accounting System
+                                                                    124
+
+
+Level 1.8.1:
+Name: Accounting System
+Reference: Use Case Diagram and Activity diagram Level 1.8.1
+
+
+
+
+                                   Level 1.8.1: Accounting System
+                                                               125
+
+
+Level 1.8.2:
+Name: BI
+Reference: Use Case Diagram and Activity diagram Level 1.8.2
+
+
+
+
+                                     Level 1.8.2: BI
+                                                                      126
+
+
+Level 1.9:
+Name: Human Resource System
+Reference: Use Case Diagram and Activity diagram Level 1.9
+
+
+
+
+                                   Level 1.9: Human Resource System
+                                                                                               127
+
+
+
+                           5. Class Based Modeling
+Class-based modeling defines the structure of the entire system by identifying the static structure
+of objects in that system. A class model defines attributes and operations for the objects of each
+class and also the relationship between the objects, and the collaborations that occur between the
+classes of the systems. The elements of a class-based model include classes and objects,
+attributes, operations, class-responsibility-collaborator (CRC) models, collaboration diagrams,
+and packages.
+
+
+
+5.1 List of nouns:
+   1. Event management system
+   2. Services
+   3. Community Center Service
+   4. Catering Service
+   5. Photography Service
+   6. Decoration Service
+   7. Rent-a-car Service
+   8. Grooming Service
+   9. Account
+   10. Event manager account
+   11. Phase
+   12. Login
+   13. Supervisor Accounts
+   14. System
+   15. Username
+   16. Password
+   17. Host
+   18. Interaction
+   19. Advertisement
+   20. Website
+   21. Profiles
+   22. Packages
+   23. Discounts
+   24. Work Samples
+   25. Queries
+   26. Machine Learning
+   27. Order
+   28. phone number
+   29. Characters
+                                   128
+
+
+30. OTP
+31. Phone
+32. Sms system
+33. Event Selection
+34. Category
+35. Event
+36. Marriage ceremony
+37. Akika
+38. Birthday
+39. Dinner Party
+40. Corporate events
+41. Catering Service
+42. Decorators
+43. Profile
+44. Community Center Profile
+45. Reviews and ratings
+46. Images
+47. Caterers ’ Profile
+48. Location
+49. food menu
+50. Package list
+51. Discount list
+52. Photographer Company Profile
+53. Photography
+54. Videography
+55. Decorator Profile
+56. Service Profile
+57. Cars
+58. Grooming Service Profile
+59. Name
+60. makeup designs
+61. home service availability
+62. Package Recommendation
+63. Machine Learning system
+64. user information
+65. partner services
+66. Package Selection
+67. Number of guests
+68. Information
+69. Price and discounts
+                                    129
+
+
+70. Features
+71. extra features
+72. Basic Features
+73. Offers
+74. Community Center Package
+75. Community Center Service
+76. Lighting System
+77. Sound System
+78. Number of tables & chairs
+79. Stairway lighting
+80. Gift Reception
+81. Catering Packages
+82. Food items
+83. Biriyani
+84. Murgi - Polao
+85. Exotic foods
+86. Chuijhal
+87. Hyderabadi biryani
+88. Extra items
+89. Photography Packages
+90. Photography service
+91. 100 printed Images
+92. Event Trailer videos
+93. Cinematography
+94. Decorator Packages
+95. Photo booth
+96. Entry gate
+97. Main Stage
+98. Photo frame
+99. Welcome booth
+100. Stairway decoration
+101. Aesthetic Design Requirement
+102. Flowers in all tables
+103. 3D modeling feature
+104. Rent-a-Car Packages
+105. Luxurious car
+106. Semi-luxurious car
+107. Premium car
+108. Horse Carriage
+109. Grooming Service Package
+                                         130
+
+
+110.   Salon service
+111.   Make-up type(s)
+112.   Home service package
+113.   makeover type
+114.   theme of makeover
+115.   Feature sample
+116.   Notification
+117.   Feature List
+118.   User
+119.   Payment
+120.   Online payment
+121.   SSLCommerz
+122.   Price & Discount
+123.   User data
+124.   Partner Locations
+125.   Case
+126.   Advance payment
+127.   Smart contract
+128.   Blockchain
+129.   Access
+130.   Dashboard
+131.   Track progress
+132.   Due payment
+133.   Options
+134.   Consensus
+135.   Communication
+136.   Communication module
+137.   Sections
+138.   Event Manager Dashboard
+139.   Order Management System
+140.   Human Resource Panel
+141.   Ongoing event panel
+142.   Notification tab
+143.   Accounting System
+144.   Business Intelligence Dashboard
+145.   Host Request
+146.   List of supervisors
+147.   Metadata
+148.   Contact info
+149.   Address
+                                           131
+
+
+150.   Availability
+151.   Salary
+152.   Compensation
+153.   Employee data
+154.   Skills
+155.   Bonus
+156.   Time and tasks
+157.   Performance ratings
+158.   progress tracking modules
+159.   performance reports
+160.   Deadline
+161.   task completion ratio
+162.   Order panel
+163.   Relevant service
+164.   Facility
+165.   Collaborators
+166.   Order Fulfillment
+167.   Admin
+168.   System Database
+169.   Summary
+170.   Transactions
+171.   Revenues
+172.   income statement
+173.   Balance sheets
+174.   Income Statements
+175.   Cash flow statements
+176.   Statements of shareholders equity
+177.   Regular Book
+178.   Journaling
+179.   Accounting Ledger
+180.   Graphs
+181.   Profit vs Time Graph
+182.   Sales vs Time Graph
+183.   Expenses vs Time Graph
+184.   Location graph
+185.   Service Based Profit
+186.   Service Based Expense
+187.   Profits
+188.   Sales
+189.   Ranks
+                                       132
+
+
+  190.   Service Profile Rank
+  191.   Package Rank
+  192.   Discount Rank
+  193.   Feature Rank
+  194.   Supervisor
+  195.   Login system
+  196.   Package Control Panel
+  197.   List of orders
+  198.   Payments
+  199.   partner Profiles
+  200.   Relevant partners
+  201.   Partner information
+  202.   Guest User
+  203.   Event code
+  204.   Event schedule
+  205.   Other information
+  206.   Storage
+
+
+5.2 List of nouns in Solution space:
+  1. Event management system
+  2. Services
+  3. Community Center Service
+  4. Catering Service
+  5. Photography Service
+  6. Decoration Service
+  7. Rent-a-car Service
+  8. Grooming Service
+  9. Account
+  10. Event manager account
+  11. Login System
+  12. Supervisor Accounts
+  13. Username
+  14. Password
+  15. Host
+  16. Advertisement
+  17. Profiles
+  18. Packages
+  19. Price
+  20. Discounts
+  21. Work Samples
+                                   133
+
+
+22. Queries
+23. Machine Learning
+24. Order
+25. phone number
+26. OTP
+27. Sms system
+28. Event Selection
+29. Category
+30. Event list
+31. Marriage ceremony
+32. Akika
+33. Birthday
+34. Dinner Party
+35. Corporate events
+36. Community Center Profile
+37. Reviews and ratings
+38. images
+39. Caterers’ Profile
+40. Location
+41. Food menu
+42. Package list
+43. Discount list
+44. Photographer Company Profile
+45. Photography
+46. Videography
+47. Decorator Profile
+48. Cars
+49. Grooming Service Profile
+50. makeup designs
+51. Home service availability
+52. Package Recommendation
+53. User information
+54. Partner services
+55. Package Selection
+56. Number of guests
+57. Event information
+58. Extra features
+59. Basic Features
+60. Community Center Package
+61. Number of tables & chairs
+                                      134
+
+
+62. Catering Packages
+63. Food items
+64. Photography Packages
+65. Decorator Packages
+66. 3D modeling feature
+67. Rent-a-Car Packages
+68. Grooming Service Package
+69. Salon service
+70. Home service package
+71. Feature sample
+72. Notification
+73. Feature List
+74. Online payment
+75. Price & Discount
+76. User behaviors
+77. Partner Locations
+78. Smart contract
+79. Blockchain
+80. Dashboard
+81. Track progress
+82. Due payment
+83. Consensus
+84. Communication module
+85. Event Manager
+86. Order Management System
+87. Human Resource Panel
+88. Ongoing event panel
+89. Notification tab
+90. Accounting System
+91. Business Intelligence Dashboard
+92. List of supervisors
+93. Metadata
+94. Contact info
+95. Address
+96. Availability
+97. Salary
+98. Compensation
+99. Employee data
+100. Skills
+101. Time and tasks
+                                           135
+
+
+102.   Performance ratings
+103.   progress tracking modules
+104.   performance reports
+105.   Deadline
+106.   task completion ratio
+107.   Order panel
+108.   System Database
+109.   Transactions
+110.   Revenues
+111.   Balance sheets
+112.   Income Statements
+113.   Cash flow statements
+114.   Statements of shareholders equity
+115.   Regular Book
+116.   Journaling
+117.   Accounting Ledger
+118.   System Database
+119.   Profit vs Time Graph
+120.   Sales vs Time Graph
+121.   Expenses vs Time Graph
+122.   Location graph
+123.   Service Based Profit
+124.   Service Based Expense
+125.   Profits
+126.   Sales
+127.   Ranks
+128.   Service Profile Rank
+129.   Package Rank
+130.   Discount Rank
+131.   Feature Rank
+132.   Supervisor
+133.   Package Control Panel
+134.   List of orders
+135.   Payments
+136.   Partner information
+137.   Guest User
+138.   Event code
+139.   Event schedule
+                           136
+
+
+5.3 List of Verbs:
+               Verbs
+               Accept
+               Access
+             Accounting
+                 Act
+                Add
+              Allocate
+               Answer
+              Approve
+               Browse
+              Calculate
+              Change
+               Check
+              Choose
+               Collect
+            Communicate
+              Confirm
+              Consists
+               Create
+               Delete
+              Distribute
+             Document
+                Due
+                Enter
+              Forward
+              Generate
+                 Get
+                Give
+               Include
+             Journalling
+              Keeping
+                Login
+               Looks
+             137
+
+
+  Make
+ Manage
+ Navigate
+  Notify
+  Open
+  Place
+   Post
+ Provide
+Recommend
+  Record
+  Reject
+ Request
+   See
+  Select
+   Send
+   Set
+   Sort
+  Store
+  Track
+  Update
+   Use
+  Using
+  Verify
+   View
+accounting
+ advance
+ associate
+  change
+ complete
+ contract
+  delete
+   edit
+    get
+ negotiate
+ ongoing
+                                                                                        138
+
+
+                      order
+                    receiving
+                     record
+                     request
+                       set
+                      sign
+                      store
+
+
+5.4 General Characteristics
+Candidate classes are categorized based on the seven general classification. The
+analysis classes manifest themselves in one of the following ways:
+1. External entities
+2. Things
+3. Events
+4. Roles
+5. Organizational units
+6. Places
+7. Structures
+A candidate class is selected for special classification if it fulfills three or more
+characteristics.
+
+                     Noun                            General Characteristics
+          Event management system                         4, 6, 7(selected)
+                    Services                            3, 4, 5, 7(selected)
+          Community center Service                      3, 4, 5, 7(selected)
+             Photography Service                        3, 4, 5, 7(selected)
+              Promotion Service                         3, 4, 5, 7(selected)
+              Decoration Service                        3, 4, 5, 7(selected)
+              Rent-a-car Service                        3, 4, 5, 7(selected)
+               Grooming Service                         3, 4, 5, 7(selected)
+                    Account                               4, 5 ,7(selected)
+            Event manager account                         4, 5 ,7(selected)
+                 Login System                            3 , 4, 6(selected)
+             Supervisor Accounts                          4, 5 ,7(selected)
+                                               139
+
+
+       Username                   2
+       Password                   2
+          Host             4, 5, 7(selected)
+     Advertisement                2
+        Profiles           2, 4, 6(selected)
+       Packages                  2, 5
+         Price                    2
+       Discounts                  2
+     Work Samples                 2
+        Queries                  2, 3
+   Machine Learning        4, 5, 7(selected)
+         Order                    2
+     phone number                 2
+          OTP                     2
+      Sms system            1, 4(selected)
+    Event Selection               2
+       Category                   2
+       Event list                 2
+   Marriage ceremony              2
+         Akika                    2
+        Birthday                  2
+      Dinner Party                2
+    Corporate events              2
+Community Center Profile   2, 4, 6(selected)
+  Reviews and ratings             2
+        images                    2
+    Caterers’ Profile      2, 4, 6(selected)
+        Location                  2
+      Food menu                   2
+      Package list                2
+                                                      140
+
+
+        Discount list                   2
+Photographer Company Profile    2, 4, 6(selected)
+        Photography                     2
+        Videography                     2
+      Decorator Profile         2, 4, 6(selected)
+            Cars                        2
+  Grooming Service Profile      2, 4, 6(selected)
+      Makeup designs                    2
+  Home service availability             2
+  Package Recommendation              3, 4
+      User information                  2
+       Partner services                 2
+     Package Selection                  2
+      Number of guests                  2
+     Event information                  2
+       Extra features           2, 4 ,7(selected)
+       Basic Features           2, 4, 7(selected)
+ Community Center Package      2, 4 ,5 ,7(selected)
+  Number of tables & chairs             2
+     Catering Packages         2, 4, 5, 7(selected)
+         Food items                     2
+   Photography Packages        2, 4 ,5 ,7(selected)
+     Decorator Packages        2, 4 ,5 ,7(selected)
+    3D modeling feature                 1
+    Rent-a-Car Packages        2, 4 ,5 ,7(selected)
+ Grooming Service Package      2, 4, 5, 7(selected)
+        Salon service                   2
+   Home service package                 2
+       Feature sample                   2
+        Notification                    2
+                                                  141
+
+
+      Feature List                 2
+    Online payment         1, 3, 4(selected)
+    Price & Discount       2, 3, 4(selected)
+        User data                  2
+    Partner Locations              2
+     Smart contract       2, 4, 5, 7(selected)
+       Blockchain         2, 4 , 6 ,7(selected)
+       Dashboard           4, 5, 6(selected)
+
+     Track progress               2, 3
+      Due payment                  2
+       Consensus                   3
+ Communication module             3, 4
+     Event Manager         4, 5, 6(selected)
+Order Management System   4, 5, 6, 7(selected)
+ Human Resource Panel     4, 5, 6, 7(selected)
+  Ongoing event panel       5,6,7(selected)
+     Notification tab             2, 6
+   Accounting System      4, 5, 6, 7(selected)
+  Business Intelligence   4, 5, 6, 7(selected)
+   List of supervisors             2
+        Metadata                   2
+      Contact info                 2
+        Address                    2
+       Availability                2
+         Salary                    2
+     Compensation                  2
+     Employee data                 2
+          Skills                   2
+     Time and tasks               2, 3
+   Performance ratings             2
+                                                        142
+
+
+   progress tracking modules              2, 6
+      performance reports                  2
+            Deadline                       2
+      task completion ratio                2
+          Order panel               5, 6, 7(selected)
+        System Database                    2
+          Transactions                    3, 4
+           Revenues                        2
+         Balance sheets                    2
+       Income Statements                   2
+      Cash flow statements                 2
+Statements of shareholders equity          2
+         Regular Book                      2
+           Journaling                      2
+       Accounting Ledger                   2
+        System Database                   2, 4
+      Profit vs Time Graph                 2
+      Sales vs Time Graph                  2
+    Expenses vs Time Graph                 2
+         Location graph                    2
+      Service Based Profit                 2
+     Service Based Expense                 2
+             Profits                      2, 4
+             Sales                         2
+             Ranks                         2
+      Service Profile Rank                 2
+         Package Rank                      2
+         Discount Rank                     2
+         Feature Rank                      2
+           Supervisor               4, 5 ,6(selected)
+                                                         143
+
+
+         Package Control Panel       5, 6, 7(selected)
+             List of orders                 2
+               Payments                     2
+          Partner information               2
+              Guest User             4, 5, 7(selected)
+              Event code                    2
+            Event schedule                  2
+
+
+5.5 Potential Class List
+  1. Event Management System
+  2. Services
+  3. Community center Service
+  4. Photography Service
+  5. Promotion Service
+  6. Decoration Service
+  7. Rent-a-car Service
+  8. Grooming Service
+  9. Account
+  10. Event manager account
+  11. Login System
+  12. Supervisor Accounts
+  13. Host
+  14. Profiles
+  15. Machine Learning
+  16. Sms system
+  17. Community Center Profile
+  18. Caterers’ Profile
+  19. Photographer Company Profile
+  20. Decorator Profile
+  21. Grooming Service Profile
+  22. Extra features
+  23. Basic Features
+  24. Community Center Package
+  25. Catering Packages
+  26. Photography Packages
+  27. Decorator Packages
+  28. Rent-a-Car Packages
+                                                                                                144
+
+
+   29. Grooming Service Package
+   30. Online payment
+   31. Price & Discount
+   32. Smart contract
+   33. Blockchain
+   34. Dashboard
+   35. Event Manager
+   36. Order Management System
+   37. Event Panel
+   38. Human Resource Panel
+   39. Accounting System
+   40. Business Intelligence
+   41. Order Panel
+   42. Supervisor
+   43. Package Control Panel
+   44. Guest User
+
+
+5.6 Selection Criteria
+Candidate classes are categorized based on the seven general classification. The
+analysis classes manifest themselves in one of the following ways:
+1. Retained Information
+2. Needed Services
+3. Multiple Attributes
+4. Common Attributes
+5. Common Operations
+6. Essential Requirements
+A final class list is made after reviewing the list and merging multiple candidate classes if
+needed.
+
+              Potential Classes                        Selection Criteria
+         Event Management System                        1, 3, 6(selected)
+                   Services                             1, 2, 3(selected)
+          Community center Service                             2,4
+             Photography Service                               2,4
+              Promotion Service                                2,4
+              Decoration Service                               2,4
+              Rent-a-car Service                               2,4
+                                                         145
+
+
+     Grooming Service                   2,4
+          Account              1, 2, 3, 4, 5(selected)
+   Event manager account                 1
+       Login System                     1,2
+    Supervisor Accounts                  1
+            Host                1, 3, 4, 5(selected)
+          Profiles               1, 2, 3(selected)
+                                 1, 2, 6(selected)
+      Machine Learning
+        Sms system               2, 5, 6(selected)
+  Community Center Profile              3, 4
+      Caterers’ Profile                 3, 4
+Photographer Company Profile            3, 4
+      Decorator Profile                 3, 4
+  Grooming Service Profile              3, 4
+       Extra features                   1, 2
+       Basic Features                   1, 2
+ Community Center Package       1 ,2, 4, 5(selected)
+     Catering Packages          1, 2, 4, 5(selected)
+   Photography Packages         1, 2, 4, 5(selected)
+     Decorator Packages         1, 2, 4, 5(selected)
+    Rent-a-Car Packages         1, 2, 4, 5(selected)
+ Grooming Service Package       1, 2, 4, 5(selected)
+      Online payment             1, 2, 6(selected)
+      Price & Discount                   1
+       Smart contract           1, 2, 5, 6(selected)
+        Blockchain               2, 5, 6(selected)
+         Dashboard                      1,3
+       Event Manager            1, 3, 4, 5(selected)
+ Order Management System        1, 2, 3, 5 (selected)
+                                                           146
+
+
+             Event Panel         1, 2, 3, 4, 5(selected)
+        Human Resource Panel     1, 2, 3, 4, 5(selected)
+          Accounting System        1, 2, 6(selected)
+         Business Intelligence     1, 2, 6(selected)
+             Order Panel          1, 2, 3, 5 (selected)
+              Supervisor          1, 3, 4, 5(selected)
+         Package Control Panel    1, 2, 3, 5(selected)
+              Guest User           2, 5, 6(selected)
+
+
+5.7 Selected classes:
+  1. Event Management System
+  2. Services
+  3. Account
+  4. Host
+  5. Profiles
+  6. Machine Learning
+  7. Sms system
+  8. Community Center Package
+  9. Catering Packages
+  10. Photography Packages
+  11. Decorator Packages
+  12. Rent-a-Car Packages
+  13. Grooming Service Package
+  14. Online payment
+  15. Smart contract
+  16. Blockchain
+  17. Event Manager
+  18. Order Management System
+  19. Event Panel
+  20. Human Resource Panel
+  21. Accounting System
+  22. Business Intelligence
+  23. Supervisor
+  24. Package Control Panel
+  25. Guest User
+                                                                                          147
+
+
+5.8 List of objects:
+  1. Event Management System
+        a. Attributes: message, senderID, receiverID
+        b. Methods:
+            +communicateWithEventManager()+answerUserQuery()+communicateWithHost
+            ()+communicateWithSupervisor()
+  2. Services
+        a. Attributes: serviceName, serviceList
+        b. Methods: +navigateService()+chooseService()
+  3. Package Control Panel
+        a. General Attributes:
+            serviceProfileID, basicFeatureList, extraFeatureList, featurePrice, featureSample,
+            selectedFeatureList, numberOfGuests, packageID
+        b. Methods:
+            +includeFeatureSample()+associateInfo()+createPackage()+changePackage()+see
+            WorkSample()+seePackage()+seeDiscount()+selectPackage()+selectExtraFeature
+            s()+selectBasicFeatures()
+
+        a. Community Center Packages
+              i. Attribute: location, numberOfGuests, discountOnGuests
+             ii. Method: selectPackage()
+        b. Photographer Packages
+              i. Attribute: foodMenu, price, discount, numberOfGuests
+             ii. Method: selectPackage()
+        c. Decorator Packages
+              i. Attribute: basicFeatureFlag, extraFeatureFlag
+             ii. Method: +3Dmodelling()+setDesignCatalog()
+        d. Caterer Packages
+              i. Attribute: foodMenu, price, discount
+             ii. Method: selectPackage()
+        e. Rent-a-car Packages
+              i. Attribute: carType
+             ii. Method: +selectCarType()
+        f. Grooming Package
+              i. Attribute: makeoverType, location
+             ii. Method: selectHomeServicePackage()+selectSalonServicePackage()
+  4. Account
+
+         a. Attributes: name, password, accessTier, otp, accountID
+                                                                                  148
+
+
+        b. Method:
+           +Login()+recieveLoginInfo()+createNewAccount()+addSupervisorAccount()+acc
+           essControl()+useOTP()+verifyPhoneNumber()+changeUsername()+changePassw
+           ord()+updateSupervisorUsername&Password()+setSupervisorUsername&Passwo
+           rd()+createEventManagerAccount()
+5.   SMS System
+        a. Attributes: contactInfo, otp
+        b. Method:
+           +getContactInfo()+sendOTP()+sendNotification()+sendDuePaymentNotification(
+           )
+6.   Event Panel
+        a. Attributes: eventName, eventCategory, eventInformation, eventCode, orderID,
+           progress
+        b. Methods:
+           +browseEvent()+selectCategory()+generateEventCode()+getOrderID()+viewEve
+           ntInformation()+updateProgress()+storeProvidedInformation()+editprovided
+           information()
+7.   Host
+        a. Attributes: hostName, hostContactInfo, eventID, orderID, totalPaid,
+           notificationList, hostID, accountID
+        b. Methods:
+           +getNotifications()+getPaymentConfirmationNotification()+accessDashboard()+
+           viewReviewRating()+trackProgress()+provideGuestInformation()+makeReview()
+           +makeRating()+chooseToNegotiate()+confirmOrder()+requestChange()
+8.   Supervisor
+        a. Attributes: supervisorName, supervisorContactInfo, supervisorID,
+           associatedPartner, eventID, eventProgress, accountID, packageList,
+           serviceProfileList
+        b. Methods:
+           +accessPackageControlDashboard()+getNotifications()+recievePayment()+getLis
+           tofOrders()+getPerformanceReport()+communicate()+setSupervisorInformation()
+           +setAvailability()+trackProgress()+updateProgress()
+9.   Event Manager
+        a. Attributes: supervisorIDList, hostIDList, eventIDList, orderIDList,
+           changedOrder, accountID
+        b. Methods:
+           +accessOngoingOrderPanel()+accessCommunication()+accessOrderManagement
+           System()+signSmartContract()+accessBusinessIntelligence()+seeRequestedChan
+           ge()+accept-rejectproposedChange()+manageOrder()+approveChanges()+addPerf
+           ormanceRating()+generatePerformanceRating()+accessAccoutingSystem()
+                                                                                      149
+
+
+10. Human Resource Panel
+       a. Attributes: name, contactInformation, skills, salary, compensation,
+           allocatedTask, allocatedTime, availabilityStatus, supervisorID, eventID,
+           supervisorInformation
+       b. Methods:
+           +seeSupervisorList()+seeAvailability()+trackWorkProgres()+generatePerformanc
+           eRating()+useEventProgress()+addEmployee()+editEmployee()+deleteEmployee(
+           )+allocateTask()+allocateTime()+trackSalary()+trackCompensation()
+11. Order
+       a. Attributes: requestedChange, orderID, orderData, contractTokenNumber,
+           changedOrder, selectedPackageID
+       b. Methods:
+           +viewOrder()+completePackageSelection()+recordInBlockchain()+forwardChang
+           es()+notifyEventManager()+acceptProposedChange()+rejectProposedChange()
+12. Online Payment
+       a. Attributes: paymentType, amount, dueAmount,
+       b. Methods: givePayment()+storePaymentHistory() +distributePayment()
+13. Profiles
+       a. Attributes: partnerName, contactInfo, associatedSupervisorInfo, serviceType
+       b. Methods:
+           +browseProfile()+chooseProfile()+addProfile()+setProfileInfo()+deletePartnerPro
+           file()+getReview()+getRating()
+14. Blockchain
+       a. Attributes: orderList, nodeList, consensus
+       b. Methods: getOrderList()+storeOnChain()
+15. Smart Contract
+       a. Attributes: tokenNumber
+       b. Methods: +postSmartContract()+editSmartContract()+signContract()
+16. Machine Learning
+       a. Attributes: chatBotReplyDatabase, userMessageDatabase, packageList,
+           feedback, reviewList
+       b. Methods:
+           getUserInfo()+getReviewRatings()+generatePackageRecommendation()+storeUs
+           erFeedback()+getUserInfo()+generateDiscount()+storeUserFeedback()+answerUs
+           ualQueries()+storeUserFeedback()
+17. Accounting System
+       a. Attributes: newTransaction, transactionHistory, journal, ledger
+       b. Methods:
+           +getNewTransaction()+journaling()+accountingLedgerKeeping()+generateBalanc
+           eSheets()+generateIncomeStatements()+generateCashFlowStatements()+generate
+                                                                                              150
+
+
+             ShareholdersEquity()
+   18. Business Intelligence
+          a. Attributes: salesInfo, profit, loss, packageRanks, partnerRank, eventRank,
+             locationStats, discountRanks, expenses
+          b. Methods:
+             +generateGraph()+calculateProfit()+calculateSales()+calculateRanks()+collectDa
+             tabase()
+  19. Guest User
+          a. Attributes: eventCode
+          b. Methods:
+             +looksThroughEventManagerServices()+seeProfilesPackagesAndDiscounts()+an
+             swerHostQueryAutomatically()+viewEventInformation()
+
+
+
+5.9 Analysis
+
+  1. Package control panel, Event panel and human resource panel manages packages, events
+     and human resource related tasks respectively. So, they are renamed to Package Control,
+     Event and Human resource management class respectively.
+  2. Every event has unique characteristics and influences the package under them. But
+     without extending the class, each event category can be thought of as instances of the
+     event class.
+  3. There are different packages under the Package Control. Packages can be unique and
+     have basic and extra feature lists. So, at first six child classes were made. But except the
+     Decorator class, it is seen that the rest of the classes basically use basic feature list and
+     extra feature list functions. So the Decorator Package class extends Package Control
+     class.
+  4. Smart contract class is integrated with Blockchain class as smart contracts needs to call
+     blockchain class every time it is created or edited.
+  5. Since Service and Profile classes are ambiguous we integrate them under a single class
+     named Service Profile.
+  6. Event management system has only one important functionality which is communication.
+     Rest of the functionalities can be handled by account and sms system. So, we changed the
+     event management system to Communication class.
+                                                                                          151
+
+
+5.10 Selected Classes:
+
+  1. Service Profile
+        a. Attributes: serviceType, partnerName, partnerContactInfo, partnerAddress,
+            packageList, SupervisorID, reviewList, serviceProfileID, accountID
+        b. Methods:
+            +navigateServiceProfile()+browseProfile()+chooseProfile()+addServiceProfile()+
+            setServiceProfileInfo()+selectProfile()+deletePartnerProfile()+getReview()+getR
+            ating()
+            Note:
+            Instance of profile: Community center, catering service, decorators, photographer,
+            rent-a-car, grooming
+            showPartnerInformation(): Used by supervisor to communicate
+            viewServiceProfile(): Used by host to view.
+            setServiceProfile(): Add all profile information, it's done by the supervisor.
+  2. Package Control
+            General Attributes:
+            serviceProfileID, basicFeatureList, extraFeatureList, featurePrice, featureSample,
+            selectedFeatureList, numberOfGuests, packageID
+            Methods:
+            +includeFeatureSample()+associateInfo()+createPackage()+changePackage()+see
+            WorkSample()+seePackage()+seeDiscount()+selectPackage()
+            +selectExtraFeatures()+selectBasicFeatures()
+        a. Decorator Package
+               i.   Attribute: corporateEventFlag, 3Dmodel, designSample, designCatalog
+              ii.   Method:
+                    +3Dmodelling()+setDesignCatalog()
+            Note: Corporate events can have 3d modeling features. Photography, rent-a-car
+            and grooming have instances with defined basic partner service list and work
+            sample. Definition can be found at appendix.
+  3. Account
+        a. Attributes: name, password, accessTier, otp, accountID
+        b. Method:
+            +Login()+recieveLoginInfo()+createNewAccount()+addSupervisorAccount()+acc
+            essControl()+useOTP()+verifyPhoneNumber()+changeUsername()+changePassw
+            ord()+updateSupervisorUsername&Password()+setSupervisorUsername&Passwo
+            rd()+createEventManagerAccount()
+            Note: Access control associates access tier with user actions. Access tier sets
+            privileges(eg- admin privilege) in the system
+  4. SMS System
+                                                                                           152
+
+
+        a. Attributes: contactInfo, otp
+        b. Method:
+           +getContactInfo()+sendOTP()+sendNotification()+sendDuePaymentNotification(
+           )
+5.   Event
+        a. Attributes: eventName, eventCategory, eventInformation, eventCode, orderID,
+           progress
+        b. Methods:
+           +browseEvent()+selectCategory()+generateEventCode()+getOrderID()+viewEve
+           ntInformation()+updateProgress()+storeProvidedInformation()+editprovided
+           information()
+6.   Host
+        a. Attributes: hostName, hostContactInfo, eventID, orderID, totalPaid,
+           notificationList, hostID, accountID
+        b. Methods:
+           +getNotifications()+getPaymentConfirmationNotification()+accessDashboard()+
+           viewReviewRating()+trackProgress()+provideGuestInformation()+makeReview()
+           +makeRating()+chooseToNegotiate()+confirmOrder()+requestChange()
+           Note:
+           Using this class, the actor host can make his order. So it is a very important class
+           from Event manager’s point of view.
+           getOrderData(): Returns orderId, eventId, serviceId from order class.
+           giveReview() : Stores reviews in system database.
+           setGuestInformation(): Set the information which the guest can view using event
+           code
+7.   Supervisor
+        a. Attributes: supervisorName, supervisorContactInfo, supervisorID,
+           associatedPartner, eventID, eventProgress, accountID, supervisorInformation,
+           serviceProfileList, packageList
+        b. Methods:
+           +accessPackageControlDashboard()+getNotifications()+recievePayment()+getLis
+           tofOrders()+getPerformanceReport()+communicate()+setSupervisorInformation()
+           +setAvailability()+trackProgress()+updateProgress()
+           Note: When calling another class’s services, it has to be done through these
+           access methods.
+8.   Event Manager
+        a. Attributes: supervisorIDList, hostIDList, eventIDList, orderIDList,
+           changedOrder, accountID
+        b. Methods:
+                                                                                      153
+
+
+          +accessOngoingOrderPanel()+accessCommunication()+accessOrderManagement
+          System()+signSmartContract()+accessBusinessIntelligence()+seeRequestedChan
+          ge()+accept-rejectproposedChange()+manageOrder()+approveChanges()+addPerf
+          ormanceRating()+generatePerformanceRating()+accessAccoutingSystem()
+9. Human Resource Management
+       a. Attributes: name, contactInformation, skills, salary, compensation,
+          allocatedTask, allocatedTime, availabilityStatus, supervisorID, eventID
+       b. Methods:
+          +seeSupervisorList()+seeAvailability()+trackWorkProgres()+generatePerformanc
+          eRating()+useEventProgress()+addEmployee()+editEmployee()+deleteEmployee(
+          )+allocateTask()+allocateTime()+trackSalary()+trackCompensation()
+10. Order Management System
+       a. Attributes: requestedChange, orderID, orderData, contractTokenNumber,
+          changedOrder, selectedPackageID
+       b. Methods:
+          +viewOrder()+completePackageSelection()+recordInBlockchain()+forwardChang
+          es()+notifyEventManager()+acceptProposedChange()+rejectProposedChange()
+          Note: It handles changing requirements of the customer. One of the key hassle of
+          an event manager was to accommodate the regular changing requirements in a
+          trusted organized manner. So we have decided to make it a class.
+11. Payment
+       a. Attributes: paymentType, totalOrderPrice, totalPaidAmount, supervisorID,
+          hostID
+       b. Methods:
+          +makePayment()+distributePayment()+makeAdvancePayment()+notifyRecieved
+          Payment()+usePackageData()+generatePrice()+useSSLCommerz()+sendPayment
+          Notification()+trackPayment()
+                                                                                    154
+
+
+12. Blockchain
+       a. Attributes: orderList, nodeList, consensus, tokenNumber, digitalSignature
+       b. Methods:
+          +getOrderList()+postSmartContract()+editSmartContract()+storeOnChain()+sign
+          Contract()
+13. Chat Bot Recommendation
+       a. Attributes: chatBotReplyDatabase, userMessageDatabase, packageList,
+          feedback, reviewList
+       b. Methods:
+          getUserInfo()+getReviewRatings()+generatePackageRecommendation()+storeUs
+          erFeedback()+getUserInfo()+generateDiscount()+storeUserFeedback()+answerUs
+          ualQueries()+storeUserFeedback()
+          Notes:
+          generateDiscounts(): It will generate discount based on number of guests
+          cleanData(): Normalize data after fetching from database
+14. Communication
+       a. Attributes: message, senderID, receiverID
+       b. Methods:
+          +communicateWithEventManager()+answerUserQuery()+communicateWithHost
+          ()+communicateWithSupervisor()
+          Note: Host can communicate with the event manager only. Event manager can
+          communicate with both the host and supervisor. Supervisor can communicate
+          with the event manager.
+15. Accounting System
+       a. Attributes: newTransaction, transactionHistory, journal, ledger
+       b. Methods:
+          +getNewTransaction()+journaling()+accountingLedgerKeeping()+generateBalanc
+          eSheets()+generateIncomeStatements()+generateCashFlowStatements()+generate
+          ShareholdersEquity()
+16. Business Intelligence
+       a. Attributes: salesInfo, profit, loss, packageRanks, partnerRank, eventRank,
+          locationStats, discountRanks, expenses
+       b. Methods:
+          +generateGraph()+calculateProfit()+calculateSales()+calculateRanks()+collectDa
+          tabase()
+17. Guest User
+       a. Attributes: eventCode, serviceIDList, packageIDList, advertisement, sessionID
+       b. Methods:
+          +looksThroughEventManagerServices()+seeProfilesPackagesAndDiscounts()+an
+          swerHostQueryAutomatically()+viewEventInformation()
+                                                     155
+
+
+
+
+                             5.11 Class Cards
+
+Table 1: CRC card for Guest User
+
+
+
+
+                              Fig CC.1: Guest User
+                                                          156
+
+
+Table 2: CRC card for Order Management
+
+
+
+
+                      Fig CC.2: Order Management System
+                                                    157
+
+
+Table 3: CRC card for Payment
+
+
+
+
+                                Fig CC.3: Payment
+                                                        158
+
+
+Table 4: CRC card for Package Control
+
+
+
+
+                            Fig CC.4: Package Control
+                                                         159
+
+
+Table 5: CRC card for Decorator Package
+
+
+
+
+                           Fig CC.5: Decorator Package
+                                                     160
+
+
+Table 6: CRC card for Blockchain
+
+
+
+
+                              Fig CC.6: Blockchain
+                                                      161
+
+
+
+
+Table 7: CRC card for Event Manager
+
+
+
+
+                            Fig CC.7: Event Manager
+                                                          162
+
+
+Table 8: CRC card for ChatBot Recommendation
+
+
+
+
+                      Fig CC.8: Chat Bot Recommendation
+                                                          163
+
+
+Table 9: CRC card for Human Resource Management
+
+
+
+
+                    Fig CC.9: Human Resource Management
+                                                     164
+
+
+Table 10: CRC card for Communication
+
+
+
+
+                          Fig CC.10: Communication
+                                                         165
+
+
+Table 11: CRC card for Accounting System
+
+
+
+
+                          Fig CC.11: Accounting System
+                                                      166
+
+
+Table 12: CRC card for Supervisor
+
+
+
+
+                              Fig CC.12: Supervisor
+                                                             167
+
+
+Table 13: CRC card for Business Intelligence
+
+
+
+
+                          Fig CC.13: Business Intelligence
+                                                          168
+
+
+Table 14: CRC card for Service Profile
+
+
+
+
+                             Fig CC.14: Service Profile
+                                                      169
+
+
+Table 15: CRC card for Account
+
+
+
+
+                                 Fig CC.15: Account
+                                                170
+
+
+Table 16: CRC card for Host
+
+
+
+
+                              Fig CC.16: Host
+                                                    171
+
+
+Table 17: CRC card for SMS System
+
+
+
+
+                            Fig CC.17: SMS System
+                                                  172
+
+
+Table 18: CRC card for Event
+
+
+
+
+                               Fig CC.18: Event
+                                                     173
+
+
+
+     6. Class Responsibility Collaboration Diagram
+
+Ref: Table 10
+Name: Communication
+
+
+
+
+                      Fig crc.1: Communication
+                                                     174
+
+
+Ref: Table 14
+Name: Service Profile
+
+
+
+
+                        Fig crc.2: Service Profile
+                                                     175
+
+
+Ref: Table 4
+Name: Package Control
+
+
+
+
+                        Fig crc.3: Package Control
+                                     176
+
+
+Ref: Table 11
+Name: Account
+
+
+
+
+                Fig crc.4: Account
+                                           177
+
+
+Ref: Table 17
+Name: SMS System
+
+
+
+
+                   Fig crc.5: SMS System
+                                   178
+
+
+Ref: Table 18
+Name: Event
+
+
+
+
+                Fig crc.6: Event
+                                  179
+
+
+
+Ref: Table 16
+Name: Host
+
+
+
+
+                Fig crc.7: Host
+                                           180
+
+
+Ref: Table 12
+Name: Supervisor
+
+
+
+
+                   Fig crc.8: Supervisor
+                                                 181
+
+
+Ref: Table 7
+Name: Event Manager
+
+
+
+
+                      Fig crc.9: Event Manager
+                                                          182
+
+
+Ref: Table 9
+Name: Human Resource Management
+
+
+
+
+                  Fig crc.10: Human Resource Management
+                                                          183
+
+
+Ref: Table 2
+Name: Order Management System
+
+
+
+
+                    Fig crc.11: Order Management System
+                                      184
+
+
+Ref: Table 3
+Name: Payment
+
+
+
+
+                Fig crc.12: Payment
+                                            185
+
+
+
+Ref: Table 6
+Name: Blockchain
+
+
+
+
+                   Fig crc.13: Blockchain
+                                                         186
+
+
+
+Ref: Table 8
+Name: ChatBot Recommendation
+
+
+
+
+                    Fig crc.14: ChatBot Recommendation
+                                                          187
+
+
+Ref: Table 11
+Name: Accounting System
+
+
+
+
+                          Fig crc.15: Accounting System
+                                                              188
+
+
+Ref: Table 13
+Name: Business Intelligence
+
+
+
+
+                          Fig crc.16: Business Intelligence
+                                            189
+
+
+Ref: Table 1
+Name: Guest User
+
+
+
+
+                   Fig crc.17: Guest User
+                                                                                               190
+
+
+
+                            7. Behavioral Modeling
+The Behavior Modeling indicates how the system will behave to external events or stimuli. It is
+represented as a function of time and event, It describes interactions between objects. It shows
+how individual objects collaborate to achieve the behavior of the system as a whole. In UML
+behavior of a system is shown with the help of use case diagram, sequence diagram and activity
+diagram.
+To create behavioral model following things can be considered-
+● Evaluation of all use-cases to fully understand the sequence of interaction within the system.
+● Identification of events that drive the interaction sequence and understand how these events
+relate to specific classes.
+● Creating sequence for each use case.
+● Building a state diagram for the system.
+● Reviewing the behavioral model to verify accuracy and consistency
+
+
+
+
+                               7.1 Event Identification
+In the event identification table, events are mentioned in the leftmost column. The initiator class
+of the event and collaborator classes are mentioned in the following two columns and special
+cases for each event are mentioned in the rightmost column, if there are any such special cases.
+
+
+ Serial                    Event                      Initiation Class        Collaborator Class
+
+   1         Event Manager Account Creation               Account                 SMS System
+
+   2                 Account Creation                     Account              Host, SMS System
+
+   3                 Update User Info                     Account                       -
+
+   4                       Login                          Account               Event Manager,
+                                                                                Supervisor, Host
+
+   5                Contact Verification                  Account               Event Manager,
+                                                                                Supervisor, Host
+
+   6                  Access Control                      Account               Event Manager,
+                                                                                Supervisor, Host
+
+   7       Profile-Package Creation, Update Or           Supervisor              Service Profile,
+                        Deletion                                              Package Management
+                                                                            191
+
+
+8         Notification(Supervisor)        Supervisor          HR System,
+                                                              Blockchain
+
+9             HR Interaction              Supervisor          HR System
+
+10     View Information(Supervisor)       Supervisor             Event
+
+11           Progress Tracking              Event          Supervisor, Event
+                                                            Manager, Host
+
+12      Negotiate Order Notification    Event Manager     Order Management,
+                                                                 Host
+
+13              Sign Order              Event Manager         Blockchain
+
+14         new order notification       Event Manager            Event
+
+15   View Information(Event Manager)    Event Manager               -
+
+16   View Human Resource Management     Event Manager         HR System
+
+17           View Accounting            Event Manager      Accounting System
+
+18               View BI                Event Manager     Business Intelligence
+
+19            Event Selection               Event         Host, Service Profile
+
+21            Get Guest Data                Event           Host, Guest User
+
+22         Generate Event code              Event                   -
+
+23           View Notification               Host          Order Management
+                                                          System, SMS System,
+                                                               Blockchain
+
+24        View Information(Host)             Host           Event, Payment
+
+25            Set Guest Data                 Host                Event
+
+26          Make review-rating               Host            Service Profile
+
+27       Request Change in order             Host           Event Manager
+
+28           Finalize Package          Order Management       Payment, AI
+                                            System
+
+29          Placement of Order         Order Management         Payment
+                                            System
+                                                                                     192
+
+
+30           Negotiation Choice            Order Management           Event Manager, Host
+                                                System
+
+31             Changing Order              Order Management             Event Manager
+                                                System
+
+32   Navigate Service Profile             Service Profile         Event
+
+33   Get Review                           Service Profile         Host
+
+34   Service Profile Deletion             Service Profile         Supervisor
+
+35   Service Profile Creation or Update   Service Profile         Supervisor
+
+36   Package Control                      Package Management      Supervisor
+                                          System
+
+37   Package Selection                    Package Management      Host. Machine
+                                          System                  Learning
+
+38   Adding Basic Feature                 Package Management      -
+                                          System
+
+39   Adding Extra Feature                 Package Management      -
+                                          System
+
+40   Set Design Catalog                   Decorator Package       Service Profile,
+                                                                  Package Management
+                                                                  System
+
+41   3D Modeling                          Decorator Package       Package Management
+                                                                  System
+
+42   Fetching & Merging Database          Business Intelligence   Event Manager
+
+43   Business data & Graph generation     Business Intelligence   Event Manager
+
+44   Financial Statement Generation       Accounting system       Event Manager
+
+45   Record Keeping                       Accounting system       Payment
+
+46   Generation of package                AI                      Package Management
+     recommendation list                                          System
+
+47   Discount Generation                  AI                      Package Management
+                                                                  System, Order
+                                                                  Management
+
+48   Automated Query Reply                AI                      Host, Guest User
+                                                                            193
+
+
+49   Digitally Signed Contract        Blockchain         Payment, Order
+                                                         Management System
+
+50   Store contract in blockchain     Blockchain         Order Management
+                                                         System
+
+51   Edit Smart Contract              Blockchain         Order Management
+                                                         System
+
+52   Make Advance Payment             Payment            Accounting System
+
+53   Make Payment                     Payment            Host
+
+54   Track Payment                    Payment            Host, Event Manager
+
+55   Distribute Payment               Payment            Accounting System
+
+56   Price Calculation                Payment            Order Management
+                                                         System
+
+57   Salary & compensation tracking   Human Resource     Event Manager,
+                                                         Payment
+
+58   View Employee                    Human Resource     Event Manager
+
+59   Performance Record Generation    Human Resource     Event Manager
+
+60   Configure Employee Info          Human Resource     Supervisor
+
+61   Time & Task Allocation           Human Resource     Event Manager
+
+62   Contact Verification             SMS System         Account
+
+63   Send Notification                SMS System         Account, Payment
+
+64   Communicate                      Communication      Event Manager,
+                                                         Supervisor, Host, Guest
+                                                         user
+
+65   view Guest Information           Guest              Event
+
+66   Advertisement                    Guest              Service Profile
+
+67   Access HR                        Event Manager,     -
+                                      Supervisor
+
+68   Service Selection                Order Management   Service Profile
+                                      System
+                                                                                                 194
+
+
+7.2 State Transition Diagram
+
+State Transition Diagram represents active states for each class of events (triggers). For this we
+identified all the events, their initiators and collaborators. In the State Transition Diagram the
+states are shown in boxed texts, and the transition is represented by arrows. It is also called State
+Chart or Graph. It is useful in identifying valid transitions.
+
+
+
+
+Ref: Table 13
+Name: Business Intelligence
+
+
+
+
+                                Fig std.1: Business Intelligence
+                                                         195
+
+
+
+
+Ref: Table 11
+Name: Accounting System
+
+
+
+
+                          Fig std.2: Accounting System
+
+
+
+
+Ref: Table 8
+Name: ChatBot Recommendation
+                                                       196
+
+
+
+
+                   Fig std.3: ChatBot Recommendation
+Ref: Table 6
+Name: Blockchain
+
+
+
+
+                         Fig std.4: Blockchain
+                                                          197
+
+
+Ref: Table 3
+Name: Payment
+
+
+
+
+                            Fig std.5: Payment
+Ref: Table 9
+Name: Human Resource Management
+
+
+
+
+                   Fig std.6: Human Resource Management
+                                           198
+
+
+Ref: Table 17
+Name: SMS System
+
+
+
+
+                   Fig std.7: SMS System
+
+
+Ref: Table 11
+Name: Account
+
+
+
+
+                     Fig std.8: Account
+                                                          199
+
+
+Ref: Table 4
+Name: Package Control
+
+
+
+
+                           Fig std.9: Package Control
+
+Ref: Table 5
+Name: Decorator Package
+
+
+
+
+                          Fig std.10: Decorator Package
+                                                      200
+
+
+Ref: Table 14
+Name: Service Profile
+
+
+
+
+                        Fig std.11: Service Profile
+                                                  201
+
+
+Ref: Table 7
+Name: Event Manager
+
+
+
+
+                      Fig std.12: Event Manager
+                                                          202
+
+
+Ref: Table 2
+Name: Order Management System
+
+
+
+
+                    Fig std.13: Order Management System
+                                   203
+
+
+
+
+Ref: Table 16
+Name: Host
+
+
+
+
+                Fig std.14: Host
+                                            204
+
+
+Ref: Table 12
+Name: Supervisor
+
+
+
+
+                   Fig std.15: Supervisor
+                                                  205
+
+
+Ref: Table 10
+Name: Communication
+
+
+
+
+                      Fig std.16: Communication
+                                            206
+
+
+Ref: Table 1
+Name: Guest User
+
+
+
+
+                   Fig std.17: Guest User
+                                    207
+
+
+Ref: Table 18
+Name: Event
+
+
+
+
+                Fig std.18: Event
+                                                                                               208
+
+
+
+                              8. Sequence Diagram
+Sequence Diagrams are interaction diagrams that detail how operations are carried out. They
+capture the interaction between objects in the context of a collaboration. Sequence Diagrams are
+time focused and they show the order of the interaction visually by using the vertical axis of the
+diagram to represent time, what messages are sent and when.
+
+
+
+
+[Ref] Clear view of sequence diagram
+209
+210
+211
+212
+213
+214
+215
+216
+217
+                                                                                           218
+
+
+
+9. Data Flow Diagram (DFD)
+A data-flow diagram is a visual representation of how data moves through a system or a process.
+A data flow diagram (DFD) shows how information moves through any system or process. It
+displays data inputs, outputs, storage locations, and routes between each destination using
+predefined symbols such as rectangles, circles, and arrows as well as brief text labels.
+
+
+Level 0:
+Name: Post House Event Management System
+                                           219
+
+
+Level 1:
+Name: Post House Event Management System
+                   220
+
+
+Level 1.1:
+Name: Make Order
+                                  221
+
+
+Level 1.2:
+Name: Human Resource Management
+                                  222
+
+
+Level 1.3:
+Name: Account Management System
+                       223
+
+
+Level 1.3.1:
+Name: Create Account
+                              224
+
+
+Level 1.4:
+Name: Accounting Management
+                          225
+
+
+Level 1.4.1:
+Name: Accounting System
+                              226
+
+
+Level 1.4.2:
+Name: Business Intelligence
+                                     227
+
+
+Level 1.5:
+Name: Package Profile and Creation
+                             228
+
+
+Level 1.6:
+Name: Communication System
+                            229
+
+
+Level 1.7:
+Name: Ongoing Event Panel
+                       230
+
+
+Level 1.7.1:
+Name: Request Change
+                231
+
+
+
+
+Level 1.8:
+Name: Payment
+                                                                                               232
+
+
+
+10. Definitions:
+Stakeholder: People who are directly or indirectly affected by the system.
+Employee: Employee of the event management company.
+Event Manager: The one who runs the management company. He is a direct user of the system.
+Supervisors: Who oversees different partners and collaborators related to the event as an
+employee of the event manager. They are the direct users of the system.
+Host: The one who will hire the event management company.
+Partners: Partners are the stakeholders who provide catering, decoration, grooming, rent-a-car,
+photography, Community Center and promotion services. They are managed by supervisors.
+Collaborators: Collaborators are handled by the host himself. For example- services the host
+provides on their own accord.
+Feature: Each package has a list of partner services. They are called features. For example, for a
+community center package, the features can be:
+   1. Lighting System
+   2. Sound System
+   3. Number of tables & chairs
+Direct Stakeholder: People who are directly affected by the system.
+Indirect Stakeholder: People who are indirectly affected by the system.
+Primary Actor: Entities giving frequent input and output to the system.
+Secondary Actor: Entities who seldom perform input and output to the system.
+

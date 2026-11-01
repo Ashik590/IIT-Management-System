@@ -1,0 +1,163 @@
+                 Overall CRC Collaboration Diagram
+                                  Ramna Yoga Society Management System
+
+UserAccount     Member                             YogaInstructor                            YogaContent     VajraAssistant
+
+
+
+
+                                                                                 Executive
+ President                  Secretary                                            Committee                     Treasurer
+                                                                                  Member
+
+
+
+
+ Publicity                                              Cultural                                            FieldEquipment
+ Secretary                                             Secretary                                               Secretary
+
+
+
+
+                                                                                              Financial
+  Activity    YogaSession                                Event                                              PaymentGateway
+                                                                                             Management
+
+
+
+
+                                                      MediaPost
+
+
+
+
+                                          18 classes | 47 collaborations
+                 Full responsibility labels are listed in the collaboration index on the following pages.
+Collaboration Index                                                                                    Part 1
+
+
+
+
+Class                      Collaborator              Responsibility / collaboration
+
+Activity                   FinancialManagement       Related financial information
+
+Activity                   MediaPost                 Activity-linked information
+
+Activity                   YogaSession               Shared schedule, participant and attendance behaviour
+
+CulturalSecretary          Event                     Cultural-event management
+
+CulturalSecretary          FinancialManagement       Event-finance submission
+
+CulturalSecretary          Member                    Registered-member viewing
+
+Event                      FinancialManagement       Event-related financial information
+
+Event                      MediaPost                 Event publicity and media
+
+ExecutiveCommitteeMember   Activity                  Activity management and attendance recording
+
+ExecutiveCommitteeMember   CulturalSecretary         Common committee access and operations
+
+ExecutiveCommitteeMember   FieldEquipmentSecretary   Common committee access and operations
+
+ExecutiveCommitteeMember   FinancialManagement       Committee-related financial access
+
+ExecutiveCommitteeMember   MediaPost                 Committee notices and activity-media access
+
+ExecutiveCommitteeMember   President                 Common committee access and operations
+
+ExecutiveCommitteeMember   PublicitySecretary        Common committee access and operations
+
+ExecutiveCommitteeMember   Secretary                 Common committee access and operations
+
+
+
+
+                                                                                                    1-16 of 47
+Collaboration Index                                                                                       Part 2
+
+
+
+
+Class                      Collaborator               Responsibility / collaboration
+
+ExecutiveCommitteeMember   Treasurer                  Common committee access and operations
+
+FieldEquipmentSecretary    Activity                   Equipment assignment and activity support
+
+FinancialManagement        PaymentGateway             External-payment processing and verification
+
+Member                     Activity                   Activity, participation and attendance access
+
+Member                     Event                      Event registration
+
+Member                     ExecutiveCommitteeMember   Membership-application verification
+
+Member                     FinancialManagement        Payments, donations and financial history
+
+Member                     MediaPost                  Published-media viewing
+
+Member                     PaymentGateway             Online-payment request and confirmation
+
+Member                     Treasurer                  Payment recording and confirmation
+
+Member                     VajraAssistant             Questions, answers and content suggestions
+
+Member                     YogaContent                Approved-content viewing
+
+Member                     YogaSession                Schedule viewing and session participation
+
+President                  Activity                   Activity monitoring and attendance review
+
+President                  FinancialManagement        Financial-report review
+
+President                  Secretary                  Supervision, records and committee coordination
+
+
+
+
+                                                                                                      17-32 of 47
+Collaboration Index                                                                                 Part 3
+
+
+
+
+Class                Collaborator               Responsibility / collaboration
+
+President            Treasurer                  Financial-report submission and review
+
+PublicitySecretary   Activity                   Session and activity publicity
+
+PublicitySecretary   Event                      Event publicity and media
+
+PublicitySecretary   MediaPost                  Post creation, publication and archiving
+
+Secretary            Activity                   Scheduling and attendance summaries
+
+Secretary            FinancialManagement        Financial records and summaries
+
+Secretary            Treasurer                  Financial records and report sharing
+
+Treasurer            FinancialManagement        Transaction recording and financial reporting
+
+UserAccount          ExecutiveCommitteeMember   Authentication and committee access
+
+UserAccount          Member                     Authentication and member access
+
+UserAccount          YogaInstructor             Authentication and instructor access
+
+YogaContent          VajraAssistant             Approved-content search and answer support
+
+YogaInstructor       VajraAssistant             Instructor-approved safety guidance
+
+YogaInstructor       YogaContent                Content creation, updates and approval
+
+YogaInstructor       YogaSession                Instructor assignment and assigned-session access
+
+
+
+
+                                                                                                33-47 of 47
+

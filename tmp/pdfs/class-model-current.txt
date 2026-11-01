@@ -1,0 +1,3060 @@
+SOFTWARE REQUIREMENTS SPECIFICATION
+
+Class Based Modelling
+Ramna Yoga Society Management System
+
+
+
+      Prepared by                                   Course context
+
+
+      MD. Azizul Hakim                              Design Pattern
+      Sadman Sakib                                  Class-based analysis documentation
+
+
+
+
+Scope. This document develops the class-based model from the approved usage scenario. It preserves the
+complete analytical trace from 260 solution-space nouns through General Classification and Selection
+Criteria to 19 final classes.
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+
+                              CLASS BASED MODELLING
+Document structure
+1. List of nouns in solution space
+
+2. General Classifications (GC)
+
+3. Selection Criteria (SC)
+
+4. Associate Noun and Verb Identification
+
+5. Attribute Selection
+
+6. Method Identification
+
+7. Finalizing Classes
+
+8. Class Cards
+
+9. CRC Diagram
+
+
+Modelling rule. The early stages remain intentionally broad. A noun that passes GC is only a candidate.
+Similar GC candidates are merged before SC. A merged candidate becomes a selected class when it
+satisfies at least three SC points or the Essential Requirement criterion. Finalization then confirms
+inheritance, responsibility placement and collaboration.
+
+
+
+
+Class-based analysis documentation                                                                    2
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+1. List of Nouns in Solution Space
+The first step is to extract nouns and noun phrases from the complete usage scenario without deciding
+whether they will become classes. Roles, records, statuses, events, values, interfaces, reports, places and
+management concepts are all retained at this stage.
+
+                                     Table 1: Complete List of Solution-Space Nouns
+
+No.         Noun
+
+1           Ramna Yoga Society Management System
+
+2           System
+
+3           Digital support
+
+4           Membership
+
+5           Attendance
+
+6           Payment
+
+7           Finance
+
+8           Event
+
+9           Notice
+
+10          Yoga video
+
+11          Equipment
+
+12          Committee activity
+
+13          Yoga knowledge assistance
+
+14          Regular yoga session
+
+15          Physical yoga session
+
+16          Registered member
+
+17          Authorized committee member
+
+18          System role
+
+19          General participant
+
+20          General participant interaction
+
+21          Public information
+
+22          Yoga activity
+
+23          Regular yoga-session schedule
+
+24          Schedule
+
+25          Time
+
+26          Location
+
+27          Public notice
+
+28          Upcoming event
+
+29          Public yoga video
+
+30          General safety guidance
+
+31          Account
+
+32          Membership application
+
+33          Membership applicant
+
+34          Membership applicant interaction
+
+35          Membership registration
+
+36          Applicant
+
+37          Digital membership form
+
+38          Required personal information
+
+39          Photograph
+
+40          Application
+
+41          Treasurer
+
+
+
+
+Class-based analysis documentation                                                                        3
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+No.         Noun
+
+42          Executive Committee
+
+43          Information
+
+44          Verification
+
+45          Formal approval
+
+46          Registration payment
+
+47          Membership creation
+
+48          BDT 500 registration fee
+
+49          Supported payment facility
+
+50          Accepted payment method
+
+51          Payment received
+
+52          Membership record
+
+53          Unique membership number
+
+54          QR code
+
+55          Physical membership card
+
+56          Registered member interaction
+
+57          Member dashboard
+
+58          Personal profile information
+
+59          Membership status
+
+60          Attendance history
+
+61          Payment history
+
+62          Donation history
+
+63          Upcoming session
+
+64          Available yoga video
+
+65          Payments and donations
+
+66          Member
+
+67          Monthly payment
+
+68          Yearly payment
+
+69          Donation
+
+70          Applicable event payment
+
+71          Successful payment
+
+72          Corresponding member
+
+73          Digital confirmation
+
+74          Receipt
+
+75          Event participation
+
+76          Event registration
+
+77          Advance registration
+
+78          QR-based attendance
+
+79          Executive Committee interaction
+
+80          Attendance management
+
+81          Selected yoga session
+
+82          Selected event
+
+83          Registered member's QR card
+
+84          Member identity
+
+85          Member status
+
+86          Attendance record
+
+87          Duplicate attendance
+
+88          Unavailable QR card
+
+
+
+
+Class-based analysis documentation                             4
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+No.         Noun
+
+89          Manual attendance
+
+90          Member's membership number
+
+91          Attendance summary
+
+92          High attendance
+
+93          Session management
+
+94          Yoga-session date
+
+95          Starting time
+
+96          Instructor
+
+97          Session status
+
+98          Normal session time
+
+99          One hour
+
+100         Fajr prayer
+
+101         Committee administration
+
+102         System permission
+
+103         Official position
+
+104         Committee membership
+
+105         Administrative permission
+
+106         Previous committee record
+
+107         Treasurer interaction
+
+108         Membership and payment management
+
+109         Membership applications
+
+110         Applicant information
+
+111         Membership records
+
+112         Payments
+
+113         Donations
+
+114         Online-payment information
+
+115         Overdue membership
+
+116         Financial management
+
+117         Income
+
+118         Expense
+
+119         Financial total
+
+120         Balance information
+
+121         Monthly financial report
+
+122         Yearly financial report
+
+123         President
+
+124         Society responsibility structure
+
+125         Financial record
+
+126         President and Secretary interaction
+
+127         Secretary
+
+128         Organizational supervision
+
+129         Membership summary
+
+130         Financial summary
+
+131         Event summary
+
+132         Notice summary
+
+133         Organizational summary
+
+134         Important committee activity
+
+135         Financial-recording responsibility
+
+
+
+
+Class-based analysis documentation                             5
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+No.         Noun
+
+136         Report review
+
+137         Financial report
+
+138         Attendance information
+
+139         Membership information
+
+140         Organizational report
+
+141         Yoga Instructor interaction
+
+142         Yoga content
+
+143         Safety guidance
+
+144         Yoga Instructor
+
+145         Yoga-pose information
+
+146         Instruction
+
+147         Difficulty level
+
+148         Possible risk
+
+149         Age-related precaution
+
+150         Instructor-approved guidance
+
+151         Pose
+
+152         Medical suitability
+
+153         Particular person
+
+154         Yoga video management
+
+155         Approved yoga video
+
+156         Video title
+
+157         Video instructor
+
+158         Video category
+
+159         Video difficulty level
+
+160         Safety information
+
+161         Public video visibility
+
+162         Members-only video visibility
+
+163         User
+
+164         Vajra
+
+165         AI Yoga Knowledge Assistant
+
+166         Vajra interaction
+
+167         Member question
+
+168         General visitor
+
+169         Question
+
+170         Yoga pose
+
+171         Pose instruction
+
+172         Precaution
+
+173         Instructor information
+
+174         Yoga information
+
+175         Approved instructor-provided content
+
+176         Short conversational answer
+
+177         Relevant video
+
+178         Learning material
+
+179         Safety-related question
+
+180         Authorized yoga instructor
+
+181         Medical condition
+
+182         Specific person
+
+
+
+
+Class-based analysis documentation                             6
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+No.         Noun
+
+183         Publicity Secretary interaction
+
+184         Publicity Secretary
+
+185         Notice and communication management
+
+186         Official notice
+
+187         Regular activity
+
+188         Session change
+
+189         Postponement
+
+190         Cancellation
+
+191         Announcement
+
+192         User group
+
+193         Previous notice
+
+194         Media management
+
+195         Activity post
+
+196         Description
+
+197         Activity photograph
+
+198         Activity video
+
+199         Activity date
+
+200         Participation information
+
+201         Media
+
+202         Yoga-session media
+
+203         Event media
+
+204         Public media visibility
+
+205         Members-only media visibility
+
+206         Cultural Secretary interaction
+
+207         Cultural Secretary
+
+208         Event management
+
+209         Cultural event
+
+210         Special event
+
+211         Event date
+
+212         Event time
+
+213         Event location
+
+214         Event description
+
+215         Event instruction
+
+216         Registration information
+
+217         Participant information
+
+218         Authorized user
+
+219         Financial matter
+
+220         Event publicity
+
+221         Field and Equipment Secretary interaction
+
+222         Field and Equipment Secretary
+
+223         Equipment management
+
+224         Equipment information
+
+225         Quantity
+
+226         Condition
+
+227         Purchase information
+
+228         Storage location
+
+229         Equipment assignment
+
+
+
+
+Class-based analysis documentation                             7
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+No.         Noun
+
+230         Regular-session equipment assignment
+
+231         Event equipment assignment
+
+232         Helping-Hand Management
+
+233         Task
+
+234         Helping hand
+
+235         Yoga area
+
+236         Equipment arrangement
+
+237         Event support
+
+238         Equipment return
+
+239         Responsible committee member
+
+240         Task progress
+
+241         Helping-hand payment information
+
+242         Automatic system interaction
+
+243         Member engagement
+
+244         QR attendance
+
+245         Motivational message
+
+246         Attendance streak
+
+247         Attendance milestone
+
+248         Birthday
+
+249         Membership anniversary
+
+250         Birthday greeting
+
+251         Membership-anniversary greeting
+
+252         Special-day appearance
+
+253         System appearance
+
+254         Selected occasion
+
+255         International Mother Language Day
+
+256         Independence Day
+
+257         International Yoga Day
+
+258         Victory Day
+
+259         Visual change
+
+260         Regular system operation
+
+
+
+
+Class-based analysis documentation                             8
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+2. General Classifications (GC)
+The extracted nouns are examined through seven General Classifications. These categories are used as
+non-exclusive analytical lenses: one noun may satisfy several classifications. A noun passes GC when it
+satisfies at least three classifications, or when it satisfies External Entity by itself.
+
+                                         Table 2: Seven General Classifications
+
+ No.      General Classification            Description
+
+ 1        External entities                 People, organizations, devices or external services that exchange information with the
+                                            system.
+
+ 2        Things                            Physical or informational objects that the system stores, manages or manipulates.
+
+ 3        Events                            Occurrences, transactions or lifecycle changes that the system must recognize or
+                                            record.
+
+ 4        Roles                             Capacities performed by people or software actors.
+
+ 5        Organizational units              Groups or functional management units with coordinated responsibilities.
+
+ 6        Places                            Physical or logical locations relevant to system interaction.
+
+ 7        Structures                        Composite records, aggregates, hierarchies or organized information structures.
+
+
+                                      Table 3: Nouns Passing General Classification
+
+No.      Noun                                                              Accepted GC                 Count       Result
+1        General participant                                               1, 2, 4                     3           Pass
+
+2        Registered member                                                 1, 2, 4                     3           Pass
+
+3        Membership applicant                                              1, 2, 4                     3           Pass
+
+4        Applicant                                                         1, 2, 4                     3           Pass
+
+5        Member                                                            1, 2, 4                     3           Pass
+
+6        Instructor                                                        1, 2, 4                     3           Pass
+
+7        Yoga Instructor                                                   1, 2, 4                     3           Pass
+
+8        User                                                              1, 2, 4                     3           Pass
+
+9        General visitor                                                   1, 2, 4                     3           Pass
+
+10       Helping hand                                                      1, 2, 4                     3           Pass
+
+11       Authorized user                                                   1, 2, 4                     3           Pass
+
+12       Authorized committee member                                       1, 2, 4, 5                  4           Pass
+
+13       Treasurer                                                         1, 2, 4, 5                  4           Pass
+
+14       Authorized Executive Committee member                             1, 2, 4, 5                  4           Pass
+
+15       President                                                         1, 2, 4, 5                  4           Pass
+
+16       Secretary                                                         1, 2, 4, 5                  4           Pass
+
+17       Publicity Secretary                                               1, 2, 4, 5                  4           Pass
+
+18       Cultural Secretary                                                1, 2, 4, 5                  4           Pass
+
+19       Field and Equipment Secretary                                     1, 2, 4, 5                  4           Pass
+
+20       Responsible committee member                                      1, 2, 4, 5                  4           Pass
+
+21       Executive Committee                                               1, 5, 7                     3           Pass
+
+22       Supported payment facility                                        1, 2, 7                     3           Pass
+
+23       Membership                                                        2, 3, 7                     3           Pass
+
+24       Attendance                                                        2, 3, 7                     3           Pass
+
+25       Payment                                                           2, 3, 7                     3           Pass
+
+26       Event                                                             2, 3, 7                     3           Pass
+
+27       Notice                                                            2, 3, 7                     3           Pass
+
+28       Committee activity                                                2, 3, 7                     3           Pass
+
+29       Yoga knowledge assistance                                         2, 3, 7                     3           Pass
+
+30       Regular yoga session                                              2, 3, 7                     3           Pass
+
+31       Physical yoga session                                             2, 3, 7                     3           Pass
+
+32       Membership application                                            2, 3, 7                     3           Pass
+
+33       Membership registration                                           2, 3, 7                     3           Pass
+
+
+
+Class-based analysis documentation                                                                                                   9
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+No.      Noun                                                  Accepted GC     Count      Result
+34       Application                                           2, 3, 7         3          Pass
+
+35       Registration payment                                  2, 3, 7         3          Pass
+
+36       Membership creation                                   2, 3, 7         3          Pass
+
+37       Donation                                              2, 3, 7         3          Pass
+
+38       Event participation                                   2, 3, 7         3          Pass
+
+39       Event registration                                    2, 3, 7         3          Pass
+
+40       QR-based attendance                                   2, 3, 7         3          Pass
+
+41       Attendance record                                     2, 3, 7         3          Pass
+
+42       Income                                                2, 3, 7         3          Pass
+
+43       Expense                                               2, 3, 7         3          Pass
+
+44       Yoga content                                          2, 3, 7         3          Pass
+
+45       Activity post                                         2, 3, 7         3          Pass
+
+46       Cultural event                                        2, 3, 7         3          Pass
+
+47       Special event                                         2, 3, 7         3          Pass
+
+48       Equipment assignment                                  2, 3, 7         3          Pass
+
+49       Task                                                  2, 3, 7         3          Pass
+
+50       Equipment arrangement                                 2, 3, 7         3          Pass
+
+51       Equipment return                                      2, 3, 7         3          Pass
+
+52       Automatic system interaction                          2, 3, 7         3          Pass
+
+53       Member engagement                                     2, 3, 7         3          Pass
+
+54       Attendance streak                                     2, 3, 7         3          Pass
+
+55       Attendance milestone                                  2, 3, 7         3          Pass
+
+56       Membership anniversary                                2, 3, 7         3          Pass
+
+57       Special-day appearance                                2, 3, 7         3          Pass
+
+58       System appearance                                     2, 3, 7         3          Pass
+
+59       Attendance management                                 2, 3, 5, 7      4          Pass
+
+60       Session management                                    2, 3, 5, 7      4          Pass
+
+61       Committee administration                              2, 3, 5, 7      4          Pass
+
+62       Membership and payment management                     2, 3, 5, 7      4          Pass
+
+63       Financial management                                  2, 3, 5, 7      4          Pass
+
+64       Organizational supervision                            2, 3, 5, 7      4          Pass
+
+65       Yoga video management                                 2, 3, 5, 7      4          Pass
+
+66       Notice and communication management                   2, 3, 5, 7      4          Pass
+
+67       Media management                                      2, 3, 5, 7      4          Pass
+
+68       Event management                                      2, 3, 5, 7      4          Pass
+
+69       Equipment management                                  2, 3, 5, 7      4          Pass
+
+70       Helping-Hand Management                               2, 3, 5, 7      4          Pass
+
+71       Account                                               2, 4, 7         3          Pass
+
+72       Vajra                                                 2, 4, 7         3          Pass
+
+73       AI Yoga Knowledge Assistant                           2, 4, 7         3          Pass
+
+74       Member dashboard                                      2, 6, 7         3          Pass
+
+75       Committee membership                                  2, 3, 4, 5, 7   5          Pass
+
+76       Ramna Yoga Society Management System                  2, 5, 7         3          Pass
+
+
+GC result: 76 of the 260 extracted nouns pass. The remaining nouns remain useful as possible attributes,
+values, reports or method concepts, but they are not promoted to potential classes.
+
+
+
+
+Class-based analysis documentation                                                                    10
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+3. Selection Criteria (SC)
+Before applying Selection Criteria, semantically equivalent or strongly overlapping GC-passed nouns are
+merged. This prevents the same domain concept from being scored repeatedly under different wording.
+
+3.1 Merging and Renaming the 76 GC-Passed Nouns
+                               Table 4: Merging GC-Passed Nouns into Potential Classes
+
+No.      GC-passed nouns merged                                                              Merged potential class     Count
+1        Ramna Yoga Society Management System                                                SystemBoundary             1
+
+2        General participant, General visitor                                                Visitor                    2
+
+3        User, Authorized user, Account                                                      UserAccount                3
+
+4        Membership applicant, Applicant                                                     Applicant                  2
+
+5        Registered member, Member, Membership                                               Member                     3
+
+6        Membership application, Membership registration, Application, Membership creation   MembershipRegistration     4
+
+7        Instructor, Yoga Instructor                                                         YogaInstructor             2
+
+8        Executive Committee, Committee administration, Organizational supervision           ExecutiveCommittee         3
+
+9        Authorized committee member, Authorized Executive Committee member,                 ExecutiveCommitteeMember   4
+         Responsible committee member, Committee membership
+
+10       President                                                                           President                  1
+
+11       Secretary                                                                           Secretary                  1
+
+12       Treasurer                                                                           Treasurer                  1
+
+13       Publicity Secretary                                                                 PublicitySecretary         1
+
+14       Cultural Secretary                                                                  CulturalSecretary          1
+
+15       Field and Equipment Secretary                                                       FieldEquipmentSecretary    1
+
+16       Committee activity                                                                  Activity                   1
+
+17       Regular yoga session, Physical yoga session, Session management                     YogaSession                3
+
+18       Event, Cultural event, Special event, Event management                              Event                      4
+
+19       Event participation, Event registration                                             EventParticipation         2
+
+20       Attendance, QR-based attendance, Attendance record, Attendance management           Attendance                 4
+
+21       Payment, Registration payment, Donation, Income, Expense                            FinancialTransaction       5
+
+22       Membership and payment management, Financial management                             FinancialManagement        2
+
+23       Supported payment facility                                                          PaymentGateway             1
+
+24       Notice, Activity post, Notice and communication management, Media management        MediaPost                  4
+
+25       Yoga content, Yoga video management                                                 YogaContent                2
+
+26       Yoga knowledge assistance, Vajra, AI Yoga Knowledge Assistant                       VajraAssistant             3
+
+27       Equipment assignment, Equipment arrangement, Equipment return, Equipment            InventoryManagement        4
+         management
+
+28       Task                                                                                Task                       1
+
+29       Helping hand, Helping-Hand Management                                               HelpingHand                2
+
+30       Member dashboard                                                                    MemberDashboard            1
+
+31       Automatic system interaction                                                        SystemAutomation           1
+
+32       Member engagement, Attendance streak, Attendance milestone, Membership              MemberEngagement           4
+         anniversary
+
+33       Special-day appearance, System appearance                                           SystemAppearance           2
+
+
+
+3.2 Applying the Six Selection Criteria
+The merged potential classes are evaluated using six criteria. A candidate passes when it satisfies at least
+three criteria, or when Essential Requirement is accepted. Essential Requirement means that the
+requirement needs an independent class, not merely that the associated feature must exist.
+
+                                                      Table 5: Six Selection Criteria
+
+ No.      Selection Criterion                      Description
+
+ 1        Retained Information                     Information about the candidate must be remembered by the system.
+
+
+
+
+Class-based analysis documentation                                                                                              11
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+ No.      Selection Criterion             Description
+
+ 2        Needed Services                 The candidate provides identifiable services required by the system.
+
+ 3        Multiple Attributes             The candidate needs several meaningful attributes.
+
+ 4        Common Attributes               Instances or related subclasses share attributes.
+
+ 5        Common Operations               Instances or related subclasses share operations.
+
+ 6        Essential Requirement           An independent class is essential to satisfy the requirement.
+
+                                     Table 6: Selection Criteria of Potential Classes
+
+No.      Potential class                                   Accepted criteria                          Points     Result
+
+1        SystemBoundary                                    2                                          1          Fail
+
+2        Visitor                                           2                                          1          Fail
+
+3        UserAccount                                       1, 2, 3, 4, 5, 6                           6          Pass
+
+4        Applicant                                         2, 3                                       2          Fail
+
+5        Member                                            1, 2, 3, 4, 5, 6                           6          Pass
+
+6        MembershipRegistration                            2, 3                                       2          Fail
+
+7        YogaInstructor                                    1, 2, 3, 4, 5, 6                           6          Pass
+
+8        ExecutiveCommittee                                1, 3                                       2          Fail
+
+9        ExecutiveCommitteeMember                          1, 2, 3, 4, 5, 6                           6          Pass
+
+10       President                                         1, 2, 3, 4, 5, 6                           6          Pass
+
+11       Secretary                                         1, 2, 3, 4, 5, 6                           6          Pass
+
+12       Treasurer                                         1, 2, 3, 4, 5, 6                           6          Pass
+
+13       PublicitySecretary                                1, 2, 3, 4, 5, 6                           6          Pass
+
+14       CulturalSecretary                                 1, 2, 3, 4, 5, 6                           6          Pass
+
+15       FieldEquipmentSecretary                           1, 2, 3, 4, 5, 6                           6          Pass
+
+16       Activity                                          1, 2, 3, 4, 5, 6                           6          Pass
+
+17       YogaSession                                       1, 2, 3, 4, 5, 6                           6          Pass
+
+18       Event                                             1, 2, 3, 4, 5, 6                           6          Pass
+
+19       EventParticipation                                1, 3                                       2          Fail
+
+20       Attendance                                        1, 3                                       2          Fail
+
+21       FinancialTransaction                              3, 4                                       2          Fail
+
+22       FinancialManagement                               1, 2, 3, 4, 5, 6                           6          Pass
+
+23       PaymentGateway                                    1, 2, 3, 5, 6                              5          Pass
+
+24       MediaPost                                         1, 2, 3, 4, 5, 6                           6          Pass
+
+25       YogaContent                                       1, 2, 3, 4, 5, 6                           6          Pass
+
+26       VajraAssistant                                    1, 2, 3, 5, 6                              5          Pass
+
+27       InventoryManagement                               1, 2, 3, 4, 5, 6                           6          Pass
+
+28       Task                                              1, 3                                       2          Fail
+
+29       HelpingHand                                       1, 3                                       2          Fail
+
+30       MemberDashboard                                   2, 3                                       2          Fail
+
+31       SystemAutomation                                  2, 5                                       2          Fail
+
+32       MemberEngagement                                  2, 3                                       2          Fail
+
+33       SystemAppearance                                  2, 3                                       2          Fail
+
+
+SC result: 19 potential classes pass. Fourteen candidates fail as independent classes. Their information
+and behaviour are not discarded; they are assigned to the nearest cohesive passing class during
+finalization.
+
+
+
+
+Class-based analysis documentation                                                                                        12
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+4. Associate Noun and Verb Identification
+For each selected class, associated nouns are identified as sources of attributes, while associated verbs
+are identified as sources of methods and responsibilities. The list remains domain-oriented and does not
+include framework, controller or database implementation operations.
+
+                                     Table 7: Associate Noun and Verb Identification
+
+No.      Selected class                Associated nouns                                          Associated verbs
+1        UserAccount                   account identifier, username, password hash,              authenticate, log in, log out, change password,
+                                       account status, access permission, last login time        activate account, deactivate account, grant
+                                                                                                 permission, revoke permission, update permission
+
+2        Member                        member identifier, full name, contact information,        register, submit application, update application,
+                                       photograph, date of birth, application status,            view status, verify information, request correction,
+                                       verification status, registration payment status,         record payment, activate membership, generate
+                                       membership number, membership status, QR code,            membership number, generate QR code, issue card,
+                                       membership card, registration date, membership            update profile, pay fee, donate, register for event,
+                                       start date                                                view histories, view activities, view content
+
+3        YogaInstructor                instructor identifier, full name, contact information,    create content, update content, add pose
+                                       expertise, yoga pose, instruction, difficulty, risk,      instruction, set difficulty, add risk, add precaution,
+                                       precaution, video                                         attach demonstration video, submit content
+
+4        ExecutiveCommitteeMember      committee member identifier, member, committee            verify member information, request correction,
+                                       term, committee status, member application,               record QR attendance, record manual attendance,
+                                       attendance, summary, system permission                    generate summary, view directory, manage
+                                                                                                 committee term, access administration
+
+5        President                     president role, committee term, financial report,         review report, review attendance, monitor
+                                       attendance summary, committee activity, club              committee, supervise operation
+                                       operation
+
+6        Secretary                     secretary role, committee term, committee record,         maintain record, coordinate schedule, review
+                                       schedule, attendance summary, administrative              attendance, monitor administration
+                                       activity
+
+7        Treasurer                     treasurer role, membership application,                   receive application, maintain membership record,
+                                       membership record, payment, donation, income,             record payment, record donation, record income,
+                                       expense, balance, financial report                        record expense, verify gateway payment, generate
+                                                                                                 report
+
+8        PublicitySecretary            publicity role, notice, announcement, activity post,      create post, publish notice, publish activity media,
+                                       media, attachment, audience, visibility                   update post, archive post
+
+9        CulturalSecretary             cultural role, event, registration, participant, event    create event, update event, open registration,
+                                       instruction, event publicity                              manage participant, coordinate event
+
+10       FieldEquipmentSecretary       field role, equipment, availability, assignment,          add equipment, update equipment, check
+                                       return, operational task, assignee, progress              availability, assign equipment, record return, create
+                                                                                                 task, assign task, update progress
+
+11       Activity                      activity identifier, title, date, start time, location,   schedule, reschedule, cancel, add organizer, record
+                                       status, organizer, participant, attendance entry          attendance, summarize attendance, list participant
+
+12       YogaSession                   session, instructor, duration, regular-session status,    assign instructor, open session, close session,
+                                       schedule                                                  publish schedule
+
+13       Event                         event type, description, instruction, registration        open registration, register member, remove
+                                       status, registered member, participation                  registration, close registration, publish participation
+                                       information                                               information
+
+14       FinancialManagement           membership payment, donation, income entry,               record payment, record donation, record income,
+                                       expense entry, balance, report, payment history,          record expense, calculate balance, reconcile
+                                       donation history                                          transaction, generate report, retrieve history
+
+15       PaymentGateway                gateway name, supported method, availability,             process payment, verify transaction, confirm
+                                       payment request, transaction reference,                   payment, obtain status
+                                       transaction status, confirmation
+
+16       MediaPost                     post identifier, post type, title, body, attachment,      create, update, publish, set audience, attach media,
+                                       visibility, audience, publish date, related activity      archive, link activity
+
+17       YogaContent                   content identifier, content type, title, instruction,     create, update, add instruction, set difficulty, add
+                                       difficulty, risk, precaution, video reference,            risk, add precaution, attach video, submit, approve,
+                                       visibility, approval status, author                       publish, search
+
+18       VajraAssistant                approved content source, question, interpreted            interpret question, search approved content,
+                                       topic, answer, suggestion, safety disclaimer              generate answer, suggest related content, attach
+                                                                                                 safety disclaimer
+
+19       InventoryManagement           equipment catalogue, availability record,                 add equipment, update equipment, remove
+                                       equipment assignment, operational task, task              equipment, check availability, assign equipment,
+                                       assignee, progress record, return record                  record return, create task, assign task, update
+                                                                                                 progress, close task
+
+
+
+
+Class-based analysis documentation                                                                                                                        13
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+5. Attribute Selection
+Attributes are selected from the associated nouns and refined to avoid duplication. Subclasses inherit
+shared attributes from their superclasses. Collection-like attributes represent contained records without
+creating unnecessary standalone classes at this high level.
+
+                                       Table 8: Attribute Selection of Classes
+
+ No.      Class                            Selected attributes
+
+ 1        UserAccount                      accountId
+                                           username
+                                           passwordHash
+                                           accountStatus
+                                           accessPermissions
+                                           lastLoginAt
+
+ 2        Member                           memberId
+                                           fullName
+                                           contactInformation
+                                           photograph
+                                           dateOfBirth
+                                           applicationStatus
+                                           verificationStatus
+                                           registrationPaymentStatus
+                                           membershipNumber
+                                           membershipStatus
+                                           qrCode
+                                           cardInformation
+                                           registrationDate
+                                           membershipStartDate
+                                           account
+
+ 3        YogaInstructor                   instructorId
+                                           fullName
+                                           contactInformation
+                                           expertise
+                                           account
+                                           authoredContent
+
+ 4        ExecutiveCommitteeMember         committeeMemberId
+                                           member
+                                           termStartDate
+                                           termEndDate
+                                           committeeStatus
+                                           account
+                                           assignedPermissions
+
+ 5        President                        inherits ExecutiveCommitteeMember attributes
+                                           oversightNotes
+
+ 6        Secretary                        inherits ExecutiveCommitteeMember attributes
+                                           committeeRecords
+                                           coordinatedSchedules
+
+ 7        Treasurer                        inherits ExecutiveCommitteeMember attributes
+                                           receivedApplications
+                                           managedFinancialRecords
+
+ 8        PublicitySecretary               inherits ExecutiveCommitteeMember attributes
+                                           managedPosts
+
+ 9        CulturalSecretary                inherits ExecutiveCommitteeMember attributes
+                                           managedEvents
+
+ 10       FieldEquipmentSecretary          inherits ExecutiveCommitteeMember attributes
+                                           managedEquipment
+                                           managedTasks
+
+ 11       Activity                         activityId
+                                           title
+                                           activityDate
+                                           startTime
+                                           location
+                                           status
+                                           organizers
+                                           participants
+                                           attendanceEntries
+
+
+
+
+Class-based analysis documentation                                                                     14
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+ No.      Class                            Selected attributes
+
+ 12       YogaSession                      inherits Activity attributes
+                                           instructor
+                                           duration
+                                           regularSession
+
+ 13       Event                            inherits Activity attributes
+                                           eventType
+                                           description
+                                           instructions
+                                           registrationRequired
+                                           registrationOpen
+                                           registeredMembers
+                                           participationInformation
+
+ 14       FinancialManagement              membershipPayments
+                                           donations
+                                           incomeEntries
+                                           expenseEntries
+                                           currentBalance
+                                           generatedReports
+
+ 15       PaymentGateway                   gatewayName
+                                           supportedMethods
+                                           availability
+                                           transactionReferences
+                                           lastGatewayResponse
+
+ 16       MediaPost                        postId
+                                           postType
+                                           title
+                                           body
+                                           attachments
+                                           visibility
+                                           targetAudience
+                                           publishDate
+                                           relatedActivity
+                                           archiveStatus
+
+ 17       YogaContent                      contentId
+                                           contentType
+                                           title
+                                           instructions
+                                           difficultyLevel
+                                           risks
+                                           precautions
+                                           videoReference
+                                           visibility
+                                           approvalStatus
+                                           author
+                                           createdAt
+                                           updatedAt
+
+ 18       VajraAssistant                   approvedContentSource
+                                           currentQuestion
+                                           interpretedTopic
+                                           generatedAnswer
+                                           suggestions
+                                           safetyDisclaimer
+
+ 19       InventoryManagement              equipmentCatalogue
+                                           availabilityRecords
+                                           equipmentAssignments
+                                           returnRecords
+                                           operationalTasks
+                                           taskAssignees
+                                           progressRecords
+
+
+
+
+Class-based analysis documentation                                        15
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+6. Method Identification
+Methods are derived from associated verbs and assigned to the class that owns the required information.
+The method list describes domain behaviour; validation and persistence helpers are intentionally omitted.
+
+                                              Table 9: Methods of Classes
+
+ No.      Class                            Identified methods
+
+ 1        UserAccount                      authenticate()
+                                           login()
+                                           logout()
+                                           changePassword()
+                                           activateAccount()
+                                           deactivateAccount()
+                                           grantPermission()
+                                           revokePermission()
+                                           updatePermissions()
+
+ 2        Member                           static registerForMembership()
+                                           submitApplication()
+                                           updateApplication()
+                                           viewApplicationStatus()
+                                           markInformationVerified()
+                                           requestApplicationCorrection()
+                                           recordRegistrationPayment()
+                                           activateMembership()
+                                           generateMembershipNumber()
+                                           generateQRCode()
+                                           issueMembershipCard()
+                                           updateProfile()
+                                           payFee()
+                                           donate()
+                                           registerForEvent()
+                                           viewPaymentHistory()
+                                           viewDonationHistory()
+                                           viewUpcomingActivities()
+                                           viewYogaContent()
+
+ 3        YogaInstructor                   createYogaContent()
+                                           updateYogaContent()
+                                           addPoseInstructions()
+                                           setDifficultyLevel()
+                                           addRiskAndPrecaution()
+                                           attachDemonstrationVideo()
+                                           submitContentForApproval()
+                                           viewAssignedSessions()
+
+ 4        ExecutiveCommitteeMember         verifyMemberInformation()
+                                           requestMemberCorrection()
+                                           recordAttendanceByQR()
+                                           recordAttendanceManually()
+                                           generateAttendanceSummary()
+                                           viewMemberDirectory()
+                                           manageCommitteeTerm()
+                                           createActivity()
+                                           updateActivity()
+
+ 5        President                        reviewFinancialReport()
+                                           reviewAttendanceSummary()
+                                           monitorCommitteeActivities()
+                                           superviseClubOperations()
+
+ 6        Secretary                        maintainCommitteeRecord()
+                                           coordinateSchedule()
+                                           reviewAttendanceSummary()
+                                           monitorAdministrativeActivities()
+
+ 7        Treasurer                        receiveMembershipApplication()
+                                           maintainMembershipRecord()
+                                           recordMembershipPayment()
+                                           recordDonation()
+                                           recordIncome()
+                                           recordExpense()
+                                           generateFinancialReport()
+                                           verifyGatewayPayment()
+                                           identifyOverdueMemberships()
+
+
+
+
+Class-based analysis documentation                                                                     16
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+ No.      Class                            Identified methods
+
+ 8        PublicitySecretary               createMediaPost()
+                                           publishNotice()
+                                           publishActivityMedia()
+                                           updatePost()
+                                           archivePost()
+                                           setTargetAudience()
+
+ 9        CulturalSecretary                createEvent()
+                                           updateEvent()
+                                           openEventRegistration()
+                                           manageParticipants()
+                                           coordinateEvent()
+                                           closeEventRegistration()
+
+ 10       FieldEquipmentSecretary          addEquipment()
+                                           updateEquipment()
+                                           checkAvailability()
+                                           assignEquipment()
+                                           recordReturn()
+                                           createOperationalTask()
+                                           assignTask()
+                                           updateTaskProgress()
+
+ 11       Activity                         schedule()
+                                           reschedule()
+                                           cancel()
+                                           addOrganizer()
+                                           recordAttendance()
+                                           recordManualAttendance()
+                                           generateAttendanceSummary()
+                                           listParticipants()
+
+ 12       YogaSession                      assignInstructor()
+                                           openSession()
+                                           closeSession()
+                                           publishSessionSchedule()
+
+ 13       Event                            openRegistration()
+                                           registerMember()
+                                           removeRegistration()
+                                           closeRegistration()
+                                           publishParticipationInformation()
+                                           listRegisteredMembers()
+
+ 14       FinancialManagement              recordPayment()
+                                           recordDonation()
+                                           recordIncome()
+                                           recordExpense()
+                                           calculateBalance()
+                                           reconcileTransaction()
+                                           generateFinancialReport()
+                                           getPaymentHistory()
+                                           getDonationHistory()
+                                           identifyOverdueMemberships()
+
+ 15       PaymentGateway                   processPayment()
+                                           verifyTransaction()
+                                           confirmPayment()
+                                           getTransactionStatus()
+                                           mapGatewayResponse()
+
+ 16       MediaPost                        create()
+                                           update()
+                                           publish()
+                                           setAudience()
+                                           attachMedia()
+                                           archive()
+                                           linkActivity()
+
+ 17       YogaContent                      create()
+                                           update()
+                                           addInstructions()
+                                           setDifficulty()
+                                           addRisk()
+                                           addPrecaution()
+                                           attachVideo()
+                                           submitForApproval()
+                                           approve()
+                                           publish()
+                                           search()
+
+
+
+
+Class-based analysis documentation                                             17
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+ No.      Class                            Identified methods
+
+ 18       VajraAssistant                   interpretQuestion()
+                                           searchApprovedContent()
+                                           generateAnswer()
+                                           suggestRelatedContent()
+                                           attachSafetyDisclaimer()
+                                           clearConversationContext()
+
+ 19       InventoryManagement              addEquipment()
+                                           updateEquipment()
+                                           removeEquipment()
+                                           checkAvailability()
+                                           assignEquipment()
+                                           recordReturn()
+                                           createTask()
+                                           assignTask()
+                                           updateTaskProgress()
+                                           closeTask()
+
+
+
+
+Class-based analysis documentation                                      18
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+7. Finalizing Classes
+The selected classes are finalized by checking responsibility placement, inheritance opportunities and
+unnecessary duplication. The following decisions produce the final high-level class model.
+
+1. Authentication separation. Account credentials, status and permission behaviour are centralized in
+UserAccount. Member, YogaInstructor and ExecutiveCommitteeMember collaborate with it instead of
+duplicating authentication data.
+
+2. Membership lifecycle. Applicant, MembershipRegistration and MembershipApplication are not retained
+as separate classes. Member represents both pending and active membership states. The static method
+Member.registerForMembership(...) creates a pending member and stores the submitted information.
+
+3. Verification rule. The Treasurer receives the application and an ExecutiveCommitteeMember verifies its
+information. There is no separate formal approval operation. Membership becomes active only after
+verification and successful registration payment.
+
+4. Committee hierarchy. ExecutiveCommitteeMember is a concrete superclass representing general
+executive members. President, Secretary, Treasurer, PublicitySecretary, CulturalSecretary and
+FieldEquipmentSecretary specialize it because they have distinct permissions and methods.
+
+5. Activity hierarchy. Activity is abstract and contains shared schedule, organizer, participant and
+attendance behaviour. YogaSession and Event are its concrete subclasses.
+
+6. Attendance placement. Attendance and AttendanceRecord are absorbed into Activity as
+attendanceEntries and attendance operations. A separate Attendance class would duplicate the activity
+context.
+
+7. Event participation. EventParticipation and EventRegistration        are   absorbed   into   Event   as
+registeredMembers, participationInformation and registration methods.
+
+8. Financial consolidation. FinancialTransaction, payment, donation, income, expense and reports are
+maintained by FinancialManagement. PaymentGateway remains separate because it represents the
+external payment boundary.
+
+9. Communication consolidation. Notice, announcement, activity post and event media share publication
+attributes and operations and are therefore merged into MediaPost.
+
+10. Yoga knowledge consolidation. Pose information, instructions, risks, precautions and videos are
+consolidated in YogaContent. VajraAssistant remains separate because it provides conversational retrieval
+and safety guidance.
+
+11. Inventory consolidation. Equipment, assignments, returns, operational tasks and helping-hand
+assignee information are maintained by InventoryManagement. Task and HelpingHand are not
+independent classes in this high-level model.
+
+12. Presentation and automation. MemberDashboard, SystemAppearance and general SystemAutomation
+are boundary or presentation behaviours. They do not represent independent domain classes.
+
+
+Final class count: 19.
+
+UserAccount, Member, YogaInstructor, ExecutiveCommitteeMember, President, Secretary, Treasurer,
+PublicitySecretary, CulturalSecretary, FieldEquipmentSecretary,   Activity,   YogaSession,  Event,
+FinancialManagement, PaymentGateway, MediaPost, YogaContent, VajraAssistant, InventoryManagement
+
+
+
+
+Class-based analysis documentation                                                                      19
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+8. Class Cards
+Each class card records the selected attributes and methods, followed by the class responsibilities and
+principal collaborators. The format follows the reference document while retaining the detailed domain
+model developed above.
+
+                                        Table 10: Class Card of UserAccount
+
+
+                                                    UserAccount
+ Attributes                                                    Methods
+ accountId                                                     authenticate()
+ username                                                      login()
+ passwordHash                                                  logout()
+ accountStatus                                                 changePassword()
+ accessPermissions                                             activateAccount()
+ lastLoginAt                                                   deactivateAccount()
+                                                               grantPermission()
+                                                               revokePermission()
+                                                               updatePermissions()
+
+ Responsibilities                                              Collaborative Classes
+
+ Authenticate users                                            Member
+ Maintain account status                                       YogaInstructor
+ Enforce role-based access                                     ExecutiveCommitteeMember
+
+
+
+
+Class-based analysis documentation                                                                   20
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+                                           Table 11: Class Card of Member
+
+
+                                                        Member
+ Attributes                                                    Methods
+ memberId                                                      static registerForMembership()
+ fullName                                                      submitApplication()
+ contactInformation                                            updateApplication()
+ photograph                                                    viewApplicationStatus()
+ dateOfBirth                                                   markInformationVerified()
+ applicationStatus                                             requestApplicationCorrection()
+ verificationStatus                                            recordRegistrationPayment()
+ registrationPaymentStatus                                     activateMembership()
+ membershipNumber                                              generateMembershipNumber()
+ membershipStatus                                              generateQRCode()
+ qrCode                                                        issueMembershipCard()
+ cardInformation                                               updateProfile()
+ registrationDate                                              payFee()
+ membershipStartDate                                           donate()
+ account                                                       registerForEvent()
+                                                               viewPaymentHistory()
+                                                               viewDonationHistory()
+                                                               viewUpcomingActivities()
+                                                               viewYogaContent()
+
+ Responsibilities                                              Collaborative Classes
+
+ Register for membership                                       UserAccount
+ Maintain member identity and status                           ExecutiveCommitteeMember
+ Make payments and donations                                   Activity
+ Participate in events                                         Event
+ Access member information                                     FinancialManagement
+                                                               YogaContent
+
+
+
+
+Class-based analysis documentation                                                              21
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+                                       Table 12: Class Card of YogaInstructor
+
+
+                                                  YogaInstructor
+ Attributes                                                    Methods
+ instructorId                                                  createYogaContent()
+ fullName                                                      updateYogaContent()
+ contactInformation                                            addPoseInstructions()
+ expertise                                                     setDifficultyLevel()
+ account                                                       addRiskAndPrecaution()
+ authoredContent                                               attachDemonstrationVideo()
+                                                               submitContentForApproval()
+                                                               viewAssignedSessions()
+
+ Responsibilities                                              Collaborative Classes
+
+ Provide yoga instruction                                      UserAccount
+ Author safe yoga content                                      YogaSession
+ Maintain professional information                             YogaContent
+
+
+
+
+Class-based analysis documentation                                                          22
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+                                Table 13: Class Card of ExecutiveCommitteeMember
+
+
+                                      ExecutiveCommitteeMember
+ Attributes                                                    Methods
+ committeeMemberId                                             verifyMemberInformation()
+ member                                                        requestMemberCorrection()
+ termStartDate                                                 recordAttendanceByQR()
+ termEndDate                                                   recordAttendanceManually()
+ committeeStatus                                               generateAttendanceSummary()
+ account                                                       viewMemberDirectory()
+ assignedPermissions                                           manageCommitteeTerm()
+                                                               createActivity()
+                                                               updateActivity()
+
+ Responsibilities                                              Collaborative Classes
+
+ Verify applicant information                                  UserAccount
+ Perform common committee administration                       Member
+ Record attendance                                             Activity
+ Maintain committee term and access                            FinancialManagement
+                                                               MediaPost
+                                                               InventoryManagement
+
+
+
+
+Class-based analysis documentation                                                           23
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+                                           Table 14: Class Card of President
+
+
+                                                      President
+ Attributes                                                    Methods
+ inherits ExecutiveCommitteeMember attributes                  reviewFinancialReport()
+ oversightNotes                                                reviewAttendanceSummary()
+                                                               monitorCommitteeActivities()
+                                                               superviseClubOperations()
+
+ Responsibilities                                              Collaborative Classes
+
+ Supervise club operation                                      ExecutiveCommitteeMember
+ Review organizational and financial summaries                 FinancialManagement
+                                                               Activity
+                                                               Secretary
+
+
+
+
+Class-based analysis documentation                                                            24
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+                                          Table 15: Class Card of Secretary
+
+
+                                                      Secretary
+ Attributes                                                    Methods
+ inherits ExecutiveCommitteeMember attributes                  maintainCommitteeRecord()
+ committeeRecords                                              coordinateSchedule()
+ coordinatedSchedules                                          reviewAttendanceSummary()
+                                                               monitorAdministrativeActivities()
+
+ Responsibilities                                              Collaborative Classes
+
+ Maintain committee records                                    ExecutiveCommitteeMember
+ Coordinate schedules                                          President
+ Support organizational supervision                            Activity
+
+
+
+
+Class-based analysis documentation                                                                 25
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+                                             Table 16: Class Card of Treasurer
+
+
+                                                      Treasurer
+ Attributes                                                    Methods
+ inherits ExecutiveCommitteeMember attributes                  receiveMembershipApplication()
+ receivedApplications                                          maintainMembershipRecord()
+ managedFinancialRecords                                       recordMembershipPayment()
+                                                               recordDonation()
+                                                               recordIncome()
+                                                               recordExpense()
+                                                               generateFinancialReport()
+                                                               verifyGatewayPayment()
+                                                               identifyOverdueMemberships()
+
+ Responsibilities                                              Collaborative Classes
+
+ Receive membership applications                               ExecutiveCommitteeMember
+ Maintain membership and financial records                     Member
+ Submit financial reports                                      FinancialManagement
+                                                               PaymentGateway
+                                                               President
+                                                               Secretary
+
+
+
+
+Class-based analysis documentation                                                              26
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+                                        Table 17: Class Card of PublicitySecretary
+
+
+                                                PublicitySecretary
+ Attributes                                                    Methods
+ inherits ExecutiveCommitteeMember attributes                  createMediaPost()
+ managedPosts                                                  publishNotice()
+                                                               publishActivityMedia()
+                                                               updatePost()
+                                                               archivePost()
+                                                               setTargetAudience()
+
+ Responsibilities                                              Collaborative Classes
+
+ Publish official communication                                ExecutiveCommitteeMember
+ Manage activity media and visibility                          MediaPost
+                                                               Activity
+                                                               Event
+
+
+
+
+Class-based analysis documentation                                                        27
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+                                        Table 18: Class Card of CulturalSecretary
+
+
+                                                CulturalSecretary
+ Attributes                                                    Methods
+ inherits ExecutiveCommitteeMember attributes                  createEvent()
+ managedEvents                                                 updateEvent()
+                                                               openEventRegistration()
+                                                               manageParticipants()
+                                                               coordinateEvent()
+                                                               closeEventRegistration()
+
+ Responsibilities                                              Collaborative Classes
+
+ Create cultural and special events                            ExecutiveCommitteeMember
+ Manage registration and participants                          Event
+ Coordinate event operations                                   Member
+                                                               FinancialManagement
+                                                               MediaPost
+
+
+
+
+Class-based analysis documentation                                                        28
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+                                     Table 19: Class Card of FieldEquipmentSecretary
+
+
+                                           FieldEquipmentSecretary
+ Attributes                                                    Methods
+ inherits ExecutiveCommitteeMember attributes                  addEquipment()
+ managedEquipment                                              updateEquipment()
+ managedTasks                                                  checkAvailability()
+                                                               assignEquipment()
+                                                               recordReturn()
+                                                               createOperationalTask()
+                                                               assignTask()
+                                                               updateTaskProgress()
+
+ Responsibilities                                              Collaborative Classes
+
+ Maintain equipment                                            ExecutiveCommitteeMember
+ Assign equipment to activities                                InventoryManagement
+ Coordinate operational tasks                                  Activity
+
+
+
+
+Class-based analysis documentation                                                        29
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+                                            Table 20: Class Card of Activity
+
+
+                                                        Activity
+ Attributes                                                    Methods
+ activityId                                                    schedule()
+ title                                                         reschedule()
+ activityDate                                                  cancel()
+ startTime                                                     addOrganizer()
+ location                                                      recordAttendance()
+ status                                                        recordManualAttendance()
+ organizers                                                    generateAttendanceSummary()
+ participants                                                  listParticipants()
+ attendanceEntries
+
+ Responsibilities                                              Collaborative Classes
+
+ Provide common activity schedule                              Member
+ Maintain attendance and participants                          ExecutiveCommitteeMember
+ Support activity lifecycle                                    MediaPost
+                                                               FinancialManagement
+                                                               InventoryManagement
+
+
+
+
+Class-based analysis documentation                                                           30
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+                                           Table 21: Class Card of YogaSession
+
+
+                                                    YogaSession
+ Attributes                                                    Methods
+ inherits Activity attributes                                  assignInstructor()
+ instructor                                                    openSession()
+ duration                                                      closeSession()
+ regularSession                                                publishSessionSchedule()
+
+ Responsibilities                                              Collaborative Classes
+
+ Represent a scheduled yoga session                            Activity
+ Connect instructor and session schedule                       YogaInstructor
+                                                               Member
+
+
+
+
+Class-based analysis documentation                                                        31
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+                                             Table 22: Class Card of Event
+
+
+                                                          Event
+ Attributes                                                    Methods
+ inherits Activity attributes                                  openRegistration()
+ eventType                                                     registerMember()
+ description                                                   removeRegistration()
+ instructions                                                  closeRegistration()
+ registrationRequired                                          publishParticipationInformation()
+ registrationOpen                                              listRegisteredMembers()
+ registeredMembers
+ participationInformation
+
+ Responsibilities                                              Collaborative Classes
+
+ Represent cultural or special events                          Activity
+ Manage event registration                                     Member
+ Maintain participant information                              CulturalSecretary
+                                                               MediaPost
+                                                               FinancialManagement
+
+
+
+
+Class-based analysis documentation                                                                 32
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+                                     Table 23: Class Card of FinancialManagement
+
+
+                                            FinancialManagement
+ Attributes                                                    Methods
+ membershipPayments                                            recordPayment()
+ donations                                                     recordDonation()
+ incomeEntries                                                 recordIncome()
+ expenseEntries                                                recordExpense()
+ currentBalance                                                calculateBalance()
+ generatedReports                                              reconcileTransaction()
+                                                               generateFinancialReport()
+                                                               getPaymentHistory()
+                                                               getDonationHistory()
+                                                               identifyOverdueMemberships()
+
+ Responsibilities                                              Collaborative Classes
+
+ Maintain financial entries                                    Member
+ Calculate totals and balance                                  Treasurer
+ Generate monthly and yearly reports                           President
+                                                               Secretary
+                                                               PaymentGateway
+                                                               Event
+
+
+
+
+Class-based analysis documentation                                                            33
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+                                        Table 24: Class Card of PaymentGateway
+
+
+                                                PaymentGateway
+ Attributes                                                    Methods
+ gatewayName                                                   processPayment()
+ supportedMethods                                              verifyTransaction()
+ availability                                                  confirmPayment()
+ transactionReferences                                         getTransactionStatus()
+ lastGatewayResponse                                           mapGatewayResponse()
+
+ Responsibilities                                              Collaborative Classes
+
+ Connect to external payment facility                          FinancialManagement
+ Verify and confirm online payments                            Treasurer
+                                                               Member
+
+
+
+
+Class-based analysis documentation                                                      34
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+                                          Table 25: Class Card of MediaPost
+
+
+                                                      MediaPost
+ Attributes                                                    Methods
+ postId                                                        create()
+ postType                                                      update()
+ title                                                         publish()
+ body                                                          setAudience()
+ attachments                                                   attachMedia()
+ visibility                                                    archive()
+ targetAudience                                                linkActivity()
+ publishDate
+ relatedActivity
+ archiveStatus
+
+ Responsibilities                                              Collaborative Classes
+
+ Represent notices and activity media                          PublicitySecretary
+ Control publication and audience                              Activity
+ Preserve previous posts                                       Event
+                                                               Member
+
+
+
+
+Class-based analysis documentation                                                     35
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+                                         Table 26: Class Card of YogaContent
+
+
+                                                    YogaContent
+ Attributes                                                    Methods
+ contentId                                                     create()
+ contentType                                                   update()
+ title                                                         addInstructions()
+ instructions                                                  setDifficulty()
+ difficultyLevel                                               addRisk()
+ risks                                                         addPrecaution()
+ precautions                                                   attachVideo()
+ videoReference                                                submitForApproval()
+ visibility                                                    approve()
+ approvalStatus                                                publish()
+ author                                                        search()
+ createdAt
+ updatedAt
+
+ Responsibilities                                              Collaborative Classes
+
+ Store approved yoga knowledge                                 YogaInstructor
+ Maintain instructions and safety information                  VajraAssistant
+ Provide searchable public or member content                   Member
+
+
+
+
+Class-based analysis documentation                                                     36
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+                                       Table 27: Class Card of VajraAssistant
+
+
+                                                  VajraAssistant
+ Attributes                                                    Methods
+ approvedContentSource                                         interpretQuestion()
+ currentQuestion                                               searchApprovedContent()
+ interpretedTopic                                              generateAnswer()
+ generatedAnswer                                               suggestRelatedContent()
+ suggestions                                                   attachSafetyDisclaimer()
+ safetyDisclaimer                                              clearConversationContext()
+
+ Responsibilities                                              Collaborative Classes
+
+ Answer yoga questions from approved content                   YogaContent
+ Recommend learning material                                   Member
+ Present safety guidance without diagnosis                     YogaInstructor
+
+
+
+
+Class-based analysis documentation                                                          37
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+                                     Table 28: Class Card of InventoryManagement
+
+
+                                            InventoryManagement
+ Attributes                                                    Methods
+ equipmentCatalogue                                            addEquipment()
+ availabilityRecords                                           updateEquipment()
+ equipmentAssignments                                          removeEquipment()
+ returnRecords                                                 checkAvailability()
+ operationalTasks                                              assignEquipment()
+ taskAssignees                                                 recordReturn()
+ progressRecords                                               createTask()
+                                                               assignTask()
+                                                               updateTaskProgress()
+                                                               closeTask()
+
+ Responsibilities                                              Collaborative Classes
+
+ Maintain inventory and availability                           FieldEquipmentSecretary
+ Assign equipment to activities                                Activity
+ Maintain operational tasks and assignees                      FinancialManagement
+
+
+
+
+Class-based analysis documentation                                                       38
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+
+9. CRC Diagram
+Each figure is centered on one class and shows every collaborator identified in its class card.
+
+
+Ref: Table 10
+
+Name: UserAccount
+
+
+
+
+                                                              Member
+
+
+
+
+                                                       Authenticates and provides
+                                                            member access
+
+
+
+
+                                                          UserAccount
+
+
+
+
+                         Authenticates and provides                                 Authenticates and controls
+                             instructor access                                          committee access
+
+
+
+
+         YogaInstructor                                                                            ExecutiveCommitteeMember
+
+
+
+
+                                                      Fig crc.1: UserAccount
+
+
+
+
+Class-based analysis documentation                                                                                        39
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+
+Ref: Table 11
+
+Name: Member
+
+
+
+
+                UserAccount                                                                ExecutiveCommitteeMember
+
+
+
+
+                         Authenticates and accesses the                       Submits membership data and
+                               member account                                     receives verification
+
+
+
+
+                            Views activities and
+                          contributes participation                                  Registers for events
+                                  records
+
+                                                              Member
+
+        Activity                                                                                                   Event
+
+
+
+
+                         Makes payments or donations and
+                                                                              Views approved yoga content
+                                  views history
+
+
+
+
+           FinancialManagement                                                                       YogaContent
+
+
+
+
+                                                          Fig crc.2: Member
+
+
+
+
+Class-based analysis documentation                                                                                         40
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+
+Ref: Table 12
+
+Name: YogaInstructor
+
+
+
+
+                                                             UserAccount
+
+
+
+
+                                                         Authenticates and accesses
+                                                             instructor functions
+
+
+
+
+                                                          YogaInstructor
+
+
+
+
+                      Receives assignments and views                                  Creates, updates and submits
+                             assigned sessions                                                yoga content
+
+
+
+
+          YogaSession                                                                                           YogaContent
+
+
+
+
+                                                       Fig crc.3: YogaInstructor
+
+
+
+
+Class-based analysis documentation                                                                                            41
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+
+Ref: Table 13
+
+Name: ExecutiveCommitteeMember
+
+
+
+
+                UserAccount                                                                       Member
+
+
+
+
+                           Authenticates and receives                 Verifies member information or
+                               committee access                              requests correction
+
+
+
+
+                        Creates activities and records                   Records and reviews financial
+                                 attendance                                      information
+
+
+                                                ExecutiveCommitteeMember
+
+        Activity                                                                                       FinancialManagement
+
+
+
+
+                           Publishes notices and activity               Manages equipment and
+                                      media                                operational tasks
+
+
+
+
+                   MediaPost                                                           InventoryManagement
+
+
+
+
+                                            Fig crc.4: ExecutiveCommitteeMember
+
+
+
+
+Class-based analysis documentation                                                                                      42
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+
+Ref: Table 14
+
+Name: President
+
+
+
+
+                                                  ExecutiveCommitteeMember
+
+
+
+
+                                                       Provides common committee
+                                                          access and operations
+
+
+
+
+                                                                                 Reviews attendance and monitors
+                           Reviews financial reports
+                                                                                             activities
+
+
+
+
+  FinancialManagement                                        President                                             Activity
+
+
+
+
+                                                       Coordinates supervision and
+                                                            committee work
+
+
+
+
+                                                             Secretary
+
+
+
+
+                                                       Fig crc.5: President
+
+
+
+
+Class-based analysis documentation                                                                                            43
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+
+Ref: Table 15
+
+Name: Secretary
+
+
+
+
+                                                    ExecutiveCommitteeMember
+
+
+
+
+                                                       Provides common committee
+                                                          access and operations
+
+
+
+
+                                                            Secretary
+
+
+
+
+                         Coordinates supervision,                                  Manages schedules and
+                          records and reporting                                    attendance summaries
+
+
+
+
+            President                                                                                      Activity
+
+
+
+
+                                                        Fig crc.6: Secretary
+
+
+
+
+Class-based analysis documentation                                                                                    44
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+
+Ref: Table 16
+
+Name: Treasurer
+
+
+
+
+      ExecutiveCommitteeMember                                                                                   Member
+
+
+
+
+                          Provides common committee                                 Receives applications and
+                             access and operations                                maintains membership records
+
+
+
+
+                          Records transactions and                                    Verifies external payment
+                             generates reports                                                  results
+
+
+                                                               Treasurer
+
+FinancialManagement                                                                                                PaymentGateway
+
+
+
+
+                           Submits financial reports for                          Shares financial records and
+                                      review                                                 reports
+
+
+
+
+                  President                                                                                 Secretary
+
+
+
+
+                                                           Fig crc.7: Treasurer
+
+
+
+
+Class-based analysis documentation                                                                                                  45
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+
+Ref: Table 17
+
+Name: PublicitySecretary
+
+
+
+
+                                                  ExecutiveCommitteeMember
+
+
+
+
+                                                           Provides common committee
+                                                              access and operations
+
+
+
+
+                         Creates, publishes and archives                                 Publishes session and activity
+                                      posts                                                       information
+
+
+
+
+         MediaPost                                         PublicitySecretary                                             Activity
+
+
+
+
+                                                           Manages event publicity and
+                                                                    media
+
+
+
+
+                                                                    Event
+
+
+
+
+                                                   Fig crc.8: PublicitySecretary
+
+
+
+
+Class-based analysis documentation                                                                                                   46
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+
+Ref: Table 18
+
+Name: CulturalSecretary
+
+
+
+
+      ExecutiveCommitteeMember                                                                                      Event
+
+
+
+
+                           Provides common committee                                 Creates and manages cultural
+                              access and operations                                             events
+
+
+
+
+                                                       CulturalSecretary
+
+
+
+                                                                                           Coordinates event-related
+                       Manages event participants
+                                                                                               financial matters
+
+
+
+
+         Member                                                                                                     FinancialManagement
+
+
+
+
+                                                       Coordinates event publicity
+
+
+
+
+                                                             MediaPost
+
+
+
+
+                                                    Fig crc.9: CulturalSecretary
+
+
+
+
+Class-based analysis documentation                                                                                                    47
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+
+Ref: Table 19
+
+Name: FieldEquipmentSecretary
+
+
+
+
+                                                   ExecutiveCommitteeMember
+
+
+
+
+                                                      Provides common committee
+                                                         access and operations
+
+
+
+
+                                                   FieldEquipmentSecretary
+
+
+
+
+                         Maintains equipment and                                  Assigns equipment and support
+                            operational tasks                                              to activities
+
+
+
+
+     InventoryManagement                                                                                          Activity
+
+
+
+
+                                            Fig crc.10: FieldEquipmentSecretary
+
+
+
+
+Class-based analysis documentation                                                                                           48
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+
+Ref: Table 20
+
+Name: Activity
+
+
+
+
+                  Member                                                                            ExecutiveCommitteeMember
+
+
+
+
+                             Records participation and                                 Receives creation, scheduling
+                                   attendance                                            and attendance updates
+
+
+
+
+                                                                Activity
+
+
+
+                      Supplies publishable activity                                        Supplies event-related payment
+                              information                                                            information
+
+
+
+
+       MediaPost                                                                                                       FinancialManagement
+
+
+
+
+                                                         Requests equipment and task
+                                                                   support
+
+
+
+
+                                                         InventoryManagement
+
+
+
+
+                                                          Fig crc.11: Activity
+
+
+
+
+Class-based analysis documentation                                                                                                       49
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+
+Ref: Table 21
+
+Name: YogaSession
+
+
+
+
+                                                              Activity
+
+
+
+
+                                                       Provides common schedule,
+                                                       participant and attendance
+                                                                behavior
+
+
+
+
+                                                          YogaSession
+
+
+
+
+                         Assigns the instructor and                                    Allows members to view
+                         exposes assigned sessions                                  schedules and attend sessions
+
+
+
+
+         YogaInstructor                                                                                             Member
+
+
+
+
+                                                      Fig crc.12: YogaSession
+
+
+
+
+Class-based analysis documentation                                                                                           50
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+
+Ref: Table 22
+
+Name: Event
+
+
+
+
+                  Activity                                                                                     Member
+
+
+
+
+                             Provides common schedule,
+                             participant and attendance                               Registers participants
+                                      behavior
+
+
+
+
+                                                                   Event
+
+
+
+                                                                                       Publishes event publicity and
+                     Creates and manages the event
+                                                                                                  media
+
+
+
+
+   CulturalSecretary                                                                                                   MediaPost
+
+
+
+
+                                                            Maintains event-related
+                                                             financial information
+
+
+
+
+                                                          FinancialManagement
+
+
+
+
+                                                            Fig crc.13: Event
+
+
+
+
+Class-based analysis documentation                                                                                                 51
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+
+Ref: Table 23
+
+Name: FinancialManagement
+
+
+
+
+                  Member                                                                               Treasurer
+
+
+
+
+                          Records payments or donations                     Receives transaction entries
+                               and provides history                           and generates reports
+
+
+
+
+                         Provides financial reports for                      Provides financial records and
+                                     review                                            summaries
+
+
+                                                          FinancialManagement
+
+       President                                                                                                   Secretary
+
+
+
+
+                           Processes and verifies external                   Maintains event-related
+                                     payments                                 financial information
+
+
+
+
+              PaymentGateway                                                                               Event
+
+
+
+
+                                                  Fig crc.14: FinancialManagement
+
+
+
+
+Class-based analysis documentation                                                                                             52
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+
+Ref: Table 24
+
+Name: PaymentGateway
+
+
+
+
+                                                       FinancialManagement
+
+
+
+
+                                                       Returns payment processing and
+                                                              verification results
+
+
+
+
+                                                         PaymentGateway
+
+
+
+
+                        Provides payment results for                                    Accepts payment requests and
+                                verification                                                returns confirmation
+
+
+
+
+            Treasurer                                                                                                  Member
+
+
+
+
+                                                   Fig crc.15: PaymentGateway
+
+
+
+
+Class-based analysis documentation                                                                                              53
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+
+Ref: Table 25
+
+Name: MediaPost
+
+
+
+
+                                                         PublicitySecretary
+
+
+
+
+                                                          Receives post creation,
+                                                         publication and archiving
+                                                                  actions
+
+
+
+
+                            Presents activity-linked                                     Presents event publicity and
+                                 information                                                        media
+
+
+
+
+           Activity                                           MediaPost                                                 Event
+
+
+
+
+                                                       Provides audience-visible posts
+
+
+
+
+                                                                Member
+
+
+
+
+                                                       Fig crc.16: MediaPost
+
+
+
+
+Class-based analysis documentation                                                                                              54
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+
+Ref: Table 26
+
+Name: YogaContent
+
+
+
+
+                                                           YogaInstructor
+
+
+
+
+                                                         Receives content creation,
+                                                           updates and approval
+
+
+
+
+                                                           YogaContent
+
+
+
+
+                       Supplies approved content for                                  Provides approved content for
+                           search and answers                                              viewing and search
+
+
+
+
+         VajraAssistant                                                                                               Member
+
+
+
+
+                                                       Fig crc.17: YogaContent
+
+
+
+
+Class-based analysis documentation                                                                                             55
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+
+Ref: Table 27
+
+Name: VajraAssistant
+
+
+
+
+                                                             YogaContent
+
+
+
+
+                                                       Searches approved yoga content
+
+
+
+
+                                                           VajraAssistant
+
+
+
+
+                      Answers questions and suggests                                    Uses instructor-approved safety
+                            relevant material                                                      guidance
+
+
+
+
+             Member                                                                                               YogaInstructor
+
+
+
+
+                                                   Fig crc.18: VajraAssistant
+
+
+
+
+Class-based analysis documentation                                                                                                 56
+Class Based Modelling - Ramna Yoga Society Management System
+
+
+
+
+Ref: Table 28
+
+Name: InventoryManagement
+
+
+
+
+                                                      FieldEquipmentSecretary
+
+
+
+
+                                                        Receives inventory and task
+                                                           maintenance actions
+
+
+
+
+                                                      InventoryManagement
+
+
+
+
+                                                                                      Receives expense and
+                        Provides equipment and task
+                                                                                      helping-hand payment
+                                  support
+                                                                                            information
+
+
+
+
+             Activity                                                                                FinancialManagement
+
+
+
+
+                                              Fig crc.19: InventoryManagement
+
+
+
+
+Class-based analysis documentation                                                                                         57
+

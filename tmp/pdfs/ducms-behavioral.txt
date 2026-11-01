@@ -1,0 +1,239 @@
+              CHAPTER 7: BEHAVIORAL MODELING OF DUCMS
+
+
+7.1 STATE TRANSITION DIAGRAM
+
+State diagram represents active states for each class the events (triggers). For this we identified
+all the events, their initiators and collaborators.
+
+
+
+Identifying Events
+                                  Table 29: Event Identification
+
+   No      Events                                 Initiator                Collaborator
+   1       Input login credentials                Member                   Authentication
+   2       Input login credentials                CM                       Authentication
+   3       Request for login information          Authentication           Database
+   4       Request for two factor                 Authentication           Database
+           authentication
+   5       Log in information given               Database                 Authentication
+   6       Two factor authentication info         Database                 Authentication
+           given
+   7       Input PIN incorrect                    Authentication           -
+   8       Input PIN verified                     Authentication           -
+   9       Member logged in                       Authentication           Member
+   10      CM logged in                           Authentication           CM
+   11      Applied for registration/booking       Non-member               Application
+           space
+   12      Application info stored                Application              Registration
+   13      Application status checked             Registration             -
+   14      Request for member approval            Registration             Member
+   15      Approved by member                     Member                   Application
+   16      Application updated                    Application              Registration
+   17      Request for CM approval                Registration             CM
+   18      Applied for booking space              Member                   Application
+   19      Notified for payment                   Registration             Non-member
+   20      Payment verified                       Bank                     Registration
+   21      Notified CM for payment                Registration             CM
+           verification
+   22      Food item ordered                      Member                   -
+                                                                                   115 | P a g e
+23   Order cancelled                    Member           -
+24   Order submitted                    Member           Food
+25   Updated food information           Food             -
+26   Request for update transaction     Food             Database
+27   Request for update food rating     Member           Database
+28   Request for food detail            Member           Food
+29   Request for food detail            Food             Database
+30   Food detail given                  Database         Food
+31   Request for updating member info   Member           Database
+32   Request for checking expense       Member           Accounting
+     report
+33   Request for member expense         Accounting       Database
+     report
+34   Member expense report given        Database         Accounting
+35   Request for updating CM info       CM               Database
+36   Request for manager report         CM               Accounting
+37   Request for manager report         Accounting       Database
+38   Managerial report given            Database         Accounting
+39   Updating food detail               CM               Food
+40   Request for updating food detail   Food             Database
+41   Monthly report sent                Accounting       DUAD
+42   Option chosen                      Member           -
+43   Option chosen                      CM               -
+44   Logged in                          Authentication   Member
+45   Logged in                          Authentication   CM
+46   Logged out                         Member           -
+47   Logged out                         CM               -
+
+
+
+
+                                                                116 | P a g e
+Authentication
+
+
+
+
+                 Figure 46: State Transition Diagram – Authentication
+
+
+
+Registration
+
+
+
+
+                  Figure 47: State Transition Diagram – Registration
+
+
+
+
+                                                                        117 | P a g e
+Member
+
+
+
+     Login
+     request
+
+
+
+
+               Figure 48: State Transition Diagram – Member
+
+
+
+
+                                                              118 | P a g e
+Non Member
+
+
+
+
+             Figure 49: State Transition Diagram – Non Member
+
+
+
+Database
+
+
+
+
+              Figure 50: State Transition Diagram – Database
+
+
+
+
+                                                                119 | P a g e
+Club Manager
+
+
+
+
+               Figure 51: State Transition Diagram – Club Manager
+
+
+
+
+                                                                    120 | P a g e
+Food
+
+
+
+
+       Figure 52: State Transition Diagram – Food
+
+
+
+Bank
+
+
+
+
+       Figure 53: State Transition Diagram – Bank
+
+DUAD
+
+
+
+
+       Figure 54: State Transition Diagram – DUAD
+
+
+
+
+                                                    121 | P a g e
+Accounting
+
+
+
+
+              Figure 55: State Transition Diagram – Accounting
+
+
+
+
+Application
+
+
+
+
+              Figure 56: State Transition Diagram – Application
+
+
+
+
+                                                                  122 | P a g e
+7.2 SEQUENCE DIAGRAMS OF MODULES OF DUCMS
+
+
+
+
+                Figure 57: Sequence Diagram of Module-Sign in
+
+
+
+
+                                                                123 | P a g e
+Figure 58: Sequence Diagram of Module-Registration
+
+
+
+
+                                                     124 | P a g e
+Figure 59: Sequence Diagram of Module-Ordering Food
+
+
+
+
+                                                      125 | P a g e
+Figure 60: Sequence Diagram of Module-Booking Space
+
+
+
+
+                                                      126 | P a g e
+Figure 61: Sequence Diagram of Module-Management Activity
+
+
+
+
+                                                            127 | P a g e
+Figure 62: Sequence Diagram of Member Activity
+
+
+
+
+                                                 128 | P a g e
+7.3 SEQUENCE DIAGRAM OF DUCMS
+                                         Figure 63: Sequence Diagram
+
+
+
+
+                                Figure 63: Sequence Diagram of DUCMS
+
+                                                                       129 | P a g e
+

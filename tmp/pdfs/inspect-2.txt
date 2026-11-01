@@ -1,0 +1,81 @@
+                                                                                           218
+
+
+
+9. Data Flow Diagram (DFD)
+A data-flow diagram is a visual representation of how data moves through a system or a process.
+A data flow diagram (DFD) shows how information moves through any system or process. It
+displays data inputs, outputs, storage locations, and routes between each destination using
+predefined symbols such as rectangles, circles, and arrows as well as brief text labels.
+
+
+Level 0:
+Name: Post House Event Management System
+                                           219
+
+
+Level 1:
+Name: Post House Event Management System
+                   220
+
+
+Level 1.1:
+Name: Make Order
+                                  221
+
+
+Level 1.2:
+Name: Human Resource Management
+                                  222
+
+
+Level 1.3:
+Name: Account Management System
+                       223
+
+
+Level 1.3.1:
+Name: Create Account
+                              224
+
+
+Level 1.4:
+Name: Accounting Management
+                          225
+
+
+Level 1.4.1:
+Name: Accounting System
+                              226
+
+
+Level 1.4.2:
+Name: Business Intelligence
+                                     227
+
+
+Level 1.5:
+Name: Package Profile and Creation
+                             228
+
+
+Level 1.6:
+Name: Communication System
+                            229
+
+
+Level 1.7:
+Name: Ongoing Event Panel
+                       230
+
+
+Level 1.7.1:
+Name: Request Change
+                231
+
+
+
+
+Level 1.8:
+Name: Payment
+

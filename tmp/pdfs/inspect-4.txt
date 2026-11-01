@@ -1,0 +1,1006 @@
+                                                                                    Complete Modeling Assignment
+
+
+
+
+INTERN AND PLACEMENT OFFICE SYSTEM
+               (IPOS)
+Complete Data, Class and Behavioral Modeling Assignment
+                      Software Requirements Specification and Analysis
+
+
+
+ Submitted To                  ____________________________________________
+
+ Submitted By                  ____________________________________________
+
+ Roll / Batch                  ____________________________________________
+
+ Submission Date               ____________________________________________
+
+
+
+
+          Modeling rules follow the supplied course notes and the given IPOS problem statement.
+
+
+
+
+                                        IPOS Modeling Assignment
+                                                                                           Complete Modeling Assignment
+
+1. Problem Statement Summary
+The Intern and Placement Office (IPO) of XYZ Institute manages the annual internship placement of BSSE 4th
+Year students. The internship semester runs from 1 January to 30 June each year.
+Interested software companies send their willingness to take interns to the IPO Head. IPOC Member 1 records
+company information, available job positions, responsibilities, company address and HR email address. IPOC
+Member 2 informs students to submit their company/job choices in priority order. Students also upload a CV
+and submit skill information with competency rank, where rank 1 is the highest competency.
+IPOC Member 3 records each student's CGPA up to Third Year First Semester. Allocation considers CGPA
+order, the student's preferences, skill match and position availability. The IPO Head may manually place a
+student in any company.
+After allocation, a formal selection letter is generated for company HR and sent by email on behalf of the IPO
+Head. A copy is sent to the Regular Program Officer for office record. Companies issue offer letters to selected
+interns and send a copy to the IPO Head.
+
+
+2. Modeling Rules Used
+    GC: a noun is a potential class if it meets at least 3 of 7 General Characteristics, or if it is GC1 (External
+     Entity).
+    SC: if a potential class satisfies SC6 (Essential Requirements), it is selected as a class.
+    GC is a gate: nouns that fail GC do not proceed to Selection Criteria.
+    Final analysis class set: IPO Personnel, Student, Company, Student Preference, Job Position, Skill,
+     Allocation, Email.
+
+
+Part A - Data-Based Modeling
+A1. Noun Identification
+    No.                                       Noun / Noun Phrase                                            Class.
+
+
+    1      IPOS                                                                                        SS
+
+
+    2      XYZ Institute                                                                               PD
+
+
+    3      IPO                                                                                         PD
+
+
+    4      IPOC Member 1                                                                               SS
+
+
+    5      IPOC Member 2                                                                               SS
+
+
+    6      IPOC                                                                                        PD
+
+
+    7      IPO Head                                                                                    SS
+
+
+    8      Student                                                                                     SS
+
+
+    9      Company                                                                                     SS
+
+
+    10     HR                                                                                          SS
+
+
+    11     Regular Program Officer                                                                     SS
+
+
+    12     Internship                                                                                  PD
+
+
+    13     Year                                                                                        PD
+
+
+    14     Semester                                                                                    PD
+
+
+                                                IPOS Modeling Assignment
+                                                                                                     Complete Modeling Assignment
+
+  No.                                              Noun / Noun Phrase                                                Class.
+
+
+  15    Notice                                                                                                  SS
+
+
+  16    Email                                                                                                   SS
+
+
+  17    Formal Selection Letter                                                                                 SS
+
+
+  18    Offer Letter                                                                                            SS
+
+
+  19    CV                                                                                                      SS
+
+
+  20    CGPA                                                                                                    SS
+
+
+  21    Skill Set                                                                                               SS
+
+
+  22    Office Record / Copy                                                                                    SS
+
+
+  23    Competency Rank                                                                                         SS
+
+
+  24    Company Choice Form                                                                                     SS
+
+
+  25    Company Address                                                                                         SS
+
+
+  26    HR's Email Address                                                                                      SS
+
+
+  27    Job Position                                                                                            SS
+
+
+  28    Job Responsibility                                                                                      SS
+
+
+  29    Priority                                                                                                SS
+
+
+  30    Authority                                                                                               PD
+
+
+  31    Company Interest                                                                                        PD
+
+
+  32    Preference                                                                                              PD
+
+
+  33    Selection Process                                                                                       PD
+
+
+  34    Allocation                                                                                              SS
+
+
+  35    Company Name                                                                                            SS
+
+
+  36    IPOC Member 3                                                                                           SS
+
+
+
+
+A2. Group and Reduce
+        Data Object                                                  Merged / Retained Information
+
+
+          Student                 CGPA, CV, student email
+
+
+         Company                  company name, company address, HR email
+
+
+        Job Position              job responsibility, availability
+
+
+
+
+                                                     IPOS Modeling Assignment
+                                                                                                           Complete Modeling Assignment
+
+         Data Object                                                 Merged / Retained Information
+
+
+       IPO Personnel                IPO Head, IPOC members 1-3, RPO; role
+
+
+     Student Preference             company choice form, priority
+
+
+             Skill                  skill set, competency rank
+
+
+          Allocation                formal selection letter, office copy, offer letter, allocation basis
+
+
+            Email                   sender, recipient, subject, attachment, sent date
+
+
+
+
+A3. Relationships
+            Relationship                            Cardinality                                      Meaning
+
+
+       Company - Job Position                 1 : many                  A company offers one or more internship positions.
+
+
+     Student - Student Preference             1 : many                  A student submits ordered job-position preferences.
+
+
+   Job Position - Student Preference          1 : many                  A job position can appear in many students' preference lists.
+
+
+            Student - Skill                   1 : many                  A student records multiple skills with competency ranks.
+
+
+                                                                        A student receives at most one final placement for the internship
+         Student - Allocation                 1 : 0..1
+                                                                        cycle.
+
+
+       Job Position - Allocation              1 : many                  A position may receive allocations while availability remains.
+
+
+                                                                        IPO personnel handle placements; IPO Head can manually
+      IPO Personnel - Allocation              1 : many
+                                                                        override.
+
+
+        IPO Personnel - Email                 1 : many                  IPO communication is sent on behalf of authorized personnel.
+
+
+      Email - Student / Company               many : 0..1 each          Emails are directed to students or company HR as required.
+
+
+                                                                        A confirmed allocation can trigger formal placement
+          Allocation - Email                  1 : many
+                                                                        communication.
+
+
+
+
+A4. ER Diagram
+
+
+
+
+                                                         IPOS Modeling Assignment
+                                                                                                Complete Modeling Assignment
+A5. Schema
+          Table                                                        Attributes
+
+
+      IPO_Personnel      personnelID (PK), role
+
+
+         Student         studentID (PK), emailAddress, CGPA, CVReference
+
+
+        Company          companyID (PK), companyName, companyAddress, hrEmailAddress
+
+
+       Job_Position      positionID (PK), companyID (FK), positionTitle, jobResponsibility, availabilityStatus
+
+
+    Student_Preference   preferenceID (PK), studentID (FK), positionID (FK), priority
+
+
+           Skill         skillID (PK), studentID (FK), skillName, competencyRank
+
+
+                         allocationID (PK), studentID (FK), positionID (FK), personnelID (FK), allocationBasis,
+        Allocation
+                         selectionLetterReference, officeCopyReference, offerLetterReference
+
+
+                         emailID (PK), senderPersonnelID (FK), studentID (FK, nullable), companyID (FK, nullable),
+          Email
+                         relatedAllocationID (FK, nullable), recipientAddress, subject, attachmentReference, sentDate
+
+
+
+
+                                           IPOS Modeling Assignment
+                                                                                                          Complete Modeling Assignment
+
+Part B - Class-Based Modeling
+B1. General Characteristics
+      No.                                                     General Characteristic
+
+       1           External Entities
+
+       2           Things
+
+       3           Occurrences / Events
+
+       4           Roles
+
+       5           Organizational Units
+
+       6           Places
+
+       7           Structures
+
+
+
+   GC decision rule: At least 3 of 7 GC characteristics, OR GC1 External Entity.
+
+
+
+B2. GC Evaluation
+           Noun / Noun Phrase                 GC Met          Decision                                Reason
+
+
+                  IPOS                    5, 7                  Fail       System under construction; not modeled as an analysis class.
+
+
+             IPOC Member 1                1, 4, 5               Pass       External Entity (GC1).
+
+
+             IPOC Member 2                1, 4, 5               Pass       External Entity (GC1).
+
+
+               IPO Head                   1, 4, 5               Pass       External Entity (GC1).
+
+
+                Student                   1, 4, 5               Pass       External Entity (GC1).
+
+
+               Company                    1, 5, 7               Pass       External Entity (GC1).
+
+
+                   HR                     1, 4                  Pass       External Entity (GC1).
+
+
+       Regular Program Officer            1, 4, 5               Pass       External Entity (GC1).
+
+
+                 Notice                   2, 3                  Fail       Only two GC characteristics; not GC1.
+
+
+                  Email                   1                     Pass       External Entity exception: GC1 alone is sufficient.
+
+
+       Formal Selection Letter            2, 7                  Fail       Only two GC characteristics.
+
+
+               Offer Letter               2, 7                  Fail       Only two GC characteristics.
+
+
+                   CV                     2, 7                  Fail       Only two GC characteristics; therefore SC is not applied.
+
+
+                 CGPA                     2                     Fail       Single information item.
+
+
+
+
+                                                       IPOS Modeling Assignment
+                                                                                                            Complete Modeling Assignment
+           Noun / Noun Phrase                 GC Met          Decision                                    Reason
+
+
+                                                                           Structured submitted skill information; three GC
+           Skill Set / Skill Form         2, 3, 7               Pass
+                                                                           characteristics.
+
+
+           Office Record / Copy           2, 7                  Fail       Only two GC characteristics.
+
+
+            Competency Rank               2                     Fail       Single information item.
+
+
+                                                                           Structured submitted preference information; three GC
+          Company Choice Form             2, 3, 7               Pass
+                                                                           characteristics.
+
+
+            Company Address               2, 6                  Fail       Only two GC characteristics.
+
+
+           HR's Email Address             2                     Fail       Single information item.
+
+
+               Job Position               2, 4, 7               Pass       Thing + role/position + structured record.
+
+
+            Job Responsibility            2                     Fail       Attribute-level information.
+
+
+                  Priority                2                     Fail       Attribute-level information.
+
+
+                Allocation                2, 3, 7               Pass       Placement record/event with structure.
+
+
+             Company Name                 2                     Fail       Attribute-level information.
+
+
+             IPOC Member 3                1, 4, 5               Pass       External Entity (GC1).
+
+
+
+
+B3. Potential Classes
+     No.                                                         Potential Class
+
+      1          IPOC Member 1
+
+      2          IPOC Member 2
+
+      3          IPOC Member 3
+
+      4          IPO Head
+
+      5          Regular Program Officer
+
+      6          Student
+
+      7          Company
+
+      8          HR
+
+      9          Email
+
+     10          Skill Set / Skill Form
+
+     11          Company Choice Form
+
+     12          Job Position
+
+
+
+
+                                                       IPOS Modeling Assignment
+                                                                                                        Complete Modeling Assignment
+
+     No.                                                          Potential Class
+
+     13         Allocation
+
+
+
+
+B4. Selection Criteria
+      No.                                                        Selection Criterion
+
+       1          Retained Information
+
+       2          Needed Services
+
+       3          Multiple Attributes
+
+       4          Common Attributes
+
+       5          Common Operations
+
+       6          Essential Requirements
+
+
+
+   SC decision rule: SC6 (Essential Requirements) is sufficient for class selection; only GC-pass
+   candidates are evaluated.
+
+
+
+B5. SC Evaluation
+           Potential Class                     SC Met                Decision                               Reason
+
+
+           IPOC Member 1                1, 2, 4, 5, 6                Selected          SC6: essential workflow role.
+
+
+           IPOC Member 2                1, 2, 4, 5, 6                Selected          SC6: essential workflow role.
+
+
+           IPOC Member 3                1, 2, 4, 5, 6                Selected          SC6: essential workflow role.
+
+
+             IPO Head                   1, 2, 4, 5, 6                Selected          SC6: essential authority/manual placement role.
+
+
+     Regular Program Officer            1, 2, 4, 5, 6                Selected          SC6: receives/preserves office copy.
+
+
+                                                                                       Essential participant with retained profile and
+              Student                   1, 2, 3, 6                   Selected
+                                                                                       services.
+
+
+                                                                                       Essential participant with retained company/HR
+              Company                   1, 2, 3, 6                   Selected
+                                                                                       information.
+
+
+                                                                                       Represent through Company.hrEmailAddress; no
+                HR                      1, 4                      Reduce / merge
+                                                                                       independent class retained.
+
+
+               Email                    1, 2, 3, 6                   Selected          SC6: required communication mechanism.
+
+
+                                                                                       Persistent student skill and competency
+       Skill Set / Skill Form           1, 2, 3, 6                Selected -> Skill
+                                                                                       information.
+
+
+                                                                Selected -> Student    Persistent ordered preference is the class
+      Company Choice Form               1, 2, 3, 6
+                                                                    Preference         concept.
+
+
+
+
+                                                        IPOS Modeling Assignment
+                                                                                                                     Complete Modeling Assignment
+            Potential Class                         SC Met                 Decision                                       Reason
+
+
+                                                                                                     Essential for preference, matching and
+             Job Position                     1, 2, 3, 6                   Selected
+                                                                                                     placement.
+
+
+                Allocation                    1, 2, 3, 6                   Selected                  Core placement result/process record.
+
+
+
+
+B6. Analysis and Final Classes
+      No.                                                                 Final Class
+
+       1           IPO Personnel
+
+       2           Student
+
+       3           Company
+
+       4           Student Preference
+
+       5           Job Position
+
+       6           Skill
+
+       7           Allocation
+
+       8           Email
+
+
+
+Analysis actions: IPO workflow roles are merged into IPO Personnel; HR is reduced into
+Company.hrEmailAddress; Company Choice Form is represented as Student Preference; Skill Set / Skill Form
+is represented as Skill.
+
+B7. Attributes and Methods
+        Class                                    Attributes                                                     Methods
+
+
+                                                                              + recordCompanyDetails()
+                                                                              + recordStudentCGPA()
+                                                                              + recordJobPosition()
+                             - personnelID                                    + sendInternshipNotice()
+    IPO Personnel
+                             - role                                           + sendEmail()
+                                                                              + handleAllocation()
+                                                                              + manualPlaceStudent()
+                                                                              + preserveOfficeCopy()
+
+
+                                                                              + viewJobPositions()
+                             - studentID                                      + submitPreference()
+                             - emailAddress                                   + uploadCV()
+       Student
+                             - CGPA                                           + addSkill()
+                             - CVReference                                    + receiveEmail()
+                                                                              + receiveAllocation()
+
+
+                                                                              + submitInterest()
+                             - companyID
+                                                                              + provideDetails()
+                             - companyName
+      Company                                                                 + offerJobPosition()
+                             - companyAddress
+                                                                              + receiveEmail()
+                             - hrEmailAddress
+                                                                              + issueOfferLetter()
+
+
+                                                                              + createPreference()
+                             - preferenceID
+                                                                              + setPriority()
+                             - studentID
+  Student Preference                                                          + submitPreference()
+                             - positionID
+                                                                              + updatePreference()
+                             - priority
+                                                                              + viewPreference()
+
+
+
+                                                              IPOS Modeling Assignment
+                                                                                                                  Complete Modeling Assignment
+       Class                                      Attributes                                                 Methods
+
+
+                           - positionID
+                                                                              + addPosition()
+                           - companyID
+                                                                              + updatePosition()
+    Job Position           - positionTitle
+                                                                              + viewPosition()
+                           - jobResponsibility
+                                                                              + checkAvailability()
+                           - availabilityStatus
+
+
+                           - skillID                                          + addSkill()
+                           - studentID                                        + setCompetencyRank()
+          Skill
+                           - skillName                                        + updateSkill()
+                           - competencyRank                                   + viewSkill()
+
+
+                           - allocationID
+                           - studentID                                        + matchStudent()
+                           - positionID                                       + allocateStudent()
+                           - personnelID                                      + manualOverride()
+     Allocation
+                           - allocationBasis                                  + generateSelectionLetter()
+                           - selectionLetterReference                         + recordOfficeCopy()
+                           - officeCopyReference                              + recordOfferLetter()
+                           - offerLetterReference
+
+
+                           - emailID
+                           - senderAddress
+                           - recipientAddress                                 + composeEmail()
+       Email               - subject                                          + sendEmail()
+                           - attachmentReference                              + recordEmail()
+                           - sentDate
+                           - relatedAllocationID
+
+
+
+
+B8. CRC Cards
+IPO Personnel
+                                              Responsibilities                                                         Collaborators
+
+
+           • Represents IPO Head, IPOC Members 1-3, and Regular Program Officer by role.
+               • Records company/job/student information according to the assigned role.                    Student, Company, Job Position,
+                   • Handles allocation; IPO Head can override automatic placement.                         Allocation, Email
+                      • Sends required communication and preserves office copies.
+
+
+
+
+Student
+                                              Responsibilities                                                         Collaborators
+
+
+                                • Maintains the student placement profile.
+                                 • Submits ranked company/job choices.                                      Student Preference, Job Position,
+                              • Provides CV, skills and competency ranks.                                   Skill, Allocation, Email
+                       • Receives placement communication and allocation result.
+
+
+
+
+Company
+                                              Responsibilities                                                         Collaborators
+
+
+                   • Provides company, HR contact, and internship-position information.
+                                • Offers job positions and job responsibilities.                            IPO Personnel, Job Position,
+                              • Receives the formal selection communication.                                Allocation, Email
+                                   • Issues offer letters for selected interns.
+
+
+
+
+                                                               IPOS Modeling Assignment
+                                                                                                    Complete Modeling Assignment
+Student Preference
+                                           Responsibilities                                             Collaborators
+
+
+                         • Records a student-selected job position and priority.
+                                                                                             Student, Job Position, Allocation
+                       • Provides ordered preferences to the allocation process.
+
+
+
+
+Job Position
+                                           Responsibilities                                             Collaborators
+
+
+                       • Represents an internship position offered by a company.             Company, Student, Student
+                      • Stores the responsibility and availability used in matching.         Preference, Allocation, IPO Personnel
+
+
+
+
+Skill
+                                           Responsibilities                                             Collaborators
+
+
+                     • Records a skill held by a student and its competency rank.
+                                                                                             Student, Allocation
+                  • Supplies competency information to matching/manual placement.
+
+
+
+
+Allocation
+                                           Responsibilities                                             Collaborators
+
+
+               • Matches by CGPA order, preference, skill match and position availability.
+                                                                                             Student, Job Position, Student
+                           • Records the final student-to-position placement.
+                                                                                             Preference, Skill, IPO Personnel,
+                       • Records whether placement was automatic or manual.
+                                                                                             Company, Email
+                        • Preserves selection/office/offer document references.
+
+
+
+
+Email
+                                           Responsibilities                                             Collaborators
+
+
+                   • Carries internship notices and formal placement communication.          IPO Personnel, Student, Company,
+                     • Records sender, recipient, subject, attachment and sent date.         Allocation
+
+
+
+
+                                                           IPOS Modeling Assignment
+                                             Complete Modeling Assignment
+B9. CRC Diagram
+
+
+
+
+                  IPOS Modeling Assignment
+                                                                                                             Complete Modeling Assignment
+
+Part C - Behavioral Modeling
+C1. Event Table
+ ID                                         Event                                              Initiator                     Collaborators
+
+
+ E1    Company expresses interest in taking interns.                                 Company                       IPO Personnel
+
+
+ E2    Company and job-position details are recorded.                                IPO Personnel                 Company, Job Position
+
+
+ E3    Internship notice / communication is sent to students.                        IPO Personnel                 Email, Student
+
+
+ E4    Student views available company/job information.                              Student                       Job Position, Company
+
+
+                                                                                                                   Student Preference, Job
+ E5    Student submits company/job preferences with priority.                        Student
+                                                                                                                   Position
+
+
+ E6    Student uploads CV and submits skills with competency rank.                   Student                       Skill
+
+
+ E7    Student CGPA is recorded.                                                     IPO Personnel                 Student
+
+
+                                                                                                                   Student, Student Preference,
+ E8    System matches by CGPA, preference, skill and availability.                   Allocation
+                                                                                                                   Skill, Job Position
+
+
+                                                                                                                   Allocation, Student, Job
+ E9    IPO Head manually places/overrides a student allocation.                      IPO Personnel
+                                                                                                                   Position
+
+
+ E10   Formal selection letter is generated after allocation.                        Allocation                    Student, Company
+
+
+                                                                                                                   IPO Personnel, Company,
+ E11   Formal communication is emailed to company HR.                                Email
+                                                                                                                   Allocation
+
+
+ E12   Office copy is sent/preserved for record.                                     IPO Personnel                 Allocation
+
+
+ E13   Company issues an offer letter.                                               Company                       Student, Allocation
+
+
+ E14   Offer-letter copy is preserved by IPO.                                        IPO Personnel                 Company, Allocation
+
+
+
+
+C2. Overall State Transition Model
+
+
+
+C3. Per-Class State Models
+IPO Personnel
+                From                                              Trigger                                                  To
+
+
+               Ready                 record details/CGPA                                                   Recording Data
+
+
+          Recording Data             send notice/email                                                     Communicating
+
+
+          Communicating              allocation cycle                                                      Handling Allocation
+
+
+        Handling Allocation          preserve copy / finish                                                Ready
+
+
+
+
+                                                          IPOS Modeling Assignment
+                                                                                    Complete Modeling Assignment
+
+
+
+
+Student
+                 From                                            Trigger                         To
+
+
+                Eligible         submit choice                                    Preference Submitted
+
+
+          Preference Submitted   CV + skills + CGPA ready                         Profile Complete
+
+
+            Profile Complete     allocation result                                Allocated
+
+
+               Allocated         offer accepted / internship starts               Internship Active
+
+
+            Internship Active    semester ends                                    Completed
+
+
+
+
+Company
+                 From                                            Trigger                         To
+
+
+               Interested        provide details                                  Details Recorded
+
+
+            Details Recorded     positions entered                                Positions Available
+
+
+           Positions Available   allocation received                              Student Allocated
+
+
+           Student Allocated     issue offer letter                               Offer Issued
+
+
+
+
+Student Preference
+                 From                                            Trigger                         To
+
+
+                  Draft          student submits                                  Submitted
+
+
+               Submitted         priority validated                               Ordered
+
+
+                Ordered          allocation starts                                Used in Matching
+
+
+
+
+Job Position
+                 From                                            Trigger                         To
+
+
+               Recorded          position open                                    Available
+
+
+                                                       IPOS Modeling Assignment
+                                                                               Complete Modeling Assignment
+               From                                         Trigger                       To
+
+
+             Available      student selected                                 Matched
+
+
+             Matched        allocation confirmed                             Filled
+
+
+
+
+Skill
+               From                                         Trigger                       To
+
+
+             Recorded       competency rank set                              Ranked
+
+
+              Ranked        allocation evaluates skill                       Used in Matching
+
+
+
+
+Allocation
+               From                                         Trigger                       To
+
+
+             Pending        automatic selection                              Matching
+
+
+             Pending        IPO Head override                                Manual Placement
+
+
+             Matching       match found                                      Confirmed
+
+
+         Manual Placement   placement chosen                                 Confirmed
+
+
+             Confirmed      formal letter created                            Letter Generated
+
+
+         Letter Generated   email sent / copies preserved                    Communicated
+
+
+
+
+Email
+               From                                         Trigger                       To
+
+
+             Composed       send                                             Sent
+
+
+               Sent         sent date / attachment stored                    Recorded
+
+
+
+
+                                                  IPOS Modeling Assignment
+                                                          Complete Modeling Assignment
+
+
+
+
+D. Final Class Set
+    No.                                    Final Class
+
+     1    IPO Personnel
+
+     2    Student
+
+     3    Company
+
+     4    Student Preference
+
+     5    Job Position
+
+     6    Skill
+
+     7    Allocation
+
+     8    Email
+
+
+
+
+                               IPOS Modeling Assignment
+

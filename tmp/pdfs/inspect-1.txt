@@ -1,0 +1,177 @@
+                                                     173
+
+
+
+     6. Class Responsibility Collaboration Diagram
+
+Ref: Table 10
+Name: Communication
+
+
+
+
+                      Fig crc.1: Communication
+                                                     174
+
+
+Ref: Table 14
+Name: Service Profile
+
+
+
+
+                        Fig crc.2: Service Profile
+                                                     175
+
+
+Ref: Table 4
+Name: Package Control
+
+
+
+
+                        Fig crc.3: Package Control
+                                     176
+
+
+Ref: Table 11
+Name: Account
+
+
+
+
+                Fig crc.4: Account
+                                           177
+
+
+Ref: Table 17
+Name: SMS System
+
+
+
+
+                   Fig crc.5: SMS System
+                                   178
+
+
+Ref: Table 18
+Name: Event
+
+
+
+
+                Fig crc.6: Event
+                                  179
+
+
+
+Ref: Table 16
+Name: Host
+
+
+
+
+                Fig crc.7: Host
+                                           180
+
+
+Ref: Table 12
+Name: Supervisor
+
+
+
+
+                   Fig crc.8: Supervisor
+                                                 181
+
+
+Ref: Table 7
+Name: Event Manager
+
+
+
+
+                      Fig crc.9: Event Manager
+                                                          182
+
+
+Ref: Table 9
+Name: Human Resource Management
+
+
+
+
+                  Fig crc.10: Human Resource Management
+                                                          183
+
+
+Ref: Table 2
+Name: Order Management System
+
+
+
+
+                    Fig crc.11: Order Management System
+                                      184
+
+
+Ref: Table 3
+Name: Payment
+
+
+
+
+                Fig crc.12: Payment
+                                            185
+
+
+
+Ref: Table 6
+Name: Blockchain
+
+
+
+
+                   Fig crc.13: Blockchain
+                                                         186
+
+
+
+Ref: Table 8
+Name: ChatBot Recommendation
+
+
+
+
+                    Fig crc.14: ChatBot Recommendation
+                                                          187
+
+
+Ref: Table 11
+Name: Accounting System
+
+
+
+
+                          Fig crc.15: Accounting System
+                                                              188
+
+
+Ref: Table 13
+Name: Business Intelligence
+
+
+
+
+                          Fig crc.16: Business Intelligence
+                                            189
+
+
+Ref: Table 1
+Name: Guest User
+
+
+
+
+                   Fig crc.17: Guest User
+
