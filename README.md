@@ -35,8 +35,5 @@ Use `mvn clean package` to build without opening the application.
 | Role | Username | Password |
 |---|---|---|
 | Administrator | `admin` | `admin123` |
-| Teacher | `teacher1` | `teacher123` |
-| Teacher | `teacher2` | `teacher123` |
-| Student | `student1` | `student123` |
-| Student | `student2` | `student123` |
-| Student | `student3` | `student123` |
+| Teachers 1-7 | `teacher1` ... `teacher7` | `teacher123` |
+| Students 1-36 | `student1` ... `student36` | `student123` |

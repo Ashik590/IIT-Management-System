@@ -1,0 +1,68 @@
+@startuml
+title Ref: Table 23\nName: FinancialManagement
+
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam linetype polyline
+skinparam nodesep 140
+skinparam ranksep 150
+skinparam padding 20
+skinparam dpi 150
+
+skinparam rectangle {
+    BackgroundColor #DCEEFF
+    BorderColor #3973AC
+    FontColor #16324F
+    FontStyle bold
+    FontSize 14
+    RoundCorner 14
+}
+
+skinparam ArrowColor #526D82
+skinparam ArrowFontColor #263746
+skinparam ArrowFontSize 12
+
+' Top
+rectangle "Member" as Member
+rectangle "Treasurer" as Treasurer
+
+' Centre
+rectangle "FinancialManagement" as FinancialManagement #72B6E8
+
+' Lower row
+rectangle "President" as President
+rectangle "Secretary" as Secretary
+
+' Bottom
+rectangle "PaymentGateway" as PaymentGateway
+rectangle "Event" as Event
+
+' Layout constraints
+Member -[hidden]right- Treasurer
+President -[hidden]right- Secretary
+PaymentGateway -[hidden]right- Event
+
+Member -[hidden]down- FinancialManagement
+Treasurer -[hidden]down- FinancialManagement
+
+FinancialManagement -[hidden]down- President
+FinancialManagement -[hidden]down- Secretary
+
+President -[hidden]down- PaymentGateway
+Secretary -[hidden]down- Event
+
+' CRC collaborations
+Member -down- FinancialManagement : Records payments or donations\nand provides history
+
+Treasurer -down- FinancialManagement : Records transactions and\ngenerates financial reports
+
+President -up- FinancialManagement : Provides financial reports for\nreview
+
+FinancialManagement -down- Secretary : Provides financial records and\nsummaries
+
+PaymentGateway -up- FinancialManagement : Processes and verifies external\npayments
+
+FinancialManagement -down- Event : Maintains event-related\nfinancial information
+
+caption Fig crc.14: FinancialManagement
+@enduml

@@ -1,0 +1,58 @@
+@startuml
+title Ref: Table 21\nName: YogaSession
+
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam linetype polyline
+skinparam nodesep 140
+skinparam ranksep 150
+skinparam padding 20
+skinparam dpi 150
+
+skinparam rectangle {
+    BackgroundColor #DCEEFF
+    BorderColor #3973AC
+    FontColor #16324F
+    FontStyle bold
+    FontSize 14
+    RoundCorner 14
+}
+
+skinparam ArrowColor #526D82
+skinparam ArrowFontColor #263746
+skinparam ArrowFontSize 12
+
+' Top
+rectangle "Activity" as Activity
+rectangle "ExecutiveCommitteeMember" as ExecutiveCommitteeMember
+
+' Centre
+rectangle "YogaSession" as YogaSession #72B6E8
+
+' Bottom
+rectangle "YogaInstructor" as YogaInstructor
+rectangle "Member" as Member
+rectangle "Notification" as Notification
+
+' Layout constraints
+Activity -[hidden]down- YogaSession
+ExecutiveCommitteeMember -[hidden]down- YogaSession
+YogaInstructor -[hidden]right- Member
+Member -[hidden]right- Notification
+YogaSession -[hidden]down- YogaInstructor
+YogaSession -[hidden]down- Member
+YogaSession -[hidden]down- Notification
+
+' CRC collaborations
+Activity -down- YogaSession : Provides common schedule,\nparticipant and attendance\nbehavior
+
+ExecutiveCommitteeMember -down- YogaSession : Prepares sessions, assigns instructors\nand records attendance
+
+YogaSession -down- YogaInstructor : Assigns the instructor and\nexposes assigned sessions
+
+YogaSession -down- Member : Allows members to view\nschedules and attend sessions
+
+Notification -up- YogaSession : Sends a message after each\nmember session check-in
+
+caption Fig crc.12: YogaSession
+@enduml

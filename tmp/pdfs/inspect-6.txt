@@ -1,0 +1,52 @@
+                                             Sequence Diagram of IPOS (Intern and Placement Office System)
+       Company            IPOC Member                 Student              Application Intern Position                  Allocation            IPO Head                  Letter         Regular Program
+                                                                                                                                                                                           Officer
+        Applying
+          interest of taking interns
+                               Receiving
+
+                             Entering info
+                   company info
+                                                                  position info
+         Storing                                                                                        Storing
+                            Sending notice
+                                             notice
+                                                    Viewing options
+                                                      Filling form
+                                                       fills, submits: choice, CV, skills
+                                                                                  Storing
+                            Entering CGPA
+                                             CGPA
+                                                       Updating
+                                                                            Providing data
+                                                                                                     provides data
+                                                                                                                            Matching
+                                                                                                                  matches
+Time
+
+
+
+
+                                                                                                       Checking available
+
+                                                                   allocates
+                                                                                                                            Allocating
+
+         Placing
+                                                                                                                                                Reviewing
+                                                                                                                                 approves, overrides
+                                                                                                                            Confirming
+                                                                                                                                               Generating
+                                                                                                                                                            generates
+                                                                                                                                                                        Drafting
+                                                                                             sends
+
+                                                                                                                                                                        Sending
+                                                                                                                                                                                   sends copy
+                                                                                                                                                       preserves copy
+       Notifying HR                                                                                                                                                                             Filing
+                                                                                                                                               Archiving
+       Issuing offer
+                              offer letter
+                                                 Getting notification
+

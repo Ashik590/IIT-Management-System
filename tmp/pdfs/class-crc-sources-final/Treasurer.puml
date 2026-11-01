@@ -1,0 +1,60 @@
+@startuml
+title Ref: Table 16\nName: Treasurer
+
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam linetype polyline
+skinparam nodesep 140
+skinparam ranksep 150
+skinparam padding 20
+skinparam dpi 150
+
+skinparam rectangle {
+    BackgroundColor #DCEEFF
+    BorderColor #3973AC
+    FontColor #16324F
+    FontStyle bold
+    FontSize 14
+    RoundCorner 14
+}
+
+skinparam ArrowColor #526D82
+skinparam ArrowFontColor #263746
+skinparam ArrowFontSize 12
+
+' Top
+rectangle "ExecutiveCommitteeMember" as ExecutiveCommitteeMember
+rectangle "Member" as Member
+
+' Middle
+rectangle "FinancialManagement" as FinancialManagement
+rectangle "Treasurer" as Treasurer #72B6E8
+
+' Bottom
+rectangle "President" as President
+rectangle "Secretary" as Secretary
+
+' Layout constraints
+ExecutiveCommitteeMember -[hidden]right- Member
+FinancialManagement -[hidden]right- Treasurer
+President -[hidden]right- Secretary
+
+ExecutiveCommitteeMember -[hidden]down- FinancialManagement
+FinancialManagement -[hidden]down- President
+
+Member -[hidden]down- Treasurer
+Treasurer -[hidden]down- Secretary
+
+' CRC collaborations
+ExecutiveCommitteeMember -down- Treasurer : Provides common committee\naccess and operations
+
+Member -down- Treasurer : Records and confirms payments
+
+FinancialManagement -right- Treasurer : Records transactions and\ngenerates reports
+
+Treasurer -down- President : Submits financial reports for\nreview
+
+Treasurer -down- Secretary : Shares financial records and\nreports
+
+caption Fig crc.7: Treasurer
+@enduml

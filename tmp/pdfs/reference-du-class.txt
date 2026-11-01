@@ -1,0 +1,3709 @@
+DHAKA UNIVERSITY CLUB
+ MANAGEMENT SYSTEM
+    Software Requirement Specification
+
+
+
+
+                                            Group 3
+                                     BSSE07 Batch
+              Institute of Information Technology
+                                University of Dhaka
+
+
+                                           |Page
+DHAKA UNIVERSITY CLUB MANAGEMENT SYSTEM
+
+
+ Submittted to              Dr. Kazi Muheymin-Us-Sakib
+                                       Professor
+                        Institute of Information Technology
+                                 University of Dhaka
+
+
+
+
+ Submittted by           Shuvo Saha               BSSE0705
+                         Jarifa Khatun Moitry     BSSE0710
+                         Md. Aquib Azmain         BSSE0718
+                         Abu Rafe Md. Jamil       BSSE0722
+                         Sabbir Hussain Meraj     BSSE0726
+                         Syed Fatiul Huq          BSSE0732
+
+
+                       Group-3
+             4th Semester, BSSE 07th Batch
+          Institute of Information Technology
+                 University of Dhaka
+
+
+         Submission date: 17th December 2016
+
+
+
+
+                                                              |Page
+                              LETTER OF TRANSMITTAL
+
+17th December 2016
+Dr. Kazi Muheymin-Us-Sakib
+Professor
+Institute of Information Technology
+University of Dhaka
+
+
+Subject: Submission of term report on “Dhaka University Club Management System”.
+
+
+Sir,
+With due respect, we are submitting the report on the above topic you assigned to us. In this
+report, we have given our best effort albeit some shortcomings. We earnestly hope that you
+would excuse our errors and oblige thereby.
+Yours sincerely
+Shuvo Saha                   BSSE0705
+Jarifa Khatun Moitry         BSSE0710
+Md. Aquib Azmain             BSSE0718
+Abu Rafe Md. Jamil           BSSE0722
+Sabbir Hussain Meraj         BSSE0726
+Syed Fatiul Huq              BSSE0732
+
+
+2nd Year, 4th Semester, 7th Batch
+Institute of Information Technology
+University of Dhaka
+Session: 2014-15
+
+
+
+
+                                                                                  i|Page
+                                 ACKNOWLEDGEMENT
+We are highly indebted for getting such a tremendous opportunity to prepare the report on
+Dhaka University Club Management System. We would like to thank whole-heartedly our course
+teacher, Dr. Kazi Muheymin-Us-Sakib, Professor, Institute of Information Technology, University
+of Dhaka, for giving us guidelines about how we can prepare this report. In completing this paper
+we have collected various important data and information from Dhaka University Club. We are
+thankful to all of the works cited.
+
+
+
+
+                                         ABSTRACT
+The study is made for Dhaka University Club Management System. The scope of the study is to
+analyze the Dhaka University Club Management System and to know its functions and drawbacks,
+and design the SRS of this system. The object of this study is to develop an SRS (software
+requirements and specification) of Dhaka University Club Management System. This study also
+describes the current system of the Dhaka University Club.
+
+
+
+
+                                                                                    ii | P a g e
+                                                  TABLE OF CONTENTS
+Chapter 1: Introduction .................................................................................................................. 1
+    1.1         Purpose ......................................................................................................................... 1
+    1.2         Intended Audience ....................................................................................................... 1
+    1.3         Conclusion .................................................................................................................... 2
+Chapter 2: Inception of DUCMS ...................................................................................................... 3
+    2.1 Introduction ......................................................................................................................... 3
+        2.1.1 List of Stakeholders ...................................................................................................... 3
+        2.1.2 Recognizing Multiple Viewpoints ................................................................................. 5
+        2.1.3 Working Towards Collaboration ................................................................................... 6
+        2.1.4 Requirements Questionnaire ....................................................................................... 7
+    2.2 Conclusion ........................................................................................................................... 8
+Chapter 3: Elicitation of DUCMS ..................................................................................................... 9
+    3.1 Introduction ......................................................................................................................... 9
+    3.2 Eliciting Requirements ......................................................................................................... 9
+        3.2.1 Collaborative Requirements Gathering ........................................................................ 9
+        3.2.2 Quality Function Deployment .................................................................................... 10
+        3.2.3 Usage Scenario ........................................................................................................... 12
+        3.2.3 Elicitation Work Product............................................................................................. 21
+Chapter 4: Scenario Based Modeling of DUCMS .......................................................................... 22
+    4.1 Introduction ....................................................................................................................... 22
+    4.2 Definition of Use case ........................................................................................................ 22
+    4.3 Use Case Diagrams ............................................................................................................ 23
+        4.3.1 Level-0 Use Case Diagram-DUCMS ............................................................................. 23
+        4.3.2 Level-1 Use Case Diagram-Subsystems ...................................................................... 25
+        4.3.3 Level-1.1 Use Case Diagram-Authentication .............................................................. 27
+        4.3.4 Level-1.1.1 Use Case Diagram-Sign in ........................................................................ 28
+        4.3.5 Level-1.1.2 Use Case Diagram-Registration ............................................................... 29
+        4.3.6 Level-1.2 Use Case Diagram-Ordering Food ............................................................... 32
+        4.3.7 Level-1.3 Use Case Diagram-Booking Space............................................................... 34
+
+                                                                                                                               iii | P a g e
+       4.3.8 Level-1.4 Use Case Diagram-Management Activities................................................. 36
+       4.3.9 Level-1.4.1 Use Case Diagram-Manager’s Financial Activities ................................... 38
+       4.3.10 Level-1.4.2 Use Case Diagram-Approving Applications ........................................... 41
+       4.3.11 Level-1.4.3 Use Case Diagram-Change Food Detail ................................................. 43
+       4.3.12 Level-1.5 Use Case Diagram-Member Activities ...................................................... 45
+       4.3.13 Level-1.5.1 Use Case Diagram-Member’s Financial Activities.................................. 46
+       4.3.14 Level-1.5.2 Use Case Diagram-Member’s Food Activities ........................................ 48
+       4.3.15 Level-1.5.3 Use Case Diagram-Member’s System Activities .................................... 50
+    4.4 Activity Diagrams of DUCMS ............................................................................................. 52
+    4.5 Swimlane Diagrams of DUCMS .......................................................................................... 66
+Chapter 5: Data modeling of DUCMS ........................................................................................... 79
+    5.1 Data Modeling Concept ..................................................................................................... 79
+    5.2 Data Objects ...................................................................................................................... 79
+       5.2.1 Noun identification ..................................................................................................... 79
+       5.2.2 Potential Data Objects ................................................................................................ 83
+       5.2.3 Analysis for finalizing Data Objects: ........................................................................... 84
+       5.2.4 Final Data Objects ....................................................................................................... 85
+    5.3 Data Object Relations ........................................................................................................ 86
+    5.3 Entity Relationship diagram .............................................................................................. 87
+    5.4 Schema diagrams ............................................................................................................... 88
+Chapter 6: Class based modeling of DUCMS ................................................................................ 92
+    6.1 Class Based Modeling Concept .......................................................................................... 92
+    6.2 General Classifications ....................................................................................................... 92
+    6.3 Selection Criteria ............................................................................................................... 97
+    6.4 Associate Noun and Verb Identification ............................................................................ 98
+    6.5 Attribute Selection........................................................................................................... 100
+    6.6 Method Identification...................................................................................................... 103
+    6.7 Finalizing Classes.............................................................................................................. 106
+    6.8 Class Cards ....................................................................................................................... 107
+    6.9 CRC Diagram .................................................................................................................... 114
+Chapter 7: Behavioral modeling of DUCMS ................................................................................ 115
+
+                                                                                                                            iv | P a g e
+    7.1 State Transition Diagram ................................................................................................. 115
+        Identifying Events .............................................................................................................. 115
+        Authentication ................................................................................................................... 117
+        Registration........................................................................................................................ 117
+        Member ............................................................................................................................. 118
+        Non Member ..................................................................................................................... 119
+        Database ............................................................................................................................ 119
+        Club Manager .................................................................................................................... 120
+        Food ................................................................................................................................... 121
+        Bank ................................................................................................................................... 121
+        DUAD ................................................................................................................................. 121
+        Accounting ......................................................................................................................... 122
+        Application ......................................................................................................................... 122
+    7.2 Sequence Diagrams of Modules of DUCMS .................................................................... 123
+    7.3 Sequence Diagram of DUCMS ......................................................................................... 129
+Chapter 8: Conclusion ................................................................................................................. 130
+Chapter 9: References................................................................................................................. 131
+Appendix ..................................................................................................................................... 131
+    Group Meetings ..................................................................................................................... 131
+
+
+
+
+                                                                                                                                 v|Page
+                                                     TABLE OF FIGURES
+
+Figure 1: Level 0 Use Case diagram-DUCMS ............................................................................................... 23
+Figure 2: Level 1 Use Case Diagram ............................................................................................................ 25
+Figure 3 : Level 1.1 Use Case Diagram ........................................................................................................ 27
+Figure 4: Level 1.1.1 Use Case Diagram ...................................................................................................... 28
+Figure 5: Level 1.1.2 Use Case Diagram ...................................................................................................... 29
+Figure 6: Level 1.2 Use Case Diagram ......................................................................................................... 32
+Figure 7: Level 1.3 Use Case Diagram ......................................................................................................... 34
+Figure 8: Level 1.4 Use Case Diagram ......................................................................................................... 36
+Figure 9: Level 1.4.1 Use Case Diagram ...................................................................................................... 38
+Figure 10: Level 1.4.2 Use Case Diagram .................................................................................................... 41
+Figure 11: Level 1.4.3 Use case Diagram-Change Food Detail .................................................................... 43
+Figure 12: Level 1.5 Use Case Diagram ....................................................................................................... 45
+Figure 13: Level 1.5.1 Use Case Diagram .................................................................................................... 46
+Figure 14: Level 1.5.2 Use Case Diagram .................................................................................................... 48
+Figure 15: Level 1.5.3 Use Case Diagram-Member’s System Activities ...................................................... 50
+Figure 16: Activity Diagram 1: Club Management System ......................................................................... 52
+Figure 17: Activity Diagram 1.1: Authentication ......................................................................................... 53
+Figure 18: Activity Diagram 1.1.1: Sign in ................................................................................................... 54
+Figure 19: Activity Diagram 1.1.2: Registration .......................................................................................... 55
+Figure 20: Activity Diagram 1.2: Ordering Food.......................................................................................... 56
+Figure 21: Activity Diagram 1.3: Booking Space ......................................................................................... 57
+Figure 22: Activity Diagram 1.4: Management Activities ........................................................................... 58
+Figure 23: Activity Diagram 1.4.1: Financial Management ......................................................................... 59
+Figure 24: Activity Diagram 1.4.2: Approve Pending Requests .................................................................. 60
+Figure 25: Activity Diagram 1.4.3: Changing Food Detail ........................................................................... 61
+Figure 26: Activity Diagram 1.5: Member Activities ................................................................................... 62
+Figure 27: Activity Diagram 1.5.1: Financial Activities ................................................................................ 63
+Figure 28: Activity Diagram 1.5.2: Food Activities ...................................................................................... 64
+Figure 29: Activity Diagram 1.5.3: System Activities................................................................................... 65
+
+                                                                                                                              vi | P a g e
+Figure 30: Swimlane Diagram 1.1: Authentication ..................................................................................... 66
+Figure 31: Swimlane Diagram 1.1.1: Sign in................................................................................................ 67
+Figure 32: Swimlane Diagram 1.1.2: Registration ....................................................................................... 68
+Figure 33: Swimlane Diagram 1.2: Ordering Food ...................................................................................... 69
+Figure 34: Swimlane Diagram 1.3: Booking Space ...................................................................................... 70
+Figure 35: Swimlane Diagram 1.4: Management Activities ........................................................................ 71
+Figure 36: Swimlane Diagram 1.4.1: Financial Management ..................................................................... 72
+Figure 37: Swimlane Diagram 1.4.2: Approve Pending Requests ............................................................... 73
+Figure 38: Swimlane Diagram 1.4.3: Changing Food Detail ........................................................................ 74
+Figure 39: Swimlane Diagram 1.5: Member Activities................................................................................ 75
+Figure 40: Swimlane Diagram 1.5.1: Financial Activities ............................................................................ 76
+Figure 41: Swimlane Diagram 1.5.2: Food Activities .................................................................................. 77
+Figure 42: Activity Diagram 1.5.3: System Activities................................................................................... 78
+Figure 43: Relationships between Data Objects ......................................................................................... 86
+Figure 44: ER Diagram of DUCMS ............................................................................................................... 87
+Figure 45: CRC Diagram of DUCMS ........................................................................................................... 114
+Figure 46: State Transition Diagram – Authentication ............................................................................. 117
+Figure 47: State Transition Diagram – Registration .................................................................................. 117
+Figure 48: State Transition Diagram – Member........................................................................................ 118
+Figure 49: State Transition Diagram – Non Member ................................................................................ 119
+Figure 50: State Transition Diagram – Database ...................................................................................... 119
+Figure 51: State Transition Diagram – Club Manager ............................................................................... 120
+Figure 52: State Transition Diagram – Food ............................................................................................. 121
+Figure 53: State Transition Diagram – Bank.............................................................................................. 121
+Figure 54: State Transition Diagram – DUAD ............................................................................................ 121
+Figure 55: State Transition Diagram – Accounting ................................................................................... 122
+Figure 56: State Transition Diagram – Application ................................................................................... 122
+Figure 57: Sequence Diagram of Module-Sign in...................................................................................... 123
+Figure 58: Sequence Diagram of Module-Registration............................................................................. 124
+Figure 59: Sequence Diagram of Module-Ordering Food ......................................................................... 125
+Figure 60: Sequence Diagram of Module-Booking Space ......................................................................... 126
+Figure 61: Sequence Diagram of Module-Management Activity ............................................................. 127
+
+                                                                                                                            vii | P a g e
+Figure 62: Sequence Diagram of Member Activity ................................................................................... 128
+Figure 63: Sequence Diagram of DUCMS .................................................................................................. 129
+
+
+
+
+                                                                                                                      viii | P a g e
+                                                           LIST OF TABLES
+Table 1: Noun Identification for Data Modeling ......................................................................................... 79
+Table 2 : Final Data Objects ........................................................................................................................ 85
+Table 3: Schema for User ............................................................................................................................ 88
+Table 4: Schema for Member ..................................................................................................................... 88
+Table 5: Schema for Application ................................................................................................................. 89
+Table 6: Schema for Food ........................................................................................................................... 89
+Table 7: Schema for Cart ............................................................................................................................. 90
+Table 8: Schema for Food Ordered ............................................................................................................. 90
+Table 9: Schema for Days Served ................................................................................................................ 90
+Table 10: Schema for Food Rating .............................................................................................................. 91
+Table 11: Schema for Table......................................................................................................................... 91
+Table 12: Schema for Transaction............................................................................................................... 91
+Table 13: General Classifications of Nouns ................................................................................................. 93
+Table 14: Selection Criteria of Potential Classes ......................................................................................... 97
+Table 15: Associate Noun and Verb Identification ..................................................................................... 98
+Table 16: Attribute Selection of Classes ................................................................................................... 100
+Table 17: Methods of Classes ................................................................................................................... 103
+Table 18: Class Card of Member ............................................................................................................... 107
+Table 19: Class Card of CM........................................................................................................................ 108
+Table 20: Class Card of Application ........................................................................................................... 109
+Table 21: Class Card of Authentication ..................................................................................................... 110
+Table 22: Class Card of Food ..................................................................................................................... 110
+Table 23: Class Card of Database .............................................................................................................. 111
+Table 24: Class Card of Accounting ........................................................................................................... 111
+Table 25: Class Card of Non Member ....................................................................................................... 112
+Table 26: Class Card of Registration ......................................................................................................... 112
+Table 27: Class Card of Bank ..................................................................................................................... 113
+Table 28: Class Card of DUAD ................................................................................................................... 113
+Table 29: Event Identification ................................................................................................................... 115
+
+
+
+                                                                                                                                    ix | P a g e
+                             CHAPTER 1: INTRODUCTION
+
+This chapter is a part of our software requirement specification for the project “Dhaka University
+Club Management System”. In this chapter we focus on the intended audience for this project.
+
+
+
+
+1.1 PURPOSE
+
+This document briefly describes the Software Requirement Analysis of Dhaka University Club
+Management System. It contains functional, non-functional and supporting requirements and
+establishes a requirements baseline for the development of the system. The requirements
+contained in the SRS are independent, uniquely numbered and organized by topic. The SRS serves
+as an official means of communicating user requirements to the developer and provides a
+common reference point for both the developer team and the stakeholder community. The SRS
+will evolve over time as users and developers work together to validate, clarify and expand its
+contents.
+
+
+
+
+1.2 INTENDED AUDIENCE
+
+This SRS is intended for several audiences including the customers as well as the project
+managers, designers, developers, and testers.
+       The customer will use this SRS to verify that the developer team has created a product
+       that is acceptable to the customer.
+       The project managers of the developer team will use this SRS to plan milestones and a
+       delivery date, and ensure that the developing team is on track during development of the
+       system.
+       The designers will use this SRS as a basis for creating the system’s design. The designers
+       will continually refer back to this SRS to ensure that the system they are designing will
+       fulfill the customer’s needs.
+
+
+                                                                                     1|Page
+       The developers will use this SRS as a basis for developing the system’s functionality. The
+       developers will link the requirements defined in this SRS to the software they create to
+       ensure that they have created a software that will fulfill all of the customer’s documented
+       requirements.
+       The testers will use this SRS to derive test plans and test cases for each documented
+       requirement. When portions of the software are complete, the testers will run their tests
+       on that software to ensure that the software fulfills the requirements documented in this
+       SRS. The testers will again run their tests on the entire system when it is complete and
+       ensure that all requirements documented in this SRS have been fulfilled.
+
+
+
+
+1.3 CONCLUSION
+
+This analysis of the audience helped us to focus on the users who will be using our analysis. This
+overall document will help each and every person related to this project to have a better idea
+about the project.
+
+
+
+
+                                                                                     2|Page
+                        CHAPTER 2: INCEPTION OF DUCMS
+
+In this chapter, the Inception part of the SRS will be discussed briefly.
+
+
+
+
+2.1 INTRODUCTION
+
+Inception is the beginning phase of requirements engineering. It defines how a software project
+gets started and what the scope and nature of the problem to be solved is. The goal of the
+inception phase is to identify concurrent needs and conflicting requirements among the
+stakeholders of a software project. At project inception, we establish a basic understanding of
+the problem, the people who want a solution, the nature of the solution that is desired and the
+effectiveness of preliminary communication and collaborations between the other stakeholders
+and the software team.
+To establish the groundwork we have worked with the following factors related to the inception
+phases:
+
+      List of stakeholders
+
+      Recognizing multiple viewpoints
+
+      Working towards collaboration
+
+      Requirements questionnaire
+
+
+
+2.1.1 List of Stakeholders
+
+Stakeholder refers to any person or group who will be affected by the system directly or
+indirectly. Stakeholders include end-users who interact with the system and everyone else in an
+organization that may be affected by its installation. At inception, a list of people who will
+contribute input as requirements are elicited. The initial list will grow as stakeholders are
+contacted because every stakeholder will be asked: “Whom else do you think I should talk to?”
+To identify the stakeholders we consulted with Club Manager and asked him following questions:
+
+
+                                                                                  3|Page
+      Who is paying for the project?
+
+      Who will be using the project outcomes?
+
+      Who gets to make the decisions about the project (if this is different from the money
+       source)?
+
+      Who has resources I need to get the project done?
+
+      Whose work will my project affect? (During the project and also once the project is
+       completed).
+We identified the following stakeholders for our automated club management system of Dhaka
+University.
+
+
+Club Manager: A manager is selected for the Dhaka University Club. He has the administrative
+power over the system. Almost all decisions are taken by the club manager.
+
+
+Executive Committee: A committee is formed with 15 members. There are one president, two
+vice-presidents, one treasurer, one secretary, two additional secretaries and eight general
+members. Associate members are selected based on their application by the executive
+committee in a meeting. This committee is elected in the annual meeting.
+
+
+General Member: General members are the faculty members or the officers of the University of
+Dhaka. They can also be the recommender for outsiders who want to join the club.
+
+
+Associate Member: Associate members are the outsiders who want to join the club. There can
+be a maximum of 50 associate members in a certain period of time. They need a recommendation
+from a member of the club. Their application is finally approved by the executive committee.
+
+
+Developers: Developers are one of the stakeholder because they are also affected by this system.
+They develop this system and work for further development. If there occurs any system
+interruption, they will find the problem and try to solve it.
+
+
+University: University of Dhaka will finance the project and it has some rules and regulation to
+maintain this system. We have to follow them strictly. It will also be affected by this system so
+we consider it as one of our stakeholders.
+                                                                                    4|Page
+2.1.2 Recognizing Multiple Viewpoints
+
+Different stakeholders achieve different benefits from the system. Consequently, each of them
+has a different view of the system. So we have to recognize the requirements from multiple
+points of view, as well as multiple views of requirements. Assumptions are given below:
+
+
+Club Manager’s viewpoint:
+
+
+       User friendly and efficient system
+       Error free system
+       Easy to operate
+       Minimum maintenance cost
+       Availability of expected requirements within budget
+       Store member related information
+       Generate annual report for expenses and incomes.
+
+
+
+
+General Member’s viewpoint:
+       Easy to access
+       Strong authentication
+       User friendly
+       Notification for expenses
+       High security of member’s information
+
+
+
+
+Associate Member’s viewpoint:
+       Easy to access
+
+                                                                                 5|Page
+       Strong authentication
+       User friendly
+       Online guidance
+
+
+Developer’s viewpoint:
+       Easy to develop
+       No ambiguous requirement
+
+
+University’s viewpoint:
+       User friendly
+       Efficient system
+       Error free system
+       Cost within budget
+       Less maintenance cost
+       No disruption of rules and regulations
+
+
+
+2.1.3 Working towards Collaboration
+
+Every stakeholder has their own requirements. There are some common and conflicting
+requirements of our stakeholder. That’s why we followed the following steps to merge these
+requirements-
+
+
+    Find the common and conflicting requirements
+    Categorize them
+    List the requirements based on stakeholder’s priority points
+    Make final decision about requirements
+
+
+
+
+                                                                              6|Page
+Common requirements:
+    User friendly
+    Efficient system
+    Error free system
+    Strong authentication
+
+
+
+
+Conflicting requirements:
+    Limited budget
+    Cost within budget.
+    High security of the system
+    Easy access (Different stakeholder wants different type of access)
+
+
+
+Final requirements: We finalize the following requirements based on stakeholder’s priority
+point:
+
+      User friendly system
+
+      Strong authentication
+
+      Maximum error free system. (5%-10% error is considerable)
+
+      Restrict access to functionality of the system based upon user roles
+
+      High security of member’s information
+
+      Automated submission of application
+
+
+
+2.1.4 Requirements Questionnaire
+
+We first ask the stakeholder some context free questions to understand the project’s overall
+performance and goals. These questions are mentioned in section 2.1.1. These questions help us
+to identify the stakeholders of the project. Then we ask our next set of questions to better
+understand the problem and take stakeholder’s opinion about the solution. The final set of
+question focused on the effectiveness of the communication activity itself.
+
+                                                                                  7|Page
+2.2 CONCLUSION
+
+The Inception phase helped us to establish basic understanding about the club management
+system of University of Dhaka, identify the stakeholders who will be benefited if this system
+becomes automated, define the nature of the system and the tasks done by the system, and
+establish a preliminary communication with our stakeholders.
+
+
+In our project, we have established a basic understanding of the problem, the nature of the
+solution that is desired and the effectiveness of preliminary communication and collaboration
+between the stakeholders and the software team. More studies and communication will help
+both sides (developer and client) to understand the future prospect of the project. Our team
+believes that the full functioning document will help us to define that future prospect.
+
+
+
+
+                                                                                 8|Page
+                       CHAPTER 3: ELICITATION OF DUCMS
+
+After discussing on the Inception phase, we need to focus on the Elicitation phase. So this chapter
+specifies the Elicitation phase.
+
+
+3.1 INTRODUCTION
+
+Requirements Elicitation is a part of requirements engineering that is the practice of gathering
+requirements from the users, customers and other stakeholders. We have faced many
+difficulties, like understanding the problems, making questions for the stakeholders, limited
+communication with the stakeholders due to a short amount of time and volatility. Though it is
+not easy to gather requirements within a very short time, we have surpassed these problems in
+an organized and systematic manner.
+
+
+3.2 ELICITING REQUIREMENTS
+
+We have seen Question and Answer (Q&A) approach in the previous chapter, where the
+inception phase of requirement engineering has been described. The main task of this phase is
+to combine the elements of problem solving, elaboration, negotiation and specification. The
+collaborative working approach of the stakeholders is required to elicit the requirements. We
+have finished the following tasks for eliciting requirements-
+
+      Collaborative Requirements Gathering
+      Quality Function Deployment
+      Usage Scenarios
+      Elicitation work products
+
+
+
+3.2.1 Collaborative Requirements Gathering
+
+
+We have met with many stakeholders in the Inception phase such as the club manager, general
+members, our classmates and teachers. These meetings created an indecisive state for us to elicit
+the requirements. To solve this problem we have met with the stakeholders (who are acting a
+vital rule in the whole process) again to elicit the requirements. A slightly different scenario from
+these approaches has been found.
+                                                                                        9|Page
+Following activities have been completed to accomplish this task.
+       The meetings were conducted with the club manager and general members; they were
+       questioned about their requirements and expectations from the Dhaka University Club
+       Management System.
+       They were asked about the problems they were facing with the current manual system.
+       Lastly we selected our final requirement list from the meetings.
+
+
+
+3.2.2 Quality Function Deployment
+
+Quality Function Deployment (QFD) is a technique that translates the needs of the customer into
+technical requirements for software. Ultimately the goal of QFD is to translate subjective quality
+criteria into objective ones that can be quantified and measured and which can then be used to
+design and manufacture the product. It is a methodology that concentrates on maximizing
+customer satisfaction from the software engineering process. So we have followed this
+methodology to identify the requirements for the project. The requirements, which are given
+below, are identified successfully by the QFD.
+
+
+
+3.2.2.1 Normal Requirements
+
+
+Normal requirements are generally the objectives and goals that are stated for a product or
+system during meetings with the customer. The presence of these requirements fulfills
+customers' satisfaction. These are the normal requirements for our project.
+   1. User-friendly design.
+   2. Allow new members to register for the club.
+   3. Interactive menu for each day’s catering services is provided alongside appropriate
+      images for ordering food.
+   4. Allow members/nonmembers to book community space for events.
+   5. A database is maintained for accounting purposes so that an annual report can easily be
+      generated and stored.
+   6. Allow manager to add new revenue or expense item, alter list of food items served, and
+      approve new associate members and club space booking.
+   7. Allow manager access to any previous annual or monthly financial report.
+
+                                                                                    10 | P a g e
+   8. Prevent the issue with “Ghost billing”.
+   9. Notify members about their total monthly bill via SMS.
+   10. Allow existing members to access their monthly expense reports.
+
+
+
+3.2.2.2 Expected Requirements
+
+
+These requirements are intrinsic to the product or system and may be so elementary that the
+customer does not explicitly state them. Their absence will be a cause for significant
+dissatisfaction. Below the expected requirements for our project are briefly described.
+
+
+   1. IDs is provided so that only valid users can safely login to the system and see notification.
+   2. Restrict access to system functionalities based upon user roles.
+   3. The user interface is to make use of selectable fields wherever possible instead of fields
+      that require the user to type in data.
+   4. The system’s configuration is to be documented and updated as changes to the system
+      are made due to patches, new releases, etc.
+   5. The online interface provides photos and interactive calendars in the section of renting
+      space for events.
+   6. Provide two factor authentication, where session PINs will be sent via SMS.
+   7. Members are able to set alerts for expense limits during a month.
+   8. A member can keep track of her monthly expenses as she can get access to her previous
+      orders.
+   9. The user interface is to follow standard web practices such that the web interface is
+      consistent with typical internet applications.
+
+
+
+3.2.2.3 Exciting Requirements
+
+
+These requirements are for features that go beyond the customer's expectations and prove to
+be very satisfying when present. Following are some exciting requirements of our project.
+
+
+
+                                                                                    11 | P a g e
+   1. A member can ask questions and submit complaints to a dedicated employee via a virtual
+      helpline.
+   2. All the necessary aspects on the user interface contain tooltip information alongside a
+      virtual manual so that even users who are not familiar with automated systems can use
+      this with ease.
+   3. Offer access to DUCMS through a mobile app.
+   4. Display nutrition facts (carbohydrate, protein, fat, calorie count) about the food items
+      offered.
+
+
+
+3.2.3 Usage Scenario
+
+
+Dhaka University Club Management System (DUCMS) is an automated system for the following
+purposes:
+
+
+   1. Member registration
+   2. Ordering food
+   3. Booking community space
+   4. Management activities
+   5. Member activities
+
+
+New Member Registration
+The club has two types of members: General Members (GM) and Associate Members (AM).
+General members are either university faculty members or officers. Faculties and officers of
+University of Dhaka (DU) are eligible to join Dhaka University Club (DUC) as GM. AMs are
+outsiders who can join the club upon approval from the executive committee. At any time there
+can be a maximum of fifty AMs. Non-member DU faculties and officers can register as a GM of
+DUC by using their Dhaka University Employee Identification Number (DUEIN) to fill out the new
+member registration form.
+
+
+
+
+The new member registration form for GM contains the following information:
+
+
+
+                                                                                12 | P a g e
+   1. Name
+   2. Department
+   3. Designation
+   4. Contact Number
+   5. Present Address
+   6. Permanent Address
+   7. DUEIN
+   8. Photo
+   9. Username
+   10. Password (must be at least eight digits long and include one uppercase letter and number)
+
+
+Outsiders who want to become AM of DUC can apply by filling out the new member registration
+form for AM, along with their recommender's DUEIN, subject to a vacant position. After being
+approved by the recommender, applications are then scrutinized and approved by the executive
+committee manually. A list of successful candidates is published by the club manager. Eligible
+applicants are notified to pay DUC AM membership fees which is verified by the bank, by cross-
+referencing Bank A/C number, Application Reference number and amount.
+
+
+The new member registration form for AM will contain the following information:
+   1. Name
+   2. Occupation
+   3. Contact Number
+   4. Present Address
+   5. Permanent Address
+   6. Photo
+   7. Bank A/C No.
+   8. Recommender’s DUEIN
+   9. Username
+   10. Password (must be at least eight digits long and include one uppercase letter and number)
+
+
+
+                                                                                  13 | P a g e
+Upon registration AMs will be sent a temporary ad hoc DUEIN to login into DUCMS via SMS and
+email. Users can either use their DUEIN or username and password to login to DUCMS.
+The rest of the Member’s information will be generated from the Member Registration
+Application and the information will be stored in the Database.
+
+
+Ordering Food
+
+
+Each table in the club premises (porch, lounge, reading room, ordering counter) will have a
+dedicated electronic device for ordering food. Each electronic device will be identified with a
+table number (identified by MAC address), and will be connected to the DUCMS web interface,
+through which members of the DUCMS will be able to login with their credentials and order food.
+
+
+This panel will display an interactive list of food items or menu, currently available for ordering.
+Each food item will have:
+
+
+   1. Food name
+   2. Multiple pictures of the food item (up to five pictures)
+   3. User daily rating
+   4. Nutritional Facts (carbohydrate, protein, fat and calorie count per serving)
+   5. Price
+   6. Amount in the cart
+
+
+Through this panel they will be able to order the food item, mention the quantity of the item
+they want to order. After selecting all the items and specifying the quantity, users will be able to
+add to, cancel or submit cart. Before placing the order the user will be prompted to verify the
+correctness of her order. Upon confirmation the user will be prompted to complete her order by
+logging in with her credentials. If two factor authentication is enabled a session PIN, a four-digit
+number, will be generated for each attempted login with correct credentials and sent via SMS to
+the user’s mobile phone. A virtual receipt will be generated with every completed order.
+
+
+All club members will also be able to use their own devices to login into the DUCMS web interface
+for ordering food; in which case she will need to login with valid credentials in order to gain access
+to the food ordering panel and identify their table using an interactive map which displays ID and
+position of all the tables within the club premises.
+
+                                                                                       14 | P a g e
+Booking Community Space for Events
+
+
+Members and non-members can also apply to book community space for events from DUC, based
+on availability. Club space is rented out for community events only on Friday of every week
+between 10:00 am to 4:30 pm. Every application made by a non-member is first approved by the
+recommender (existing member of DUC) and then by the Club Manager.
+
+
+Members can apply for booking community space by logging in. Every application made by a
+member is approved by CM only.
+
+
+Upon approval, the applicant is notified to pay booking fees within three working days and the
+space is allocated at desired date, and applicant is notified, after payment has been verified by
+the bank. If payment is not received within three working days, the application is automatically
+nullified and the community space becomes available for booking again.
+
+
+Application by non-member will contain the following information:
+   1. Name of Applicant
+   2. Present Address
+   3. Permanent Address
+   4. Contact Number
+   5. Booking Purpose
+   6. Booking Date and Time
+   7. Name of Recommender
+   8. Contact Number of Recommender
+   9. DUEIN of Recommender
+Notification SMS/Email will contain:
+   1. Applicant’s Name
+   2. Booking Date and Time
+   3. Amount
+
+                                                                                   15 | P a g e
+   4. Application ID
+
+
+
+
+Manager’s Dashboard
+
+
+      Club manager will be able to add revenue sources such as:
+        1. University Grants
+        2. Donation
+        3. Club Space Rent
+        4. Interest on Savings Bank Account
+        5. Raffle Draw
+        6. Club Rent Received in Advance
+        7. Souvenir Contribution (Advertisement)
+        8. Club Premises Rent
+        9. Security Deposit (Club Shop)
+        10. Miscellaneous Receipts
+
+
+      In addition, the following sources of revenue will be automatically generated and
+       maintained within the DUCMS:
+
+
+        1. Subscription from GM
+        2. Subscription from AM
+        3. Security Deposit from AM
+        4. Catering Sales
+      The CM will also be able to add expenses incurred during the financial period such as:
+        1. Staff Salaries and Benefits
+        2. Catering Expenses
+        3. Repairing and Maintenance
+        4. Cleaning Supplies
+
+                                                                                  16 | P a g e
+         5. Stationary
+         6. Newspaper
+         7. Recreational Expenses
+         8. Bank Charge
+         9. Audit fees
+         10. Club Booking Return
+         11. Miscellaneous Expenses
+Other than the categories of items listed above, the CM will also be able to create new revenue
+or expense categories.
+      CM will be able to record transactions of any given or newly created category. Each
+       transaction will have a category and an amount.
+      At any given time the CM will be able to generate a managerial report listing the following:
+         1. Receipts
+         2. Payments
+         3. Current Surplus/Deficit
+         4. Summary of members (Number of GM and AM)
+         5. Food items served along with number of items sold
+Reports will also be automatically generated and stored, monthly and annually.
+      At the end of each month a Reimbursement Report will be generated and sent solely for
+       the purpose of Dhaka University’s Accounting Department (DUAD), listing:
+         1. Total Catering Sales of the month
+         2. Total Subscription fees for the month
+         3. Individual Member’s Monthly Bill (Subscription fees and Catering Sales)
+      The CM will also have the responsibility of approving:
+         1. New AMs through her dashboard
+         2. Application for booking club space
+      Publish list of approved AMs
+      View list of all the club members and their details, provided during registration.
+      CM will also be able to update the following information provided during registration:
+         1. DUEIN
+                                                                                    17 | P a g e
+         2. Name
+         3. Photo
+         4. Password
+         5. Contact Number
+         6. Present Address
+         7. Permanent Address
+      CM can change name, picture, nutritional fact, price and available days of the week for
+       existing food items served. She will also be able to add new food items to the list or
+       remove existing ones.
+      The CM will also be able to check the current status of payments (Unpaid/Paid) :
+         1. AM’s monthly subscription
+         2. AM’s security deposit
+         3. Club Space booking fees
+All payments will be automatically verified by the bank, by cross-referencing Bank A/C number,
+Application Reference number and amount.
+
+
+Members’ Dashboard
+
+
+Members will be able to view a graphical list of food items served for every day of the week. Each
+food item will have:
+
+
+   1. Food Name
+   2. Multiple Pictures of the food item (up to five pictures)
+   3. User daily rating
+   4. Nutritional Facts (carbohydrate, protein, fat and calorie count per serving)
+   5. Price
+   6. Quantity added to cart
+
+
+Members can also rate their food out of 5 from their dashboard. The rating feature will be
+available for the member after the first food she purchases. She can also change her rating for a
+food later on. After a member rates a food item, average food rating is updated.
+                                                                                     18 | P a g e
+The member will be prompted to rate purchased but unrated food items each month. She can
+choose to ignore it for the time being and rate it later.
+The following components will be present for the rating:
+   1. List of Food
+   2. Rating (out of 5) from other users
+   3. The member’s rating
+Members can book community space from their dashboard based on availability. Application for
+booking community space can then be verified and approved by CM, after which the member
+will be requested to complete her payment within three working days; the space is allocated at
+desired date after payment has been verified by the bank. If payment is not received within three
+working days, the application is automatically nullified and the community space becomes
+available for booking again.
+Members will be able to access their real-time expense reports at any given time through the
+web interface. Here they will be able to find details for their every transaction:
+   1. Date
+   2. List of Items ordered
+   3. Quantity of each item ordered
+   4. Bill amount
+
+
+Members will also be able check their total expense for the current month and past twelve
+months at any given time. At the end of each month members will be notified by SMS of the total
+bill incurred during the month.
+Members can also set alerts for expense limits during a month, where a member will be notified
+by SMS if and when they exceed their aforementioned expense limits.
+Club members will also be able to enable two factor authentication. If two factor authentication
+is enabled, a session PIN, a four-digit number, will be generated, for each attempted login with
+correct credentials, and sent via SMS to the user’s mobile phone.
+A member will also receive automated request if she is considered as a recommender by non-
+member applying to rent community space or registering as an AM. The message will have the
+following information:
+   1. Recommendation Purpose
+   2. Booking purpose (if renting out community space)
+   3. Applicant Name
+
+
+                                                                                   19 | P a g e
+   4. Present Address
+   5. Contact Number
+The member will have the option to approve or decline the request.
+Members will also be able to update the following information they provided during registration:
+   1. Photo
+   2. Password
+   3. Contact Number
+   4. Present Address
+   5. Permanent Address
+   6. Department (only for GMs)
+   7. Designation (only for GMs)
+   8. Occupation (only for AMs)
+   9. Bank A/C number (only for AMs)
+   10. Expense limit
+
+
+
+
+                                                                                  20 | P a g e
+3.2.3 Elicitation Work Product
+
+
+At first we have to know whether the output of the Elicitation task may vary because of the
+dependency on the size of the system or the product to be built. Here, the Elicitation work
+product includes:
+       Making a statement of our requirements for the Dhaka University Club Management
+       System.
+       Making a bounded statement of scope for our system.
+       Making a list of customers, users and other stakeholders who participated in the
+       requirements elicitation.
+       Making a list of requirements that are organized by function and domain constraints
+       that apply to each other.
+       A set of usage scenarios that provide insight into the use of the system.
+       Description of the system’s technical environment.
+
+
+
+
+                                                                                   21 | P a g e
+          CHAPTER 4: SCENARIO BASED MODELING OF DUCMS
+
+This chapter describes the Scenario Based Model for the Dhaka University Club management
+System.
+
+
+4.1 INTRODUCTION
+
+Although the success of a computer-based system or product is measured in many ways, user
+satisfaction resides at the top of the list. If we understand how end users (and other actors) want
+to interact with a system, our software team will be better able to properly characterize
+requirements and build meaningful analysis and design models. Hence, requirements modeling
+begins with the creation of scenarios in the form of Use Cases, activity diagrams and swim lane
+diagrams.
+
+
+4.2 DEFINITION OF USE CASE
+A Use Case captures a contract that describes the system behavior under various conditions as
+the system responds to a request from one of its stakeholders. In essence, a Use Case tells a
+stylized story about how an end user interacts with the system under a specific set of
+circumstances. A Use Case diagram simply describes a story using corresponding actors who
+perform important roles in the story and makes the story understandable for the users.
+The first step in writing a Use Case is to define that set of “actors” that will be involved in the
+story. Actors are the different people that use the system or product within the context of the
+function and behavior that is to be described. Actors represent the roles that people play as the
+system operators. Every user has one or more goals when using system.
+Primary Actor
+Primary actors interact directly to achieve required system function and derive the intended
+benefit from the system. They work directly and frequently with the software.
+Secondary Actor
+Secondary actors support the system so that primary actors can do their work. They either
+produce or consume information.
+
+
+
+
+                                                                                    22 | P a g e
+4.3 USE CASE DIAGRAMS
+Use Case diagrams give the non-technical view of overall system.
+
+4.3.1 Level-0 Use Case Diagram-DUCMS
+
+
+
+
+                        Figure 1: Level 0 Use Case diagram-DUCMS
+
+
+
+
+                      Name:                 Club Management System
+                      ID:                   CMS-L-0
+                      Primary Actors:       AM, GM, CM, Non-member
+                      Secondary Actors:     Bank, DUAD
+
+
+
+
+                                                                     23 | P a g e
+Description of Use Case Diagram Level 0:
+After analyzing the user story we found six actors who will directly use the system as a system
+operator. Primary actors are those who will play action and get a reply from the system whereas
+secondary actors only produce or consume information.
+Following are the actors of Dhaka University Club management system –
+
+      General member - GM (primary)
+      Associate member - AM (primary)
+      Club manager - CM (primary)
+      Bank (secondary)
+      Non-member (primary)
+      DUAD (secondary)
+
+
+
+
+                                                                                 24 | P a g e
+4.3.2 Level-1 Use Case Diagram-Subsystems
+
+
+
+
+                    FigureFigure
+                           2: Level
+                                 2: 1Level
+                                      Use Case
+                                           1 Usediagram-Subsystems
+                                                 Case Diagram
+
+
+             Name:               Subsystems of Club Management System
+             ID:                 CMS-L-1
+             Primary Actors:     AM, GM, CM, Non-member
+             Secondary Actors:   Bank, DUAD
+
+
+                                                                        25 | P a g e
+Description of Use Case Diagram Level 1:
+There are five subsystems in the Club Management System. They are:
+   1. Authentication
+   2. Ordering food
+   3. Booking for events
+   4. Management activity
+   5. Member activity
+
+
+
+
+                                                                     26 | P a g e
+4.3.3 Level-1.1 Use Case Diagram-Authentication
+
+
+
+
+                     Figure 3: Level31.1
+                             Figure      Use 1.1
+                                      : Level CaseUse
+                                                   diagram-Authentication
+                                                      Case Diagram
+
+
+
+
+                      Name:                  Authentication
+                      ID:                    CMS-L-1.1
+                      Primary Actors:        AM, GM, CM, Non member
+                      Secondary Actors:      Bank
+
+
+
+
+Description of Use Case Diagram Level 1.1:
+Authentication is the process of determining whether someone or something is, in fact, who or
+what it is declared to be. The authentication subsystem of Club Management System can be
+divided into two parts. They are:
+   1. Sign in
+   2. Registration
+
+
+
+
+                                                                               27 | P a g e
+4.3.4 Level-1.1.1 Use Case Diagram-Sign in
+
+
+
+
+                         Figure 4: Level
+                             Figure      1.1.1
+                                    4: Level   UseUse
+                                             1.1.1 CaseCase
+                                                        diagram-Sign
+                                                            Diagram in
+
+                              Name:                 Sign in
+                              ID:                   CMS-L-1.1.1
+                              Primary Actors:       AM, GM, CM
+
+
+Description of Use Case Diagram Level 1.1.1:
+   1. Visit the login page.
+   2. Input valid user ID or username & password.
+   3. Proceed to the next activity.
+Action-Reply of Use Case Diagram Level 1.1.1:
+      Action: Member/CM will enter DUCEIN or username and password to login to DUCMS.
+       Reply: She will be allowed to enter into the system upon entering correct credentials.
+      Action: Member/CM given Username or password is wrong for the fourth time.
+       Reply: Allow her to reset or recover the password and username through email.
+
+                                                                                 28 | P a g e
+4.3.5 Level-1.1.2 Use Case Diagram-Registration
+
+
+
+
+                   FigureFigure
+                         5: Level
+                                5:1.1.2
+                                  LevelUse  Case
+                                        1.1.2 Usediagram-Registration
+                                                  Case Diagram
+
+                       Name:                 Registration
+                       ID:                   CMS-L-1.1.2
+                       Primary Actors:       Non-member
+                       Secondary Actors:     Bank, CM, AM, GM
+
+
+                                                                        29 | P a g e
+Description of Use Case Diagram Level 1.1.2:
+The club has two types of members: General Members (GM) and Associate Members (AM).
+General members are either university faculty members or officers. Faculties and officers of
+University of Dhaka (DU) are eligible to join Dhaka University Club (DUC) as GM. AMs are
+outsiders who can join the club upon approval from the executive committee. At any time there
+can be a maximum of fifty AMs. Non-member DU faculties and officers can register as a GM of
+DUC by using their Dhaka University Employee Identification Number (DUEIN) to fill out the new
+member registration form.
+
+
+The new member registration form for GM contains the following information:
+
+
+   1. Name
+   2. Department
+   3. Designation
+   4. Contact Number
+   5. Present Address
+   6. Permanent Address
+   7. DUEIN
+   8. Photo
+   9. Username
+   10. Password (must be at least eight digits long and include one uppercase letter and
+       number)
+
+
+Outsiders who want to become AM of DUC can fill out the new member registration form for
+AM, along with a letter of recommendation from a GM, subject to a vacant position. Applications
+are then scrutinized and approved by the executive committee manually. A list of successful
+candidates is published by the club manager. Eligible applicants are notified to pay DUC AM
+membership fees which is verified by the bank.
+
+
+The new member registration form for AM will contain the following information:
+
+
+
+                                                                                  30 | P a g e
+   1. Name
+   2. Occupation
+   3. Contact Number
+   4. Present Address
+   5. Permanent Address
+   6. Photo
+   7. Bank A/C No.
+   8. Username
+   9. Password (must be at least eight digits long and include one uppercase letter and
+      number)
+
+
+Upon registration AMs will be sent a temporary adhoc DUEIN to login into DUCMS via SMS and
+email. Users can either use their DUCEIN or username and password to login to DUCMS.
+
+
+
+
+Action-Reply of Use Case Diagram Level 1.1.2:
+      Action: Non-member DU faculty or officer enters DUEIN.
+       Reply: She will be allowed to fill out the new member registration form.
+      Action: Non-member Outsiders who want to become AM of DUC can fill out the new
+       member registration form for AM.
+       Reply: Recommending member is notified.
+      Action: Nonmember Outsider gets approval from executive committee (Club Manager)
+       Reply: Nonmember Outsider will be notified and get a temporary ad hoc DUEIN to login
+       into DUCMS via SMS and email.
+      Action: Member/CM enter correct username and password
+       Reply: She will be allowed to enter the system.
+
+
+
+
+                                                                                  31 | P a g e
+4.3.6 Level-1.2 Use Case Diagram-Ordering Food
+
+
+
+
+                       Figure 6: Level 1.2 Use Case diagram-Ordering Food
+                               Figure 6: Level 1.2 Use Case Diagram
+
+
+                               Name:                  Ordering Food
+                               ID:                    CMS-L-1.2
+                               Primary Actors:        AM, GM
+
+
+
+
+Description of Use Case Diagram Level 1.2:
+Each table in the club premises (porch, lounge, reading room, ordering counter) will have a
+dedicated electronic device for ordering food. Each electronic device will be connected to the
+DUCMS web interface, through which members of the DUCMS will be able to login with their
+credentials and order food.
+
+
+This panel will display an interactive list of food items, currently available for ordering. Each food
+item will have:
+                                                                                       32 | P a g e
+   1. Food name
+   2. Multiple pictures of the food item (up to five pictures)
+   3. User daily rating
+   4. Nutritional Facts (carbohydrate, protein, fat and calorie count per serving)
+   5. Price
+   6. Amount in the cart
+
+
+Through this panel they will be able to order the food item, mention the quantity of the item
+they want to order. After selecting all the items and specifying the quantity, users will be able to
+place their order. Before placing the order the user will be prompted to verify the correctness of
+her order. Upon confirmation the user will be prompted to complete her order by logging in with
+her credentials. If two factor authentication is enabled a session PIN, a four-digit number, will be
+generated for each attempted login with correct credentials and sent via SMS to the user’s mobile
+phone.
+
+
+All club members will also be able to use their own devices to login into the DUCMS web interface
+for ordering food; in which case she will need to login with valid credentials in order to gain access
+to the food ordering panel and choose their table number using an interactive map which displays
+ID and position of all the tables within the club premises.
+
+
+Action-Reply of Use Case Diagram Level 1.2:
+      Action: Member chooses a food item.
+       Reply: She will be prompted to specify amount.
+      Action: Member will specify amount.
+       Reply: She can then add that food item to her cart.
+      Action: Member will finalize her order.
+       Reply: She will be prompted to check the correctness of her order.
+      Action: Member will log in to her account.
+       Reply: She will then be able to place order.
+      Action: Member will place order.
+       Reply: She will be displayed the status of the order and be returned to the menu stage.
+
+                                                                                       33 | P a g e
+4.3.7 Level-1.3 Use Case Diagram-Booking Space
+
+
+
+
+                  Figure 7:Figure
+                             Level7:
+                                   1.3 Use 1.3
+                                     Level Case diagram-Booking
+                                               Use Case Diagram Space
+
+
+              Name:                Booking Community Space for Events
+              ID:                  CMS-L-1.3
+              Primary Actors:      AM,GM, Non-member, CM
+              Secondary Actor:     Bank
+
+
+                                                                        34 | P a g e
+Description of Use Case Diagram Level 1.3:
+
+
+Members and non-members can also apply to book community space for events from DUC, based
+on availability. Every application made by a non-member is first approved by the recommender
+(existing member of DUC) and then by the Club Manager. Members can apply for booking
+community space by logging in. Every application made by a member is approved by CM only.
+Upon approval from CM, the applicant is notified to pay booking fees within three working days;
+the space is allocated at desired date, and applicant is notified, after payment has been verified
+by the bank. If payment is not received within three working days, the application is automatically
+nullified and the community space becomes available for booking again.
+
+
+Action-Reply of Use Case Diagram Level 1.3:
+
+
+      Action: Member or non-member submits completes and submits application form.
+       Reply: Member or non-member receives confirmation of submission. If application is
+       from a non-member, it waits to be approved by its recommending member. If application
+       is from a member, it awaits approval of CM.
+      Action: Recommending member approves application.
+       Reply: Application is sent to CM for approval.
+      Action: Recommending member rejects application.
+       Reply: Application is invalidated and applicant non-member is notified.
+      Action: CM approves application.
+       Reply: Applicant member or non-member is notified to pay booking fees within 3
+       working days.
+      Action: Applicant member or non-member pays booking fees within 3 days.
+       Reply: Space is allocated to applicant. Applicant is notified.
+      Action: Applicant member or non-member does not pay booking fees within 3 working
+       days.
+       Reply: Application is invalidated and applicant is notified.
+
+
+                                                                                    35 | P a g e
+4.3.8 Level-1.4 Use Case Diagram-Management Activities
+
+
+
+
+           Figure 8: Level 1.4 Use Case diagram-Management Activities
+                       Figure 8: Level 1.4 Use Case Diagram
+
+
+            Name:               Management Activities
+            ID:                 CMS-L-1.4
+            Primary Actors:     CM
+            Secondary Actors:   DUAD, Bank, Non-member, GM, AM
+
+
+
+
+                                                                        36 | P a g e
+Description of Use Case Diagram Level 1.4:
+This subsystem manages the various tasks of the club manager. These tasks can be categorized
+as:
+   1. Financial Management
+   2. Approve Application
+   3. Change Food Detail
+   4. View Detailed List of Members
+
+
+
+
+                                                                              37 | P a g e
+4.3.9 Level-1.4.1 Use Case Diagram-Manager’s Financial Activities
+
+
+
+
+                         Figure
+      Figure 9: Level 1.4.1     9: Level
+                            Use Case     1.4.1 Use Case Diagram
+                                     diagram-Manager’s    Financial Activities
+
+                                                                                 38 | P a g e
+                     Name:                  Manager’s Financial Activities
+                     ID:                    CMS-L-1.4.1
+                     Primary Actors:        CM
+                     Secondary Actors:      DUAD, Bank
+
+
+
+
+Description of Use Case Diagram Level 1.4.1:
+Club manager will be able to add revenue sources and expenses. Other than the categories of
+items provided, the CM will also be able to create new revenue or expense categories.
+At any given time the CM will be able to generate a report listing the following:
+   1. Receipts
+   2. Payments
+   3. Current Surplus/Deficit
+   4. Summary of members (Number of GM and AM)
+   5. Food items served along with number of items sold
+Reports will also be automatically generated and stored, monthly and annually.
+
+
+
+At the end of each month another type of report will be generated and sent solely for the purpose
+of Dhaka University’s Accounting Department listing:
+   1. Total Catering Sales of the month
+   2. Total Subscription fees for the month
+   3. Individual Member’s Monthly Bill (Subscription fees and Catering Sales)
+
+
+The CM will also be able to check the current status of payments (Unpaid/Paid):
+   1. AM’s monthly subscription
+   2. AM’s security deposit
+   3. Club Space booking fees
+
+
+
+                                                                                   39 | P a g e
+Action-Reply of Use Case Diagram Level 1.4.1:
+      Action: CM adds revenue
+       Reply: Store revenue and recalculate current Surplus or Deficit.
+      Action: CM adds expense
+       Reply: Store expense and recalculate current Surplus or Deficit.
+      Action: CM creates new Revenue/Expense category
+       Reply: Store new category.
+      Action: CM generates report
+       Reply: Create, store and display report
+      Action: System sends expense report to DUAD
+       Reply: Delivery Confirmation
+      Action: CM checks payment status
+       Reply: Display list of transactions with bank
+
+
+
+
+                                                                          40 | P a g e
+4.3.10 Level-1.4.2 Use Case Diagram-Approving Applications
+
+
+
+
+                      Figure
+          Figure 10: Level   10:Use
+                           1.4.2 Level 1.4.2
+                                    Case     Use Case DiagramApplications
+                                          diagram-Approving
+
+
+
+
+                  Name:                 Management Activities
+                  ID:                   CMS-L-1.4.2
+                  Primary Actors:       CM
+                  Secondary Actors:     Non-member, GM, AM
+
+
+
+
+                                                                            41 | P a g e
+Description of Use Case Diagram Level 1.4.2:
+The CM will also have the responsibility of approving:
+   1. New AMs through her dashboard
+   2. Application for booking club space
+Publish list of approved AMs.
+
+
+Action-Reply of Use Case Diagram Level 1.4.2:
+      Action: CM approves application for GM or Community Space Booking
+       Reply: Send notification for payment
+      Action: CM publishes list of successful GM
+       Reply: Upload list to DUC website
+
+
+
+
+                                                                           42 | P a g e
+4.3.11 Level-1.4.3 Use Case Diagram-Change Food Detail
+
+
+
+
+            Figure 11: Level 1.4.3 Use case Diagram-Change Food Detail
+
+
+
+
+                    Name:                 Change food detail
+                    ID:                   CMS-L-1.4.3
+                    Primary Actors:       CM
+
+
+
+
+                                                                         43 | P a g e
+Description of Use Case Diagram Level 1.4.3:
+CM can change name, picture, nutritional fact, price and available days of the week for existing
+food items served. She will also be able to add new food items to the list or remove existing ones.
+
+
+Action-Reply of Use Case Diagram Level 1.4.3:
+
+
+      Action: CM creates new food item
+       Reply: New food item is stored. Food menu is updated.
+      Action: CM removes existing food item
+       Reply: Food item is deleted. Food menu is updated.
+      Action: CM alters property of food item
+       Reply: Changes are saved. Food menu is updated.
+
+
+
+
+                                                                                    44 | P a g e
+   4.3.12 Level-1.5 Use Case Diagram-Member Activities
+
+
+
+
+                   Figure 12:Figure
+                              Level 12:
+                                    1.5 Use
+                                        LevelCase diagram-Member
+                                              1.5 Use Case Diagram Activities
+
+
+                             Name:               Member Activities
+                             ID:                 CMS-L-1.5
+                             Primary Actors:     AM,GM
+
+
+
+Description of Use Case Diagram Level 1.5:
+This subsystem manages the various tasks of a member (both GM and AM). These tasks can be
+categorized as:
+   1. Financial Activities
+   2. Food Activities
+   3. System Activities
+
+
+
+
+                                                                                45 | P a g e
+4.3.13 Level-1.5.1 Use Case Diagram-Member’s Financial Activities
+
+
+
+
+                        Figure
+      Figure 13: Level 1.5.1   13:Case
+                             Use   Level 1.5.1 Use Case Diagram
+                                       diagram-Member’s   Financial Activities
+
+
+
+
+                       Name:                  Member Activities
+                       ID:                    CMS-L-1.5
+                       Primary Actors:        AM,GM
+
+
+
+
+                                                                                 46 | P a g e
+Description of Use Case Diagram Level 1.5.1:
+Members will be able to access their real time expense reports at any given time through the
+web interface. Here they will be able to find details for their every transaction:
+
+
+   1. Date
+   2. List of Items ordered
+   3. Quantity of each item ordered
+   4. Bill amount
+
+
+Members will also be able check their total expense for the current month and past twelve
+months at any given time. At the end of each month members will be notified by SMS of the total
+bill incurred during the month.
+
+
+Action-Reply of Use Case Diagram Level 1.5.1:
+      Action: Members access Real time expenses
+       Reply: Display transactions and total bill for the current month.
+      Action: Members access monthly and yearly expense report
+       Reply: Display transaction and total bill for specified month/year.
+
+
+
+
+                                                                                 47 | P a g e
+4.3.14 Level-1.5.2 Use Case Diagram-Member’s Food Activities
+
+
+
+
+                      Figure
+         Figure 14: Level     14:Use
+                          1.5.2   Level 1.5.2
+                                     Case     Use Case Diagram
+                                          diagram-Member’s   Food Activities
+
+
+
+
+                     Name:                  Member Activities
+                     ID:                    CMS-L-1.5
+                     Primary Actors:        AM, GM
+
+
+
+
+                                                                               48 | P a g e
+Description of Use Case Diagram Level 1.5.2:
+Members will be able to view a graphical list of food items served for every day of the week. Each
+food item will have:
+   1. Food Name
+   2. Multiple Pictures of the food item (up to five pictures)
+   3. User daily rating
+   4. Nutritional Facts (carbohydrate, protein, fat and calorie count per serving)
+   5. Price
+   6. Quantity added to cart
+Members can also rate their food out of 5 from their dashboard. The rating feature will be
+available for the member after the first food she purchases. She can also change her rating for a
+food later on.
+The member will be prompted to rate purchased but unrated food items each month. She can
+choose to ignore it for the time being and rate it later.
+The following components will be present for the rating:
+   1. List of Food
+   2. Rating (out of 5) from other users
+   3. The member’s rating
+Members can also set alerts for expense limits during a month, where a member will be notified
+by SMS if and when they exceed their aforementioned expense limits.
+
+
+Action-Reply of Use Case Diagram Level 1.5.2:
+      Action: Members rate food item.
+       Reply: Store user rating; calculate and update average user rating
+      Action: Members set Alert for Expense limit
+       Reply: Member is notified when current month’s bill exceeds expense limit
+      Action: Members Check daily menu
+       Reply: Display menu
+
+
+
+
+                                                                                     49 | P a g e
+   4.3.15 Level-1.5.3 Use Case Diagram-Member’s System Activities
+
+
+
+
+             Figure 15: Level 1.5.3 Use Case Diagram-Member’s System Activities
+
+
+
+
+                      Name:                 Member’s System Activities
+                      ID:                   CMS-L-1.5.3
+                      Primary Actors:       AM, GM
+
+
+
+
+Description of Use Case Diagram Level 1.5.3:
+Club members will also be able to enable two factor authentication. If two factor authentication
+is enabled, a session PIN, a four-digit number, will be generated, for each attempted login with
+correct credentials, and sent via SMS to the user’s mobile phone.
+
+                                                                                  50 | P a g e
+A member will also receive automated request if she is considered as a recommender by non-
+member applying to rent community space or registering as an AM. The message will have the
+following information:
+   1. Recommendation Purpose
+   2. Booking purpose (if renting out community space)
+   3. Applicant Name
+   4. Present Address
+   5. Contact Number
+The member will have the option to approve or decline the request.
+Members will also be able to update the following information they provided during registration:
+   1. Photo
+   2. Password
+   3. Contact Number
+   4. Present Address
+   5. Permanent Address
+   6. Department (only for GMs)
+   7. Designation (only for GMs)
+   8. Occupation (only for AMs)
+   9. Bank A/C number (only for AMs)
+   10. Expense limit
+
+
+Action-Reply of Use Case Diagram Level 1.5.3:
+      Action: Member changes personal information
+       Reply: Changes are saved and stored in member database
+      Action: Member enables two-factor authentication
+       Reply: Member is sent 4-digit session PIN every time she tries to log in
+      Action: Member responds to recommendation
+       Reply: Response saved, CM and applicant non-member is notified
+
+
+
+                                                                                  51 | P a g e
+4.4 ACTIVITY DIAGRAMS OF DUCMS
+
+
+
+
+              Figure 16: Activity Diagram 1: Club Management System
+
+
+
+
+                                                                      52 | P a g e
+Figure 17: Activity Diagram 1.1: Authentication
+
+
+
+
+                                                  53 | P a g e
+Figure 18: Activity Diagram 1.1.1: Sign in
+
+
+
+
+                                             54 | P a g e
+Figure 19: Activity Diagram 1.1.2: Registration
+
+
+
+
+                                                  55 | P a g e
+Figure 20: Activity Diagram 1.2: Ordering Food
+
+
+
+                                                 56 | P a g e
+Figure 21: Activity Diagram 1.3: Booking Space
+
+
+
+                                                 57 | P a g e
+Figure 22: Activity Diagram 1.4: Management Activities
+
+
+
+
+                                                         58 | P a g e
+Figure 23: Activity Diagram 1.4.1: Financial Management
+
+
+
+
+                                                          59 | P a g e
+Figure 24: Activity Diagram 1.4.2: Approve Pending Requests
+
+
+
+
+                                                              60 | P a g e
+Figure 25: Activity Diagram 1.4.3: Changing Food Detail
+
+
+
+
+                                                          61 | P a g e
+Figure 26: Activity Diagram 1.5: Member Activities
+
+
+
+
+                                                     62 | P a g e
+Figure 27: Activity Diagram 1.5.1: Financial Activities
+
+
+
+
+                                                          63 | P a g e
+Figure 28: Activity Diagram 1.5.2: Food Activities
+
+
+
+
+                                                     64 | P a g e
+Figure 29: Activity Diagram 1.5.3: System Activities
+
+
+
+
+                                                       65 | P a g e
+4.5 SWIMLANE DIAGRAMS OF DUCMS
+
+
+
+
+               Figure 30: Swimlane Diagram 1.1: Authentication
+
+
+
+
+                                                                 66 | P a g e
+Figure 31: Swimlane Diagram 1.1.1: Sign in
+
+
+
+
+                                             67 | P a g e
+Figure 32: Swimlane Diagram 1.1.2: Registration
+
+
+
+
+                                                  68 | P a g e
+Figure 33: Swimlane Diagram 1.2: Ordering Food
+
+
+                                                 69 | P a g e
+Figure 34: Swimlane Diagram 1.3: Booking Space
+
+
+
+
+                                                 70 | P a g e
+Figure 35: Swimlane Diagram 1.4: Management Activities
+
+
+
+
+                                                         71 | P a g e
+Figure 36: Swimlane Diagram 1.4.1: Financial Management
+
+
+
+
+                                                          72 | P a g e
+Figure 37: Swimlane Diagram 1.4.2: Approve Pending Requests
+
+
+
+
+                                                              73 | P a g e
+Figure 38: Swimlane Diagram 1.4.3: Changing Food Detail
+
+
+
+
+                                                          74 | P a g e
+Figure 39: Swimlane Diagram 1.5: Member Activities
+
+
+
+
+                                                     75 | P a g e
+Figure 40: Swimlane Diagram 1.5.1: Financial Activities
+
+
+
+
+                                                          76 | P a g e
+Figure 41: Swimlane Diagram 1.5.2: Food Activities
+
+
+
+
+                                                     77 | P a g e
+Figure 42: Activity Diagram 1.5.3: System Activities
+
+
+
+
+                                                       78 | P a g e
+                   CHAPTER 5: DATA MODELING OF DUCMS
+
+
+5.1 DATA MODELING CONCEPT
+
+If software requirements include the necessity to create, extend or interact with a database or
+complex data structures need to be constructed and manipulated, then the software team
+chooses to create data models as part of overall requirements modeling. The entity-relationship
+diagram (ERD) defines all data objects that are processed within the system, the relationships
+between the data objects and the information about how the data objects are entered, stored,
+transformed and produced within the system.
+
+
+
+
+5.2 DATA OBJECTS
+
+A data object is a representation of composite information that must be understood by the
+software. Here, composite information means an information that has a number of different
+properties or attributes. A data object can be an external entity, a thing, an occurrence, a role,
+an organizational unit, a place or a structure.
+
+5.2.1 Noun identification
+
+
+We identified all the nouns whether they are in problem space or in solution space from our
+usage scenario.
+
+
+
+                         Table 1: Noun Identification for Data Modeling
+
+ NO                      Nouns                         Problem               Attributes
+                                                    domain/Solution
+                                                        space
+ 1     Dhaka University Club Management System            P
+ 2     System                                             P
+ 3     Purpose                                            P
+ 4     Club                                               P
+ 5     Member                                             S           23,26-32, 76,134,135,
+
+                                                                                    79 | P a g e
+6    Registration                  P
+7    General Member                S   23-32,134,135,76
+8    Associate Member              S   23,26-32,38,45,48,134,
+                                       135,76
+9    Dhaka University              P
+10   Faculty                       P
+11   Officer                       P
+12   Outsider                      P
+13   Executive Committee           P
+14   President                     P
+15   Vice President                P
+16   Treasurer                     P
+17   Secretary                     P
+18   Additional Secretary          P
+19   Election                      P
+20   Non-member                    S   23,26-28,45
+21   Member registration form      S   23,26-32
+22   GM registration form          S   23-32
+23   Name                          S
+24   Department                    S
+25   Designation                   S
+26   Contact Number                S
+27   Permanent Address             S
+28   Present Address               S
+29   DUEIN                         S
+30   Photo                         S
+31   Username                      S
+32   Password                      S
+33   Booking Application           S   38,46,47,85,88,89,91
+34   AM Registration form          S   23,26-32,38,45,48
+35   AM Registration Application   S   38,46,47,85
+36   Vacant Position               P
+37   Recommender                   S   23,26-32,133,134
+38   Recommender's User ID         S
+39   List                          P
+40   Successful Candidates         P
+41   Club Manager                  S   23,26-32
+42   Applicant                     S   23,26-28,37
+43   Membership fees               P
+44   Bank                          P
+45   Bank A/C Number               S
+46   Application Reference ID      S
+                                                     80 | P a g e
+47   Fee Amount                  S
+48   Occupation                  S
+49   SMS                         P
+50   Email                       P
+51   Member's Information        P
+52   Database                    P
+53   Table                       S   53,138
+54   Table Number                S
+55   Club Premises               P
+56   Porch                       P
+57   Lounge                      P
+58   Reading Room                P
+59   Ordering Counter            P
+60   Device                      P
+61   Web Interface               P
+62   Credentials                 S   31, 32
+63   Menu                        S   65-69, 132
+64   Food                        S   65-69, 127, 132
+65   Food Name                   S
+66   Food Picture                S
+67   Food Rating                 S
+68   Food Nutritional Facts      S
+69   Price                       S
+70   Quantity in cart            S
+71   Panel                       P
+72   User                        S   23,26-32
+73   Cart                        S   64, 70
+74   Order                       S   64, 70
+75   Confirmation                P
+76   Two Factor Authentication   S
+77   Session PIN                 P
+78   Attempted Login             P
+79   Mobile Phone                P
+80   Receipt                     S   64, 70
+81   Community Space             P
+82   Event                       P
+83   Friday                      P
+84   Week                        P
+85   Approval Status             S
+86   Booking Fees                P
+87   Working day                 P
+
+                                                  81 | P a g e
+88    Date                               S
+89    Time                               S
+90    Payment                            P
+91    Booking Purpose                    S
+92    Notification                       P
+93    Revenue Source                     P
+94    University Grants                  P
+95    Donation                           P
+96    Club Space Rent                    P
+97    Interest on Savings Bank Account   P
+98    Raffle Draw                        P
+99    Club Rent Received in Advance      P
+100   Souvenir Contribution              P
+101   Club Premises Rent                 P
+102   Security Deposit                   P
+103   Miscellaneous Receipts             P
+104   Subscription from AM               P
+105   Subscription from GM               P
+106   Catering Sales                     P
+107   Expense                            P
+108   Staff Salaries and Benefits        P
+109   Catering Expenses                  P
+110   Repairing and Maintenance          P
+111   Cleaning Supplies                  P
+112   Stationary                         P
+113   Newspaper                          P
+114   Recreational Expenses              P
+115   Bank Charge                        P
+116   Audit Fees                         P
+117   Club Booking Return                P
+118   Miscellaneous Expenses             P
+119   Transaction Category               S
+120   Transaction                        S   119,121,139-141
+121   Amount                             S
+122   Managerial Report                  P
+123   Receipts                           P
+124   Payment                            P
+125   Surplus                            P
+126   Deficit                            P
+127   Number sold (Food Item)            S
+128   Reimbursement Report               P
+
+                                                         82 | P a g e
+ 129   Dhaka University Accounting Department            P
+ 130   Responsibility                                    P
+ 131   Dashboard                                         P
+ 132   Available days of the week                        S
+ 133   Status of Payment                                 P
+ 134   Total Monthly Expense                             S
+ 135   Expense limit                                     S
+ 136   Recommendation Request                            P
+ 137   Recommendation Purpose                            P
+ 138   MAC Address                                       S
+ 139   Transaction Source (Cash/Bank)                    S
+ 140   Transaction Type (Revenue/Expense)                S
+ 141   Transaction Comment                               S
+
+5.2.2 Potential Data Objects
+      Member: 23, 26-32, 76, 134, 135
+      General Member: 23-32, 76, 134, 135
+      Associate Member: 23, 26-32, 38, 45, 48, 76, 134, 135
+      Non-member: 23, 26-28, 45
+      Member Registration Form: 23, 26-32
+      GM Registration Form: 23-32
+      AM Registration form: 23, 26-32, 38, 45, 48
+      AM Registration Application: 38, 46, 47, 85
+      Booking Application: 38, 46, 47, 85, 88, 89, 91
+      Recommender: 23, 26-32, 134, 135
+      Club Manager: 23, 26-32
+      Applicant: 23, 26-28, 38
+      Table: 54, 138
+      Credentials: 31, 32
+      Food: 65-69, 127, 132
+      Menu: 65-69, 132
+      User: 23, 26-32
+      Cart: 64, 70
+      Order: 64, 70
+      Virtual Receipt: 64, 70
+      Transaction: 119, 121, 139-141
+
+
+
+
+                                                               83 | P a g e
+5.2.3 Analysis for finalizing Data Objects:
+
+      Member, CM and non-members are all users of DUCMS and hence have their common
+       attributes stored as data object user.
+      AM, GM and CM are all members of DUCMS and hence have their common
+       attributes stored as data object member.
+      Credentials are just username and password which is possessed by all members so these
+       are stored in member.
+      Application is submitted by user with additional attributes such as application type (AM
+       registration or Booking Application), booking date, time and purpose.
+      Recommender is a member of the club.
+      Details of food are stored in the Food data object. Menu is just a list of Food object.
+      Cart stores food ordered by a member with the help of data object food ordered. Order
+       is cart submitted by member. Virtual Receipts are prior carts submitted by member.
+       Hence these are represented altogether by Cart data object.
+      Days served keeps track of which food item is served at a particular day of the week.
+      Food rating stores ratings of every food item given by every member.
+      Transaction stores financial transactions occurred while operating the club. Reports can
+       be generated from Transactions and hence need not be stored.
+      Transaction stores the Transaction Source (Cash or Bank), Transaction Type (Revenue or
+       Expense) and any additional comments.
+      Table stores the mac address of electronic devices and the table number they are
+       attached to.
+
+
+
+
+                                                                                    84 | P a g e
+5.2.4 Final Data Objects
+
+
+                                 Table 2 : Final Data Objects
+
+ 1    User: User ID, Name, Contact Number, Present Address, Permanent Address, Bank
+      Account Number
+
+ 2    Member: Photo, Username, Password, DUEIN, Monthly Bill, Expense Limit, Two Factor
+      status, Department, Designation/Occupation, User ID
+ 3    Application: Application Reference ID , Application Type, Approval Status, Fee, Booking
+      Purpose, Booking Date and Time, Application Submission Date, Recommender’s User ID,
+      User ID
+ 4    Food: Food ID, Name, Picture, Rating, Nutritional Facts, Price, Quantity Sold
+
+ 5    Cart: Cart ID, User ID, Date, Bill Amount
+
+ 6    Food Ordered: Cart ID, Food ID, Quantity, Table Number
+
+ 7    Days Served: Food ID, Day Of The Week
+
+ 8    Food Rating: User ID, Food ID, Rating
+
+ 9    Table: Table Number, Mac Address
+
+ 10   Transaction: Transaction ID, Category Name, Transaction Type, Amount, Date and Time,
+      Transaction Source, Bank Account Number, Application Reference ID, Comment
+
+
+
+
+                                                                               85 | P a g e
+5.3 DATA OBJECT RELATIONS
+Data objects are connected to one another in different ways.
+
+
+
+
+                        Figure 43: Relationships between Data Objects
+
+
+
+
+                                                                        86 | P a g e
+5.3 ENTITY RELATIONSHIP DIAGRAM
+
+
+
+
+                        Figure 44: ER Diagram of DUCMS
+
+
+
+
+                                                         87 | P a g e
+5.4 SCHEMA DIAGRAMS
+                               Table 3: Schema for User
+
+
+                                       1. User
+
+               Attributes                    Type          Size
+
+                User ID                    NUMBER          15
+                 Name                     VARCHAR2         15
+            Contact Number                 NUMBER          11
+            Present Address               VARCHAR2         15
+           Permanent Address              VARCHAR2         15
+         Bank Account Number              VARCHAR2         15
+
+
+
+
+                              Table 4: Schema for Member
+
+
+                                     2. Member
+
+               Attributes                    Type          Size
+
+                User ID                    NUMBER          15
+                 DUEIN                     NUMBER          10
+               Username                   VARCHAR2         15
+               Password                   VARCHAR2         10
+                 Photo                    VARCHAR2         512
+              Monthly Bill                 NUMBER          10
+             Expense Limit                 NUMBER          10
+           Two Factor Status              VARCHAR2          5
+             Member Type                  VARCHAR2          5
+              Department                  VARCHAR2         10
+         Designation/Occupation           VARCHAR2         15
+
+
+                                                                  88 | P a g e
+                     Table 5: Schema for Application
+
+
+                             3. Application
+
+       Attributes                      Type            Size
+
+Application Reference ID             NUMBER            15
+   Application Type                 VARCHAR2           10
+    Approval Status                 VARCHAR2           10
+    Application Fee                  NUMBER            5,2
+   Booking Purpose                  VARCHAR2           15
+Booking Date and Time                 DATE             15
+   Submission Date                    DATE             15
+        User ID                      NUMBER            15
+Recommender’s User ID                NUMBER            15
+
+
+
+
+                        Table 6: Schema for Food
+
+
+                                4. Food
+
+       Attributes                      Type            Size
+
+        Food ID                      NUMBER            10
+         Name                       VARCHAR2           15
+        Picture                     VARCHAR2           512
+        Rating                       NUMBER            2,2
+   Nutritional Facts                VARCHAR2           15
+         Price                       NUMBER            5,2
+     Quantity Sold                   NUMBER            10
+
+
+
+
+                                                              89 | P a g e
+                    Table 7: Schema for Cart
+
+
+                            5. Cart
+
+   Attributes                     Type             Size
+
+    Cart ID                     NUMBER             10
+    User ID                     NUMBER             15
+     Date                         DATE             10
+  Bill Amount                   NUMBER             10
+
+
+
+                Table 8: Schema for Food Ordered
+
+
+                       6. Food Ordered
+
+   Attributes                     Type             Size
+
+    Cart ID                     NUMBER             10
+    Food ID                     NUMBER             10
+   Quantity                     NUMBER              5
+ Table Number                   NUMBER              5
+
+
+
+                Table 9: Schema for Days Served
+
+
+                        7. Days Served
+
+   Attributes                     Type             Size
+
+    Food ID                     NUMBER             10
+Day Of The Week                VARCHAR2             4
+
+
+
+
+                                                          90 | P a g e
+                    Table 10: Schema for Food Rating
+
+
+                            8. Food Rating
+
+       Attributes                     Type             Size
+
+        User ID                     NUMBER             15
+        Food ID                     NUMBER             10
+        Rating                      NUMBER             5,2
+
+                       Table 11: Schema for Table
+
+
+                               9. Table
+
+       Attributes                     Type             Size
+
+     Table Number                   NUMBER              5
+     Mac Address                   VARCHAR2            15
+
+                    Table 12: Schema for Transaction
+
+
+                            10. Transaction
+
+       Attributes                     Type             Size
+
+     Transaction ID                 NUMBER             10
+    Category Name                  VARCHAR2            15
+   Transaction Type                VARCHAR2            10
+        Amount                      NUMBER             10
+    Date and Time                     DATE             15
+  Transaction Source               VARCHAR2            10
+ Bank Account Number                NUMBER             15
+Application Reference ID            NUMBER             10
+       Comment                     VARCHAR2            140
+
+
+
+
+                                                              91 | P a g e
+               CHAPTER 6: CLASS BASED MODELING OF DUCMS
+
+This Chapter is intended to describe class based modeling of Dhaka University Club Management
+System.
+
+
+
+
+6.1 CLASS BASED MODELING CONCEPT
+
+Class-based modeling represents the objects that the system will manipulate, the operations that
+will applied to the objects, relationships between the objects and the collaborations that occur
+between the classes that are defined.
+
+
+6.2 General Classifications
+
+To identify the potential classes we have first selected the nouns from the solution space of the
+story. These were then characterized in seven general classifications. The seven general
+characteristics are as follows:
+   1. External entities
+   2. Things
+   3. Events
+   4. Roles
+   5. Organizational units
+   6. Places
+   7. Structures
+Following are the specifications of the nouns according to the general classifications:
+
+
+
+
+                                                                                    92 | P a g e
+                      Table 13: General Classifications of Nouns
+
+No                        Noun                        P/S          General Classification
+1    Dhaka University Club Management System           P
+2    System                                            P
+3    Purpose                                           P
+4    Club                                              P
+5    Member                                            S                     4
+6    Registration                                      S                     3
+7    General Member                                    S                     4
+8    Associate Member                                  S                     4
+9    Dhaka University                                  P
+10   Faculty                                           P
+11   Officer                                           P
+12   Outsider                                          P
+13   Executive Committee                               P
+14   President                                         P
+15   Vice President                                    P
+16   Treasurer                                         P
+17   Secretary                                         P
+18   Additional Secretary                              P
+19   Election                                          P
+20   Non-member                                        S                     4
+21   Member registration form                          S                     2
+22   GM registration form                              S                     2
+23   Name                                              S
+24   Department                                        S
+25   Designation                                       S
+26   Contact Number                                    S
+27   Permanent Address                                 S
+28   Present Address                                   S
+29   DUEIN                                             S
+30   Photo                                             S
+31   Username                                          S
+32   Password                                          S
+33   Booking Application                               S                     2
+34   AM Registration form                              S                     2
+35   Vacant Position                                   P
+36   Recommender                                       P
+37   Recommender's DUEIN                               S
+38   List                                              P
+
+                                                                                 93 | P a g e
+39   Successful Candidates          P
+40   Club Manager                   S   4
+41   Applicant                      P
+42   Membership fees                P
+43   Bank                           S   1
+44   Bank A/C Number                S
+45   Application Reference Number   S
+46   Fee Amount                     S
+47   Occupation                     S
+48   SMS                            S
+49   Email                          S
+50   Member's Information           P
+51   Database                       S   7
+52   Table                          P
+53   Table Number                   S
+54   Club Premises                  P
+55   Porch                          P
+56   Lounge                         P
+57   Reading Room                   P
+58   Ordering Counter               P
+59   Device                         S   2
+60   Web Interface                  P
+61   Credentials                    S
+62   Menu                           S   2
+63   Food                           S
+64   Food Name                      S
+65   Food Picture                   S
+66   Food Rating                    S
+67   Food Nutritional Facts         S
+68   Price                          S
+69   Quantity in cart               S
+70   Panel                          P
+71   User                           S
+72   Cart                           S   2
+73   Order                          S   2
+74   Confirmation                   P
+75   Two Factor Authentication      P
+76   Session PIN                    P
+77   Attempted Login                P
+78   Mobile Phone                   P
+79   Receipt                        S   2
+
+                                            94 | P a g e
+80    Community Space                    P
+81    Event                              P
+82    Friday                             P
+83    Week                               P
+84    Approval                           S
+85    Booking Fees                       S
+86    Working day                        P
+87    Date                               S
+88    Time                               S
+89    Payment                            S
+90    Booking Purpose                    S
+91    Notification                       P
+92    Revenue Source                     S
+93    University Grants                  P
+94    Donation                           P
+95    Club Space Rent                    P
+96    Interest on Savings Bank Account   P
+97    Raffle Draw                        P
+98    Club Rent Received in Advance      P
+99    Souvenir Contribution              P
+100   Club Premises Rent                 P
+101   Security Deposit                   P
+102   Miscellaneous Receipts             P
+103   Subscription from AM               P
+104   Subscription from GM               P
+105   Catering Sales                     P
+106   Expense                            S
+107   Staff Salaries and Benefits        P
+108   Catering Expenses                  P
+109   Repairing and Maintenance          P
+110   Cleaning Supplies                  P
+111   Stationary                         P
+112   Newspaper                          P
+113   Recreational Expenses              P
+114   Bank Charge                        P
+115   Audit Fees                         P
+116   Club Booking Return                P
+117   Miscellaneous Expenses             P
+118   Category                           S
+119   Transaction                        S   2
+120   Amount                             S
+
+                                                 95 | P a g e
+121   Managerial Report                        S   2
+122   Receipts                                 S
+123   Payment                                  S
+124   Surplus                                  S
+125   Deficit                                  S
+126   Number sold (Food Item)                  S
+127   Reimbursement Report                     S
+128   Dhaka University Accounting Department   S   1
+129   Responsibility                           P
+130   Dashboard                                P
+131   Available days of the week               S
+132   Status of Payment                        S
+133   Total Monthly Expense                    S
+134   Expense limit                            S
+135   Expense report                           S   2
+136   Recommendation Request                   S
+137   Recommendation Purpose                   P
+138   MAC Address                              S
+
+
+
+
+                                                       96 | P a g e
+6.3 Selection Criteria
+
+The potential classes were then selected as classes by six Selection Criteria. A potential class
+becomes a class when it fulfills all six characteristics.
+1. Retained Information
+2. Needed Services
+3. Multiple Attributes
+4. Common attributes
+5. Common operations
+6. Essential requirements
+
+
+
+
+                          Table 14: Selection Criteria of Potential Classes
+
+ No                  Potential Class                            Accepted Criteria
+ 1    Member                                                        1,2,3,4,5
+ 2    Registration                                                     2,6
+ 3    General Member                                                1,2,3,4,5
+ 4    Associate Member                                              1,2,3,4,5
+ 5    GM registration form                                            1,3,4
+ 6    AM registration form                                            1,3,4
+ 7    Bank                                                             2,6
+ 8    Club Manager                                                    1,2,3
+ 9    SMS                                                               -
+ 10   E-mail                                                            -
+ 11   Database                                                         2,6
+ 12   Device                                                           1,6
+ 13   Menu                                                             1,3
+ 14   Cart                                                          1,2,3,4,5
+ 15   Receipt                                                         1,3,4
+ 16   Non-member                                                    1,2,3,4,5
+ 17   Booking Application                                             1,3,4
+ 18   Transaction                                                      3,4
+ 19   Managerial Report                                                1,3
+ 20   DUAD                                                             2,6
+ 21   Expense Report                                                  1,3,4
+
+
+                                                                                     97 | P a g e
+6.4 Associate Noun and Verb Identification
+We now identify the nouns and verbs associated with the potential classes to better find out
+the attributes and methods of each class.
+
+
+                       Table 15: Associate Noun and Verb Identification
+
+ No    Potential                     Nouns                                Verbs
+         Class
+ 1    Member         Name, Contact Number, Email         approves, adds to cart,
+                     Address, Present Address, Permanent submits cart, cancels order,
+                     Address, DUEIN, Photo, Username,    identifies table, views food
+                     Password                            detail, rates food, sets expense
+                                                         limit, enables two factor
+                                                         authentication, updates basic
+                                                         information, checks expense
+                                                         report
+ 2    Registration                                       receive application, check
+                                                         application status, check
+                                                         applicant type, send application,
+                                                         receive payment verification,
+                                                         send notification, notify
+                                                         manager
+ 3    General        Name, Department, Designation,      approves, adds to cart,
+      Member         Contact Number, Email Address,      submits cart, cancels order,
+                     Present Address, Permanent Address, identifies table, views food
+                     DUEIN, Photo, Username, Password    detail, rates food, sets expense
+                                                         limit, enables two factor
+                                                         authentication, updates basic
+                                                         information, checks expense
+                                                         report
+ 4    Associate      Name, Occupation, Contact Number, approves, adds to cart,
+      Member         Email Address, Present Address,     submits cart, cancels order,
+                     Permanent Address, DUEIN, Photo,    identifies table, views food
+                     Bank A/C Number, Username,          detail, rates food, sets expense
+                     Password                            limit, enables two factor
+                                                         authentication, updates basic
+                                                         information, checks expense
+                                                         report
+ 5    GM             Name, Department, Designation,      stores information, updates
+      registration   Contact Number, Email Address,      information, shows status
+      form           Present Address, Permanent Address,
+
+
+                                                                                  98 | P a g e
+                    DUEIN, Photo, Username, Password,
+                    Application Status, Application Type
+6    AM             Name, Occupation, Contact Number,        stores information, updates
+     registration   Email Address, Present Address,          information, shows status
+     form           Permanent Address, Recommender’s
+                    DUEIN, Photo, Bank A/C Number,
+                    Username, Password, Application
+                    Status, Application Type
+7    Bank           Bank ID, Bank Name, Application ID       sends verification
+8    Club           Name, Contact Number, Email              logs in, approves, updates basic
+     Manager        Address, Present Address, Permanent      information, records
+                    Address, Photo, DUEIN, Username,         transactions, views managerial
+                    Password                                 report, updates food detail,
+                                                             sends monthly report, logs out
+9    Database       DB_Name, Password, DB_User               updates information, gets
+                                                             information
+10   Device         Table Number, Mac Address                identifies table
+11   Menu           List of Food, Day, Ratings of Food,      updates food detail
+                    Expense of Foods, Photos of Foods,
+                    Nutritional Facts of Foods
+12   Cart           Date, Bill Amount, DUEIN, List of        updates cart
+                    Food
+13   Receipt        Date, Bill Amount, DUEIN, List of
+                    Food
+14   Non-                                                    fills application, sends
+     member                                                  application
+15   Booking        Name of Applicant, Present Address,      stores information, updates
+     Application    Permanent Address, Contact               information, shows status
+                    Number, Email Address, Photo,
+                    Booking Purpose, Booking Date and
+                    Time, DUEIN of Recommender,
+                    Application Status, Application Type
+16   Transaction    Category Name, Date, Amount              records transaction
+17   Managerial     Receipts, Payments, Current
+     Report         Surplus/Deficit, Summary of
+                    Members, Food Items Served
+18   DUAD                                                    receives monthly report
+19   Expense        Date, List of Food, Quantity of Items,
+     Report         Bill Amount
+
+
+
+
+                                                                                   99 | P a g e
+6.5 Attribute Selection
+After identifying the classes, we have specified their attributes and methods.
+
+
+                              Table 16: Attribute Selection of Classes
+
+ No                   Class                                       Attributes
+ 1  Member                                      Name
+                                                Contact Number
+                                                Present Address
+                                                Permanent Address
+                                                DUEIN
+                                                Photo
+                                                Username
+                                                Password
+ 2    Registration                              Contact Number
+                                                Application ID
+ 3    General Member                            Name
+                                                Department
+                                                Designation
+                                                Contact Number
+                                                Email Address
+                                                Present Address
+                                                Permanent Address
+                                                DUEIN
+                                                Photo
+                                                Username
+                                                Password
+ 4    Associate Member                          Name
+                                                Occupation
+                                                Contact Number
+                                                Email Address
+                                                Present Address
+                                                Permanent Address
+                                                DUEIN
+                                                Photo
+                                                Bank A/C Number
+                                                Username
+                                                Password
+ 5    GM registration form                      Name
+                                                Department
+                                                Designation
+                                                Contact Number
+                                                Email Address
+                                                                                 100 | P a g e
+                            Present Address
+                            Permanent Address
+                            DUEIN
+                            Photo
+                            Username
+                            Password
+                            Application Status
+                            Application Type
+6    AM registration form   Name
+                            Occupation
+                            Contact Number
+                            Email Address
+                            Present Address
+                            Permanent Address
+                            Recommender’s DUEIN
+                            Photo
+                            Bank A/C Number
+                            Username
+                            Password
+                            Application Status
+                            Application Type
+7    Bank                   Bank ID
+                            Bank Name
+                            Application ID
+8    Club Manager           Name
+                            Contact Number
+                            Email Address
+                            Present Address
+                            Permanent Address
+                            Photo
+                            DUEIN
+                            Username
+                            Password
+9    Database               DB_Name, Password, DB_User
+10   Device                 Table Number
+                            Mac Address
+11   Menu                   List of Food
+                            Day
+                            Ratings of Food
+                            Expense of Foods
+                            Photos of Foods
+                            Nutritional Facts of Foods
+12   Cart                   Date
+
+                                                         101 | P a g e
+                           Bill Amount
+                           DUEIN
+                           List of Food
+13   Receipt               Date
+                           Bill Amount
+                           DUEIN
+                           List of Food
+14   Non-member
+15   Booking Application   Name of Applicant
+                           Present Address
+                           Permanent Address
+                           Contact Number
+                           Email Address
+                           Photo
+                           Booking Purpose
+                           Booking Date and Time
+                           DUEIN of Recommender
+                           Application Status
+                           Application Type
+16   Transaction           Category Name
+                           Date
+                           Amount
+17   Managerial Report     Receipts
+                           Payments
+                           Current Surplus/Deficit
+                           Summary of Members
+                           Food Items Served
+18   DUAD
+19   Expense Report        Date
+                           List of Food
+                           Quantity of Items
+                           Bill Amount
+
+
+
+
+                                                     102 | P a g e
+6.6 Method Identification
+                           Table 17: Methods of Classes
+
+No                 Class                                  Methods
+1  Member                               inputLoginCredentials()
+                                        inputPIN()
+                                        viewOptions()
+                                        chooseOption()
+                                        approve()
+                                        fillApplication()
+                                        sendApplication()
+                                        addToCart()
+                                        submitCart()
+                                        cancelOrder()
+                                        identifyTable()
+                                        viewFoodDetail()
+                                        rateFood()
+                                        setExpenseLimit()
+                                        enableTwoFactorAuthentication()
+                                        updateBasicInformation()
+                                        checkExpenseReport()
+                                        logout()
+2   Registration                        receiveApplication()
+                                        checkApplicationStatus()
+                                        checkApplicantType()
+                                        sendApplication()
+                                        receivePaymentVerification()
+                                        sendNotification()
+                                        notifyManager()
+3   General Member                      inputLoginCredentials()
+                                        inputPIN()
+                                        viewOptions()
+                                        chooseOption()
+                                        approve()
+                                        fillApplication()
+                                        sendApplication()
+                                        addToCart()
+                                        submitCart()
+                                        cancelOrder()
+                                        identifyTable()
+                                        viewFoodDetail()
+                                        rateFood()
+                                        logout()
+
+                                                                          103 | P a g e
+                           setExpenseLimit()
+                           enableTwoFactorAuthentication()
+                           updateBasicInformation()
+                           checkExpenseReport()
+4   Associate Member       inputLoginCredentials()
+                           inputPIN()
+                           viewOptions()
+                           chooseOption()
+                           approve()
+                           fillApplication()
+                           sendApplication()
+                           addToCart()
+                           submitCart()
+                           cancelOrder()
+                           identifyTable()
+                           viewFoodDetail()
+                           rateFood()
+                           setExpenseLimit()
+                           enableTwoFactorAuthentication()
+                           updateBasicInformation()
+                           checkExpenseReport()
+                           logout()
+5   GM registration form   storeInformation()
+                           updateInformation()
+                           showStatus()
+6   AM registration form   storeInformation()
+                           updateInformation()
+                           showStatus()
+7   Bank                   sendVerification()
+8   Club Manager           inputLoginCredentials()
+                           inputPIN()
+                           viewOptions()
+                           chooseOption()
+                           approve()
+                           updateBasicInformation()
+                           recordTransactions()
+                           viewManagerialReport()
+                           updateFoodDetail()
+                           sendMonthlyReport()
+                           logout()
+9   Database               create()
+                           retrieve()
+                           updateInformation()
+
+                                                             104 | P a g e
+                           delete()
+                           getInformation()
+10   Device                identifyTable()
+11   Menu                  updateFoodDetail()
+12   Cart                  updateCart()
+13   Receipt
+14   Non-member            fillApplication()
+                           sendApplication()
+15   Booking Application   storeInformation()
+                           updateInformation()
+                           showStatus()
+16   Transaction           recordTransaction()
+17   Managerial Report
+18   DUAD                  receiveMonthlyReport()
+19   Expense Report
+
+
+
+
+                                                    105 | P a g e
+6.7 Finalizing Classes
+To identify the final classes we need to check if there can be any hierarchies or merges. These
+identifications are given below:
+   1. ‘Member’ has common attributes and methods with ‘General Member’ and ‘Associate
+      Member’ so we merge them as ‘Member’ and add the common and unique attributes
+      and methods to ‘Member’.
+   2. ‘General Member Registration Form’ and ‘Associate Member Registration Form’ have
+      some common attributes so we create a new class ‘Member Registration Form’ and
+      merge them as ‘Member Registration Form’ and add the common and unique attributes
+      and methods to it.
+   3. ‘Member Registration Form’ and ‘Booking Application’ have some common attributes
+      and methods so we create a new class ‘Application’ and merge them as ‘Application’
+      and add the unique attributes and methods to it.
+   4. ‘SMS’ and ‘Email’ have the same attributes so we merge them as ‘Notification’
+      Notification:
+           a. Applicant’s Name
+           b. SMS Subject/Purpose
+           c. Text
+           d. Contact Information
+   5. ‘Receipt’ and ‘Cart’ have the same attributes so we merge them as ‘Order’
+      Order:
+           a. Date
+           b. Bill Amount
+           c. DUEIN
+           d. List of Food
+   6. ‘Member’ and ‘CM’ classes both have methods and responsibilities on authentication
+      that directly accesses the Database so we create a new class ‘Authentication’ with these
+      methods.
+   7. The classes ‘Receipt’, ‘Cart’ and ‘Menu’ and a few methods from classes ‘Member’ and
+      ‘CM’ have responsibilities that can be identified as a different sub system so we create a
+      new class ‘Food’ and merge the stated classes and methods into it.
+   8. The classes ‘Managerial Report’, ‘Expense Report’ and ‘Transaction’ and a few methods
+      from classes ‘Member’ and ‘CM’ have responsibilities that can be identified as a
+      different sub system so we create a new class ‘Accounting’ and merge the stated classes
+      and methods into it.
+
+
+                                                                                  106 | P a g e
+6.8 Class Cards
+After identifying our final classes we have generated the following class cards.
+
+
+                                   Table 18: Class Card of Member
+
+                                            Member
+                  Attributes                                        Methods
+ Name                                           inputLoginCredentials ()
+ Department                                     inputPIN()
+ Designation                                    viewOptions()
+ Contact Number                                 chooseOption()
+ Email Address                                  approve()
+ Present Address                                fillApplication()
+ Permanent Address                              sendApplication()
+ DUEIN                                          addToCart()
+ Photo                                          submitCart()
+ Username                                       cancelOrder()
+ Password                                       identifyTable()
+ Bank A/C No.                                   viewFoodDetail()
+                                                rateFood()
+                                                setExpenseLimit()
+                                                enableTwoFactorAuthentication()
+                                                updateBasicInformation()
+                                                checkExpenseReport()
+                                                logout()
+                Responsibilities                               Collaborative Class
+ Authentication                                 Authentication
+ Recommendation                                 Registration, Application
+ Booking Space                                  Application, Registration
+
+                                                                                     107 | P a g e
+Order Food                                 Food
+View and Update Food Details               Food
+Update Basic Information                   Database
+Check Expense Report                       Accounting
+
+
+
+
+                                Table 19: Class Card of CM
+
+                                          CM
+                 Attributes                                   Methods
+Name                                       inputLoginCredentials ()
+Contact Number                             viewOptions()
+Present Address                            chooseOption()
+Permanent Address                          approve()
+Photo                                      updateBasicInformation()
+DUEIN                                      recordTransactions()
+Username                                   viewManagerialReport()
+Password                                   updateFoodDetail()
+                                           logout()
+             Responsibilities                           Collaborative Class
+Authentication                             Authentication
+Recommendation                             Registration, Application
+Update Basic Information                   Database
+Update Food Details                        Food
+Check Managerial Report                    Accounting
+
+
+
+
+                                                                              108 | P a g e
+                                  Table 20: Class Card of Application
+
+                                            Application
+                 Attributes                                           Methods
+Application ID                                   storeInformation()
+Name                                             updateInformation()
+Department                                       showStatus()
+Designation
+Contact Number
+Email Address
+Present Address
+Permanent Address
+DUEIN
+Photo
+Username
+Password
+Bank A/C No.
+Application Purpose
+Applicant Type
+Application Status
+               Responsibilities                                 Collaborative Class
+Member Registration                              Non Member, Registration, Member, CM
+Booking for Event Space                          Non Member, Registration, Member, CM
+
+
+
+
+                                                                                      109 | P a g e
+                               Table 21: Class Card of Authentication
+
+                                         Authentication
+                  Attributes                                        Methods
+Username                                        verifyInput()
+Password                                        checkTwoFactorEnabled()
+PIN No.                                         sendPIN()
+                                                verifyPIN()
+                                                logInUser()
+               Responsibilities                                 Collaborative Class
+Authentication                                  Member, CM, Database
+
+
+
+
+                                   Table 22: Class Card of Food
+
+                                              Food
+                  Attributes                                        Methods
+Date                                            updateCart()
+Day                                             recordTransaction()
+Bill Amount                                     updateFoodDetail()
+DUEIN
+List of Food
+Ratings of Food
+Expense of Foods
+Photos of Foods
+Nutritional Facts of Foods
+Category Name
+Amount
+Table Number
+Mac Address
+
+                                                                                      110 | P a g e
+               Responsibilities                                Collaborative Class
+Ordering Food                                    Member, Database
+Updating Food Details                            Member, CM, Database
+
+
+                                  Table 23: Class Card of Database
+
+                                             Database
+                 Attributes                                          Methods
+DB_Name                                          create()
+Password                                         retrieve()
+DB_User                                          updateInformation()
+                                                 delete()
+                                                 getInformation()
+               Responsibilities                                Collaborative Class
+Store Information                                Registration, Accounting, Food,
+                                                 Authentication, Member, CM
+Display Information                              Registration, Accounting, Food,
+                                                 Authentication, Member, CM
+
+
+                                  Table 24: Class Card of Accounting
+
+                                            Accounting
+                 Attributes                                          Methods
+Receipts                                         getReport()
+Payments                                         showReport()
+Current Surplus/Deficit                          sendMonthlyReport()
+Summary of Members                               recordTransaction()
+Food Items Served
+Date
+List of Food
+
+
+                                                                                     111 | P a g e
+Quantity of Items
+Bill Amount
+              Responsibilities                               Collaborative Class
+Show Expense Report                           Member, Database
+Show Managerial Report                        CM, Database
+Send Monthly report                           DUAD, Database
+Record Transaction                            CM, Database
+
+
+                              Table 25: Class Card of Non Member
+
+                                        Non Member
+                 Attributes                                        Methods
+                                              fillApplication()
+                                              sendApplication()
+              Responsibilities                               Collaborative Class
+Member Registration                           Application, Registration
+Booking for Event Space                       Application, Registration
+
+
+                              Table 26: Class Card of Registration
+
+                                        Registration
+                 Attributes                                        Methods
+Contact Number                                receiveApplication()
+Application ID                                checkApplicationStatus()
+                                              checkApplicantType()
+                                              sendApplication()
+                                              receivePaymentVerification()
+                                              sendNotification()
+                                              notifyManager()
+
+
+                                                                                   112 | P a g e
+             Responsibilities                              Collaborative Class
+Receive Application                         Application
+Approve Application                         Application, Member, CM
+Verify Payment                              Non Member, Member, Bank
+Finalize Registration                       Non Member, Member, CM
+
+
+
+
+                                Table 27: Class Card of Bank
+
+                                          Bank
+                   Attributes                                    Methods
+Bank ID                                     sendVerification()
+Bank Name
+Application ID
+             Responsibilities                              Collaborative Class
+Payment Verification                        Registration
+
+
+
+
+                                Table 28: Class Card of DUAD
+
+                                          DUAD
+                   Attributes                                    Methods
+                                            receiveMonthlyReport()
+Responsibilities                            Collaborative Class
+Monthly Report                              Accounting
+
+
+
+
+                                                                                 113 | P a g e
+6.9 CRC Diagram
+
+
+
+
+                  Figure 45: CRC Diagram of DUCMS
+
+
+
+
+                                                    114 | P a g e
+              CHAPTER 7: BEHAVIORAL MODELING OF DUCMS
+
+
+7.1 STATE TRANSITION DIAGRAM
+
+State diagram represents active states for each class the events (triggers). For this we identified
+all the events, their initiators and collaborators.
+
+
+
+Identifying Events
+                                  Table 29: Event Identification
+
+   No      Events                                 Initiator                Collaborator
+   1       Input login credentials                Member                   Authentication
+   2       Input login credentials                CM                       Authentication
+   3       Request for login information          Authentication           Database
+   4       Request for two factor                 Authentication           Database
+           authentication
+   5       Log in information given               Database                 Authentication
+   6       Two factor authentication info         Database                 Authentication
+           given
+   7       Input PIN incorrect                    Authentication           -
+   8       Input PIN verified                     Authentication           -
+   9       Member logged in                       Authentication           Member
+   10      CM logged in                           Authentication           CM
+   11      Applied for registration/booking       Non-member               Application
+           space
+   12      Application info stored                Application              Registration
+   13      Application status checked             Registration             -
+   14      Request for member approval            Registration             Member
+   15      Approved by member                     Member                   Application
+   16      Application updated                    Application              Registration
+   17      Request for CM approval                Registration             CM
+   18      Applied for booking space              Member                   Application
+   19      Notified for payment                   Registration             Non-member
+   20      Payment verified                       Bank                     Registration
+   21      Notified CM for payment                Registration             CM
+           verification
+   22      Food item ordered                      Member                   -
+                                                                                   115 | P a g e
+23   Order cancelled                    Member           -
+24   Order submitted                    Member           Food
+25   Updated food information           Food             -
+26   Request for update transaction     Food             Database
+27   Request for update food rating     Member           Database
+28   Request for food detail            Member           Food
+29   Request for food detail            Food             Database
+30   Food detail given                  Database         Food
+31   Request for updating member info   Member           Database
+32   Request for checking expense       Member           Accounting
+     report
+33   Request for member expense         Accounting       Database
+     report
+34   Member expense report given        Database         Accounting
+35   Request for updating CM info       CM               Database
+36   Request for manager report         CM               Accounting
+37   Request for manager report         Accounting       Database
+38   Managerial report given            Database         Accounting
+39   Updating food detail               CM               Food
+40   Request for updating food detail   Food             Database
+41   Monthly report sent                Accounting       DUAD
+42   Option chosen                      Member           -
+43   Option chosen                      CM               -
+44   Logged in                          Authentication   Member
+45   Logged in                          Authentication   CM
+46   Logged out                         Member           -
+47   Logged out                         CM               -
+
+
+
+
+                                                                116 | P a g e
+Authentication
+
+
+
+
+                 Figure 46: State Transition Diagram – Authentication
+
+
+
+Registration
+
+
+
+
+                  Figure 47: State Transition Diagram – Registration
+
+
+
+
+                                                                        117 | P a g e
+Member
+
+
+
+     Login
+     request
+
+
+
+
+               Figure 48: State Transition Diagram – Member
+
+
+
+
+                                                              118 | P a g e
+Non Member
+
+
+
+
+             Figure 49: State Transition Diagram – Non Member
+
+
+
+Database
+
+
+
+
+              Figure 50: State Transition Diagram – Database
+
+
+
+
+                                                                119 | P a g e
+Club Manager
+
+
+
+
+               Figure 51: State Transition Diagram – Club Manager
+
+
+
+
+                                                                    120 | P a g e
+Food
+
+
+
+
+       Figure 52: State Transition Diagram – Food
+
+
+
+Bank
+
+
+
+
+       Figure 53: State Transition Diagram – Bank
+
+DUAD
+
+
+
+
+       Figure 54: State Transition Diagram – DUAD
+
+
+
+
+                                                    121 | P a g e
+Accounting
+
+
+
+
+              Figure 55: State Transition Diagram – Accounting
+
+
+
+
+Application
+
+
+
+
+              Figure 56: State Transition Diagram – Application
+
+
+
+
+                                                                  122 | P a g e
+7.2 SEQUENCE DIAGRAMS OF MODULES OF DUCMS
+
+
+
+
+                Figure 57: Sequence Diagram of Module-Sign in
+
+
+
+
+                                                                123 | P a g e
+Figure 58: Sequence Diagram of Module-Registration
+
+
+
+
+                                                     124 | P a g e
+Figure 59: Sequence Diagram of Module-Ordering Food
+
+
+
+
+                                                      125 | P a g e
+Figure 60: Sequence Diagram of Module-Booking Space
+
+
+
+
+                                                      126 | P a g e
+Figure 61: Sequence Diagram of Module-Management Activity
+
+
+
+
+                                                            127 | P a g e
+Figure 62: Sequence Diagram of Member Activity
+
+
+
+
+                                                 128 | P a g e
+7.3 SEQUENCE DIAGRAM OF DUCMS
+                                         Figure 63: Sequence Diagram
+
+
+
+
+                                Figure 63: Sequence Diagram of DUCMS
+
+                                                                       129 | P a g e
+                              CHAPTER 8: CONCLUSION
+
+We are pleased to submit the final SRS report on Dhaka University Club Management System.
+From this, the readers will get a clear and easy view of the overall system of Dhaka University
+Club. This SRS document can be used effectively to maintain the software development cycle. It
+will be very easy to conduct the whole project using this SRS. Hopefully, this document can also
+help our junior BSSE batch students. We tried our best to remove all dependencies and make an
+effective and fully designed SRS. We believe that the reader will find it in order.–
+
+
+
+
+                                                                                130 | P a g e
+                                CHAPTER 9: REFERENCES
+
+      Pressman, Roger S. Software Engineering: A Practitioner's Approach (7th Edition)
+
+
+
+
+                                           APPENDIX
+
+
+GROUP MEETINGS
+1.
+Date: 9.08.16
+Place: IIT, DU
+Subject: Discussing about the group
+Shuvo Saha                      BSSE0705
+Jarifa Khatun Moitry            BSSE0710
+Md. Aquib Azmain                BSSE0718
+Abu Rafe Md. Jamil              BSSE0722
+Sabbir Hussain Meraj            BSSE0726
+Syed Fatiul Huq                 BSSE0732
+
+2.
+Date: 11.08.16
+Place: IIT, DU
+Subject: Meeting with Dr. Muhammad Asif Hossain Khan, Associate Professor, CSE, DU
+Shuvo Saha                    BSSE0705
+Jarifa Khatun Moitry          BSSE0710
+Md. Aquib Azmain              BSSE0718
+Abu Rafe Md. Jamil            BSSE0722
+Sabbir Hussain Meraj          BSSE0726
+Syed Fatiul Huq               BSSE0732
+
+3.
+Date: 14.08.16
+Place: Dhaka University Club
+Subject: Meeting with Club Manager
+Shuvo Saha                    BSSE0705
+Jarifa Khatun Moitry          BSSE0710
+Md. Aquib Azmain              BSSE0718
+Abu Rafe Md. Jamil            BSSE0722
+Sabbir Hussain Meraj          BSSE0726
+Syed Fatiul Huq               BSSE0732
+
+
+
+                                                                                      131 | P a g e
+4.
+Date: 18.08.16
+Place: IIT, DU
+Subject: Defining QFD
+Shuvo Saha                    BSSE0705
+Jarifa Khatun Moitry          BSSE0710
+Md. Aquib Azmain              BSSE0718
+Abu Rafe Md. Jamil            BSSE0722
+Sabbir Hussain Meraj          BSSE0726
+Syed Fatiul Huq               BSSE0732
+
+5.
+Date: 20.08.16
+Place: IIT, DU
+Subject: Defining QFD
+Shuvo Saha                    BSSE0705
+Jarifa Khatun Moitry          BSSE0710
+Md. Aquib Azmain              BSSE0718
+Abu Rafe Md. Jamil            BSSE0722
+Sabbir Hussain Meraj          BSSE0726
+Syed Fatiul Huq               BSSE0732
+
+6.
+Date: 21.08.16
+Place: IIT, DU
+Subject: Preparing the usage scenario
+Shuvo Saha                      BSSE0705
+Jarifa Khatun Moitry            BSSE0710
+Md. Aquib Azmain                BSSE0718
+Abu Rafe Md. Jamil              BSSE0722
+Sabbir Hussain Meraj            BSSE0726
+Syed Fatiul Huq                 BSSE0732
+
+7.
+Date: 27.08.16
+Place: Online Communication
+Subject: Preparing the usage scenario
+Shuvo Saha                      BSSE0705
+Jarifa Khatun Moitry            BSSE0710
+Md. Aquib Azmain                BSSE0718
+Abu Rafe Md. Jamil              BSSE0722
+Sabbir Hussain Meraj            BSSE0726
+Syed Fatiul Huq                 BSSE0732
+
+
+
+
+                                           132 | P a g e
+8.
+Date: 4.09.16
+Place: IIT, DU
+Subject: Preparing the usage scenario
+Shuvo Saha                      BSSE0705
+Jarifa Khatun Moitry            BSSE0710
+Md. Aquib Azmain                BSSE0718
+Abu Rafe Md. Jamil              BSSE0722
+Sabbir Hussain Meraj            BSSE0726
+Syed Fatiul Huq                 BSSE0732
+
+9.
+Date: 22.09.16
+Place: IIT, DU
+Subject: Discussing about Use Case diagrams
+Shuvo Saha                      BSSE0705
+Jarifa Khatun Moitry            BSSE0710
+Md. Aquib Azmain                BSSE0718
+Abu Rafe Md. Jamil              BSSE0722
+Sabbir Hussain Meraj            BSSE0726
+Syed Fatiul Huq                 BSSE0732
+
+10.
+Date: 30.09.16
+Place: IIT, DU
+Subject: Preparing activity diagram
+Shuvo Saha                       BSSE0705
+Jarifa Khatun Moitry             BSSE0710
+Md. Aquib Azmain                 BSSE0718
+Abu Rafe Md. Jamil               BSSE0722
+Sabbir Hussain Meraj             BSSE0726
+Syed Fatiul Huq                  BSSE0732
+
+11.
+Date: 7.10.16
+Place: Online communication
+Subject: Preparing Swimlane diagram
+Shuvo Saha                     BSSE0705
+Jarifa Khatun Moitry           BSSE0710
+Md. Aquib Azmain               BSSE0718
+Abu Rafe Md. Jamil             BSSE0722
+Sabbir Hussain Meraj           BSSE0726
+Syed Fatiul Huq                BSSE0732
+
+
+
+
+                                              133 | P a g e
+12.
+Date: 17.10.16
+Place: IIT, DU
+Subject: Discussing about data model
+Shuvo Saha                      BSSE0705
+Jarifa Khatun Moitry            BSSE0710
+Md. Aquib Azmain                BSSE0718
+Abu Rafe Md. Jamil              BSSE0722
+Sabbir Hussain Meraj            BSSE0726
+Syed Fatiul Huq                 BSSE0732
+
+
+13.
+Date: 25.10.16
+Place: IIT, DU
+Subject: Preparing class based model
+Shuvo Saha                      BSSE0705
+Jarifa Khatun Moitry            BSSE0710
+Md. Aquib Azmain                BSSE0718
+Abu Rafe Md. Jamil              BSSE0722
+Sabbir Hussain Meraj            BSSE0726
+Syed Fatiul Huq                 BSSE0732
+
+14.
+Date: 04.11.16
+Place: Online communication
+Subject: Preparing CRC model
+Shuvo Saha                     BSSE0705
+Jarifa Khatun Moitry           BSSE0710
+Md. Aquib Azmain               BSSE0718
+Abu Rafe Md. Jamil             BSSE0722
+Sabbir Hussain Meraj           BSSE0726
+Syed Fatiul Huq                BSSE0732
+
+15.
+Date: 14.11.16
+Place: Online communication
+Subject: Preparing CRC model
+Shuvo Saha                     BSSE0705
+Jarifa Khatun Moitry           BSSE0710
+Md. Aquib Azmain               BSSE0718
+Abu Rafe Md. Jamil             BSSE0722
+Sabbir Hussain Meraj           BSSE0726
+Syed Fatiul Huq                BSSE0732
+
+
+
+
+                                           134 | P a g e
+16.
+Date: 16.11.16
+Place: IIT, DU
+Subject: Preparing Behavioral model
+Shuvo Saha                     BSSE0705
+Jarifa Khatun Moitry           BSSE0710
+Md. Aquib Azmain               BSSE0718
+Abu Rafe Md. Jamil             BSSE0722
+Sabbir Hussain Meraj           BSSE0726
+Syed Fatiul Huq                BSSE0732
+
+
+17.
+Date: 16.11.16
+Place: IIT, DU
+Subject: Preparing Behavioral model
+Shuvo Saha                     BSSE0705
+Jarifa Khatun Moitry           BSSE0710
+Md. Aquib Azmain               BSSE0718
+Abu Rafe Md. Jamil             BSSE0722
+Sabbir Hussain Meraj           BSSE0726
+Syed Fatiul Huq                BSSE0732
+
+
+18.
+Date: 19.11.16
+Place: IIT, DU
+Subject: Discussing about the report
+Shuvo Saha                      BSSE0705
+Jarifa Khatun Moitry            BSSE0710
+Md. Aquib Azmain                BSSE0718
+Abu Rafe Md. Jamil              BSSE0722
+Sabbir Hussain Meraj            BSSE0726
+Syed Fatiul Huq                 BSSE0732
+
+19.
+Date: 20.11.16
+Place: IIT, DU
+Subject: Discussing about the report
+Shuvo Saha                      BSSE0705
+Jarifa Khatun Moitry            BSSE0710
+Md. Aquib Azmain                BSSE0718
+Abu Rafe Md. Jamil              BSSE0722
+Sabbir Hussain Meraj            BSSE0726
+Syed Fatiul Huq                 BSSE0732
+
+
+
+                                           135 | P a g e
+

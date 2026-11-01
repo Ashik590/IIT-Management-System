@@ -10,6 +10,42 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public final class DatabaseSeeder {
+    private static final String ACADEMIC_SESSION = "2024-25";
+    private static final String SEMESTER = "1st";
+
+    private static final String[] STUDENT_NAMES = {
+            "M. HASEBUR RAHMAN SINHA", "MD. SIMUL HAQUE RIHAN", "OMER MAHBOOB", "AKAID MOONJIN",
+            "MD. SHOUROV", "SADMAN SAKIB", "PARVEJ SHAH", "MD. MOSADDIK SARKER SOURAV",
+            "DARUN NAYEEM", "NAFIS AHMED", "MD. NAIMUL ISLAM NAIM", "MD. AZIZUL HAKIM",
+            "A. M. TOUFIQ ALAM", "RUBAIYAT ISLAM", "MD. ASIM ALAM CHOWDHURY",
+            "MD. MAHMUDUL HASAN ANIK", "SHARIAR ISLAM MAHI", "MD. IRFANUR RAHMAN BHUYAN",
+            "MD. TAMIM HOSSEN", "ABDULLAH AL MAHMUD", "MD. TAWRAT HOSSEN NIBIR",
+            "MD. SAIKAT ISLAM", "EKRAMUL HOQUE", "MD. INZAMAMUL LOHANI", "SHOHIDUR RAHMAN",
+            "ADNAN ALAM PRANTO", "MD. ABU RAYHAN", "MD. ROKIB IKBAL", "MD. AFIF HASAN",
+            "MD. RASHIK RAIHAN", "ASADUZZAMAN RIFAT", "OASI MAHMUD", "ASHISH ROY SHAYON",
+            "ARITHRO CHOUDHURY", "CHOYON BONIK PROTIK", "SAJIB SARKAR"
+    };
+
+    private static final SeedCourse[] COURSES = {
+            new SeedCourse("CSE 1101", "THEORY", 3.0),
+            new SeedCourse("CSE 1102", "THEORY", 3.0),
+            new SeedCourse("STAT 1103", "THEORY", 3.0),
+            new SeedCourse("GE 1105", "THEORY", 3.0),
+            new SeedCourse("SE 1106", "THEORY", 3.0),
+            new SeedCourse("MATH 1107", "THEORY", 3.0),
+            new SeedCourse("CSE 1101L", "LAB", 1.5)
+    };
+
+    private static final SeedTeacher[] TEACHERS = {
+            new SeedTeacher("Dr. Naushin Nower", "Director and Professor"),
+            new SeedTeacher("Dr. Zerina Begum", "Professor"),
+            new SeedTeacher("Mohd. Zulfiquar Hafiz", "Professor"),
+            new SeedTeacher("Dr. Kazi Muheymin-Us-Sakib", "Professor"),
+            new SeedTeacher("Dr. Md. Shariful Islam", "Professor"),
+            new SeedTeacher("Dr. Mohammad Shoyaib", "Professor"),
+            new SeedTeacher("Dr. B M Mainul Hossain", "Professor")
+    };
+
     private final Database database;
     private final PasswordHasher passwordHasher;
 
@@ -25,55 +61,40 @@ public final class DatabaseSeeder {
             }
             connection.setAutoCommit(false);
             try {
-                long admin = insertUser(connection, "admin", "admin123", "System Administrator",
+                insertUser(connection, "admin", "admin123", "System Administrator",
                         "admin@iit.du.ac.bd", Role.ADMIN);
-                long teacherOne = insertUser(connection, "teacher1", "teacher123", "Dr. Nusrat Rahman",
-                        "nusrat@iit.du.ac.bd", Role.TEACHER);
-                long teacherTwo = insertUser(connection, "teacher2", "teacher123", "Md. Tanvir Ahmed",
-                        "tanvir@iit.du.ac.bd", Role.TEACHER);
-                long studentOne = insertUser(connection, "student1", "student123", "Afiya Islam",
-                        "afiya@iit.du.ac.bd", Role.STUDENT);
-                long studentTwo = insertUser(connection, "student2", "student123", "Rafi Hasan",
-                        "rafi@iit.du.ac.bd", Role.STUDENT);
-                long studentThree = insertUser(connection, "student3", "student123", "Nabil Karim",
-                        "nabil@iit.du.ac.bd", Role.STUDENT);
+                long[] teachers = new long[TEACHERS.length];
+                for (int index = 0; index < TEACHERS.length; index++) {
+                    int number = index + 1;
+                    SeedTeacher seedTeacher = TEACHERS[index];
+                    teachers[index] = insertUser(connection, "teacher" + number, "teacher123",
+                            seedTeacher.name(), "teacher" + number + "@iit.du.ac.bd", Role.TEACHER);
+                    insertTeacherProfile(connection, teachers[index], "T-" + String.format("%03d", number),
+                            seedTeacher.designation());
+                }
 
-                insertTeacherProfile(connection, teacherOne, "T-101", "Associate Professor");
-                insertTeacherProfile(connection, teacherTwo, "T-102", "Lecturer");
-                insertStudentProfile(connection, studentOne, "BSSE-1401", "2024-25", "A+");
-                insertStudentProfile(connection, studentTwo, "BSSE-1402", "2024-25", "B+");
-                insertStudentProfile(connection, studentThree, "BSSE-1403", "2024-25", "O+");
+                long[] students = new long[STUDENT_NAMES.length];
+                for (int index = 0; index < STUDENT_NAMES.length; index++) {
+                    int number = index + 1;
+                    students[index] = insertUser(connection, "student" + number, "student123",
+                            STUDENT_NAMES[index], "student" + number + "@iit.du.ac.bd", Role.STUDENT);
+                    insertStudentProfile(connection, students[index], "BSSE-14" + String.format("%02d", number),
+                            ACADEMIC_SESSION, "Unknown");
+                }
 
-                long course = insertCourse(connection, "SE-2215", "Design Patterns", "THEORY",
-                        3.0, "2026-27", "5th", "ACTIVE", "FINALIZED");
-                long lab = insertCourse(connection, "SE-2216", "Design Patterns Lab", "LAB",
-                        1.5, "2026-27", "5th", "DRAFT", "DRAFT");
-
-                assignTeacher(connection, course, teacherOne);
-                assignTeacher(connection, lab, teacherOne);
-                assignTeacher(connection, lab, teacherTwo);
-                enroll(connection, course, studentOne);
-                enroll(connection, course, studentTwo);
-                enroll(connection, course, studentThree);
-                enroll(connection, lab, studentOne);
-                enroll(connection, lab, studentTwo);
-
-                insertComponent(connection, course, "Attendance", 15, 100, "ATTENDANCE");
-                insertComponent(connection, lab, "Attendance", 15, 100, "ATTENDANCE");
-                long quiz = insertComponent(connection, course, "Quizzes", 25, 20, "MANUAL");
-                long assignment = insertComponent(connection, course, "Assignments", 15, 20, "MANUAL");
-                long midterm = insertComponent(connection, course, "Midterm", 45, 30, "MANUAL");
-                insertMark(connection, quiz, studentOne, 17);
-                insertMark(connection, assignment, studentOne, 18);
-                insertMark(connection, midterm, studentOne, 24);
-                insertMark(connection, quiz, studentTwo, 14);
-                insertMark(connection, assignment, studentTwo, 16);
-                insertMark(connection, midterm, studentTwo, 22);
-                insertMark(connection, quiz, studentThree, 18);
-                insertMark(connection, assignment, studentThree, 17);
-                insertMark(connection, midterm, studentThree, 26);
-
-                insertAttendance(connection, course, teacherOne, studentOne, studentTwo, studentThree);
+                for (int index = 0; index < COURSES.length; index++) {
+                    SeedCourse seedCourse = COURSES[index];
+                    long course = insertCourse(connection, seedCourse.code(), seedCourse.code(), seedCourse.type(),
+                            seedCourse.credit(), ACADEMIC_SESSION, SEMESTER, "ACTIVE", "DRAFT");
+                    assignTeacher(connection, course, teachers[index]);
+                    if ("LAB".equals(seedCourse.type())) {
+                        assignTeacher(connection, course, teachers[0]);
+                    }
+                    for (long student : students) {
+                        enroll(connection, course, student);
+                    }
+                    insertComponent(connection, course, "Attendance", 15, 100, "ATTENDANCE");
+                }
                 connection.commit();
             } catch (Exception exception) {
                 connection.rollback();
@@ -171,57 +192,22 @@ public final class DatabaseSeeder {
         }
     }
 
-    private long insertComponent(Connection connection, long course, String title, double weight,
+    private void insertComponent(Connection connection, long course, String title, double weight,
                                  double maximum, String componentType) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement(
-                "INSERT INTO assessment_components(course_id,title,weight_percentage,maximum_mark,component_type) VALUES(?,?,?,?,?)",
-                Statement.RETURN_GENERATED_KEYS)) {
+                "INSERT INTO assessment_components(course_id,title,weight_percentage,maximum_mark,component_type) VALUES(?,?,?,?,?)")) {
             statement.setLong(1, course);
             statement.setString(2, title);
             statement.setDouble(3, weight);
             statement.setDouble(4, maximum);
             statement.setString(5, componentType);
             statement.executeUpdate();
-            try (ResultSet keys = statement.getGeneratedKeys()) {
-                keys.next();
-                return keys.getLong(1);
-            }
         }
     }
 
-    private void insertMark(Connection connection, long component, long student, double mark) throws SQLException {
-        try (PreparedStatement statement = connection.prepareStatement(
-                "INSERT INTO assessment_marks(component_id,student_id,obtained_mark) VALUES(?,?,?)")) {
-            statement.setLong(1, component);
-            statement.setLong(2, student);
-            statement.setDouble(3, mark);
-            statement.executeUpdate();
-        }
+    private record SeedCourse(String code, String type, double credit) {
     }
 
-    private void insertAttendance(Connection connection, long course, long teacher,
-                                  long studentOne, long studentTwo, long studentThree) throws SQLException {
-        long sessionId;
-        try (PreparedStatement statement = connection.prepareStatement(
-                "INSERT INTO attendance_sessions(course_id,class_date,title,created_by) VALUES(?,date('now'),'Orientation',?)",
-                Statement.RETURN_GENERATED_KEYS)) {
-            statement.setLong(1, course);
-            statement.setLong(2, teacher);
-            statement.executeUpdate();
-            try (ResultSet keys = statement.getGeneratedKeys()) {
-                keys.next();
-                sessionId = keys.getLong(1);
-            }
-        }
-        long[] students = {studentOne, studentTwo, studentThree};
-        for (int index = 0; index < students.length; index++) {
-            try (PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO attendance_records(session_id,student_id,status) VALUES(?,?,?)")) {
-                statement.setLong(1, sessionId);
-                statement.setLong(2, students[index]);
-                statement.setString(3, index == 1 ? "ABSENT" : "PRESENT");
-                statement.executeUpdate();
-            }
-        }
+    private record SeedTeacher(String name, String designation) {
     }
 }

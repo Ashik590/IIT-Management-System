@@ -1,0 +1,52 @@
+@startuml
+title Ref: Table 25\nName: MediaPost
+
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam linetype polyline
+skinparam nodesep 140
+skinparam ranksep 150
+skinparam padding 20
+skinparam dpi 150
+
+skinparam rectangle {
+    BackgroundColor #DCEEFF
+    BorderColor #3973AC
+    FontColor #16324F
+    FontStyle bold
+    FontSize 14
+    RoundCorner 14
+}
+
+skinparam ArrowColor #526D82
+skinparam ArrowFontColor #263746
+skinparam ArrowFontSize 12
+
+' Top
+rectangle "PublicitySecretary" as PublicitySecretary
+
+' Middle
+rectangle "Activity" as Activity
+rectangle "MediaPost" as MediaPost #72B6E8
+rectangle "Event" as Event
+
+' Bottom
+rectangle "Member" as Member
+
+' Layout constraints
+PublicitySecretary -[hidden]down- MediaPost
+Activity -[hidden]right- MediaPost
+MediaPost -[hidden]right- Event
+MediaPost -[hidden]down- Member
+
+' CRC collaborations
+PublicitySecretary -down- MediaPost : Receives post creation,\npublication and archiving\nactions
+
+Activity -right- MediaPost : Presents activity-linked\ninformation
+
+MediaPost -right- Event : Presents event publicity and\nmedia
+
+MediaPost -down- Member : Provides audience-visible posts
+
+caption Fig crc.16: MediaPost
+@enduml
